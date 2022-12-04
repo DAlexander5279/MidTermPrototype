@@ -123,11 +123,6 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 23800000, guid: f42e4cf0889c92744972a2b4da441c86, type: 2}
---- !u!4 &758534765 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 3231377191603333853, guid: 773b99f03ade92548babbc96514f6010, type: 3}
-  m_PrefabInstance: {fileID: 3231377191017560240}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &940028653
 GameObject:
   m_ObjectHideFlags: 0
@@ -222,37 +217,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 50, y: -30, z: 0}
---- !u!1 &1192243907
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1192243908}
-  m_Layer: 0
-  m_Name: DoorOpenPos
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &1192243908
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1192243907}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0.789, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 758534765}
-  m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1404371247
 GameObject:
   m_ObjectHideFlags: 0
@@ -329,45 +293,14 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1404371247}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 1.08, z: -3.72}
+  m_LocalRotation: {x: -0, y: 0.586364, z: -0, w: 0.81004775}
+  m_LocalPosition: {x: 0.00000029704117, y: 1.08, z: -3.72}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &1507864136
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1507864137}
-  m_Layer: 0
-  m_Name: DoorClosePos
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &1507864137
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1507864136}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 758534765}
-  m_RootOrder: 1
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 71.799, z: 0}
 --- !u!1001 &3231377191017560240
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -375,6 +308,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1507864137, guid: 773b99f03ade92548babbc96514f6010, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 2.6
+      objectReference: {fileID: 0}
     - target: {fileID: 3231377190031304848, guid: 773b99f03ade92548babbc96514f6010, type: 3}
       propertyPath: m_RootOrder
       value: 2
@@ -423,9 +360,21 @@ PrefabInstance:
       propertyPath: m_Name
       value: Floor
       objectReference: {fileID: 0}
-    - target: {fileID: 3231377191603333852, guid: 773b99f03ade92548babbc96514f6010, type: 3}
-      propertyPath: m_Name
-      value: Door
+    - target: {fileID: 3231377191603333853, guid: 773b99f03ade92548babbc96514f6010, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 3.34
+      objectReference: {fileID: 0}
+    - target: {fileID: 7941120916628569107, guid: 773b99f03ade92548babbc96514f6010, type: 3}
+      propertyPath: doorSpeed
+      value: 0.3
+      objectReference: {fileID: 0}
+    - target: {fileID: 7941120916628569107, guid: 773b99f03ade92548babbc96514f6010, type: 3}
+      propertyPath: doorSpeedOpen
+      value: 0.3
+      objectReference: {fileID: 0}
+    - target: {fileID: 7941120916628569107, guid: 773b99f03ade92548babbc96514f6010, type: 3}
+      propertyPath: doorSpeedClose
+      value: 2
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 773b99f03ade92548babbc96514f6010, type: 3}
