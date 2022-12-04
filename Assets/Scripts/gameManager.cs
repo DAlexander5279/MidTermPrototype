@@ -8,14 +8,14 @@ public class gameManager : MonoBehaviour
 
     [Header("------Player Things------")]
     public GameObject player;
-    public playerController scriptPlayer;
+    public playerController playerScript;
 
     [Header("------UI------")]
 
-    public GameObject pause;
+    public GameObject pauseMenu;
     public GameObject activeMenu;
-    public GameObject win;
-    public GameObject lose;
+    public GameObject winMenu;
+    public GameObject loseMenu;
 
     [Header("------Extras------")]
     [SerializeField] int roomCount;
@@ -37,7 +37,7 @@ public class gameManager : MonoBehaviour
         if (Input.GetButtonDown("Cancel"))
         {
             paused = !paused;
-            activeMenu = pause;
+            activeMenu = pauseMenu;
             activeMenu.SetActive(paused);
             if (paused)
             {
@@ -63,7 +63,7 @@ public class gameManager : MonoBehaviour
         activeMenu = null;
 
     }
-    public void numbOfEnemies(int amount)
+    public void updateEnemyCount(int amount)
     {
         enemyCount += amount;
         

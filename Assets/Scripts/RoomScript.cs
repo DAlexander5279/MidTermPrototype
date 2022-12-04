@@ -24,9 +24,10 @@ public class RoomScript : MonoBehaviour
     void Update()
     {
 
-        if(enemyTemp <= 0)
-        {
-            OpenDoor();
+        // if (gameManager.instance.enemyCount <= 0)
+        if (enemyTemp <= 0)
+            {
+                OpenDoor();
 
             if(!roomSpawned)
             {

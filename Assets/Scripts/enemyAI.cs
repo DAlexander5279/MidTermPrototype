@@ -32,7 +32,7 @@ public class enemyAI : MonoBehaviour, IDamage
     {
         HPOriginal = HP;
         enemyMaterialOriginal = model.material.color;
-        gameManager.instance.numbOfEnemies(1);
+        gameManager.instance.updateEnemyCount(1);
     }
 
     // Update is called once per frame
@@ -78,15 +78,32 @@ public class enemyAI : MonoBehaviour, IDamage
         transform.rotation = Quaternion.Lerp(transform.rotation, rot, Time.deltaTime * playerFaceSpeed);
     }
 
+    public void OnTriggerEnter(Collider other)
+    {
+        if (other.CompareTag("Player"))
+        {
+            playerInRange = true;
+        }
+    }
+
+    public void OnTriggerExit(Collider other)
+    {
+        if (other.CompareTag("Player"))
+        {
+            playerInRange = false;
+        }
+    }
+
     public void takeDamage(int dmgIn)
     {
         HP -= dmgIn;
+        agent.SetDestination(gameManager.instance.player.transform.position);
         StartCoroutine(flashDamage());
         
         if (HP <= 0)
         {
             // Update enemy count
-            gameManager.instance.numbOfEnemies(-1);
+            gameManager.instance.updateEnemyCount(-1);
             Destroy(gameObject);
         }
     }
