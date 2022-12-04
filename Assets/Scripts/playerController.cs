@@ -17,7 +17,7 @@ public class playerController : MonoBehaviour
     [Range(10,20)] [SerializeField] int gravity;
 
     [Header("------Gun Stats------")]
-    [Range(1, 5)][SerializeField] int DMG;
+    [Range(1, 5)][SerializeField] int gunDMG;
     [Range(1, 3)] [SerializeField] int shootRate;
     [Range(1, 5)] [SerializeField] int shootDis;
 
@@ -35,6 +35,7 @@ public class playerController : MonoBehaviour
     void Update()
     {
         Movement();
+        StartCoroutine(Shoot());
     }
     void Movement()
     {
@@ -59,6 +60,27 @@ public class playerController : MonoBehaviour
         playerVelocity.y -= gravity * Time.deltaTime;
         player.Move(playerVelocity * Time.deltaTime);
 
+    }
+    IEnumerator Shoot()
+    {
+        if (!firing && Input.GetButtonDown("Shoot"))
+        {
+            firing = true;
+
+            RaycastHit Hit;
+
+            Debug.Log("I Shoot");
+
+            if (Physics.Raycast(Camera.main.ViewportPointToRay(new Vector2(0.5f, 0.5f)), out Hit, shootDis))
+            {
+                if (Hit.collider.GetComponent<IDamage>() != null)
+                {
+                    Hit.collider.GetComponent<IDamage>().takeDamage(gunDMG);
+                }
+            }
+            yield return new WaitForSeconds(shootRate);
+            firing = false;
+        }
     }
 
 }
