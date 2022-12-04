@@ -9,6 +9,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 9024140617855033182}
+  - component: {fileID: 3045815228002593956}
+  - component: {fileID: 5790308236624714209}
   - component: {fileID: 3523411929613555833}
   - component: {fileID: 8204847424428269192}
   - component: {fileID: 8379142467402928589}
@@ -34,6 +36,49 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &3045815228002593956
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2485151190363205433}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 69480a20b453eb9449d01a5892ebe708, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  model: {fileID: 8204847424428269192}
+  agent: {fileID: 5790308236624714209}
+  HP: 0
+  playerFaceSpeed: 0
+  sightAngle: 0
+  headPosition: {fileID: 0}
+  fireRate: 0
+  bullet: {fileID: 0}
+  shootPosition: {fileID: 0}
+--- !u!195 &5790308236624714209
+NavMeshAgent:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2485151190363205433}
+  m_Enabled: 1
+  m_AgentTypeID: 0
+  m_Radius: 0.5
+  m_Speed: 3.5
+  m_Acceleration: 8
+  avoidancePriority: 50
+  m_AngularSpeed: 120
+  m_StoppingDistance: 4
+  m_AutoTraverseOffMeshLink: 1
+  m_AutoBraking: 1
+  m_AutoRepath: 1
+  m_Height: 2
+  m_BaseOffset: 1
+  m_WalkableMask: 4294967295
+  m_ObstacleAvoidanceType: 4
 --- !u!33 &3523411929613555833
 MeshFilter:
   m_ObjectHideFlags: 0
