@@ -32,6 +32,7 @@ public class enemyAI : MonoBehaviour, IDamage
     {
         HPOriginal = HP;
         enemyMaterialOriginal = model.material.color;
+        gameManager.instance.numbOfEnemies(1);
     }
 
     // Update is called once per frame
@@ -45,17 +46,49 @@ public class enemyAI : MonoBehaviour, IDamage
 
     void canSeePlayer()
     {
+        playerDirection = (gameManager.instance.player.transform.position - headPosition.position);
+        angleToPlayer = Vector3.Angle(playerDirection, transform.forward);
+
+        Debug.Log(angleToPlayer);
+        Debug.DrawRay(headPosition.position, playerDirection);
+
+        RaycastHit hit;
+        if (Physics.Raycast(headPosition.position, playerDirection,out hit))
+        {
+            if (hit.collider.CompareTag("Player") && angleToPlayer <= sightAngle)
+            {
+                agent.SetDestination(gameManager.instance.player.transform.position);
+
+                if (!isShooting)
+                    StartCoroutine(shoot());
+
+                if (agent.remainingDistance <= agent.stoppingDistance)
+                {
+                    facePlayer();
+                }
+            }
+        }
 
     }
 
     void facePlayer()
     {
-
+        playerDirection.y = 0; // set to 0 to avoid model doing Smooth Criminal lean
+        Quaternion rot = Quaternion.LookRotation(playerDirection);
+        transform.rotation = Quaternion.Lerp(transform.rotation, rot, Time.deltaTime * playerFaceSpeed);
     }
 
     public void takeDamage(int dmgIn)
     {
-
+        HP -= dmgIn;
+        StartCoroutine(flashDamage());
+        
+        if (HP <= 0)
+        {
+            // Update enemy count
+            gameManager.instance.numbOfEnemies(-1);
+            Destroy(gameObject);
+        }
     }
 
     IEnumerator flashDamage()
@@ -63,5 +96,15 @@ public class enemyAI : MonoBehaviour, IDamage
         model.material.color = Color.red;
         yield return new WaitForSeconds(0.2f);
         model.material.color = enemyMaterialOriginal;
+    }
+
+    IEnumerator shoot()
+    {
+        isShooting = true;
+
+        Instantiate(bullet, shootPosition.position, transform.rotation);
+        yield return new WaitForSeconds(fireRate);
+
+        isShooting = false;
     }
 }
