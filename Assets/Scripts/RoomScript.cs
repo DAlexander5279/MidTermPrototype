@@ -12,8 +12,8 @@ public class RoomScript : MonoBehaviour
     [SerializeField] float doorSpeedOpen;
     [SerializeField] float doorSpeedClose;
     [SerializeField] int enemyTemp;
-
-
+    [SerializeField] bool roomSpawned;
+    [SerializeField] bool doorOpened;
     // Start is called before the first frame update
     void Start()
     {
@@ -23,16 +23,23 @@ public class RoomScript : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+
         if(enemyTemp <= 0)
         {
+            OpenDoor();
 
-            CloseDoor();
+            if(!roomSpawned)
+            {
+                SpawnRoom();
+                roomSpawned = true;
+            }
         }
+
+
     }
 
     void OpenDoor()
     {
-
         door.transform.position = Vector3.Lerp(door.transform.position, OpenPos.transform.position, Time.deltaTime * doorSpeedOpen);
     }
 
@@ -40,4 +47,21 @@ public class RoomScript : MonoBehaviour
     {
         door.transform.position = Vector3.Lerp(door.transform.position, ClosePos.transform.position, Time.deltaTime * doorSpeedClose);
     }
+    void SpawnRoom()
+    {
+        Instantiate(roomPref, spawnPos.transform.position, transform.rotation);
+    }
+
+    public void OnTriggerEnter(Collider other)
+    {
+
+    }
+
+    public void OnTriggerExit(Collider other)
+    {
+        CloseDoor();
+        new WaitForSeconds(2);
+        Destroy(gameObject);
+    }
+
 }

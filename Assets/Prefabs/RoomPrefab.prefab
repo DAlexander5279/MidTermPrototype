@@ -38,6 +38,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 2104716683, guid: 17ef8f7a643f530408f677c89fd41258, type: 3}
+      propertyPath: m_RootOrder
+      value: 10
+      objectReference: {fileID: 0}
     - target: {fileID: 2546331810422466827, guid: 17ef8f7a643f530408f677c89fd41258, type: 3}
       propertyPath: roomPref
       value: 
@@ -46,6 +50,10 @@ PrefabInstance:
       propertyPath: spawnPos
       value: 
       objectReference: {fileID: 807742182442629297}
+    - target: {fileID: 2546331810422466827, guid: 17ef8f7a643f530408f677c89fd41258, type: 3}
+      propertyPath: enemyTemp
+      value: 3
+      objectReference: {fileID: 0}
     - target: {fileID: 7042165556313488776, guid: 17ef8f7a643f530408f677c89fd41258, type: 3}
       propertyPath: m_RootOrder
       value: 0
@@ -92,7 +100,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7042165556313488820, guid: 17ef8f7a643f530408f677c89fd41258, type: 3}
       propertyPath: m_Name
-      value: StartRoom
+      value: RoomPrefab
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 17ef8f7a643f530408f677c89fd41258, type: 3}
