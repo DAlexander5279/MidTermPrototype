@@ -4,10 +4,11 @@ using UnityEngine;
 
 public class RoomScript : MonoBehaviour
 {
-
+    [SerializeField] GameObject roomPref;
     [SerializeField] GameObject door;
     [SerializeField] GameObject OpenPos;
     [SerializeField] GameObject ClosePos;
+    [SerializeField] GameObject spawnPos;
     [SerializeField] float doorSpeedOpen;
     [SerializeField] float doorSpeedClose;
     [SerializeField] int enemyTemp;
@@ -24,6 +25,7 @@ public class RoomScript : MonoBehaviour
     {
         if(enemyTemp <= 0)
         {
+
             CloseDoor();
         }
     }
