@@ -270,7 +270,7 @@ GameObject:
   - component: {fileID: 7042165556313488821}
   - component: {fileID: 556222280}
   m_Layer: 8
-  m_Name: WallessRoom
+  m_Name: WallessRoom 1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -323,7 +323,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b1cb987a8e9c32f49964b6ba65433e41, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  roomPref: {fileID: 7042165556313488820, guid: b19fa7a7c65c44948a37e7e1ac1e3fd5, type: 3}
+  roomPref: {fileID: 7042165556313488820, guid: 8eefa4d8250cf494882ddf662947c639, type: 3}
   spawnPos: {fileID: 2104716682}
   roomSpawned: 0
 --- !u!23 &7042165556313488822

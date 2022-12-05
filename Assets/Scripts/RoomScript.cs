@@ -18,7 +18,8 @@ public class RoomScript : MonoBehaviour
     void Update()
     {
  
-        if (gameManager.instance.roomsNeedPushed == true && gameManager.instance.enemyCount <= 0)
+
+        if(gameManager.instance.enemyCount <= 0)
         {
             gameManager.instance.pushRoomsBack(gameObject);
         }
@@ -37,7 +38,7 @@ public class RoomScript : MonoBehaviour
     void SpawnRoom()
     {      
         roomSpawned = true;
-        gameManager.instance.roomsNeedPushed = true;
+        //gameManager.instance.roomsNeedPushed = true;
         Instantiate(roomPref, spawnPos.transform.position, transform.rotation); 
 
     }
