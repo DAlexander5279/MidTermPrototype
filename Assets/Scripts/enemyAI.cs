@@ -128,6 +128,7 @@ public class enemyAI : MonoBehaviour, IDamage
         {
             // Update enemy count
             gameManager.instance.updateEnemyCount(-1);
+            gameManager.instance.maxEnemiesKilled++;
             Destroy(gameObject);
         }
     }

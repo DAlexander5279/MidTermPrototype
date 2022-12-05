@@ -92,6 +92,7 @@ public class gameManager : MonoBehaviour
         Debug.Log(obj.transform.position);
         roomsNeedPushed = false;
         obj.transform.position = new Vector3(obj.transform.position.x - 25, 0f, 0f);
+
     }
 
     public void pushPlayerBack()
