@@ -599,7 +599,7 @@ MonoBehaviour:
   sightAngle: 60
   headPosition: {fileID: 7562739324744373177}
   fireRate: 0.25
-  bullet: {fileID: 0}
+  bullet: {fileID: 4164665115654197046, guid: da64558ff5c37ff418857c08ac947648, type: 3}
   shootPosition: {fileID: 5317314596336967259}
 --- !u!195 &7562739324753738847
 NavMeshAgent:

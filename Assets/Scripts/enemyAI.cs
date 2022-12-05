@@ -27,6 +27,9 @@ public class enemyAI : MonoBehaviour, IDamage
     float angleToPlayer;
     Color enemyMaterialOriginal;
 
+    // If the enemy has seen the player and deemed them a threat...
+    bool playerThreat;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -44,6 +47,19 @@ public class enemyAI : MonoBehaviour, IDamage
         }
     }
 
+    // function that makes the enemy track and attack the player
+    void targetPlayer()
+    {
+        agent.SetDestination(gameManager.instance.player.transform.position);
+        if (!isShooting)
+            StartCoroutine(shoot());
+
+        if (agent.remainingDistance <= agent.stoppingDistance)
+        {
+            facePlayer();
+        }
+    }
+
     void canSeePlayer()
     {
         playerDirection = (gameManager.instance.player.transform.position - headPosition.position);
@@ -57,15 +73,17 @@ public class enemyAI : MonoBehaviour, IDamage
         {
             if (hit.collider.CompareTag("Player") && angleToPlayer <= sightAngle)
             {
-                agent.SetDestination(gameManager.instance.player.transform.position);
+                playerThreat = true;    // enemy views player as a viable threat
+            }
 
-                if (!isShooting)
-                    StartCoroutine(shoot());
+            if (playerThreat && angleToPlayer >= sightAngle * 2)        // enemy will lose aggro if player leaves the "battle vision angle"
+            {
+                playerThreat = false;
+            }
 
-                if (agent.remainingDistance <= agent.stoppingDistance)
-                {
-                    facePlayer();
-                }
+            if (playerThreat)           // as long as the player is a threat, the enemy will attack, follow, and track the player
+            {
+                targetPlayer();
             }
         }
 
@@ -91,6 +109,7 @@ public class enemyAI : MonoBehaviour, IDamage
         if (other.CompareTag("Player"))
         {
             playerInRange = false;
+            playerThreat = false;
         }
     }
 
@@ -124,4 +143,5 @@ public class enemyAI : MonoBehaviour, IDamage
 
         isShooting = false;
     }
+
 }

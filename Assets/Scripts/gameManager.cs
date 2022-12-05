@@ -28,6 +28,8 @@ public class gameManager : MonoBehaviour
     void Awake()
     {
         instance = this;
+        player = GameObject.FindGameObjectWithTag("Player");
+        playerScript = player.GetComponent<playerController>();
         origTime = Time.timeScale;
     }
 
@@ -67,6 +69,7 @@ public class gameManager : MonoBehaviour
     {
         enemyCount += amount;
         
+        // might not need code below if going off of room count
         if(enemyCount <= 0)
         {
 
