@@ -58,6 +58,10 @@ public class gameManager : MonoBehaviour
                 gameUnpause();
         }
 
+        //if(enemyCount <= 0)
+        //{
+        //    StartCoroutine(PushPlayer());
+        //}
 
 
     }
@@ -90,16 +94,17 @@ public class gameManager : MonoBehaviour
 
     public void pushRoomsBack(GameObject obj)
     {
+
+
         Debug.Log(obj.transform.position);
         roomsNeedPushed = false;
         obj.transform.position = new Vector3(obj.transform.position.x - 25, 0f, 0f);
-
+       
+       
     }
 
-    public void pushPlayerBack()
-    {
-        player.transform.position = new Vector3(player.transform.position.x - 25, 0f, 0f);
-    }
 
+    
+ 
   
 }
