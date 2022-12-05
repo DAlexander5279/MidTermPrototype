@@ -35,10 +35,11 @@ public class RoomScript : MonoBehaviour
 
 
     void SpawnRoom()
-    {
+    {      
+        roomSpawned = true;
         gameManager.instance.roomsNeedPushed = true;
         Instantiate(roomPref, spawnPos.transform.position, transform.rotation); 
-        roomSpawned = true;
+
     }
 
 
