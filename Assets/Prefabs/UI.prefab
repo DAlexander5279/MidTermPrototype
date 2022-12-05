@@ -74,10 +74,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0cd44c1031e13a943bb63640046fad76, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_UiScaleMode: 0
+  m_UiScaleMode: 1
   m_ReferencePixelsPerUnit: 100
   m_ScaleFactor: 1
-  m_ReferenceResolution: {x: 800, y: 600}
+  m_ReferenceResolution: {x: 1920, y: 1080}
   m_ScreenMatchMode: 0
   m_MatchWidthOrHeight: 0
   m_PhysicalUnit: 3
@@ -151,13 +151,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f9f64dda47b770944af43530ceca191f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  player: {fileID: 2470128280080099158, guid: 046a377d7437c9644bf277f305fa4dca, type: 3}
-  scriptPlayer: {fileID: 0}
-  pause: {fileID: 0}
+  player: {fileID: 0}
+  playerScript: {fileID: 0}
+  pauseMenu: {fileID: 0}
   activeMenu: {fileID: 0}
-  win: {fileID: 0}
-  lose: {fileID: 0}
+  winMenu: {fileID: 0}
+  loseMenu: {fileID: 0}
   roomCount: 0
+  roomsNeedPushed: 0
   enemyCount: 0
   paused: 0
 --- !u!1 &4885075379742692844
