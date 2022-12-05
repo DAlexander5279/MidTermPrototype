@@ -86,7 +86,20 @@ public class playerController : MonoBehaviour
 
     public void takeDamage(int dmgIn)
     {
-        // will implement later
+        HP -= dmgIn;
+        StartCoroutine(playerFlashDamage());
+
+        if(HP <= 0)
+        {
+            // will implement later
+        }
     }
 
+    IEnumerator playerFlashDamage()
+    {
+        gameManager.instance.playerFlashDamage.SetActive(true);
+        yield return new WaitForSeconds(0.1f);
+        gameManager.instance.playerFlashDamage.SetActive(false);
+
+    }
 }

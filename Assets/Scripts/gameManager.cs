@@ -16,6 +16,7 @@ public class gameManager : MonoBehaviour
     public GameObject activeMenu;
     public GameObject winMenu;
     public GameObject loseMenu;
+    public GameObject playerFlashDamage;
 
     [Header("------Extras------")]
     [SerializeField] int roomCount;

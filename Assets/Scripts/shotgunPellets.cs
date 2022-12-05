@@ -26,5 +26,6 @@ public class shotgunPellets : MonoBehaviour
         {
             gameManager.instance.playerScript.takeDamage(pelletDamage);
         }
+        Destroy(gameObject);
     }
 }
