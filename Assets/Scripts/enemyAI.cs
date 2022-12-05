@@ -16,9 +16,14 @@ public class enemyAI : MonoBehaviour, IDamage
     [SerializeField] Transform headPosition;
 
     [Header("--- Enemy Gun Stats ---")]
+    [Range(1, 2)] [SerializeField] int gunType; // 1 = rifle, 2 = shotgun
     [SerializeField] float fireRate;
     [SerializeField] GameObject bullet;
     [SerializeField] Transform shootPosition;
+
+    [Header("--- Shotgun Enemy Stats ---")]
+    [SerializeField] int pelletSpread;
+    [SerializeField] int pelletCount;
 
     int HPOriginal;
     bool isShooting;
@@ -69,14 +74,14 @@ public class enemyAI : MonoBehaviour, IDamage
         Debug.DrawRay(headPosition.position, playerDirection);
 
         RaycastHit hit;
-        if (Physics.Raycast(headPosition.position, playerDirection,out hit))
+        if (Physics.Raycast(headPosition.position, playerDirection, out hit))
         {
             if (hit.collider.CompareTag("Player") && angleToPlayer <= sightAngle)
             {
                 playerThreat = true;    // enemy views player as a viable threat
             }
 
-            if (playerThreat && angleToPlayer >= sightAngle * 2)        // enemy will lose aggro if player leaves the "battle vision angle"
+            if (playerThreat && angleToPlayer >= sightAngle * 1.45)        // enemy will lose aggro if player leaves the "battle vision angle"
             {
                 playerThreat = false;
             }
@@ -118,7 +123,7 @@ public class enemyAI : MonoBehaviour, IDamage
         HP -= dmgIn;
         agent.SetDestination(gameManager.instance.player.transform.position);
         StartCoroutine(flashDamage());
-        
+
         if (HP <= 0)
         {
             // Update enemy count
@@ -138,7 +143,24 @@ public class enemyAI : MonoBehaviour, IDamage
     {
         isShooting = true;
 
-        Instantiate(bullet, shootPosition.position, transform.rotation);
+        if (gunType == 1)
+            Instantiate(bullet, shootPosition.position, transform.rotation);
+
+        if (gunType == 2)
+        {
+            for (int i = 0; i < pelletCount; i++)
+            {
+                // Vector that will apply force to the bullet to imitate shotgun spread
+                Vector3 spreadForce = transform.forward +
+                    new Vector3(Random.Range(-pelletSpread, pelletSpread), Random.Range(-pelletSpread, pelletSpread), Random.Range(-pelletSpread, pelletSpread));
+
+                // a pellet being shot straight like a bullet
+                GameObject pellet = Instantiate(bullet, shootPosition.position, transform.rotation);
+
+                // spread being applied to the pellet
+                pellet.GetComponent<Rigidbody>().AddForce(spreadForce);
+            }
+        }
         yield return new WaitForSeconds(fireRate);
 
         isShooting = false;

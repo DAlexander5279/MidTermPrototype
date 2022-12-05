@@ -1,22 +1,21 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
 /// <summary>
-/// This script is used for standard bullet functions. Can be copied for other types of bullet/weapon types
+/// This script is a derivative of the "bullet" script. This is only to be used for the shotgunner enemy.
 /// </summary>
-public class bullet : MonoBehaviour
+public class shotgunPellets : MonoBehaviour
 {
     [SerializeField] Rigidbody rb;
 
-    [Header("--- Bullet Stats ---")]
-    [SerializeField] int damage;
-    [SerializeField] int speed;
+    [Header("--- Pellet Stats ---")]
+    [SerializeField] int pelletDamage;
+    [SerializeField] int pelletSpeed;
     [SerializeField] int timer;
     // Start is called before the first frame update
     void Start()
     {
-        rb.velocity = transform.forward * speed;
+        rb.velocity = transform.forward * pelletSpeed;
         Destroy(gameObject, timer);
     }
 
@@ -25,7 +24,7 @@ public class bullet : MonoBehaviour
     {
         if (other.CompareTag("Player"))
         {
-            gameManager.instance.playerScript.takeDamage(damage);
+            gameManager.instance.playerScript.takeDamage(pelletDamage);
         }
     }
 }

@@ -572,7 +572,7 @@ Transform:
   m_GameObject: {fileID: 7562739324744339433}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 1.2472456, y: 0, z: -11.817475}
-  m_LocalScale: {x: 0.39204797, y: 1.2796801, z: 0.46266505}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 7562739324744373181}
@@ -594,13 +594,16 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   model: {fileID: 7562739324749546141}
   agent: {fileID: 7562739324753738847}
-  HP: 20
+  HP: 35
   playerFaceSpeed: 3
-  sightAngle: 60
+  sightAngle: 75
   headPosition: {fileID: 7562739324744373177}
+  gunType: 1
   fireRate: 0.25
   bullet: {fileID: 4164665115654197046, guid: da64558ff5c37ff418857c08ac947648, type: 3}
   shootPosition: {fileID: 5317314596336967259}
+  pelletSpread: 0
+  pelletCount: 0
 --- !u!195 &7562739324753738847
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -756,7 +759,7 @@ SkinnedMeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 1dcd4ea457239f049875b7a7c8f9509e, type: 2}
+  - {fileID: 2100000, guid: 49addda5d3366fd4e8320087d17517a2, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
