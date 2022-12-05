@@ -41,20 +41,16 @@ public class playerController : MonoBehaviour
 
     // Update is called once per frame
     void Update()
-    {
-<<<<<<< HEAD
+    { 
         if(!isDisabled)
-=======
+
         if(!gameManager.instance.paused)
->>>>>>> 5ee72dec07bd7ed378c844faa0c261d0cb600e5f
+
         {
             Movement();
             StartCoroutine(Shoot());
         }
-<<<<<<< HEAD
 
-=======
->>>>>>> 5ee72dec07bd7ed378c844faa0c261d0cb600e5f
     }
     void Movement()
     {
