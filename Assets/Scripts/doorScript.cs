@@ -22,6 +22,7 @@ public class doorScript : MonoBehaviour
     {
         if (gameManager.instance.enemyCount <= 0)
         {
+            gameManager.instance.roomsNeedPushed = true;
             roomClear = true;
         }
         if (roomClear && activeRoom)

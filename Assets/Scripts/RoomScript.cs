@@ -17,12 +17,13 @@ public class RoomScript : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(gameManager.instance.roomsNeedPushed == true)
+ 
+        if (gameManager.instance.roomsNeedPushed == true && gameManager.instance.enemyCount <= 0)
         {
             gameManager.instance.pushRoomsBack(gameObject);
         }
-        if(gameManager.instance.enemyCount <= 0)
-            gameManager.instance.roomsNeedPushed = true;
+
+
         if (!roomSpawned && gameManager.instance.enemyCount <= 0)
         {
             SpawnRoom();
@@ -40,15 +41,16 @@ public class RoomScript : MonoBehaviour
         roomSpawned = true;
     }
 
-    public void OnTriggerEnter(Collider other)
-    {
-
-    }
 
     public void OnTriggerExit(Collider other)
     {
+
         if(other.CompareTag("Player"))
+        {
+ 
             Destroy(gameObject);
+        }
+
     }
 
 }
