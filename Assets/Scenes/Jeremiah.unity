@@ -345,10 +345,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 6626594136108891662, guid: 594189336f9fdcf44942261bb2a57e05, type: 3}
-      propertyPath: m_Materials.Array.data[0]
-      value: 
-      objectReference: {fileID: 2100000, guid: 84dd4c30d8deb4b43ad33c83ff386b52, type: 2}
     - target: {fileID: 6626594136111968026, guid: 594189336f9fdcf44942261bb2a57e05, type: 3}
       propertyPath: m_RootOrder
       value: 5
@@ -504,10 +500,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: Enemy Rifle
       objectReference: {fileID: 0}
-    - target: {fileID: 7562739324744339433, guid: ef038de04a7503348bd2b0656d8eb731, type: 3}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 7562739324744373129, guid: ef038de04a7503348bd2b0656d8eb731, type: 3}
       propertyPath: m_RootOrder
       value: 2
@@ -552,9 +544,5 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 7562739324749546141, guid: ef038de04a7503348bd2b0656d8eb731, type: 3}
-      propertyPath: m_Materials.Array.data[0]
-      value: 
-      objectReference: {fileID: 2100000, guid: 58580dce2b2dce54ea92027168d46197, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ef038de04a7503348bd2b0656d8eb731, type: 3}
