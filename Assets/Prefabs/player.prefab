@@ -131,7 +131,7 @@ Transform:
   m_GameObject: {fileID: 2470128280080099158}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -0.22450018, y: 1.1, z: 0.48120356}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 1, y: 1.3571419, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 2470128279692826929}
@@ -157,7 +157,7 @@ MonoBehaviour:
   jumpHeight: 6
   gravity: 15
   gunDMG: 3
-  shootRate: 1
+  shootRate: 0.25
   shootDis: 200
 --- !u!143 &2470128280080099145
 CharacterController:

@@ -18,7 +18,7 @@ public class playerController : MonoBehaviour
 
     [Header("------Gun Stats------")]
     [Range(1, 5)] [SerializeField] int gunDMG;
-    [Range(1, 3)] [SerializeField] int shootRate;   // player's gun fire rate
+    [SerializeField] float shootRate;   // player's gun fire rate
     [Range(5, 200)] [SerializeField] int shootDis;    // effective range of the shot
 
     bool isShooting;
