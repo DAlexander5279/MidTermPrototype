@@ -15,7 +15,7 @@ public class playerController : MonoBehaviour
     [SerializeField] int jumpMax;
     [Range(5, 15)][SerializeField] int jumpHeight;
     [Range(10,20)] [SerializeField] int gravity;
-
+    [SerializeField] bool isDisabled;
     
 
     [Header("------Gun Stats------")]
@@ -42,8 +42,12 @@ public class playerController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        Movement();
-        StartCoroutine(Shoot());
+        if(!isDisabled)
+        {
+            Movement();
+            StartCoroutine(Shoot());
+        }
+
     }
     void Movement()
     {

@@ -8,6 +8,7 @@ public class RoomScript : MonoBehaviour
     [SerializeField] GameObject spawnPos;
     [SerializeField] bool roomSpawned;
 
+    [SerializeField] bool isStartRoom;
     // Start is called before the first frame update
     void Start()
     {
@@ -21,6 +22,7 @@ public class RoomScript : MonoBehaviour
 
         if(gameManager.instance.enemyCount <= 0)
         {
+            Debug.Log("moving");
             gameManager.instance.pushRoomsBack(gameObject);
         }
 
@@ -32,13 +34,13 @@ public class RoomScript : MonoBehaviour
 
 
 
+
     }
 
 
     void SpawnRoom()
     {      
         roomSpawned = true;
-        //gameManager.instance.roomsNeedPushed = true;
         Instantiate(roomPref, spawnPos.transform.position, transform.rotation); 
 
     }
@@ -47,12 +49,13 @@ public class RoomScript : MonoBehaviour
     public void OnTriggerExit(Collider other)
     {
 
-        if(other.CompareTag("Player"))
+       if(other.CompareTag("Player"))
         {
- 
+ //
             Destroy(gameObject);
         }
 
     }
+
 
 }

@@ -100,4 +100,6 @@ public class gameManager : MonoBehaviour
     {
         player.transform.position = new Vector3(player.transform.position.x - 25, 0f, 0f);
     }
+
+  
 }

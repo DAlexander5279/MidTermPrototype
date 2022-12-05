@@ -38,13 +38,20 @@ public class doorScript : MonoBehaviour
             door.transform.position = Vector3.Lerp(door.transform.position, ClosePos.transform.position, Time.deltaTime * closeSpd);
     }
 
-  
+    public void OnTriggerEnter(Collider other)
+    {
+        activeRoom = true;
+        OpenDoor();
+    }
 
     public void OnTriggerExit(Collider other)
     {
-        activeRoom=false;
-        roomClear = false;
-        CloseDoor();
+        if(other.CompareTag("Player"))
+        {
+            activeRoom = false;
+            CloseDoor();
+        }
+
     }
 
 }
