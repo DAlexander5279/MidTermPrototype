@@ -10,12 +10,22 @@ public class doorScript : MonoBehaviour
     [SerializeField] GameObject ClosePos;
     [SerializeField] float closeSpd;
     [SerializeField] float openSpd;
+    [SerializeField] bool roomClear;
+    [SerializeField] bool activeRoom;
 
-
+    private void Start()
+    {
+        activeRoom = true;
+    }
     // Update is called once per frame
     void Update()
     {
-        
+        if (gameManager.instance.enemyCount <= 0)
+        {
+            roomClear = true;
+        }
+        if (roomClear && activeRoom)
+            OpenDoor();
     }
     void OpenDoor()
     {
@@ -24,19 +34,16 @@ public class doorScript : MonoBehaviour
 
     void CloseDoor()
     {
-        door.transform.position = Vector3.Lerp(door.transform.position, ClosePos.transform.position, Time.deltaTime * closeSpd);
+        while(door.transform.position != ClosePos.transform.position)
+            door.transform.position = Vector3.Lerp(door.transform.position, ClosePos.transform.position, Time.deltaTime * closeSpd);
     }
 
-    public void OnTriggerEnter(Collider other)
-    {
-        if(gameManager.instance.enemyCount <=0)
-        {
-            OpenDoor();
-        }
-    }
+  
 
     public void OnTriggerExit(Collider other)
     {
+        activeRoom=false;
+        roomClear = false;
         CloseDoor();
     }
 

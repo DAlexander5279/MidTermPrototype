@@ -17,10 +17,10 @@ public class RoomScript : MonoBehaviour
     void Update()
     {
 
-      if(!roomSpawned)
+        if (!roomSpawned && gameManager.instance.enemyCount <= 0)
         {
             SpawnRoom();
-            roomSpawned = true;
+
         }
       
 
@@ -29,7 +29,9 @@ public class RoomScript : MonoBehaviour
 
     void SpawnRoom()
     {
-        Instantiate(roomPref, spawnPos.transform.position, transform.rotation);
+        gameManager.instance.enemyCount++;
+        Instantiate(roomPref, spawnPos.transform.position, transform.rotation); 
+        roomSpawned = true;
     }
 
 
