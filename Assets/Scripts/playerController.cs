@@ -16,20 +16,27 @@ public class playerController : MonoBehaviour
     [Range(5, 15)][SerializeField] int jumpHeight;
     [Range(10,20)] [SerializeField] int gravity;
 
+    
+
     [Header("------Gun Stats------")]
     [Range(1, 5)] [SerializeField] int gunDMG;
-    [SerializeField] float shootRate;   // player's gun fire rate
+    [Range(1, 3)] [SerializeField] int shootRate;   // player's gun fire rate
     [Range(5, 200)] [SerializeField] int shootDis;    // effective range of the shot
 
     bool isShooting;
     private Vector3 playerVelocity;
     Vector3 move;
+
     int timesJumped;
     int HPOriginal;
+
+    
+
     // Start is called before the first frame update
     private void Start()
     {
         HPOriginal = HP;
+
     }
 
     // Update is called once per frame
@@ -102,4 +109,6 @@ public class playerController : MonoBehaviour
         gameManager.instance.playerFlashDamage.SetActive(false);
 
     }
+   
+
 }

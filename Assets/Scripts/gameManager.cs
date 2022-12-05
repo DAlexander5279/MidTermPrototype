@@ -1,6 +1,9 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
+
+using static System.Net.Mime.MediaTypeNames;
 
 public class gameManager : MonoBehaviour
 {
@@ -9,6 +12,9 @@ public class gameManager : MonoBehaviour
     [Header("------Player Things------")]
     public GameObject player;
     public playerController playerScript;
+
+    public int maxEnemiesKilled;
+    public int maxRoomsCleared;
 
     [Header("------UI------")]
 
@@ -24,6 +30,7 @@ public class gameManager : MonoBehaviour
     public int enemyCount;
     public bool paused;
 
+    public UnityEngine.UI.Text txt;
 
     float origTime;
     void Awake()
@@ -49,6 +56,7 @@ public class gameManager : MonoBehaviour
             else
                 gameUnpaused();
         }
+
 
 
     }
@@ -84,10 +92,17 @@ public class gameManager : MonoBehaviour
         Debug.Log(obj.transform.position);
         roomsNeedPushed = false;
         obj.transform.position = new Vector3(obj.transform.position.x - 25, 0f, 0f);
+
     }
 
     public void pushPlayerBack()
     {
         player.transform.position = new Vector3(player.transform.position.x - 25, 0f, 0f);
+    }
+    public void levelEnd()
+    {
+        //txt.GetComponent<UnityEngine.UI.Text>().text = maxRoomsCleared.ToString();
+
+        txt.GetComponent<UnityEngine.UI.Text>().text = maxEnemiesKilled.ToString();
     }
 }
