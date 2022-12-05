@@ -135,11 +135,7 @@ public class enemyAI : MonoBehaviour, IDamage
     IEnumerator flashDamage()
     {
         model.material.color = Color.red;
-        yield return new WaitForSeconds(0.05f);
-        model.material.color = Color.white;
-        yield return new WaitForSeconds(0.05f);
-        model.material.color = Color.red;
-        yield return new WaitForSeconds(0.05f);
+        yield return new WaitForSeconds(0.1f);
         model.material.color = enemyMaterialOriginal;
     }
 

@@ -27,5 +27,6 @@ public class bullet : MonoBehaviour
         {
             gameManager.instance.playerScript.takeDamage(damage);
         }
+        Destroy(gameObject);
     }
 }
