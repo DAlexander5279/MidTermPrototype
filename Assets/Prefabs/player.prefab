@@ -27,7 +27,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2470128279692826930}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 0.72, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -46,8 +46,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 429a2d4989e64ae48b489ad4ca6af266, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  sensHor: 100
-  sensVert: 100
+  sensHor: 300
+  sensVert: 300
   lockVerMin: -75
   lockVerMax: 75
   invertXPos: 0
@@ -115,10 +115,9 @@ GameObject:
   - component: {fileID: 2470128280080099145}
   - component: {fileID: 2470128280080099146}
   - component: {fileID: 2470128280080099157}
-  - component: {fileID: 2470128280080099156}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: player
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -151,15 +150,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ff7ab40fd22c28e4bad3fe711b20b4f9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  player: {fileID: 2470128280080099145}
+  playerControl: {fileID: 2470128280080099145}
   HP: 100
   playerSpeed: 10
   jumpMax: 1
   jumpHeight: 6
   gravity: 15
-  DMG: 0
-  shootRate: 0
-  shootDis: 0
+  gunDMG: 3
+  shootRate: 1
+  shootDis: 200
 --- !u!143 &2470128280080099145
 CharacterController:
   m_ObjectHideFlags: 0
@@ -228,17 +227,3 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!136 &2470128280080099156
-CapsuleCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2470128280080099158}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  m_Radius: 0.5
-  m_Height: 2
-  m_Direction: 1
-  m_Center: {x: 0, y: 0, z: 0}

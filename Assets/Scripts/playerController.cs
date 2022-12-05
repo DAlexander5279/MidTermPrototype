@@ -6,7 +6,7 @@ public class playerController : MonoBehaviour
 {
 
     [Header("------Components------")]
-    [SerializeField] CharacterController player;
+    [SerializeField] CharacterController playerControl;
 
     [Header("------Player Stats------")]
 
@@ -19,7 +19,7 @@ public class playerController : MonoBehaviour
     [Header("------Gun Stats------")]
     [Range(1, 5)] [SerializeField] int gunDMG;
     [Range(1, 3)] [SerializeField] int shootRate;   // player's gun fire rate
-    [Range(1, 5)] [SerializeField] int shootDis;    // effective range of the shot
+    [Range(5, 200)] [SerializeField] int shootDis;    // effective range of the shot
 
     bool isShooting;
     private Vector3 playerVelocity;
@@ -27,7 +27,7 @@ public class playerController : MonoBehaviour
     int timesJumped;
     int HPOriginal;
     // Start is called before the first frame update
-    void Start()
+    private void Start()
     {
         HPOriginal = HP;
     }
@@ -40,7 +40,7 @@ public class playerController : MonoBehaviour
     }
     void Movement()
     {
-        if (player.isGrounded && playerVelocity.y < 0)
+        if (playerControl.isGrounded && playerVelocity.y < 0)
         {
             timesJumped = 0;
             playerVelocity.y = 0f;
@@ -48,7 +48,7 @@ public class playerController : MonoBehaviour
 
         move = transform.right * Input.GetAxis("Horizontal") + transform.forward * Input.GetAxis("Vertical");
 
-        player.Move(move * Time.deltaTime * playerSpeed);
+        playerControl.Move(move * Time.deltaTime * playerSpeed);
 
 
         // Changes the height position of the player..
@@ -59,7 +59,7 @@ public class playerController : MonoBehaviour
         }
 
         playerVelocity.y -= gravity * Time.deltaTime;
-        player.Move(playerVelocity * Time.deltaTime);
+        playerControl.Move(playerVelocity * Time.deltaTime);
 
     }
     IEnumerator Shoot()
@@ -82,6 +82,11 @@ public class playerController : MonoBehaviour
             yield return new WaitForSeconds(shootRate);
             isShooting = false;
         }
+    }
+
+    public void takeDamage(int dmgIn)
+    {
+        // will implement later
     }
 
 }
