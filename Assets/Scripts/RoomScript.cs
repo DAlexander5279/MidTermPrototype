@@ -41,7 +41,8 @@ public class RoomScript : MonoBehaviour
 
     public void OnTriggerExit(Collider other)
     {
-        Destroy(gameObject);
+        if(other.CompareTag("Player"))
+            Destroy(gameObject);
     }
 
 }
