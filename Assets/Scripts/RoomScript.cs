@@ -30,6 +30,7 @@ public class RoomScript : MonoBehaviour
 
     void SpawnRoom()
     {
+        gameObject.transform.position = new Vector3(gameObject.transform.position.x - 25, 0f, 0f);
         Instantiate(roomPref, spawnPos.transform.position, transform.rotation); 
         roomSpawned = true;
     }
