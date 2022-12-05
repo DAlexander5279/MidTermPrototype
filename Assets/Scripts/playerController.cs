@@ -15,7 +15,7 @@ public class playerController : MonoBehaviour
     [SerializeField] int jumpMax;
     [Range(5, 15)][SerializeField] int jumpHeight;
     [Range(10,20)] [SerializeField] int gravity;
-    [SerializeField] bool isDisabled;
+    public bool isDisabled;
     
 
     [Header("------Gun Stats------")]
