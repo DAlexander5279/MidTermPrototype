@@ -19,7 +19,7 @@ public class gameManager : MonoBehaviour
 
     [Header("------Extras------")]
     [SerializeField] int roomCount;
-
+    public bool roomsNeedPushed;
     public int enemyCount;
     public bool paused;
 
@@ -74,5 +74,16 @@ public class gameManager : MonoBehaviour
         {
 
         }
+    }
+
+    public void pushRoomsBack(GameObject obj)
+    {
+        gameObject.transform.position = new Vector3(gameObject.transform.position.x - 25, 0f, 0f);
+        roomsNeedPushed = false;
+    }
+
+    public void pushPlayerBack()
+    {
+        player.transform.position = new Vector3(player.transform.position.x - 25, 0f, 0f);
     }
 }

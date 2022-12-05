@@ -23,6 +23,10 @@ public class RoomScript : MonoBehaviour
         {
             SpawnRoom();
         }
+        if(gameManager.instance.roomsNeedPushed == true)
+        {
+            gameManager.instance.pushRoomsBack(gameObject);
+        }
 
 
     }
@@ -30,7 +34,7 @@ public class RoomScript : MonoBehaviour
 
     void SpawnRoom()
     {
-        gameObject.transform.position = new Vector3(gameObject.transform.position.x - 25, 0f, 0f);
+        gameManager.instance.roomsNeedPushed = true;
         Instantiate(roomPref, spawnPos.transform.position, transform.rotation); 
         roomSpawned = true;
     }
