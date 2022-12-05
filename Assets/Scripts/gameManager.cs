@@ -48,6 +48,8 @@ public class gameManager : MonoBehaviour
             else
                 gameUnpaused();
         }
+
+
     }
     public void gamePaused()
     {
@@ -78,7 +80,7 @@ public class gameManager : MonoBehaviour
 
     public void pushRoomsBack(GameObject obj)
     {
-        gameObject.transform.position = new Vector3(gameObject.transform.position.x - 25, 0f, 0f);
+        obj.transform.position = new Vector3(obj.transform.position.x - 25, 0f, 0f);
         roomsNeedPushed = false;
     }
 

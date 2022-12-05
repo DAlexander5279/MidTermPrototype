@@ -17,16 +17,17 @@ public class RoomScript : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-
-
-        if (!roomSpawned && gameManager.instance.enemyCount <= 0)
-        {
-            SpawnRoom();
-        }
         if(gameManager.instance.roomsNeedPushed == true)
         {
             gameManager.instance.pushRoomsBack(gameObject);
         }
+        if(gameManager.instance.enemyCount <= 0)
+            gameManager.instance.roomsNeedPushed = true;
+        if (!roomSpawned && gameManager.instance.enemyCount <= 0)
+        {
+            SpawnRoom();
+        }
+
 
 
     }
