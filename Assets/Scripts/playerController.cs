@@ -42,8 +42,11 @@ public class playerController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        Movement();
-        StartCoroutine(Shoot());
+        if(!gameManager.instance.paused)
+        {
+            Movement();
+            StartCoroutine(Shoot());
+        }
     }
     void Movement()
     {
@@ -98,7 +101,10 @@ public class playerController : MonoBehaviour
 
         if(HP <= 0)
         {
-            // will implement later
+            gameManager.instance.gamePause();
+            gameManager.instance.loseMenu.SetActive(true);
+            gameManager.instance.activeMenu = gameManager.instance.loseMenu;
+            gameManager.instance.activeMenu = gameManager.instance.loseMenu;
         }
     }
 
