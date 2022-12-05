@@ -9,12 +9,12 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4164665115654197002}
-  - component: {fileID: 4164665115654197005}
+  - component: {fileID: 6284131982468940815}
   - component: {fileID: 4164665115654197004}
   - component: {fileID: 4164665115654197047}
   - component: {fileID: 4164665115654197003}
   m_Layer: 7
-  m_Name: Bullet
+  m_Name: Pellet
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -35,7 +35,7 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &4164665115654197005
+--- !u!114 &6284131982468940815
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -44,12 +44,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 4164665115654197046}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4170e98372f388047a81a2c29b2381d2, type: 3}
+  m_Script: {fileID: 11500000, guid: 88e4ca363b870184ebfbcf4c74bc9eb3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   rb: {fileID: 4164665115654197004}
-  damage: 3
-  speed: 30
+  pelletDamage: 3
+  pelletSpeed: 20
   timer: 1
 --- !u!54 &4164665115654197004
 Rigidbody:
@@ -131,7 +131,7 @@ TrailRenderer:
       m_Curve:
       - serializedVersion: 3
         time: 0
-        value: 1
+        value: 0.69166756
         inSlope: 0
         outSlope: 0
         tangentMode: 0
@@ -152,8 +152,8 @@ TrailRenderer:
       m_RotationOrder: 4
     colorGradient:
       serializedVersion: 2
-      key0: {r: 0.9622642, g: 0.4971944, b: 0, a: 1}
-      key1: {r: 1, g: 0.9821391, b: 0, a: 0.43137255}
+      key0: {r: 0.49349812, g: 0, b: 0.9607843, a: 1}
+      key1: {r: 1, g: 0, b: 0.17582655, a: 0.43137255}
       key2: {r: 0, g: 0, b: 0, a: 0}
       key3: {r: 0, g: 0, b: 0, a: 0}
       key4: {r: 0, g: 0, b: 0, a: 0}
