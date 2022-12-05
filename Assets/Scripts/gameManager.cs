@@ -52,23 +52,23 @@ public class gameManager : MonoBehaviour
             activeMenu.SetActive(paused);
             if (paused)
             {
-                gamePaused();
+                gamePause();
             }
             else
-                gameUnpaused();
+                gameUnpause();
         }
 
 
 
     }
-    public void gamePaused()
+    public void gamePause()
     {
         Time.timeScale = 0;
         Cursor.visible = true;
         Cursor.lockState = CursorLockMode.Confined;
 
     }
-    public void gameUnpaused()
+    public void gameUnpause()
     {
         Time.timeScale = origTime;
         Cursor.visible = false;
