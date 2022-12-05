@@ -13,8 +13,8 @@ public class gameManager : MonoBehaviour
     public GameObject player;
     public playerController playerScript;
 
-    public int maxEnemiesKilled;
     public int maxRoomsCleared;
+    public int enemiesKilled;
 
     [Header("------UI------")]
 
@@ -27,10 +27,10 @@ public class gameManager : MonoBehaviour
     [Header("------Extras------")]
     [SerializeField] int roomCount;
     public bool roomsNeedPushed;
+
     public int enemyCount;
     public bool paused;
 
-    public UnityEngine.UI.Text txt;
 
     float origTime;
     void Awake()
@@ -39,6 +39,7 @@ public class gameManager : MonoBehaviour
         player = GameObject.FindGameObjectWithTag("Player");
         playerScript = player.GetComponent<playerController>();
         origTime = Time.timeScale;
+        PlayerPrefs.SetInt("enemyStat", 0);
     }
 
     // Update is called once per frame
@@ -79,9 +80,9 @@ public class gameManager : MonoBehaviour
     public void updateEnemyCount(int amount)
     {
         enemyCount += amount;
-        
+
         // might not need code below if going off of room count
-        if(enemyCount <= 0)
+        if (enemyCount <= 0)
         {
 
         }
@@ -98,11 +99,5 @@ public class gameManager : MonoBehaviour
     public void pushPlayerBack()
     {
         player.transform.position = new Vector3(player.transform.position.x - 25, 0f, 0f);
-    }
-    public void levelEnd()
-    {
-        //txt.GetComponent<UnityEngine.UI.Text>().text = maxRoomsCleared.ToString();
-
-        txt.GetComponent<UnityEngine.UI.Text>().text = maxEnemiesKilled.ToString();
     }
 }
