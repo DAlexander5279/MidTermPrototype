@@ -14,11 +14,12 @@ public class enemyAI : MonoBehaviour, IDamage
     [SerializeField] int playerFaceSpeed;
     [SerializeField] int sightAngle;
     [SerializeField] Transform headPosition;
+    [Range(1.0f,2.0f)] [SerializeField] float dangerSightModifier;
 
     [Header("--- Enemy Gun Stats ---")]
     [Range(1, 2)] [SerializeField] int gunType; // 1 = rifle, 2 = shotgun
     [SerializeField] float fireRate;
-    [SerializeField] GameObject bullet;
+    [SerializeField] GameObject bulletType;
     [SerializeField] Transform shootPosition;
 
     [Header("--- Shotgun Enemy Stats ---")]
@@ -56,10 +57,10 @@ public class enemyAI : MonoBehaviour, IDamage
     void targetPlayer()
     {
         agent.SetDestination(gameManager.instance.player.transform.position);
-        if (!isShooting)
+        if (!isShooting && playerInRange)
             StartCoroutine(shoot());
 
-        if (agent.remainingDistance <= agent.stoppingDistance)
+        if (agent.remainingDistance <= agent.stoppingDistance || playerThreat)
         {
             facePlayer();
         }
@@ -81,7 +82,7 @@ public class enemyAI : MonoBehaviour, IDamage
                 playerThreat = true;    // enemy views player as a viable threat
             }
 
-            if (playerThreat && angleToPlayer >= sightAngle * 1.45)        // enemy will lose aggro if player leaves the "battle vision angle"
+            if (playerThreat && angleToPlayer >= (sightAngle * dangerSightModifier))        // enemy will lose aggro if player leaves the "battle vision angle"
             {
                 playerThreat = false;
             }
@@ -122,6 +123,8 @@ public class enemyAI : MonoBehaviour, IDamage
     {
         HP -= dmgIn;
         agent.SetDestination(gameManager.instance.player.transform.position);
+        if (!playerThreat)
+            playerThreat = true;
         StartCoroutine(flashDamage());
 
         if (HP <= 0)
@@ -145,7 +148,7 @@ public class enemyAI : MonoBehaviour, IDamage
         isShooting = true;
 
         if (gunType == 1)
-            Instantiate(bullet, shootPosition.position, transform.rotation);
+            Instantiate(bulletType, shootPosition.position, transform.rotation);
 
         if (gunType == 2)
         {
@@ -156,7 +159,7 @@ public class enemyAI : MonoBehaviour, IDamage
                     new Vector3(Random.Range(-pelletSpread, pelletSpread), Random.Range(-pelletSpread, pelletSpread), Random.Range(-pelletSpread, pelletSpread));
 
                 // a pellet being shot straight like a bullet
-                GameObject pellet = Instantiate(bullet, shootPosition.position, transform.rotation);
+                GameObject pellet = Instantiate(bulletType, shootPosition.position, transform.rotation);
 
                 // spread being applied to the pellet
                 pellet.GetComponent<Rigidbody>().AddForce(spreadForce);

@@ -598,9 +598,10 @@ MonoBehaviour:
   playerFaceSpeed: 3
   sightAngle: 75
   headPosition: {fileID: 7562739324744373177}
+  dangerSightModifier: 1.65
   gunType: 1
   fireRate: 0.25
-  bullet: {fileID: 4164665115654197046, guid: da64558ff5c37ff418857c08ac947648, type: 3}
+  bulletType: {fileID: 4164665115654197046, guid: da64558ff5c37ff418857c08ac947648, type: 3}
   shootPosition: {fileID: 5317314596336967259}
   pelletSpread: 0
   pelletCount: 0
