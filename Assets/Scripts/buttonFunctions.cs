@@ -9,6 +9,7 @@ public class buttonFunctions : MonoBehaviour
     {
         gameManager.instance.gameUnpause();
         gameManager.instance.paused = !gameManager.instance.paused;
+        gameManager.instance.pauseMenu.SetActive(false);
     }
     public void restart()
     {
