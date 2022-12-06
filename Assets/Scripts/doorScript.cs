@@ -25,28 +25,32 @@ public class doorScript : MonoBehaviour
             roomClear = true;
         }
         if (roomClear && activeRoom)
-            OpenDoor();
+            StartCoroutine(OpenDoor());
     }
-    void OpenDoor()
+    IEnumerator OpenDoor()	//may not need to be an IEnumerator; set as one for testing for now
     {
         door.transform.position = Vector3.Lerp(door.transform.position, OpenPos.transform.position, Time.deltaTime * openSpd);
+        yield return new WaitForSeconds(0.05f);
     }
 
     void CloseDoor()
     {
-        while(door.transform.position != ClosePos.transform.position)
+        while (door.transform.position != ClosePos.transform.position)
             door.transform.position = Vector3.Lerp(door.transform.position, ClosePos.transform.position, Time.deltaTime * closeSpd);
     }
 
     public void OnTriggerEnter(Collider other)
     {
-        activeRoom = true;
-        OpenDoor();
+        if (other.CompareTag("Player"))
+        {
+            activeRoom = true;
+            StartCoroutine(OpenDoor());
+        }
     }
 
     public void OnTriggerExit(Collider other)
     {
-        if(other.CompareTag("Player"))
+        if (other.CompareTag("Player"))
         {
             activeRoom = false;
             CloseDoor();

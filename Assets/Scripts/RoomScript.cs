@@ -12,6 +12,7 @@ public class RoomScript : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        hasPushedPlayer = false;
 
     }
 
@@ -59,10 +60,10 @@ public class RoomScript : MonoBehaviour
 
     IEnumerator PushPlayer()
     {
-        hasPushedPlayer = true;
         gameManager.instance.playerScript.isDisabled = true;
         gameManager.instance.player.transform.position = new Vector3(gameManager.instance.player.transform.position.x - 25, gameManager.instance.player.transform.position.y, gameManager.instance.player.transform.position.z);
-        yield return new WaitForSeconds(0.01f);
+        yield return new WaitForSeconds(0.05f);
+        hasPushedPlayer = true;
         gameManager.instance.playerScript.isDisabled = false;
     }
 }
