@@ -1450,7 +1450,7 @@ MonoBehaviour:
   loseMenu: {fileID: 4711952270747788180}
   playerFlashDamage: {fileID: 760748851}
   roomCount: 0
-  killWinCondition: 10
+  killWinCondition: 30
   roomsNeedPushed: 0
   enemyCount: 0
   paused: 0
