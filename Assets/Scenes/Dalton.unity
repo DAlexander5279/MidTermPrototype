@@ -130,6 +130,14 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 2470128279692826934, guid: 046a377d7437c9644bf277f305fa4dca, type: 3}
+      propertyPath: sensHor
+      value: 600
+      objectReference: {fileID: 0}
+    - target: {fileID: 2470128279692826934, guid: 046a377d7437c9644bf277f305fa4dca, type: 3}
+      propertyPath: sensVert
+      value: 600
+      objectReference: {fileID: 0}
     - target: {fileID: 2470128280080099144, guid: 046a377d7437c9644bf277f305fa4dca, type: 3}
       propertyPath: m_RootOrder
       value: 0
