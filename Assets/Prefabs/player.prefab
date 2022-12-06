@@ -156,8 +156,9 @@ MonoBehaviour:
   jumpMax: 1
   jumpHeight: 6
   gravity: 15
+  isDisabled: 0
   gunDMG: 3
-  shootRate: 0.25
+  shootRate: 0.1
   shootDis: 200
 --- !u!143 &2470128280080099145
 CharacterController:

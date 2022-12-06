@@ -594,7 +594,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   model: {fileID: 7562739324749546141}
   agent: {fileID: 7562739324753738847}
-  HP: 1
+  HP: 10
   playerFaceSpeed: 3
   sightAngle: 75
   headPosition: {fileID: 7562739324744373177}
