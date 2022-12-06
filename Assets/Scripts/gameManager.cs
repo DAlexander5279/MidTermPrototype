@@ -26,6 +26,7 @@ public class gameManager : MonoBehaviour
 
     [Header("------Extras------")]
     [SerializeField] int roomCount;
+    [SerializeField] int killWinCondition;
     public bool roomsNeedPushed;
 
     public int enemyCount;
@@ -85,10 +86,12 @@ public class gameManager : MonoBehaviour
     {
         enemyCount += amount;
 
-        // might not need code below if going off of room count
-        if (enemyCount <= 0)
+        if ((enemyCount <= 0) && (enemiesKilled >= killWinCondition - 1))
+        // we subtract 1 from killWinCondition to get around enemyCount updating when killing the exact amount needed AND it is the last enemy alive
         {
-
+            winMenu.SetActive(true);
+            gamePause();
+            activeMenu = winMenu;
         }
     }
 
