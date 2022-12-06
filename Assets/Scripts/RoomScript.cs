@@ -7,8 +7,8 @@ public class RoomScript : MonoBehaviour
     [SerializeField] GameObject roomPref;
     [SerializeField] GameObject spawnPos;
     [SerializeField] bool roomSpawned;
-
     [SerializeField] bool isStartRoom;
+    [SerializeField] bool hasPushedPlayer;
     // Start is called before the first frame update
     void Start()
     {
@@ -22,8 +22,10 @@ public class RoomScript : MonoBehaviour
 
         if(gameManager.instance.enemyCount <= 0)
         {
-            Debug.Log("moving");
             gameManager.instance.pushRoomsBack(gameObject);
+            if(!hasPushedPlayer)
+                StartCoroutine(PushPlayer());
+           
         }
 
 
@@ -31,8 +33,6 @@ public class RoomScript : MonoBehaviour
         {
             SpawnRoom();
         }
-
-
 
 
     }
@@ -57,5 +57,12 @@ public class RoomScript : MonoBehaviour
 
     }
 
-
+    IEnumerator PushPlayer()
+    {
+        hasPushedPlayer = true;
+        gameManager.instance.playerScript.isDisabled = true;
+        gameManager.instance.player.transform.position = new Vector3(gameManager.instance.player.transform.position.x - 25, gameManager.instance.player.transform.position.y, gameManager.instance.player.transform.position.z);
+        yield return new WaitForSeconds(0.01f);
+        gameManager.instance.playerScript.isDisabled = false;
+    }
 }
