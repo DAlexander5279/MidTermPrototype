@@ -2,12 +2,16 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
+using UnityEngine.UI;
 
 public class enemyAI : MonoBehaviour, IDamage
 {
     [Header("--- Components --")]
     [SerializeField] Renderer model;
     [SerializeField] NavMeshAgent agent;
+    [SerializeField] GameObject enemyUI;
+    [SerializeField] Image enemyHPBar;
+    [SerializeField] Animator anim;
 
     [Header("--- Enemy Stats ---")]
     [SerializeField] int HP;
@@ -15,6 +19,8 @@ public class enemyAI : MonoBehaviour, IDamage
     [SerializeField] int sightAngle;
     [SerializeField] Transform headPosition;
     [Range(1.0f,2.0f)] [SerializeField] float dangerSightModifier;
+
+    [SerializeField] int animTransSpeed;
 
     [Header("--- Enemy Gun Stats ---")]
     [Range(1, 2)] [SerializeField] int gunType; // 1 = rifle, 2 = shotgun
@@ -47,6 +53,8 @@ public class enemyAI : MonoBehaviour, IDamage
     // Update is called once per frame
     void Update()
     {
+        anim.SetFloat("Speed", Mathf.Lerp(anim.GetFloat("Speed"), agent.velocity.normalized.magnitude, Time.deltaTime * animTransSpeed));
+
         if (playerInRange)
         {
             canSeePlayer();
@@ -122,6 +130,8 @@ public class enemyAI : MonoBehaviour, IDamage
     public void takeDamage(int dmgIn)
     {
         HP -= dmgIn;
+        updateEnemyHPBar();
+        enemyUI.gameObject.SetActive(true);
         agent.SetDestination(gameManager.instance.player.transform.position);
         if (!playerThreat)
             playerThreat = true;
@@ -147,6 +157,8 @@ public class enemyAI : MonoBehaviour, IDamage
     {
         isShooting = true;
 
+        anim.SetTrigger("Shoot");
+
         if (gunType == 1)
             Instantiate(bulletType, shootPosition.position, transform.rotation);
 
@@ -170,4 +182,11 @@ public class enemyAI : MonoBehaviour, IDamage
         isShooting = false;
     }
 
+    void updateEnemyHPBar()
+    {
+        if (HP > 0)
+            enemyHPBar.fillAmount = (float)HP / (float)HPOriginal;
+        else
+            enemyHPBar.fillAmount = 0.0f;
+    }
 }

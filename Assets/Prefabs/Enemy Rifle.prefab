@@ -553,9 +553,9 @@ GameObject:
   - component: {fileID: 7562739324744373129}
   - component: {fileID: 7562739324753738840}
   - component: {fileID: 7562739324753738847}
+  - component: {fileID: 7562739324753738845}
   - component: {fileID: 7562739324753738846}
   - component: {fileID: 1738468286}
-  - component: {fileID: 7562739324753738845}
   m_Layer: 6
   m_Name: Enemy Rifle
   m_TagString: Enemy
@@ -594,11 +594,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   model: {fileID: 7562739324749546141}
   agent: {fileID: 7562739324753738847}
+  enemyUI: {fileID: 0}
+  enemyHPBar: {fileID: 0}
+  anim: {fileID: 7562739324753738845}
   HP: 10
   playerFaceSpeed: 3
   sightAngle: 75
   headPosition: {fileID: 7562739324744373177}
   dangerSightModifier: 1.65
+  animTransSpeed: 1
   gunType: 1
   fireRate: 0.25
   bulletType: {fileID: 4164665115654197046, guid: da64558ff5c37ff418857c08ac947648, type: 3}
@@ -627,6 +631,26 @@ NavMeshAgent:
   m_BaseOffset: 0
   m_WalkableMask: 4294967295
   m_ObstacleAvoidanceType: 4
+--- !u!95 &7562739324753738845
+Animator:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7562739324744339433}
+  m_Enabled: 1
+  m_Avatar: {fileID: 9000000, guid: f4209d51d1ad0434299f2d498ee076ba, type: 3}
+  m_Controller: {fileID: 9100000, guid: 53a7895978a6af94888bb9c7e8e0dc92, type: 2}
+  m_CullingMode: 1
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!136 &7562739324753738846
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -654,26 +678,6 @@ SphereCollider:
   serializedVersion: 2
   m_Radius: 15
   m_Center: {x: 0, y: 0, z: 0}
---- !u!95 &7562739324753738845
-Animator:
-  serializedVersion: 4
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7562739324744339433}
-  m_Enabled: 1
-  m_Avatar: {fileID: 9000000, guid: f4209d51d1ad0434299f2d498ee076ba, type: 3}
-  m_Controller: {fileID: 0}
-  m_CullingMode: 1
-  m_UpdateMode: 0
-  m_ApplyRootMotion: 0
-  m_LinearVelocityBlending: 0
-  m_StabilizeFeet: 0
-  m_WarningMessage: 
-  m_HasTransformHierarchy: 1
-  m_AllowConstantClipSamplingOptimization: 1
-  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &7562739324744339437
 GameObject:
   m_ObjectHideFlags: 0
