@@ -19,6 +19,7 @@ public class enemyAI : MonoBehaviour, IDamage
     [SerializeField] int sightAngle;
     [SerializeField] Transform headPosition;
     [Range(1.0f,2.0f)] [SerializeField] float dangerSightModifier;
+    [SerializeField] int droppedZoinsAmt;   // game currency
 
     [SerializeField] int animTransSpeed;
 
@@ -48,6 +49,9 @@ public class enemyAI : MonoBehaviour, IDamage
         HPOriginal = HP;
         enemyMaterialOriginal = model.material.color;
         gameManager.instance.updateEnemyCount(1);
+
+        // after every 5 rooms cleared, enemies will start dropping 33% more coins
+        droppedZoinsAmt = Mathf.FloorToInt(droppedZoinsAmt * (0.33f * Mathf.FloorToInt(gameManager.instance.maxRoomsCleared / 5))); 
     }
 
     // Update is called once per frame
@@ -59,6 +63,7 @@ public class enemyAI : MonoBehaviour, IDamage
         {
             canSeePlayer();
         }
+
     }
 
     // function that makes the enemy track and attack the player
@@ -142,6 +147,7 @@ public class enemyAI : MonoBehaviour, IDamage
             // Update enemy count
             gameManager.instance.updateEnemyCount(-1);
             gameManager.instance.enemiesKilled++;
+            //gameManager.instance.addZoins(droppedZoinsAmt);
             Destroy(gameObject);
         }
     }
