@@ -2,8 +2,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using TMPro;
 
-using static System.Net.Mime.MediaTypeNames;
+
 
 public class gameManager : MonoBehaviour
 {
@@ -23,6 +24,8 @@ public class gameManager : MonoBehaviour
     public GameObject winMenu;
     public GameObject loseMenu;
     public GameObject playerFlashDamage;
+    public Image playerHealthBar;
+    [SerializeField] TextMeshProUGUI Zoins; // its coins!
 
     [Header("------Extras------")]
     [SerializeField] int roomCount;
@@ -32,6 +35,7 @@ public class gameManager : MonoBehaviour
     public int enemyCount;
     public bool paused;
 
+    public int zoins;
 
     float origTime;
     void Awake()
@@ -105,9 +109,10 @@ public class gameManager : MonoBehaviour
        
        
     }
-
-
-    
- 
+    public void addZoins(int amount)
+    {
+        zoins += amount;
+        Zoins.text = zoins.ToString("F0");
+    }
   
 }

@@ -1,18 +1,14 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+[CreateAssetMenu]
 
-public class gunStats : MonoBehaviour
+public class gunStats : ScriptableObject
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
+    public int gunDMG;
+    public float fireRate;
+    public int shootDis;
+    
+    public GameObject modelGun;
+    public AudioClip audioGun;
 }

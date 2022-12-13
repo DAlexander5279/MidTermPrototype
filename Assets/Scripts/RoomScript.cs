@@ -19,7 +19,7 @@ public class RoomScript : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
- 
+        
 
         if(gameManager.instance.enemyCount <= 0)
         {
