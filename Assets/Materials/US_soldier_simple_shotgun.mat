@@ -82,7 +82,11 @@ Material:
     - _UVSec: 0
     - _ZWrite: 1
     m_Colors:
+<<<<<<< HEAD:Assets/Unity Store Downloads/ToonSoldiers_WW2_demo/model/Materials/US_soldier_simple_shotgun.mat
     - _Color: {r: 1, g: 0.13679248, b: 0.87484235, a: 1}
+=======
+    - _Color: {r: 1, g: 0, b: 0.83322906, a: 1}
+>>>>>>> 7fb4944df79d2c46b18915f6e4980037b0a5cba2:Assets/Materials/US_soldier_simple_shotgun.mat
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
     - _Flip: {r: 1, g: 1, b: 1, a: 1}
     - _RendererColor: {r: 1, g: 1, b: 1, a: 1}
