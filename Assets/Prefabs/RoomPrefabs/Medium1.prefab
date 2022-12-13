@@ -270,7 +270,7 @@ GameObject:
   - component: {fileID: 7042165556313488821}
   - component: {fileID: 556222280}
   m_Layer: 8
-  m_Name: WallessRoom 2
+  m_Name: Medium1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
