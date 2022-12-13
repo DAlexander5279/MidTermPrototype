@@ -46,7 +46,6 @@ public class gameManager : MonoBehaviour
         origTime = Time.timeScale;
         PlayerPrefs.SetInt("enemyStat", 0);
     }
-
     // Update is called once per frame
     void Update()
     {
@@ -67,8 +66,6 @@ public class gameManager : MonoBehaviour
         //{
         //    StartCoroutine(PushPlayer());
         //}
-
-
     }
     public void gamePause()
     {
@@ -114,5 +111,4 @@ public class gameManager : MonoBehaviour
         zoins += amount;
         Zoins.text = zoins.ToString("F0");
     }
-  
 }

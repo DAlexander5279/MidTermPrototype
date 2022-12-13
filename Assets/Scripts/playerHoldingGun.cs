@@ -5,7 +5,6 @@ using UnityEngine;
 public class playerHoldingGun : MonoBehaviour
 {
     [SerializeField] gunStats stats;
-
     public void OnTriggerEnter(Collider other)
     {
         if (other.CompareTag("Player"))
@@ -14,5 +13,4 @@ public class playerHoldingGun : MonoBehaviour
             Destroy(gameObject);
         }
     }
-
 }

@@ -8,7 +8,6 @@ public class gunStats : ScriptableObject
     public int gunDMG;
     public float fireRate;
     public int shootDis;
-    
     public GameObject modelGun;
     public AudioClip audioGun;
 }

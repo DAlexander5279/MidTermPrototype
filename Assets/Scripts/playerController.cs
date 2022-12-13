@@ -70,7 +70,6 @@ public class playerController : MonoBehaviour
         HPOriginal = HP;
 
     }
-
     // Update is called once per frame
     void Update()
     {
@@ -96,9 +95,6 @@ public class playerController : MonoBehaviour
 
 
     }
-
-
-
     void Movement()
     {
         if (playerControl.isGrounded && playerVelocity.y < 0)
@@ -149,7 +145,6 @@ public class playerController : MonoBehaviour
             isShooting = false;
         }
     }
-
     public void takeDamage(int dmgIn)
     {
         HP -= dmgIn;
@@ -165,7 +160,6 @@ public class playerController : MonoBehaviour
             gameManager.instance.activeMenu = gameManager.instance.loseMenu;
         }
     }
-
     IEnumerator playerFlashDamage()
     {
         gameManager.instance.playerFlashDamage.SetActive(true);
@@ -191,7 +185,6 @@ public class playerController : MonoBehaviour
 
         audioIsPlaying = false;
     }
-
     public void equippedGuns(gunStats statsOfGun)
     {
         gunDMG = statsOfGun.gunDMG;
@@ -207,7 +200,6 @@ public class playerController : MonoBehaviour
 
         
     }
-
     void EquippedGun()
     {
         shootRate = listGuns[selectedWeapon].fireRate;
