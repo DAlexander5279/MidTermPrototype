@@ -65,7 +65,7 @@ public class explosion : MonoBehaviour
         expAud.PlayOneShot(explosionSound, explosionSoundVol);
         itemModel = GetComponent<MeshRenderer>();
         itemModel.enabled = false;
-        //Instantiate(explosionEffect, other.transform.position, other.transform.rotation);
+        Instantiate(explosionEffect, transform.position, transform.rotation);
         yield return new WaitForSeconds(3.0f);
         Destroy(gameObject);
     }
