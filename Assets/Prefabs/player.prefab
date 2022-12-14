@@ -243,7 +243,7 @@ MonoBehaviour:
   jumpMax: 1
   jumpHeight: 5
   gravity: 15
-  pushTime: 0
+  pushTime: 1
   isDisabled: 0
   aud: {fileID: 6420801457207091318}
   gunshotSound: {fileID: 0}
@@ -291,14 +291,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   cam: {fileID: 2470128279692826929}
-  throwPoint: {fileID: 0}
-  thrownObject: {fileID: 0}
-  throwKey: 0
-  totalThrows: 0
-  rechargeRate: 0
-  throwCooldown: 0
-  throwForce: 0
-  throwForceUpward: 0
+  throwPoint: {fileID: 7494317789885382928}
+  thrownObject: {fileID: 2505653274007219841, guid: 53db01c217a5f39449879cdb08dd0c50, type: 3}
+  throwKey: 103
+  totalThrows: 100
+  rechargeRate: 20
+  throwCooldown: 0.15
+  throwForce: 70
+  throwForceUpward: 1
+  canThrow: 1
 --- !u!82 &6420801457207091318
 AudioSource:
   m_ObjectHideFlags: 0
