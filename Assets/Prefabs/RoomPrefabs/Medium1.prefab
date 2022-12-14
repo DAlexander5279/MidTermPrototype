@@ -673,7 +673,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b1cb987a8e9c32f49964b6ba65433e41, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  roomPref: {fileID: 7042165556313488820, guid: 2714150214e30554188da724c53fb847, type: 3}
+  easyRooms:
+  - {fileID: 7042165556313488820, guid: b19fa7a7c65c44948a37e7e1ac1e3fd5, type: 3}
+  - {fileID: 7042165556313488820, guid: 0e92c775576dcb546b0e67c502747048, type: 3}
+  - {fileID: 7042165556313488820, guid: bd922d9f78c0c604aa16635af53d45cc, type: 3}
+  allRooms:
+  - {fileID: 7042165556313488820, guid: 2348c4f931b030345bae00c59d6b9b71, type: 3}
+  - {fileID: 7042165556313488820, guid: 2e7e7f95c97d25046ae1e10643e80873, type: 3}
+  - {fileID: 7042165556313488820}
+  - {fileID: 7042165556313488820, guid: a0747bcd224cae644a11868da35e4a6a, type: 3}
+  - {fileID: 7042165556313488820, guid: 2714150214e30554188da724c53fb847, type: 3}
+  - {fileID: 7042165556313488820, guid: bd922d9f78c0c604aa16635af53d45cc, type: 3}
+  - {fileID: 7042165556313488820, guid: 0e92c775576dcb546b0e67c502747048, type: 3}
+  - {fileID: 7042165556313488820, guid: b19fa7a7c65c44948a37e7e1ac1e3fd5, type: 3}
   spawnPos: {fileID: 2104716682}
   roomSpawned: 0
   isStartRoom: 0

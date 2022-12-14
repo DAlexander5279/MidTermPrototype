@@ -32,7 +32,8 @@ public class gameManager : MonoBehaviour
     
 
     [Header("------Extras------")]
-    [SerializeField] int roomCount;
+    public int roomCount;
+    public int curRoomIndex;
     [SerializeField] int killWinCondition;
     public bool roomsNeedPushed;
     public int enemyCount;
