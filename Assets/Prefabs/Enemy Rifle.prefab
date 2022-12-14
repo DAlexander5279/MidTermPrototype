@@ -603,7 +603,7 @@ MonoBehaviour:
   sightAngle: 75
   headPosition: {fileID: 7562739324744373177}
   dangerSightModifier: 1.65
-  droppedZoinsAmt: 0
+  droppedZoinsAmt: 1
   animTransSpeed: 1
   gunType: 1
   fireRate: 0.25
