@@ -5,4 +5,5 @@ using UnityEngine;
 public interface IDamage
 {
     void takeDamage(int dmgIn);
+    void pushObject(Vector3 pushDir);
 }

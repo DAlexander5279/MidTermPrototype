@@ -398,7 +398,7 @@ GameObject:
   - component: {fileID: 7042165555709602551}
   - component: {fileID: 7042165555709602550}
   - component: {fileID: 7042165555709602549}
-  m_Layer: 8
+  m_Layer: 0
   m_Name: Dwall (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -641,7 +641,7 @@ GameObject:
   - component: {fileID: 7042165556517946286}
   - component: {fileID: 7042165556517946285}
   - component: {fileID: 7042165556517946284}
-  m_Layer: 8
+  m_Layer: 0
   m_Name: Dwall (2)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -738,7 +738,7 @@ GameObject:
   - component: {fileID: 7042165556543056121}
   - component: {fileID: 7042165556543056120}
   - component: {fileID: 7042165556543056103}
-  m_Layer: 8
+  m_Layer: 0
   m_Name: Wall
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -836,7 +836,7 @@ GameObject:
   - component: {fileID: 7042165556606908285}
   - component: {fileID: 7042165556606908284}
   - component: {fileID: 7042165556606908283}
-  m_Layer: 8
+  m_Layer: 0
   m_Name: roof
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -934,7 +934,7 @@ GameObject:
   - component: {fileID: 7042165556722792382}
   - component: {fileID: 7042165556722792381}
   - component: {fileID: 7042165556722792380}
-  m_Layer: 8
+  m_Layer: 0
   m_Name: Wall (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1130,7 +1130,8 @@ GameObject:
   - component: {fileID: 7042165557154595454}
   - component: {fileID: 7042165557154595453}
   - component: {fileID: 7042165557154595452}
-  m_Layer: 8
+  - component: {fileID: 845337181439381606}
+  m_Layer: 0
   m_Name: Dwall
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1215,6 +1216,22 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!208 &845337181439381606
+NavMeshObstacle:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7042165557154595450}
+  m_Enabled: 0
+  serializedVersion: 3
+  m_Shape: 1
+  m_Extents: {x: 0.5, y: 0.5, z: 0.5}
+  m_MoveThreshold: 0.1
+  m_Carve: 1
+  m_CarveOnlyStationary: 1
+  m_Center: {x: 0, y: 0, z: 0}
+  m_TimeToStationary: 0.5
 --- !u!1001 &86294129290367855
 PrefabInstance:
   m_ObjectHideFlags: 0

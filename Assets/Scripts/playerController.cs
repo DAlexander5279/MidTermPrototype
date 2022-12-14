@@ -118,7 +118,9 @@ public class playerController : MonoBehaviour
         }
 
         playerVelocity.y -= gravity * Time.deltaTime;
-        playerControl.Move(playerVelocity * Time.deltaTime);
+        //playerControl.Move(playerVelocity * Time.deltaTime);
+        playerControl.Move((playerVelocity + pushBack) * Time.deltaTime);
+
 
     }
     IEnumerator Shoot()
@@ -255,6 +257,5 @@ public class playerController : MonoBehaviour
     {
         pushBack = dir;
     }
-
 
 }

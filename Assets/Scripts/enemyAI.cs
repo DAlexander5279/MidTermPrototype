@@ -39,6 +39,7 @@ public class enemyAI : MonoBehaviour, IDamage
     Vector3 playerDirection;
     float angleToPlayer;
     Color enemyMaterialOriginal;
+    Vector3 pushBack;
 
     // If the enemy has seen the player and deemed them a threat...
     bool playerThreat;
@@ -58,6 +59,8 @@ public class enemyAI : MonoBehaviour, IDamage
     void Update()
     {
         anim.SetFloat("Speed", Mathf.Lerp(anim.GetFloat("Speed"), agent.velocity.normalized.magnitude, Time.deltaTime * animTransSpeed));
+        pushBack = Vector3.Lerp(pushBack, Vector3.zero, Time.deltaTime);
+        agent.Move((agent.velocity + pushBack) * Time.deltaTime);
 
         if (playerInRange)
         {
@@ -194,5 +197,10 @@ public class enemyAI : MonoBehaviour, IDamage
             enemyHPBar.fillAmount = (float)HP / (float)HPOriginal;
         else
             enemyHPBar.fillAmount = 0.0f;
+    }
+
+    public void pushObject(Vector3 pushDir)
+    {
+        pushBack = pushDir;
     }
 }
