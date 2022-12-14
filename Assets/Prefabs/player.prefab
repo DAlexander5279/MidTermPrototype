@@ -115,6 +115,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 390137843}
+  - {fileID: 7494317789885382928}
   m_Father: {fileID: 2470128280080099144}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -196,6 +197,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2470128280080099144}
   - component: {fileID: 2470128280080099147}
+  - component: {fileID: 2224627256610610436}
   - component: {fileID: 6420801457207091318}
   - component: {fileID: 2470128280080099145}
   - component: {fileID: 2470128280080099146}
@@ -276,6 +278,27 @@ MonoBehaviour:
   shootDist: 0
   gunModel: {fileID: 390137842}
   hitEffect: {fileID: 7276695728850258670, guid: e363626372d9fe948b40fd7958f8f85d, type: 3}
+--- !u!114 &2224627256610610436
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2470128280080099158}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7d3070626998bd043aa0cca061ef4a63, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  cam: {fileID: 2470128279692826929}
+  throwPoint: {fileID: 0}
+  thrownObject: {fileID: 0}
+  throwKey: 0
+  totalThrows: 0
+  rechargeRate: 0
+  throwCooldown: 0
+  throwForce: 0
+  throwForceUpward: 0
 --- !u!82 &6420801457207091318
 AudioSource:
   m_ObjectHideFlags: 0
@@ -440,3 +463,34 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!1 &3146395566180889045
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 7494317789885382928}
+  m_Layer: 0
+  m_Name: Throw Position
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &7494317789885382928
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3146395566180889045}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0.4, y: -0.25, z: 0.96}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 2470128279692826929}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}

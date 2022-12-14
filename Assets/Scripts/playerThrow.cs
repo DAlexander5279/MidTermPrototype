@@ -1,0 +1,76 @@
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+
+public class playerThrow : MonoBehaviour
+{
+    // Start is called before the first frame update
+    [Header("Components")]
+    public Transform cam;
+    public Transform throwPoint;
+    public GameObject thrownObject;
+    [SerializeField] KeyCode throwKey;
+
+    [Header("Thrown Stats")]
+    [SerializeField] int totalThrows;
+    [SerializeField] float rechargeRate;
+    [SerializeField] float throwCooldown;
+    [SerializeField] float throwForce;
+    [SerializeField] float throwForceUpward;
+    [SerializeField] bool canThrow;
+    bool abilityOnCooldown;
+    int totalThrowsOriginal;
+
+    void Start()
+    {
+        totalThrowsOriginal = totalThrows;
+        // look into where to make canThrow true when picking up the Grenade ability
+    }
+
+    void Update()
+    {
+        if (Input.GetKeyDown(throwKey) && canThrow && totalThrows > 0)
+        {
+            Throw();
+        }
+
+        if (!abilityOnCooldown && (totalThrows < totalThrowsOriginal))
+            StartCoroutine(abilityCooldown());
+    }
+
+    void Throw()
+    {
+        canThrow = false;
+
+        GameObject projectile = Instantiate(thrownObject, throwPoint.position, cam.rotation);
+
+        Rigidbody thrownObjectRb = projectile.GetComponent<Rigidbody>();
+
+        Vector3 throwingForce = (cam.transform.forward * throwForce) + (transform.up * throwForceUpward);
+
+        // using Impulse as we only need to apply the throwing force once
+        thrownObjectRb.AddForce(throwingForce, ForceMode.Impulse);
+
+        totalThrows--;
+
+        StartCoroutine(throwSpamProtection());
+
+    }
+
+    IEnumerator abilityCooldown()
+    {
+        abilityOnCooldown = true;
+        yield return new WaitForSeconds(rechargeRate);
+        totalThrows++;
+        if (!canThrow)
+            canThrow = true;
+        abilityOnCooldown = false;
+    }
+
+    IEnumerator throwSpamProtection()
+    {
+        yield return new WaitForSeconds(throwCooldown);
+        if (totalThrows > 0)
+            canThrow = true;
+    }
+}

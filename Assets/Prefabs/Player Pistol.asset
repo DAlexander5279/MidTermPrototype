@@ -12,8 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fbdc5c617eda47a419c013e02d98d9ac, type: 3}
   m_Name: Player Pistol
   m_EditorClassIdentifier: 
-  gunDMG: 3
-  fireRate: 0.5
-  shootDis: 50
-  modelGun: {fileID: 919132149155446097, guid: 8f9696fb6017be144a307b6586855ac0, type: 3}
-  audioGun: {fileID: 8300000, guid: 67a6f7b5eed8dcb438ddbf78d89ce86f, type: 3}
+  gunDMG: 10
+  shootRate: 0.5
+  shootDist: 50
+  gunModel: {fileID: 919132149155446097, guid: 8f9696fb6017be144a307b6586855ac0, type: 3}
+  gunshotSound: {fileID: 8300000, guid: 67a6f7b5eed8dcb438ddbf78d89ce86f, type: 3}
