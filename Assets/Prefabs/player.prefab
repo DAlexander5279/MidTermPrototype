@@ -247,12 +247,12 @@ MonoBehaviour:
   isDisabled: 0
   aud: {fileID: 6420801457207091318}
   gunshotSound: {fileID: 0}
-  gunshotSoundVol: 0
+  gunshotSoundVol: 0.5
   playerJumpAudio:
   - {fileID: 8300000, guid: e74441ea4fe4bc34491857f05229c1f6, type: 3}
   - {fileID: 8300000, guid: 1fff40ef039cea6459b41a0a470217c9, type: 3}
   - {fileID: 8300000, guid: 757dbe014f1165547ab8f26d91fcfb65, type: 3}
-  playerJumpAudioVol: 0
+  playerJumpAudioVol: 0.2
   playerHurtAudio:
   - {fileID: 8300000, guid: f5e8d7798712bb74289068b409827a75, type: 3}
   - {fileID: 8300000, guid: 3d12917dcf14e4d45a7aa2acc0456f31, type: 3}
@@ -260,7 +260,7 @@ MonoBehaviour:
   - {fileID: 8300000, guid: c18dac438bbaeb94cba6e507341d7318, type: 3}
   - {fileID: 8300000, guid: 8faa4a8c2b4157b468ae0b4f2a323670, type: 3}
   - {fileID: 8300000, guid: 9d5a111a0c1a42a4aaa550eae1fe40d7, type: 3}
-  playerHurtAudioVol: 0
+  playerHurtAudioVol: 0.2
   playerStepAudio:
   - {fileID: 8300000, guid: 024c32c2982b01c4daf29c224c213186, type: 3}
   - {fileID: 8300000, guid: be2c52fc0a4c1bf41a998c0f41c2cb88, type: 3}
@@ -271,7 +271,7 @@ MonoBehaviour:
   - {fileID: 8300000, guid: 8adcbf64ad2c1c0438982cf6152624b0, type: 3}
   - {fileID: 8300000, guid: fd820177bfbd88242954e1fed8fdbf11, type: 3}
   - {fileID: 8300000, guid: bd2301caac6c2f94b8774a6f4b85bb05, type: 3}
-  playerStepAudioVol: 0
+  playerStepAudioVol: 0.1
   gunList: []
   gunDMG: 0
   shootRate: 0

@@ -5,7 +5,7 @@ using UnityEngine;
 public class explosion : MonoBehaviour
 {
     [Header("Explosion Stats")]
-    // Start is called before the first frame update
+    [SerializeField] GameObject explosiveWeapon;
     [SerializeField] int pushBackAmount;
     //[SerializeField] bool physicsType;          // true == push | false == pull
     [SerializeField] int damage;
@@ -20,6 +20,8 @@ public class explosion : MonoBehaviour
 
     Vector3 pushForce;
     Renderer itemModel;
+    Vector3 hitDirection;
+    float angleToNearby;
 
     void Start()
     {
@@ -34,17 +36,28 @@ public class explosion : MonoBehaviour
 
         foreach (Collider nearExplosion in colliders)
         {
-            if (nearExplosion.CompareTag("Player"))
+
+            hitDirection = (nearExplosion.transform.position - transform.position);
+            angleToNearby = Vector3.Angle(hitDirection, transform.forward);
+
+            //Debug.Log(angleToPlayer);
+            Debug.DrawRay(transform.position, hitDirection);
+
+            RaycastHit hit;
+            if (Physics.Raycast(transform.position, hitDirection, out hit))
             {
-                pushForce = (nearExplosion.transform.position - transform.position) * pushBackAmount;
-                gameManager.instance.playerScript.takeDamage(damage);
-                gameManager.instance.playerScript.inputPushBack(pushForce);
-            }
-            else if (nearExplosion.CompareTag("Enemy"))
-            {
-                pushForce = (nearExplosion.transform.position - transform.position) * pushBackAmount;
-                nearExplosion.GetComponent<IDamage>().takeDamage(damage);
-                nearExplosion.GetComponent<IDamage>().pushObject(pushForce);
+                if (nearExplosion.CompareTag("Player"))
+                {
+                    pushForce = (nearExplosion.transform.position - transform.position) * pushBackAmount;
+                    gameManager.instance.playerScript.takeDamage(damage);
+                    gameManager.instance.playerScript.inputPushBack(pushForce);
+                }
+                else if (nearExplosion.CompareTag("Enemy"))
+                {
+                    pushForce = (nearExplosion.transform.position - transform.position) * pushBackAmount;
+                    nearExplosion.GetComponent<IDamage>().takeDamage(damage);
+                    nearExplosion.GetComponent<IDamage>().pushObject(pushForce);
+                }
             }
         }
 
@@ -53,7 +66,7 @@ public class explosion : MonoBehaviour
         itemModel = GetComponent<MeshRenderer>();
         itemModel.enabled = false;
         //Instantiate(explosionEffect, other.transform.position, other.transform.rotation);
-        yield return new WaitForSeconds(5.0f);
+        yield return new WaitForSeconds(3.0f);
         Destroy(gameObject);
     }
 }
