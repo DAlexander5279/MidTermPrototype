@@ -14,8 +14,6 @@ public class gameManager : MonoBehaviour
     public GameObject player;
     public playerController playerScript;
 
-    public enemyAI enemyCoins;
-
     public int maxRoomsCleared;
     public int enemiesKilled;
 
@@ -27,9 +25,11 @@ public class gameManager : MonoBehaviour
     public GameObject loseMenu;
     public GameObject playerFlashDamage;
     public Image playerHealthBar;
-
+    public GameObject Reload;
     [SerializeField] TextMeshProUGUI Zoins; // its coins!
     [SerializeField] TextMeshProUGUI roomsCleared; // its rooms!
+
+    [SerializeField] TextMeshProUGUI ammoCount;
 
 
 
@@ -41,6 +41,8 @@ public class gameManager : MonoBehaviour
     public int enemyCount;
     public bool paused;
     public int zoins;
+
+    public int AmmoCount;
     
 
     float origTime;
@@ -104,13 +106,10 @@ public class gameManager : MonoBehaviour
     }
 
     public void pushRoomsBack(GameObject obj)
-    {
-
-
+    { 
         //Debug.Log(obj.transform.position);
         roomsNeedPushed = false;
         obj.transform.position = new Vector3(obj.transform.position.x - 25, 0f, 0f);
-       
        
     }
     public void addZoins(int amount)
@@ -123,5 +122,11 @@ public class gameManager : MonoBehaviour
     {
         roomCount += amount;
         roomsCleared.text = roomCount.ToString("F0");
+    }
+    public void ammoUpdate(int amount) 
+    {
+        AmmoCount = amount;
+
+        ammoCount.text = AmmoCount.ToString("F0");
     }
 }
