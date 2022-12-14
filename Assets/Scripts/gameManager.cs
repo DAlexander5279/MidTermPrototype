@@ -125,7 +125,10 @@ public class gameManager : MonoBehaviour
     public void addRoomCount(int amount)
     {
         roomCount += amount;
-        roomsCleared.text = roomCount.ToString("F0");
+        if(roomCount < 0)
+            roomsCleared.text = 0.ToString("F0");
+        else
+            roomsCleared.text = roomCount.ToString("F0");
     }
     public void ammoUpdate(int amount)
     {

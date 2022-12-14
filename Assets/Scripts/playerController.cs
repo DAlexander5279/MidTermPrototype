@@ -48,8 +48,7 @@ public class playerController : MonoBehaviour
     [Range(0, 5)][SerializeField] int gunDMG;
     [SerializeField] float shootRate;   // player's gun fire rate
     [Range(0, 200)][SerializeField] int shootDist; // effective range of the shot
-    [SerializeField] GameObject gunModel;
-
+    [SerializeField] GameObject gunModel;   //also gun position/viewmodel position
     [SerializeField] GameObject hitEffect;
 
 
@@ -157,7 +156,7 @@ public class playerController : MonoBehaviour
             isShooting = false;
         }
 
-        if (gunList[selectedGun].magCount <= gunList[selectedGun].magSize)
+        if (gunList[selectedGun].magCount < gunList[selectedGun].magSize)
         {
             if (gunList[selectedGun].magCount == 0 || gunList[selectedGun].magCount <= 3)
             {
