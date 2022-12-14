@@ -220,12 +220,30 @@ public class playerController : MonoBehaviour
     }
     public void gunPickup(gunStats gunStat)
     {
-        gunList.Add(gunStat);
-        selectedGun = gunList.Count - 1;
-        changeCurrentGun();
 
-        gameManager.instance.ammoUpdate(gunStat.magCount);
+        bool foundGun = false;
+        for (int i = 0; i < gunList.Count; i++)
+        {
+            if (gunStat == gunList[i])
+            {
+                foundGun = true;
+                gunList[i].modifedGunDMG = Mathf.FloorToInt(gunList[i].modifedGunDMG * gameManager.instance.getDamageModifier());
+                if (gunList[i] == gunList[selectedGun])
+                {
+                    gunDMG = gunList[i].modifedGunDMG;
+                }
+            }
+        }
+        if(!foundGun)
+        {
+            gunStat.magCount = gunStat.magSize;
+            gunStat.modifedGunDMG = gunStat.gunDMG;
+            gunList.Add(gunStat);
+            selectedGun = gunList.Count - 1;
+            changeCurrentGun();
 
+            gameManager.instance.ammoUpdate(gunStat.magCount);
+        }
 
     }
 
@@ -260,7 +278,8 @@ public class playerController : MonoBehaviour
     public void changeCurrentGun()
     {
         shootRate = gunList[selectedGun].shootRate;
-        gunDMG = gunList[selectedGun].gunDMG;
+        // gunDMG = gunList[selectedGun].gunDMG;
+        gunDMG = gunList[selectedGun].modifedGunDMG;
         shootDist = gunList[selectedGun].shootDist;
 
         gunshotSound = gunList[selectedGun].gunshotSound;

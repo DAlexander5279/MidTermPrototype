@@ -50,7 +50,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   explosiveWeapon: {fileID: 2505653274007219841}
-  pushBackAmount: 6
+  pushBackAmount: 4
   damage: 30
   delayTime: 0.4
   radius: 8
@@ -58,6 +58,7 @@ MonoBehaviour:
   expAud: {fileID: 907730514126260077}
   explosionSound: {fileID: 8300000, guid: 083f12a0226cf1a4d93705d4a4ea201c, type: 3}
   explosionSoundVol: 1.01
+  explosionLifespan: 1.65
 --- !u!33 &5022658095588095100
 MeshFilter:
   m_ObjectHideFlags: 0

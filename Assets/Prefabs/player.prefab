@@ -245,6 +245,8 @@ MonoBehaviour:
   gravity: 15
   pushTime: 1
   isDisabled: 0
+  Reload: 114
+  reloadUI: {fileID: 0}
   aud: {fileID: 6420801457207091318}
   gunshotSound: {fileID: 0}
   gunshotSoundVol: 0.5
