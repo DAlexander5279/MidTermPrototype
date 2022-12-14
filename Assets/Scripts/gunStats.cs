@@ -6,8 +6,8 @@ using UnityEngine;
 public class gunStats : ScriptableObject
 {
     public int gunDMG;
-    public float fireRate;
-    public int shootDis;
-    public GameObject modelGun;
-    public AudioClip audioGun;
+    public float shootRate;
+    public int shootDist;
+    public GameObject gunModel;
+    public AudioClip gunshotSound;
 }

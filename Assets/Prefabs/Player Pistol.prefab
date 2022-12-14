@@ -9,10 +9,10 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1636739270963292384}
+  - component: {fileID: 5724772934912382019}
   - component: {fileID: 6784051578114257199}
   - component: {fileID: 2528401371662100172}
   - component: {fileID: 3964784752389494207}
-  - component: {fileID: 5724772934912382019}
   m_Layer: 0
   m_Name: Player Pistol
   m_TagString: Untagged
@@ -27,7 +27,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4633569493883174249}
-  m_LocalRotation: {x: -0, y: -0.52770287, z: -0, w: 0.8494291}
+  m_LocalRotation: {x: 0, y: -0.5277047, z: 0, w: 0.84942794}
   m_LocalPosition: {x: -0.22, y: 1.65, z: 4.1}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -35,6 +35,19 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: -63.701, z: 0}
+--- !u!114 &5724772934912382019
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4633569493883174249}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b349b2e5c0b8fc2459d7b4f1ddad2027, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  gunStats: {fileID: 11400000, guid: a65955d89d5d31e47803a4cd98848bda, type: 2}
 --- !u!33 &6784051578114257199
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -96,18 +109,5 @@ SphereCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 0.5
+  m_Radius: 1.5
   m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &5724772934912382019
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4633569493883174249}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b349b2e5c0b8fc2459d7b4f1ddad2027, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  stats: {fileID: 11400000, guid: a65955d89d5d31e47803a4cd98848bda, type: 2}

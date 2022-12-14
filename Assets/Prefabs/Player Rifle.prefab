@@ -9,7 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 277215605899156137}
-  - component: {fileID: 7889651546504766872}
+  - component: {fileID: 810198024709397431}
   - component: {fileID: 2484991099671438731}
   - component: {fileID: 8070851920588530868}
   - component: {fileID: 4645787616760812160}
@@ -35,7 +35,7 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &7889651546504766872
+--- !u!114 &810198024709397431
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -47,7 +47,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b349b2e5c0b8fc2459d7b4f1ddad2027, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  stats: {fileID: 11400000, guid: 84ce2125930e7054683a216567541666, type: 2}
+  gunStats: {fileID: 11400000, guid: 84ce2125930e7054683a216567541666, type: 2}
 --- !u!33 &2484991099671438731
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -109,5 +109,5 @@ SphereCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 0.5
+  m_Radius: 2.5
   m_Center: {x: 0, y: 0, z: 0}

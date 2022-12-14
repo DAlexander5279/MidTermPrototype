@@ -1,5 +1,88 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!1 &390137842
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 390137843}
+  - component: {fileID: 390137846}
+  - component: {fileID: 390137845}
+  m_Layer: 0
+  m_Name: gun position
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &390137843
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 390137842}
+  m_LocalRotation: {x: -0.029231122, y: -0.041269086, z: 0.058179174, w: 0.99702436}
+  m_LocalPosition: {x: 0.508, y: -0.57, z: 1.294}
+  m_LocalScale: {x: 0.775, y: 0.775, z: 0.775}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 2470128279692826929}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: -3.066, y: -4.923, z: 6.811}
+--- !u!33 &390137846
+MeshFilter:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 390137842}
+  m_Mesh: {fileID: 0}
+--- !u!23 &390137845
+MeshRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 390137842}
+  m_Enabled: 1
+  m_CastShadows: 1
+  m_ReceiveShadows: 1
+  m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
+  m_MotionVectors: 1
+  m_LightProbeUsage: 1
+  m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 2
+  m_RayTraceProcedural: 0
+  m_RenderingLayerMask: 1
+  m_RendererPriority: 0
+  m_Materials:
+  - {fileID: 0}
+  m_StaticBatchInfo:
+    firstSubMesh: 0
+    subMeshCount: 0
+  m_StaticBatchRoot: {fileID: 0}
+  m_ProbeAnchor: {fileID: 0}
+  m_LightProbeVolumeOverride: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
+  m_PreserveUVs: 0
+  m_IgnoreNormalsForChartDetection: 0
+  m_ImportantGI: 0
+  m_StitchLightmapSeams: 1
+  m_SelectedEditorRenderState: 3
+  m_MinimumChartSize: 4
+  m_AutoUVMaxDistance: 0.5
+  m_AutoUVMaxAngle: 89
+  m_LightmapParameters: {fileID: 0}
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
+  m_SortingOrder: 0
+  m_AdditionalVertexStreams: {fileID: 0}
 --- !u!1 &2470128279692826930
 GameObject:
   m_ObjectHideFlags: 0
@@ -30,7 +113,8 @@ Transform:
   m_LocalPosition: {x: 0, y: 0.72, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
-  m_Children: []
+  m_Children:
+  - {fileID: 390137843}
   m_Father: {fileID: 2470128280080099144}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -152,22 +236,21 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerControl: {fileID: 2470128280080099145}
-  HP: 100
+  HP: 1000
   playerSpeed: 10
   jumpMax: 1
-  jumpHeight: 6
+  jumpHeight: 5
   gravity: 15
   pushTime: 0
-  sprintSpeed: 0
-  walkSpeed: 0
+  isDisabled: 0
   aud: {fileID: 6420801457207091318}
-  audioGunShot: {fileID: 0}
-  audioShot: 0
+  gunshotSound: {fileID: 0}
+  gunshotSoundVol: 0
   playerJumpAudio:
   - {fileID: 8300000, guid: e74441ea4fe4bc34491857f05229c1f6, type: 3}
   - {fileID: 8300000, guid: 1fff40ef039cea6459b41a0a470217c9, type: 3}
   - {fileID: 8300000, guid: 757dbe014f1165547ab8f26d91fcfb65, type: 3}
-  jumpVolAudio: 1
+  playerJumpAudioVol: 0
   playerHurtAudio:
   - {fileID: 8300000, guid: f5e8d7798712bb74289068b409827a75, type: 3}
   - {fileID: 8300000, guid: 3d12917dcf14e4d45a7aa2acc0456f31, type: 3}
@@ -175,7 +258,7 @@ MonoBehaviour:
   - {fileID: 8300000, guid: c18dac438bbaeb94cba6e507341d7318, type: 3}
   - {fileID: 8300000, guid: 8faa4a8c2b4157b468ae0b4f2a323670, type: 3}
   - {fileID: 8300000, guid: 9d5a111a0c1a42a4aaa550eae1fe40d7, type: 3}
-  hurtVolAudio: 1
+  playerHurtAudioVol: 0
   playerStepAudio:
   - {fileID: 8300000, guid: 024c32c2982b01c4daf29c224c213186, type: 3}
   - {fileID: 8300000, guid: be2c52fc0a4c1bf41a998c0f41c2cb88, type: 3}
@@ -186,14 +269,13 @@ MonoBehaviour:
   - {fileID: 8300000, guid: 8adcbf64ad2c1c0438982cf6152624b0, type: 3}
   - {fileID: 8300000, guid: fd820177bfbd88242954e1fed8fdbf11, type: 3}
   - {fileID: 8300000, guid: bd2301caac6c2f94b8774a6f4b85bb05, type: 3}
-  audioPlayerStep: 1
-  listGuns: []
-  gunDMG: 3
-  shootRate: 0.1
-  shootDis: 200
-  gunModel: {fileID: 0}
-  effectedHit: {fileID: 0}
-  isDisabled: 0
+  playerStepAudioVol: 0
+  gunList: []
+  gunDMG: 0
+  shootRate: 0
+  shootDist: 0
+  gunModel: {fileID: 390137842}
+  hitEffect: {fileID: 7276695728850258670, guid: e363626372d9fe948b40fd7958f8f85d, type: 3}
 --- !u!82 &6420801457207091318
 AudioSource:
   m_ObjectHideFlags: 0

@@ -12,12 +12,12 @@ public class playerController : MonoBehaviour
     [Header("------Player Stats------")]
 
     [SerializeField] int HP;
-    [Range(1, 10)][SerializeField] int playerSpeed;
+    [Range(1, 10)] [SerializeField] int playerSpeed;
     [SerializeField] int jumpMax;
-    [Range(5, 15)][SerializeField] int jumpHeight;
-    [Range(10, 20)][SerializeField] int gravity;
+    [Range(5, 15)] [SerializeField] int jumpHeight;
+    [Range(10, 20)] [SerializeField] int gravity;
     [SerializeField] int pushTime;
-
+    public bool isDisabled;
 
 
 
@@ -25,28 +25,28 @@ public class playerController : MonoBehaviour
     [SerializeField] AudioSource aud;
 
     //gun sounds
-    [SerializeField] AudioClip audioGunShot;
-    [Range(0, 3)][SerializeField] float audioShot;
+    [SerializeField] AudioClip gunshotSound;
+    [Range(0, 3)] [SerializeField] float gunshotSoundVol;
 
     [SerializeField] AudioClip[] playerJumpAudio;
-    [Range(0, 3)][SerializeField] float jumpVolAudio;
+    [Range(0, 3)] [SerializeField] float playerJumpAudioVol;
 
     [SerializeField] AudioClip[] playerHurtAudio;
-    [Range(0, 3)][SerializeField] float hurtVolAudio;
+    [Range(0, 3)] [SerializeField] float playerHurtAudioVol;
 
     [SerializeField] AudioClip[] playerStepAudio;
-    [Range(0, 3)][SerializeField] float audioPlayerStep;
+    [Range(0, 3)] [SerializeField] float playerStepAudioVol;
 
 
     [Header("------Gun Stats------")]
-    [SerializeField] List<gunStats> listGuns = new List<gunStats>();
+    [SerializeField] List<gunStats> gunList = new List<gunStats>();
 
-    [Range(0, 5)][SerializeField] int gunDMG;
+    [Range(0, 5)] [SerializeField] int gunDMG;
     [SerializeField] float shootRate;   // player's gun fire rate
-    [Range(0, 200)][SerializeField] int shootDis; // effective range of the shot
+    [Range(0, 200)] [SerializeField] int shootDist; // effective range of the shot
     [SerializeField] GameObject gunModel;
 
-    [SerializeField] GameObject effectedHit;
+    [SerializeField] GameObject hitEffect;
 
 
 
@@ -57,12 +57,10 @@ public class playerController : MonoBehaviour
     int timesJumped;
     int HPOriginal;
     int walkSpeedOrg;
-    int selectedWeapon;
+    int selectedGun;
     bool audioIsPlaying;
     bool isRunning;
     Vector3 pushBack;
-    public bool isDisabled;
-
 
     // Start is called before the first frame update
     private void Start()
@@ -73,25 +71,27 @@ public class playerController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-
-        if (!gameManager.instance.paused)
+        if (!isDisabled)    // makes sure to not allow player to move when teleporting
         {
-            pushBack = Vector3.Lerp(pushBack, Vector3.zero, Time.deltaTime * pushTime);
 
-            Movement();
+            if (!gameManager.instance.paused)
+            {
+                pushBack = Vector3.Lerp(pushBack, Vector3.zero, Time.deltaTime * pushTime);
 
-            if (!audioIsPlaying && move.magnitude > 0.3f && playerControl.isGrounded)
-            {
-                StartCoroutine(stepsPlaying());
+                Movement();
+
+                if (!audioIsPlaying && move.magnitude > 0.3f && playerControl.isGrounded)
+                {
+                    StartCoroutine(stepsPlaying());
+                }
+                if (gunList.Count > 0)
+                {
+                    StartCoroutine(Shoot());
+                    gunSelect();
+                }
             }
-            if (listGuns.Count > 0)
-            {
-                StartCoroutine(Shoot());
-                selectedGun();
-            }
+
         }
-
-
 
 
     }
@@ -114,7 +114,7 @@ public class playerController : MonoBehaviour
             timesJumped++;
             playerVelocity.y = jumpHeight;
 
-            aud.PlayOneShot(playerJumpAudio[UnityEngine.Random.Range(0, playerJumpAudio.Length)], jumpVolAudio);
+            aud.PlayOneShot(playerJumpAudio[UnityEngine.Random.Range(0, playerJumpAudio.Length)], playerJumpAudioVol);
         }
 
         playerVelocity.y -= gravity * Time.deltaTime;
@@ -129,17 +129,17 @@ public class playerController : MonoBehaviour
             RaycastHit hit;
 
 
-            if (Physics.Raycast(Camera.main.ViewportPointToRay(new Vector2(0.5f, 0.5f)), out hit, shootDis))
+            if (Physics.Raycast(Camera.main.ViewportPointToRay(new Vector2(0.5f, 0.5f)), out hit, shootDist))
             {
                 if (hit.collider.GetComponent<IDamage>() != null)
                 {
                     hit.collider.GetComponent<IDamage>().takeDamage(gunDMG);
                 }
 
-                Instantiate(effectedHit, hit.point, effectedHit.transform.rotation);
+                Instantiate(hitEffect, hit.point, hitEffect.transform.rotation);
             }
 
-            aud.PlayOneShot(audioGunShot, audioShot);
+            aud.PlayOneShot(gunshotSound, gunshotSoundVol);
 
             yield return new WaitForSeconds(shootRate);
             isShooting = false;
@@ -148,7 +148,7 @@ public class playerController : MonoBehaviour
     public void takeDamage(int dmgIn)
     {
         HP -= dmgIn;
-        aud.PlayOneShot(playerHurtAudio[UnityEngine.Random.Range(0, playerHurtAudio.Length)], hurtVolAudio);
+        aud.PlayOneShot(playerHurtAudio[UnityEngine.Random.Range(0, playerHurtAudio.Length)], playerHurtAudioVol);
         updatePlayerHP();
         StartCoroutine(playerFlashDamage());
 
@@ -171,7 +171,7 @@ public class playerController : MonoBehaviour
     {
         audioIsPlaying = true;
 
-        aud.PlayOneShot(playerStepAudio[UnityEngine.Random.Range(0, playerStepAudio.Length)], audioPlayerStep);
+        aud.PlayOneShot(playerStepAudio[UnityEngine.Random.Range(0, playerStepAudio.Length)], playerStepAudioVol);
         if (isRunning)
         {
             yield return new WaitForSeconds(0.3f);
@@ -185,72 +185,67 @@ public class playerController : MonoBehaviour
 
         audioIsPlaying = false;
     }
-    public void equippedGuns(gunStats statsOfGun)
+    public void gunPickup(gunStats gunStat)
     {
-        gunDMG = statsOfGun.gunDMG;
-        shootRate = statsOfGun.fireRate;
-        shootDis = statsOfGun.shootDis;
+        changeCurrentGun(gunStat);
 
-        audioGunShot = statsOfGun.audioGun;
-
-        gunModel.GetComponent<MeshFilter>().sharedMesh = statsOfGun.modelGun.GetComponent<MeshFilter>().sharedMesh;
-        gunModel.GetComponent<MeshRenderer>().sharedMaterial = statsOfGun.modelGun.GetComponent<MeshRenderer>().sharedMaterial;
-
-        listGuns.Add(statsOfGun);
-
-        
+        gunList.Add(gunStat);
     }
-    void EquippedGun()
-    {
-        shootRate = listGuns[selectedWeapon].fireRate;
-        gunDMG = listGuns[selectedWeapon].gunDMG;
-        shootDis = listGuns[selectedWeapon].shootDis;
 
-        audioGunShot = listGuns[selectedWeapon].audioGun;
+    void gunSelect()
+    {
+        if (Input.GetAxis("Mouse ScrollWheel") > 0 && selectedGun < gunList.Count - 1)  // scrolling up + staying within List's range
+        {
+            selectedGun++;
+            changeCurrentGun();
+
+        }
+        else if (Input.GetAxis("Mouse ScrollWheel") < 0 && selectedGun > 0)  // scrolling down + staying within List's range
+        {
+            selectedGun--;
+            changeCurrentGun();
+
+        }
+        else if (Input.GetAxis("Mouse ScrollWheel") > 0 && selectedGun == gunList.Count - 1)  // scrolling up + final gun in list...
+        {
+            selectedGun = 0;    // loop back to first gun in list
+            changeCurrentGun();
+
+        }
+        else if (Input.GetAxis("Mouse ScrollWheel") < 0 && selectedGun == 0)  // scrolling down + first gun in list...
+        {
+            selectedGun = gunList.Count - 1;    // loop forward to final gun in list
+            changeCurrentGun();
+
+        }
+    }
+
+    void changeCurrentGun()
+    {
+        shootRate = gunList[selectedGun].shootRate;
+        gunDMG = gunList[selectedGun].gunDMG;
+        shootDist = gunList[selectedGun].shootDist;
+        gunshotSound = gunList[selectedGun].gunshotSound;
 
         // transfer the gun's model
-        gunModel.GetComponent<MeshFilter>().sharedMesh = listGuns[selectedWeapon].modelGun.GetComponent<MeshFilter>().sharedMesh;
+        gunModel.GetComponent<MeshFilter>().sharedMesh = gunList[selectedGun].gunModel.GetComponent<MeshFilter>().sharedMesh;
 
         //transfer the gun's textures/materials
-        gunModel.GetComponent<MeshRenderer>().sharedMaterial = listGuns[selectedWeapon].modelGun.GetComponent<MeshRenderer>().sharedMaterial;
+        gunModel.GetComponent<MeshRenderer>().sharedMaterial = gunList[selectedGun].gunModel.GetComponent<MeshRenderer>().sharedMaterial;
     }
-    void selectedGun()
+
+    void changeCurrentGun(gunStats gunStat) // in case you want to manually give the player a gun
     {
-        gunDMG = listGuns[selectedWeapon].gunDMG;
-        shootRate = listGuns[selectedWeapon].fireRate;
-        shootDis = listGuns[selectedWeapon].shootDis;
+        shootRate = gunStat.shootRate;
+        gunDMG = gunStat.gunDMG;
+        shootDist = gunStat.shootDist;
+        gunshotSound = gunStat.gunshotSound;
 
-        audioGunShot = listGuns[selectedWeapon].audioGun;
+        // transfer the gun's model
+        gunModel.GetComponent<MeshFilter>().sharedMesh = gunStat.gunModel.GetComponent<MeshFilter>().sharedMesh;
 
-
-        gunModel.GetComponent<MeshFilter>().sharedMesh = listGuns[selectedWeapon].modelGun.GetComponent<MeshFilter>().sharedMesh;
-        gunModel.GetComponent<MeshRenderer>().sharedMaterial = listGuns[selectedWeapon].modelGun.GetComponent<MeshRenderer>().sharedMaterial;
-
-        if (Input.GetAxis("Mouse ScrollWheel") > 0 && selectedWeapon < listGuns.Count - 1)  // scrolling up + staying within List's range
-        {
-            selectedWeapon++;
-            EquippedGun();
-
-        }
-        else if (Input.GetAxis("Mouse ScrollWheel") < 0 && selectedWeapon > 0)  // scrolling down + staying within List's range
-        {
-            selectedWeapon--;
-            EquippedGun();
-
-        }
-        else if (Input.GetAxis("Mouse ScrollWheel") > 0 && selectedWeapon == listGuns.Count - 1)  // scrolling up + final gun in list...
-        {
-            selectedWeapon = 0;    // loop back to first gun in list
-            EquippedGun();
-
-        }
-        else if (Input.GetAxis("Mouse ScrollWheel") < 0 && selectedWeapon == 0)  // scrolling down + first gun in list...
-        {
-            selectedWeapon = listGuns.Count - 1;    // loop forward to final gun in list
-            EquippedGun();
-
-        }
-
+        //transfer the gun's textures/materials
+        gunModel.GetComponent<MeshRenderer>().sharedMaterial = gunStat.gunModel.GetComponent<MeshRenderer>().sharedMaterial;
     }
     private void updatePlayerHP()
     {
