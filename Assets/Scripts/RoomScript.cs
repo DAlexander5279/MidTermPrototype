@@ -4,11 +4,13 @@ using UnityEngine;
 
 public class RoomScript : MonoBehaviour
 {
-    [SerializeField] GameObject roomPref;
+    [SerializeField] GameObject[] easyRooms;
+    [SerializeField] GameObject[] allRooms;
     [SerializeField] GameObject spawnPos;
     [SerializeField] bool roomSpawned;
     [SerializeField] bool isStartRoom;
     [SerializeField] bool hasPushedPlayer;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -40,9 +42,34 @@ public class RoomScript : MonoBehaviour
 
 
     void SpawnRoom()
-    {      
+    {
+        int index = 0;
+        gameManager.instance.roomCount++;
         roomSpawned = true;
-        Instantiate(roomPref, spawnPos.transform.position, transform.rotation); 
+        if(gameManager.instance.roomCount <= 5)
+        {
+            index = Random.Range(0, easyRooms.Length);
+            while (index == gameManager.instance.curRoomIndex)//Checks to make sure rooms are not spawning itself
+            {
+                index = Random.Range(0, easyRooms.Length);
+            }
+            Debug.Log(index);
+            gameManager.instance.curRoomIndex = index;
+            Instantiate(easyRooms[index], spawnPos.transform.position, transform.rotation); 
+        }
+        else
+        {
+            index = Random.Range(0, allRooms.Length);
+            while (index == gameManager.instance.curRoomIndex)//Checks to make sure rooms are not spawning itself
+            {
+                index = Random.Range(0, allRooms.Length);
+            }
+            Debug.Log(index);
+            gameManager.instance.curRoomIndex = index;
+            GameObject room =  Instantiate(allRooms[index], spawnPos.transform.position, transform.rotation);
+
+        }
+
 
     }
 

@@ -28,7 +28,8 @@ public class gameManager : MonoBehaviour
     [SerializeField] TextMeshProUGUI Zoins; // its coins!
 
     [Header("------Extras------")]
-    [SerializeField] int roomCount;
+    public int roomCount;
+    public int curRoomIndex;
     [SerializeField] int killWinCondition;
     public bool roomsNeedPushed;
 
