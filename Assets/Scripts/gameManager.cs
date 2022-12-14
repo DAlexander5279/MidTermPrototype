@@ -14,6 +14,8 @@ public class gameManager : MonoBehaviour
     public GameObject player;
     public playerController playerScript;
 
+    public enemyAI enemyCoins;
+
     public int maxRoomsCleared;
     public int enemiesKilled;
 
@@ -25,18 +27,17 @@ public class gameManager : MonoBehaviour
     public GameObject loseMenu;
     public GameObject playerFlashDamage;
     public Image playerHealthBar;
+
     [SerializeField] TextMeshProUGUI Zoins; // its coins!
+    
 
     [Header("------Extras------")]
     [SerializeField] int roomCount;
     [SerializeField] int killWinCondition;
     public bool roomsNeedPushed;
-
     public int enemyCount;
     public bool paused;
-
     public int zoins;
-
     float origTime;
     void Awake()
     {
@@ -86,6 +87,7 @@ public class gameManager : MonoBehaviour
     public void updateEnemyCount(int amount)
     {
         enemyCount += amount;
+        
 
         if ((enemyCount <= 0) && (enemiesKilled >= killWinCondition - 1))
         // we subtract 1 from killWinCondition to get around enemyCount updating when killing the exact amount needed AND it is the last enemy alive
@@ -109,6 +111,7 @@ public class gameManager : MonoBehaviour
     public void addZoins(int amount)
     {
         zoins += amount;
+
         Zoins.text = zoins.ToString("F0");
     }
 }
