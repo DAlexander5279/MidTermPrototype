@@ -44,7 +44,9 @@ public class RoomScript : MonoBehaviour
     void SpawnRoom()
     {
         int index = 0;
-        gameManager.instance.roomCount++;
+        gameManager.instance.addRoomCount(1);
+
+
         roomSpawned = true;
         if(gameManager.instance.roomCount <= 5)
         {

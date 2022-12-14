@@ -29,7 +29,9 @@ public class gameManager : MonoBehaviour
     public Image playerHealthBar;
 
     [SerializeField] TextMeshProUGUI Zoins; // its coins!
-    
+    [SerializeField] TextMeshProUGUI roomsCleared; // its rooms!
+
+
 
     [Header("------Extras------")]
     public int roomCount;
@@ -39,6 +41,8 @@ public class gameManager : MonoBehaviour
     public int enemyCount;
     public bool paused;
     public int zoins;
+    
+
     float origTime;
     void Awake()
     {
@@ -114,5 +118,10 @@ public class gameManager : MonoBehaviour
         zoins += amount;
 
         Zoins.text = zoins.ToString("F0");
+    }
+    public void addRoomCount(int amount)
+    {
+        roomCount += amount;
+        roomsCleared.text = roomCount.ToString("F0");
     }
 }
