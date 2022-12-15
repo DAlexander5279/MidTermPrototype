@@ -234,13 +234,22 @@ PrefabInstance:
     - target: {fileID: 2470128280080099147, guid: 046a377d7437c9644bf277f305fa4dca, type: 3}
       propertyPath: reloadUI
       value: 
-      objectReference: {fileID: 5197967159775213254}
+      objectReference: {fileID: 1426068656}
+    - target: {fileID: 2470128280080099147, guid: 046a377d7437c9644bf277f305fa4dca, type: 3}
+      propertyPath: gunReloadSound
+      value: 
+      objectReference: {fileID: 8300000, guid: 1129455f1d3f25e41804af808b44f620, type: 3}
     - target: {fileID: 2470128280080099158, guid: 046a377d7437c9644bf277f305fa4dca, type: 3}
       propertyPath: m_Name
       value: player
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 046a377d7437c9644bf277f305fa4dca, type: 3}
+--- !u!1 &1426068656 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2726891418099723174, guid: 8119b01fc1f287140a1aacffdc79cacc, type: 3}
+  m_PrefabInstance: {fileID: 5197967159775213253}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &1470301975 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 7494317789885382928, guid: 046a377d7437c9644bf277f305fa4dca, type: 3}
@@ -450,8 +459,3 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 8119b01fc1f287140a1aacffdc79cacc, type: 3}
---- !u!1 &5197967159775213254 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 427540839, guid: 8119b01fc1f287140a1aacffdc79cacc, type: 3}
-  m_PrefabInstance: {fileID: 5197967159775213253}
-  m_PrefabAsset: {fileID: 0}

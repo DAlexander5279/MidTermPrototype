@@ -237,9 +237,12 @@ public class playerController : MonoBehaviour
             {
                 foundGun = true;
                 gunList[i].modifedGunDMG = Mathf.FloorToInt(gunList[i].modifedGunDMG * gameManager.instance.getDamageModifier());
+                gunList[i].magCount = gunList[i].magSize;           // reloads the upgraded weapon automatically for faster gameplay
                 if (gunList[i] == gunList[selectedGun])
                 {
                     gunDMG = gunList[i].modifedGunDMG;
+                    aud.PlayOneShot(gunReloadSound, gunshotSoundVol);
+                    gameManager.instance.ammoUpdate(gunList[selectedGun].magCount, gunList[selectedGun].magSize);
                     gameManager.instance.updatePlayerDamage(gunDMG);
                 }
             }
