@@ -23,6 +23,8 @@ public class playerController : MonoBehaviour
 
     [Header("------KeyBinds------")]
     [SerializeField] KeyCode Reload;
+    // look to move to gameManager in the future + Reload.ToString()
+    // do the same for the GrenadeThrow UI
 
     public GameObject reloadUI;
 
@@ -243,6 +245,7 @@ public class playerController : MonoBehaviour
                     gunDMG = gunList[i].modifedGunDMG;
                     aud.PlayOneShot(gunReloadSound, gunshotSoundVol);
                     gameManager.instance.ammoUpdate(gunList[selectedGun].magCount, gunList[selectedGun].magSize);
+                    reloadUI.SetActive(false);
                     gameManager.instance.updatePlayerDamage(gunDMG);
                 }
             }
