@@ -357,6 +357,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 2052016857, guid: 8119b01fc1f287140a1aacffdc79cacc, type: 3}
+      propertyPath: m_FillAmount
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 2052016859, guid: 8119b01fc1f287140a1aacffdc79cacc, type: 3}
       propertyPath: cam
       value: 
