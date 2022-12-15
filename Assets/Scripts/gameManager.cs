@@ -143,13 +143,13 @@ public class gameManager : MonoBehaviour
         return damageModifier;
     }
 
-    public float getScalingModifier()
-    {
-        return scalingModifer;
-    }
-
     public void updateItemCount(int amount)
     {
         itemCount += amount;
+    }
+
+    public int scalingFunction(int var)
+    {
+        return var + Mathf.FloorToInt(var * (scalingModifer * Mathf.Floor(roomCount * 0.2f)));
     }
 }

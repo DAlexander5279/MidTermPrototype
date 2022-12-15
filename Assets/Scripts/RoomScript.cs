@@ -50,10 +50,10 @@ public class RoomScript : MonoBehaviour
         roomSpawned = true;
         if(gameManager.instance.roomCount <= 5)
         {
-            index = Random.Range(0, easyRooms.Length);
+            index = Random.Range(0, easyRooms.Length - 1);
             while (index == gameManager.instance.curRoomIndex)//Checks to make sure rooms are not spawning itself
             {
-                index = Random.Range(0, easyRooms.Length);
+                index = Random.Range(0, easyRooms.Length - 1);
             }
             Debug.Log(index);
             gameManager.instance.curRoomIndex = index;
@@ -61,10 +61,10 @@ public class RoomScript : MonoBehaviour
         }
         else
         {
-            index = Random.Range(0, allRooms.Length);
+            index = Random.Range(0, allRooms.Length - 1);
             while (index == gameManager.instance.curRoomIndex)//Checks to make sure rooms are not spawning itself
             {
-                index = Random.Range(0, allRooms.Length);
+                index = Random.Range(0, allRooms.Length - 1);
             }
             Debug.Log(index);
             gameManager.instance.curRoomIndex = index;

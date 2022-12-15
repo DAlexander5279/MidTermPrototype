@@ -34,6 +34,13 @@ public class enemyAI : MonoBehaviour, IDamage
     [SerializeField] GameObject bulletType;
     [SerializeField] Transform shootPosition;
 
+    [Header("--- Enemy Shoot Sounds ---")]
+    [SerializeField] AudioSource audEnemy;
+
+    //gun sounds
+    [SerializeField] AudioClip gunshotSound;
+    [Range(0, 3)] [SerializeField] float gunshotSoundVol;
+
     [Header("--- Shotgun Enemy Stats ---")]
     [SerializeField] int pelletSpread;
     [SerializeField] int pelletCount;
@@ -55,7 +62,7 @@ public class enemyAI : MonoBehaviour, IDamage
     // Start is called before the first frame update
     void Start()
     {
-        HP = scalingFunction(HP);
+        HP = gameManager.instance.scalingFunction(HP);
         HPOriginal = HP;
         enemyMaterialOriginal = model.material.color;
         gameManager.instance.updateEnemyCount(1);
@@ -131,6 +138,7 @@ public class enemyAI : MonoBehaviour, IDamage
         {
             playerInRange = true;
         }
+
     }
 
     public void OnTriggerExit(Collider other)
@@ -159,11 +167,11 @@ public class enemyAI : MonoBehaviour, IDamage
 
             gameManager.instance.enemiesKilled++;
 
-            droppedZoinsAmt = scalingFunction(droppedZoinsAmt);
+            droppedZoinsAmt = gameManager.instance.scalingFunction(droppedZoinsAmt);
 
             gameManager.instance.addZoins(droppedZoinsAmt);
 
-            rollDropItem(scalingFunction(baseDropChance));
+            rollDropItem(gameManager.instance.scalingFunction(baseDropChance));
 
 
             Destroy(gameObject);
@@ -201,6 +209,8 @@ public class enemyAI : MonoBehaviour, IDamage
                 pellet.GetComponent<Rigidbody>().AddForce(spreadForce);
             }
         }
+        audEnemy.pitch = Random.Range(0.7f, 1.0f);
+        audEnemy.PlayOneShot(gunshotSound, gunshotSoundVol);
         yield return new WaitForSeconds(fireRate);
 
         isShooting = false;
@@ -217,11 +227,6 @@ public class enemyAI : MonoBehaviour, IDamage
     public void pushObject(Vector3 pushDir)
     {
         pushBack = pushDir;
-    }
-
-    public int scalingFunction(int var)
-    {
-        return var + Mathf.FloorToInt(var * (gameManager.instance.getScalingModifier() * Mathf.Floor(gameManager.instance.roomCount * 0.2f)));
     }
 
     void rollDropItem(int chance)

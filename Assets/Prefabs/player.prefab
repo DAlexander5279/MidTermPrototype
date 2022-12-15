@@ -197,7 +197,6 @@ GameObject:
   m_Component:
   - component: {fileID: 2470128280080099144}
   - component: {fileID: 2470128280080099147}
-  - component: {fileID: 2224627256610610436}
   - component: {fileID: 6420801457207091318}
   - component: {fileID: 2470128280080099145}
   - component: {fileID: 2470128280080099146}
@@ -238,7 +237,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerControl: {fileID: 2470128280080099145}
-  HP: 1000
+  HP: 150
   playerSpeed: 10
   jumpMax: 1
   jumpHeight: 5
@@ -264,7 +263,7 @@ MonoBehaviour:
   - {fileID: 8300000, guid: 9d5a111a0c1a42a4aaa550eae1fe40d7, type: 3}
   playerHurtAudioVol: 0.2
   playerStepAudio:
-  - {fileID: 8300000, guid: 024c32c2982b01c4daf29c224c213186, type: 3}
+  - {fileID: 8300000, guid: b42998b3f7632ba418d6168c114524da, type: 3}
   - {fileID: 8300000, guid: be2c52fc0a4c1bf41a998c0f41c2cb88, type: 3}
   - {fileID: 8300000, guid: 3a16468a3b1ce4b4487961da208514f9, type: 3}
   - {fileID: 8300000, guid: 47d7d69662135aa4b9c8a294d004324d, type: 3}
@@ -280,28 +279,7 @@ MonoBehaviour:
   shootDist: 0
   gunModel: {fileID: 390137842}
   hitEffect: {fileID: 7276695728850258670, guid: e363626372d9fe948b40fd7958f8f85d, type: 3}
---- !u!114 &2224627256610610436
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2470128280080099158}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7d3070626998bd043aa0cca061ef4a63, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  cam: {fileID: 2470128279692826929}
-  throwPoint: {fileID: 7494317789885382928}
-  thrownObject: {fileID: 2505653274007219841, guid: 53db01c217a5f39449879cdb08dd0c50, type: 3}
-  throwKey: 103
-  totalThrows: 100
-  rechargeRate: 20
-  throwCooldown: 5
-  throwForce: 70
-  throwForceUpward: 1
-  canThrow: 1
+  HPOriginal: 0
 --- !u!82 &6420801457207091318
 AudioSource:
   m_ObjectHideFlags: 0
