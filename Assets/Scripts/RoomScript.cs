@@ -23,7 +23,7 @@ public class RoomScript : MonoBehaviour
     {
         
 
-        if(gameManager.instance.enemyCount <= 0)
+        if(gameManager.instance.enemyCount <= 0 && gameManager.instance.itemCount <= 0)
         {
             gameManager.instance.pushRoomsBack(gameObject);
             if(!hasPushedPlayer)
@@ -32,7 +32,7 @@ public class RoomScript : MonoBehaviour
         }
 
 
-        if (!roomSpawned && gameManager.instance.enemyCount <= 0)
+        if (!roomSpawned && gameManager.instance.enemyCount <= 0 && gameManager.instance.itemCount <= 0)
         {
             SpawnRoom();
         }

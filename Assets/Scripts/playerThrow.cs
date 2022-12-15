@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class playerThrow : MonoBehaviour
 {
@@ -10,6 +11,7 @@ public class playerThrow : MonoBehaviour
     public Transform throwPoint;
     public GameObject thrownObject;
     [SerializeField] KeyCode throwKey;
+    [SerializeField] Image grenadeCooldown;
 
     [Header("Thrown Stats")]
     [SerializeField] int totalThrows;
@@ -18,7 +20,7 @@ public class playerThrow : MonoBehaviour
     [SerializeField] float throwForce;
     [SerializeField] float throwForceUpward;
     [SerializeField] bool canThrow;
-    bool abilityOnCooldown;
+    public bool abilityOnCooldown;
     int totalThrowsOriginal;
 
     void Start()
@@ -35,7 +37,14 @@ public class playerThrow : MonoBehaviour
         }
 
         if (!abilityOnCooldown && (totalThrows < totalThrowsOriginal))
+        {
             StartCoroutine(abilityCooldown());
+        }
+
+        if (abilityOnCooldown)
+        {
+            grenadeCooldown.fillAmount -= 1 / rechargeRate * Time.deltaTime;
+        }
     }
 
     void Throw()
@@ -53,6 +62,8 @@ public class playerThrow : MonoBehaviour
 
         totalThrows--;
 
+
+
         StartCoroutine(throwSpamProtection());
 
     }
@@ -60,6 +71,7 @@ public class playerThrow : MonoBehaviour
     IEnumerator abilityCooldown()
     {
         abilityOnCooldown = true;
+        grenadeCooldown.fillAmount = 1;
         yield return new WaitForSeconds(rechargeRate);
         totalThrows++;
         if (!canThrow)

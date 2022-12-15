@@ -59,7 +59,7 @@ public class playerController : MonoBehaviour
     private Vector3 playerVelocity;
     Vector3 move;
     int timesJumped;
-    int HPOriginal;
+    public int HPOriginal;
     int walkSpeedOrg;
 
     int selectedGun;
@@ -73,6 +73,7 @@ public class playerController : MonoBehaviour
     private void Start()
     {
         HPOriginal = HP;
+        updatePlayerHP();
 
     }
     // Update is called once per frame
@@ -137,7 +138,7 @@ public class playerController : MonoBehaviour
             isShooting = true;
             RaycastHit hit;
             gunList[selectedGun].magCount--;
-            gameManager.instance.ammoUpdate(gunList[selectedGun].magCount);
+            gameManager.instance.ammoUpdate(gunList[selectedGun].magCount, gunList[selectedGun].magSize);
 
 
 
@@ -173,7 +174,7 @@ public class playerController : MonoBehaviour
                     gameManager.instance.activeMenu.SetActive(false);
                     gameManager.instance.activeMenu = null;
                 }
-                gameManager.instance.ammoUpdate(gunList[selectedGun].magCount);
+                gameManager.instance.ammoUpdate(gunList[selectedGun].magCount, gunList[selectedGun].magSize);
             }
 
         }
@@ -242,9 +243,10 @@ public class playerController : MonoBehaviour
             selectedGun = gunList.Count - 1;
             changeCurrentGun();
 
-            gameManager.instance.ammoUpdate(gunStat.magCount);
+            gameManager.instance.ammoUpdate(gunStat.magCount, gunList[selectedGun].magSize);
         }
-
+        if (gameManager.instance.itemCount != 0)
+            gameManager.instance.updateItemCount(-1);
     }
 
     void gunSelect()
@@ -286,7 +288,7 @@ public class playerController : MonoBehaviour
 
 
 
-        gameManager.instance.ammoUpdate(gunList[selectedGun].magCount);
+        gameManager.instance.ammoUpdate(gunList[selectedGun].magCount, gunList[selectedGun].magSize);
 
         // transfer the gun's model
         gunModel.GetComponent<MeshFilter>().sharedMesh = gunList[selectedGun].gunModel.GetComponent<MeshFilter>().sharedMesh;
@@ -308,7 +310,7 @@ public class playerController : MonoBehaviour
         //transfer the gun's textures/materials
         gunModel.GetComponent<MeshRenderer>().sharedMaterial = gunStat.gunModel.GetComponent<MeshRenderer>().sharedMaterial;
     }
-    private void updatePlayerHP()
+    public void updatePlayerHP()
     {
         gameManager.instance.playerHealthBar.fillAmount = (float)HP / (float)HPOriginal;
     }

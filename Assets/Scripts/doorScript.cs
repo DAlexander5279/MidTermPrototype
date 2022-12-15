@@ -20,7 +20,7 @@ public class doorScript : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (gameManager.instance.enemyCount <= 0)
+        if (gameManager.instance.enemyCount <= 0 && gameManager.instance.itemCount <= 0)
         {
 
             roomClear = true;

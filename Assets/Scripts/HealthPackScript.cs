@@ -7,6 +7,7 @@ public class HealthPackScript : MonoBehaviour
     [SerializeField] GameObject Cross;
     [SerializeField] float animSpeed;
     [SerializeField] int rotateSpeed;
+    [SerializeField] int addedHP;
     bool isAnimPlaying;
     // Start is called before the first frame update
     void Start()
@@ -26,7 +27,16 @@ public class HealthPackScript : MonoBehaviour
     {
         if(other.CompareTag("Player"))
         {
-            gameManager.instance.playerScript.HP += 5;
+            gameManager.instance.playerScript.HP += addedHP;
+
+            if (gameManager.instance.playerScript.HP > gameManager.instance.playerScript.HPOriginal)
+                gameManager.instance.playerScript.HP = gameManager.instance.playerScript.HPOriginal;
+
+            gameManager.instance.playerScript.updatePlayerHP();
+
+            if (gameManager.instance.itemCount != 0)
+                gameManager.instance.updateItemCount(-1);
+
             Destroy(gameObject);
         }
     }

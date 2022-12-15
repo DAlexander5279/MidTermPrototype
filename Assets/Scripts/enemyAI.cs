@@ -18,9 +18,13 @@ public class enemyAI : MonoBehaviour, IDamage
     [SerializeField] int playerFaceSpeed;
     [SerializeField] int sightAngle;
     [SerializeField] Transform headPosition;
-    [Range(1.0f,2.0f)] [SerializeField] float dangerSightModifier;
+    [Range(1.0f, 2.0f)] [SerializeField] float dangerSightModifier;
 
     [SerializeField] int droppedZoinsAmt;   // game currency
+
+    [SerializeField] List<GameObject> itemDropList;
+    [Range(0, 100)] [SerializeField] int baseDropChance;
+    [SerializeField] int enemyType;     // 0 = rank-and-file, 1 = major, 2 = boss
 
     [SerializeField] int animTransSpeed;
 
@@ -42,8 +46,8 @@ public class enemyAI : MonoBehaviour, IDamage
     Color enemyMaterialOriginal;
     Vector3 pushBack;
 
-    
-    
+
+
 
     // If the enemy has seen the player and deemed them a threat...
     bool playerThreat;
@@ -158,7 +162,9 @@ public class enemyAI : MonoBehaviour, IDamage
             droppedZoinsAmt = scalingFunction(droppedZoinsAmt);
 
             gameManager.instance.addZoins(droppedZoinsAmt);
-            
+
+            rollDropItem(scalingFunction(baseDropChance));
+
 
             Destroy(gameObject);
         }
@@ -216,5 +222,25 @@ public class enemyAI : MonoBehaviour, IDamage
     public int scalingFunction(int var)
     {
         return var + Mathf.FloorToInt(var * (gameManager.instance.getScalingModifier() * Mathf.Floor(gameManager.instance.roomCount * 0.2f)));
+    }
+
+    void rollDropItem(int chance)
+    {
+        if (chance > Random.Range(0, 100) && itemDropList.Count > 0)
+        {
+            Instantiate(itemDropList[Random.Range(0, itemDropList.Count)], headPosition.position, transform.rotation);
+            gameManager.instance.updateItemCount(1);
+
+            if (enemyType == 2)
+            {
+                Instantiate(itemDropList[Random.Range(0, itemDropList.Count)], headPosition.position, transform.rotation);
+                gameManager.instance.updateItemCount(1);
+            }
+            else if (enemyType == 1 & chance > Random.Range(0, 100))
+            {
+                Instantiate(itemDropList[Random.Range(0, itemDropList.Count)], headPosition.position, transform.rotation);
+                gameManager.instance.updateItemCount(1);
+            }
+        }
     }
 }

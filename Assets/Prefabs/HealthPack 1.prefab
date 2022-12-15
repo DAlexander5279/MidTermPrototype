@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 5644053857807868639}
   m_Layer: 0
   m_Name: HealthPack 1
-  m_TagString: Untagged
+  m_TagString: Item
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -51,6 +51,7 @@ MonoBehaviour:
   Cross: {fileID: 5644053858048565425}
   animSpeed: 0.1
   rotateSpeed: 100
+  addedHP: 25
 --- !u!136 &5644053857807868639
 CapsuleCollider:
   m_ObjectHideFlags: 0

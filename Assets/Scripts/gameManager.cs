@@ -27,6 +27,7 @@ public class gameManager : MonoBehaviour
     public GameObject loseMenu;
     public GameObject playerFlashDamage;
     public Image playerHealthBar;
+    public GameObject ammoHUD;
     public GameObject Reload;
     [SerializeField] TextMeshProUGUI Zoins; // its coins!
     [SerializeField] TextMeshProUGUI roomsCleared; // its rooms!
@@ -34,9 +35,9 @@ public class gameManager : MonoBehaviour
     [SerializeField] TextMeshProUGUI ammoCount;
 
 
-
     [Header("------Extras------")]
     public int roomCount;
+    public int itemCount;
     public int curRoomIndex;
     [SerializeField] int killWinCondition;
     public bool roomsNeedPushed;
@@ -125,16 +126,16 @@ public class gameManager : MonoBehaviour
     public void addRoomCount(int amount)
     {
         roomCount += amount;
-        if(roomCount < 0)
+        if (roomCount < 0)
             roomsCleared.text = 0.ToString("F0");
         else
             roomsCleared.text = roomCount.ToString("F0");
     }
-    public void ammoUpdate(int amount)
+    public void ammoUpdate(int currentMag, int magSize)
     {
-        AmmoCount = amount;
-
-        ammoCount.text = AmmoCount.ToString("F0");
+        //AmmoCount = amount;
+        ammoHUD.SetActive(true);
+        ammoCount.text = currentMag.ToString("F0") + " / " + magSize.ToString("F0");
     }
 
     public float getDamageModifier()
@@ -145,5 +146,10 @@ public class gameManager : MonoBehaviour
     public float getScalingModifier()
     {
         return scalingModifer;
+    }
+
+    public void updateItemCount(int amount)
+    {
+        itemCount += amount;
     }
 }
