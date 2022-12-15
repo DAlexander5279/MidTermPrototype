@@ -833,8 +833,9 @@ MonoBehaviour:
   - {fileID: 5644053857807868638, guid: 3e158b2550c6cb4478ddad5c2b5e5ef1, type: 3}
   - {fileID: 5644053857807868638, guid: 3e158b2550c6cb4478ddad5c2b5e5ef1, type: 3}
   - {fileID: 5998873461299402857, guid: 62f3d2412737b5f4693c6b609faa92c5, type: 3}
+  - {fileID: 5998873461299402857, guid: 62f3d2412737b5f4693c6b609faa92c5, type: 3}
   baseDropChance: 50
-  enemyType: 0
+  enemyType: 2
   animTransSpeed: 1
   gunType: 2
   fireRate: 0.5

@@ -28,11 +28,13 @@ public class gameManager : MonoBehaviour
     public GameObject playerFlashDamage;
     public Image playerHealthBar;
     public GameObject ammoHUD;
-    public GameObject Reload;
+    //public GameObject Reload;
     [SerializeField] TextMeshProUGUI Zoins; // its coins!
     [SerializeField] TextMeshProUGUI roomsCleared; // its rooms!
 
     [SerializeField] TextMeshProUGUI ammoCount;
+
+    [SerializeField] TextMeshProUGUI playerDamage;
 
 
     [Header("------Extras------")]
@@ -146,6 +148,11 @@ public class gameManager : MonoBehaviour
     public void updateItemCount(int amount)
     {
         itemCount += amount;
+    }
+
+    public void updatePlayerDamage(int damageStat)
+    {
+        playerDamage.text = damageStat.ToString("F0");
     }
 
     public int scalingFunction(int var)

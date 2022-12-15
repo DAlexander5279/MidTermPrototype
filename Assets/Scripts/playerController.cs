@@ -15,8 +15,8 @@ public class playerController : MonoBehaviour
     public int HP;
     [Range(1, 10)] [SerializeField] int playerSpeed;
     [SerializeField] int jumpMax;
-    [Range(5, 15)][SerializeField] int jumpHeight;
-    [Range(10, 20)][SerializeField] int gravity;
+    [Range(5, 15)] [SerializeField] int jumpHeight;
+    [Range(10, 20)] [SerializeField] int gravity;
     [SerializeField] int pushTime;
     public bool isDisabled;
 
@@ -31,26 +31,29 @@ public class playerController : MonoBehaviour
 
     //gun sounds
     [SerializeField] AudioClip gunshotSound;
-    [Range(0, 3)][SerializeField] float gunshotSoundVol;
+    [SerializeField] List<AudioClip> dryfireSound;
+    [SerializeField] AudioClip gunReloadSound;
+    [Range(0, 3)] [SerializeField] float gunshotSoundVol;
 
     [SerializeField] AudioClip[] playerJumpAudio;
-    [Range(0, 3)][SerializeField] float playerJumpAudioVol;
+    [Range(0, 3)] [SerializeField] float playerJumpAudioVol;
 
     [SerializeField] AudioClip[] playerHurtAudio;
-    [Range(0, 3)][SerializeField] float playerHurtAudioVol;
+    [Range(0, 3)] [SerializeField] float playerHurtAudioVol;
 
     [SerializeField] AudioClip[] playerStepAudio;
-    [Range(0, 3)][SerializeField] float playerStepAudioVol;
+    [Range(0, 3)] [SerializeField] float playerStepAudioVol;
 
 
     [Header("------Gun Stats------")]
     [SerializeField] List<gunStats> gunList = new List<gunStats>();
 
-    [Range(0, 5)][SerializeField] int gunDMG;
+    [Range(0, 5)] [SerializeField] int gunDMG;
     [SerializeField] float shootRate;   // player's gun fire rate
-    [Range(0, 200)][SerializeField] int shootDist; // effective range of the shot
+    [Range(0, 200)] [SerializeField] int shootDist; // effective range of the shot
     [SerializeField] GameObject gunModel;   //also gun position/viewmodel position
     [SerializeField] GameObject hitEffect;
+    [SerializeField] int fireSelect;
 
 
 
@@ -74,6 +77,7 @@ public class playerController : MonoBehaviour
     {
         HPOriginal = HP;
         updatePlayerHP();
+        gameManager.instance.updatePlayerDamage(gunDMG);
 
     }
     // Update is called once per frame
@@ -133,7 +137,8 @@ public class playerController : MonoBehaviour
     }
     IEnumerator Shoot()
     {
-        if (!isShooting && Input.GetButton("Shoot") && gunList[selectedGun].magCount > 0)  //GetButton = full-auto | ...Down = semi-auto | ..Up = think single-action revolver) - J
+        if (!isShooting && gunList[selectedGun].magCount > 0 &&
+            ((fireSelect == 0 && Input.GetButton("Shoot")) || (fireSelect == 1 && Input.GetButtonDown("Shoot"))))//GetButton = full-auto | ...Down = semi-auto | ..Up = think single-action revolver) - J
         {
             isShooting = true;
             RaycastHit hit;
@@ -162,21 +167,23 @@ public class playerController : MonoBehaviour
         {
             if (gunList[selectedGun].magCount == 0 || gunList[selectedGun].magCount <= 3)
             {
-                gameManager.instance.activeMenu = reloadUI;
-                gameManager.instance.activeMenu.SetActive(true);
+                //gameManager.instance.activeMenu = reloadUI;
+                reloadUI.SetActive(true);
             }
             if (Input.GetKeyDown(Reload))
             {
-                yield return new WaitForSeconds(0.1f);
+                aud.PlayOneShot(gunReloadSound, gunshotSoundVol);
+                yield return new WaitForSeconds(0.5f);
                 gunList[selectedGun].magCount = gunList[selectedGun].magSize;
-                if (gameManager.instance.activeMenu != null)
-                {
-                    gameManager.instance.activeMenu.SetActive(false);
-                    gameManager.instance.activeMenu = null;
-                }
                 gameManager.instance.ammoUpdate(gunList[selectedGun].magCount, gunList[selectedGun].magSize);
+                reloadUI.SetActive(false);
             }
+            if (Input.GetButtonDown("Shoot") && gunList[selectedGun].magCount <= 0)
+            {
+                aud.PlayOneShot(dryfireSound[UnityEngine.Random.Range(0, dryfireSound.Count - 1)], gunshotSoundVol);
 
+                //yield return new WaitForSeconds(shootRate * 2.0f);
+            }
         }
     }
     public void takeDamage(int dmgIn)
@@ -188,6 +195,7 @@ public class playerController : MonoBehaviour
 
         if (HP <= 0)
         {
+            aud.enabled = false;
             gameManager.instance.gamePause();
             gameManager.instance.loseMenu.SetActive(true);
             gameManager.instance.activeMenu = gameManager.instance.loseMenu;
@@ -232,13 +240,14 @@ public class playerController : MonoBehaviour
                 if (gunList[i] == gunList[selectedGun])
                 {
                     gunDMG = gunList[i].modifedGunDMG;
+                    gameManager.instance.updatePlayerDamage(gunDMG);
                 }
             }
         }
-        if(!foundGun)
+        if (!foundGun)
         {
             gunStat.magCount = gunStat.magSize;
-            gunStat.modifedGunDMG = gunStat.gunDMG;
+            gunStat.modifedGunDMG = gameManager.instance.scalingFunction(gunStat.gunDMG);
             gunList.Add(gunStat);
             selectedGun = gunList.Count - 1;
             changeCurrentGun();
@@ -280,13 +289,16 @@ public class playerController : MonoBehaviour
     public void changeCurrentGun()
     {
         shootRate = gunList[selectedGun].shootRate;
+
         // gunDMG = gunList[selectedGun].gunDMG;
         gunDMG = gunList[selectedGun].modifedGunDMG;
+        gameManager.instance.updatePlayerDamage(gunDMG);
+
         shootDist = gunList[selectedGun].shootDist;
 
+        fireSelect = gunList[selectedGun].fireSelect;
+
         gunshotSound = gunList[selectedGun].gunshotSound;
-
-
 
         gameManager.instance.ammoUpdate(gunList[selectedGun].magCount, gunList[selectedGun].magSize);
 
@@ -297,12 +309,14 @@ public class playerController : MonoBehaviour
         gunModel.GetComponent<MeshRenderer>().sharedMaterial = gunList[selectedGun].gunModel.GetComponent<MeshRenderer>().sharedMaterial;
     }
 
-    void changeCurrentGun(gunStats gunStat) // in case you want to manually give the player a gun
+    public void changeCurrentGun(gunStats gunStat) // in case you want to manually give the player a gun
     {
         shootRate = gunStat.shootRate;
-        gunDMG = gunStat.gunDMG;
+        gunDMG = gunStat.modifedGunDMG;
+        gameManager.instance.updatePlayerDamage(gunDMG);
         shootDist = gunStat.shootDist;
         gunshotSound = gunStat.gunshotSound;
+        fireSelect = gunStat.fireSelect;
 
         // transfer the gun's model
         gunModel.GetComponent<MeshFilter>().sharedMesh = gunStat.gunModel.GetComponent<MeshFilter>().sharedMesh;

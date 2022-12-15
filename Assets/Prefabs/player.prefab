@@ -248,6 +248,10 @@ MonoBehaviour:
   reloadUI: {fileID: 0}
   aud: {fileID: 6420801457207091318}
   gunshotSound: {fileID: 0}
+  dryfireSound:
+  - {fileID: 8300000, guid: 1a799e4b14733634496815b9630c1d25, type: 3}
+  - {fileID: 8300000, guid: baed4d18670b76148a2a8061bdd893a6, type: 3}
+  - {fileID: 8300000, guid: 5d8502467412d12418e6cd1da644a6fd, type: 3}
   gunshotSoundVol: 0.5
   playerJumpAudio:
   - {fileID: 8300000, guid: e74441ea4fe4bc34491857f05229c1f6, type: 3}
@@ -279,6 +283,7 @@ MonoBehaviour:
   shootDist: 0
   gunModel: {fileID: 390137842}
   hitEffect: {fileID: 7276695728850258670, guid: e363626372d9fe948b40fd7958f8f85d, type: 3}
+  fireSelect: 0
   HPOriginal: 0
 --- !u!82 &6420801457207091318
 AudioSource:

@@ -16,6 +16,8 @@ public class gunStats : ScriptableObject
 
     public int magCount; // ammo inside of mag
 
+    public int fireSelect;  // 0 = full-auto | 1 = single-fire
+
     public GameObject gunModel;
     public AudioClip gunshotSound;
 }
