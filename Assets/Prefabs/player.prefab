@@ -298,7 +298,7 @@ MonoBehaviour:
   throwKey: 103
   totalThrows: 100
   rechargeRate: 20
-  throwCooldown: 0.15
+  throwCooldown: 5
   throwForce: 70
   throwForceUpward: 1
   canThrow: 1
