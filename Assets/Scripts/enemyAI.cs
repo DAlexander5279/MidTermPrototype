@@ -51,12 +51,10 @@ public class enemyAI : MonoBehaviour, IDamage
     // Start is called before the first frame update
     void Start()
     {
+        HP = scalingFunction(HP);
         HPOriginal = HP;
         enemyMaterialOriginal = model.material.color;
         gameManager.instance.updateEnemyCount(1);
-
-        // after every 5 rooms cleared, enemies will start dropping 33% more coins
-        droppedZoinsAmt += Mathf.FloorToInt(droppedZoinsAmt * (0.33f * Mathf.FloorToInt(gameManager.instance.maxRoomsCleared / 5))); 
 
     }
 
@@ -157,6 +155,8 @@ public class enemyAI : MonoBehaviour, IDamage
 
             gameManager.instance.enemiesKilled++;
 
+            droppedZoinsAmt = scalingFunction(droppedZoinsAmt);
+
             gameManager.instance.addZoins(droppedZoinsAmt);
             
 
@@ -211,5 +211,10 @@ public class enemyAI : MonoBehaviour, IDamage
     public void pushObject(Vector3 pushDir)
     {
         pushBack = pushDir;
+    }
+
+    public int scalingFunction(int var)
+    {
+        return var + Mathf.FloorToInt(var * (gameManager.instance.getScalingModifier() * Mathf.Floor(gameManager.instance.roomCount * 0.2f)));
     }
 }

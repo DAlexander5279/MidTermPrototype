@@ -13,6 +13,8 @@ public class gameManager : MonoBehaviour
     [Header("------Player Things------")]
     public GameObject player;
     public playerController playerScript;
+    [Range(1.0f, 3.0f)] [SerializeField] float damageModifier;
+    [Range(0.0f, 3.0f)] [SerializeField] float scalingModifer;
 
     public int maxRoomsCleared;
     public int enemiesKilled;
@@ -43,7 +45,7 @@ public class gameManager : MonoBehaviour
     public int zoins;
 
     public int AmmoCount;
-    
+
 
     float origTime;
     void Awake()
@@ -53,6 +55,8 @@ public class gameManager : MonoBehaviour
         playerScript = player.GetComponent<playerController>();
         origTime = Time.timeScale;
         PlayerPrefs.SetInt("enemyStat", 0);
+        addZoins(0);
+        addRoomCount(-1);
     }
     // Update is called once per frame
     void Update()
@@ -94,7 +98,7 @@ public class gameManager : MonoBehaviour
     public void updateEnemyCount(int amount)
     {
         enemyCount += amount;
-        
+
 
         if ((enemyCount <= 0) && (enemiesKilled >= killWinCondition - 1))
         // we subtract 1 from killWinCondition to get around enemyCount updating when killing the exact amount needed AND it is the last enemy alive
@@ -106,11 +110,11 @@ public class gameManager : MonoBehaviour
     }
 
     public void pushRoomsBack(GameObject obj)
-    { 
+    {
         //Debug.Log(obj.transform.position);
         roomsNeedPushed = false;
         obj.transform.position = new Vector3(obj.transform.position.x - 25, 0f, 0f);
-       
+
     }
     public void addZoins(int amount)
     {
@@ -121,12 +125,25 @@ public class gameManager : MonoBehaviour
     public void addRoomCount(int amount)
     {
         roomCount += amount;
-        roomsCleared.text = roomCount.ToString("F0");
+        if(roomCount < 0)
+            roomsCleared.text = 0.ToString("F0");
+        else
+            roomsCleared.text = roomCount.ToString("F0");
     }
-    public void ammoUpdate(int amount) 
+    public void ammoUpdate(int amount)
     {
         AmmoCount = amount;
 
         ammoCount.text = AmmoCount.ToString("F0");
+    }
+
+    public float getDamageModifier()
+    {
+        return damageModifier;
+    }
+
+    public float getScalingModifier()
+    {
+        return scalingModifer;
     }
 }

@@ -5,7 +5,6 @@ using UnityEngine;
 public class explosion : MonoBehaviour
 {
     [Header("Explosion Stats")]
-    [SerializeField] GameObject explosiveWeapon;
     [SerializeField] int pushBackAmount;
     //[SerializeField] bool physicsType;          // true == push | false == pull
     [SerializeField] int damage;
@@ -17,6 +16,7 @@ public class explosion : MonoBehaviour
     [SerializeField] AudioSource expAud;
     [SerializeField] AudioClip explosionSound;
     [Range(0, 3)] [SerializeField] float explosionSoundVol;
+    [SerializeField] float explosionLifespan;
 
     Vector3 pushForce;
     Renderer itemModel;
@@ -36,9 +36,9 @@ public class explosion : MonoBehaviour
 
         foreach (Collider nearExplosion in colliders)
         {
-
+            // valid hit registration
             hitDirection = (nearExplosion.transform.position - transform.position);
-            angleToNearby = Vector3.Angle(hitDirection, transform.forward);
+            angleToNearby = Vector3.Angle(hitDirection, transform.position);
 
             //Debug.Log(angleToPlayer);
             Debug.DrawRay(transform.position, hitDirection);
@@ -61,12 +61,12 @@ public class explosion : MonoBehaviour
             }
         }
 
-        expAud.pitch = Random.Range(0.65f, 1.0f);    // ONLY USE IN A PINCH --- 1 == normal pitch
+        expAud.pitch = Random.Range(0.45f, 1.0f);    // ONLY USE IN A PINCH --- 1 == normal pitch
         expAud.PlayOneShot(explosionSound, explosionSoundVol);
         itemModel = GetComponent<MeshRenderer>();
         itemModel.enabled = false;
         Instantiate(explosionEffect, transform.position, transform.rotation);
-        yield return new WaitForSeconds(3.0f);
+        yield return new WaitForSeconds(explosionLifespan);
         Destroy(gameObject);
     }
 }

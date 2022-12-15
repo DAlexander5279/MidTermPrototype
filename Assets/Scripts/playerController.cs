@@ -53,8 +53,7 @@ public class playerController : MonoBehaviour
     [Range(0, 5)][SerializeField] int gunDMG;
     [SerializeField] float shootRate;   // player's gun fire rate
     [Range(0, 200)][SerializeField] int shootDist; // effective range of the shot
-    [SerializeField] GameObject gunModel;
-
+    [SerializeField] GameObject gunModel;   //also gun position/viewmodel position
     [SerializeField] GameObject hitEffect;
 
 
@@ -162,7 +161,7 @@ public class playerController : MonoBehaviour
             isShooting = false;
         }
 
-        if (gunList[selectedGun].magCount <= gunList[selectedGun].magSize)
+        if (gunList[selectedGun].magCount < gunList[selectedGun].magSize)
         {
             if (gunList[selectedGun].magCount == 0 || gunList[selectedGun].magCount <= 3)
             {
@@ -225,12 +224,30 @@ public class playerController : MonoBehaviour
     }
     public void gunPickup(gunStats gunStat)
     {
-        gunList.Add(gunStat);
-        selectedGun = gunList.Count - 1;
-        changeCurrentGun();
 
-        gameManager.instance.ammoUpdate(gunStat.magCount);
+        bool foundGun = false;
+        for (int i = 0; i < gunList.Count; i++)
+        {
+            if (gunStat == gunList[i])
+            {
+                foundGun = true;
+                gunList[i].modifedGunDMG = Mathf.FloorToInt(gunList[i].modifedGunDMG * gameManager.instance.getDamageModifier());
+                if (gunList[i] == gunList[selectedGun])
+                {
+                    gunDMG = gunList[i].modifedGunDMG;
+                }
+            }
+        }
+        if(!foundGun)
+        {
+            gunStat.magCount = gunStat.magSize;
+            gunStat.modifedGunDMG = gunStat.gunDMG;
+            gunList.Add(gunStat);
+            selectedGun = gunList.Count - 1;
+            changeCurrentGun();
 
+            gameManager.instance.ammoUpdate(gunStat.magCount);
+        }
 
     }
 
@@ -265,7 +282,8 @@ public class playerController : MonoBehaviour
     public void changeCurrentGun()
     {
         shootRate = gunList[selectedGun].shootRate;
-        gunDMG = gunList[selectedGun].gunDMG;
+        // gunDMG = gunList[selectedGun].gunDMG;
+        gunDMG = gunList[selectedGun].modifedGunDMG;
         shootDist = gunList[selectedGun].shootDist;
 
         gunshotSound = gunList[selectedGun].gunshotSound;
