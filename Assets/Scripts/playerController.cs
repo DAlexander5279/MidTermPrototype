@@ -11,13 +11,9 @@ public class playerController : MonoBehaviour
 
     [Header("------Player Stats------")]
 
-<<<<<<< HEAD
+
     public int HP;
     [Range(1, 10)] [SerializeField] int playerSpeed;
-=======
-    [SerializeField] int HP;
-    [Range(1, 10)][SerializeField] int playerSpeed;
->>>>>>> a1cac0071f4720afe0a18fc94390825ef9e8c61d
     [SerializeField] int jumpMax;
     [Range(5, 15)][SerializeField] int jumpHeight;
     [Range(10, 20)][SerializeField] int gravity;
