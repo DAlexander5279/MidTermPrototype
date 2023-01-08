@@ -27,6 +27,7 @@ public class gameManager : MonoBehaviour
     public GameObject loseMenu;
     public GameObject playerFlashDamage;
     public Image playerHealthBar;
+    public Image playerHealthAnim;
     public GameObject ammoHUD;
     //public GameObject Reload;
     [SerializeField] TextMeshProUGUI Zoins; // its coins!
@@ -48,6 +49,7 @@ public class gameManager : MonoBehaviour
     public int zoins;
 
     public int AmmoCount;
+    float HPTimer = 0; 
 
 
     float origTime;
@@ -76,6 +78,13 @@ public class gameManager : MonoBehaviour
             else
                 gameUnpause();
         }
+
+        if (playerHealthAnim.fillAmount != playerHealthBar.fillAmount)
+        {
+            playerHealthAnim.fillAmount = Mathf.Lerp(playerHealthAnim.fillAmount, playerHealthBar.fillAmount, HPTimer);
+            HPTimer += 0.25f * Time.deltaTime;
+        }
+        else { HPTimer = 0f; }
 
         //if(enemyCount <= 0)
         //{

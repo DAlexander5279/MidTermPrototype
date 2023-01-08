@@ -11,6 +11,8 @@ public class enemyAI : MonoBehaviour, IDamage
     [SerializeField] NavMeshAgent agent;
     [SerializeField] GameObject enemyUI;
     [SerializeField] Image enemyHPBar;
+    [SerializeField] Image enemyHPBackground;
+    [SerializeField] Image enemyHPBarAnim;
     [SerializeField] Animator anim;
 
     [Header("--- Enemy Stats ---")]
@@ -53,6 +55,7 @@ public class enemyAI : MonoBehaviour, IDamage
     float angleToPlayer;
     Color enemyMaterialOriginal;
     Vector3 pushBack;
+    float HPTimer = 0; 
 
 
 
@@ -83,6 +86,18 @@ public class enemyAI : MonoBehaviour, IDamage
             canSeePlayer();
         }
 
+        healthBarStrink();
+
+    }
+
+    void healthBarStrink()
+    {
+        if (enemyHPBarAnim.fillAmount != enemyHPBar.fillAmount)
+        {
+            enemyHPBarAnim.fillAmount = Mathf.Lerp(enemyHPBarAnim.fillAmount, enemyHPBar.fillAmount, HPTimer);
+            HPTimer += 0.25f * Time.deltaTime;
+        }
+        else { HPTimer = 0f; }
     }
 
     // function that makes the enemy track and attack the player
@@ -157,6 +172,9 @@ public class enemyAI : MonoBehaviour, IDamage
         HP -= dmgIn;
         updateEnemyHPBar();
         enemyUI.gameObject.SetActive(true);
+        enemyHPBackground.gameObject.SetActive(true);
+        enemyHPBarAnim.gameObject.SetActive(true);
+        enemyHPBar.gameObject.SetActive(true);
         agent.SetDestination(gameManager.instance.player.transform.position);
         if (!playerThreat)
             playerThreat = true;
