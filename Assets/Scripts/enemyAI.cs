@@ -19,6 +19,7 @@ public class enemyAI : MonoBehaviour, IDamage
     [SerializeField] int sightAngle;
     [SerializeField] Transform headPosition;
     [Range(1.0f, 2.0f)] [SerializeField] float dangerSightModifier;
+    [SerializeField] bool beenKilled;
 
     [SerializeField] int droppedZoinsAmt;   // game currency
 
@@ -66,6 +67,7 @@ public class enemyAI : MonoBehaviour, IDamage
         HPOriginal = HP;
         enemyMaterialOriginal = model.material.color;
         gameManager.instance.updateEnemyCount(1);
+        beenKilled = false;
 
     }
 
@@ -162,19 +164,24 @@ public class enemyAI : MonoBehaviour, IDamage
 
         if (HP <= 0)
         {
-            // Update enemy count
-            gameManager.instance.updateEnemyCount(-1);
+            if (!beenKilled)
+            {
+                // Update enemy count
+                gameManager.instance.updateEnemyCount(-1);
 
-            gameManager.instance.enemiesKilled++;
+                gameManager.instance.enemiesKilled++;
 
-            droppedZoinsAmt = gameManager.instance.scalingFunction(droppedZoinsAmt);
+                droppedZoinsAmt = gameManager.instance.scalingFunction(droppedZoinsAmt);
 
-            gameManager.instance.addZoins(droppedZoinsAmt);
+                gameManager.instance.addZoins(droppedZoinsAmt);
 
-            rollDropItem(gameManager.instance.scalingFunction(baseDropChance));
+                rollDropItem(gameManager.instance.scalingFunction(baseDropChance));
 
 
-            Destroy(gameObject);
+                Destroy(gameObject);
+                beenKilled = true;
+            }
+
         }
     }
 
@@ -194,7 +201,7 @@ public class enemyAI : MonoBehaviour, IDamage
         if (gunType == 1)
             Instantiate(bulletType, shootPosition.position, transform.rotation);
 
-        if (gunType == 2)
+        else if (gunType == 2)
         {
             for (int i = 0; i < pelletCount; i++)
             {

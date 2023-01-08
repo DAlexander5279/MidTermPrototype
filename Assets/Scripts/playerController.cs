@@ -1,4 +1,4 @@
-using System;
+//using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -56,6 +56,8 @@ public class playerController : MonoBehaviour
     [SerializeField] GameObject gunModel;   //also gun position/viewmodel position
     [SerializeField] GameObject hitEffect;
     [SerializeField] int fireSelect;
+    [SerializeField] int pellets;
+    [SerializeField] float spreadAccuracy;
 
 
 
@@ -142,21 +144,43 @@ public class playerController : MonoBehaviour
         if (!isShooting && gunList[selectedGun].magCount > 0 &&
             ((fireSelect == 0 && Input.GetButton("Shoot")) || (fireSelect == 1 && Input.GetButtonDown("Shoot"))))//GetButton = full-auto | ...Down = semi-auto | ..Up = think single-action revolver) - J
         {
-            isShooting = true;
             RaycastHit hit;
+            isShooting = true;
             gunList[selectedGun].magCount--;
             gameManager.instance.ammoUpdate(gunList[selectedGun].magCount, gunList[selectedGun].magSize);
 
-
-
-            if (Physics.Raycast(Camera.main.ViewportPointToRay(new Vector2(0.5f, 0.5f)), out hit, shootDist))
+            switch (pellets)
             {
-                if (hit.collider.GetComponent<IDamage>() != null)
-                {
-                    hit.collider.GetComponent<IDamage>().takeDamage(gunDMG);
-                }
+                case 1:
+                    if (Physics.Raycast(Camera.main.ViewportPointToRay(new Vector2(0.5f, 0.5f)), out hit, shootDist))
+                    {
+                        if (hit.collider.GetComponent<IDamage>() != null)
+                        {
+                            hit.collider.GetComponent<IDamage>().takeDamage(gunDMG);
+                        }
 
-                Instantiate(hitEffect, hit.point, hitEffect.transform.rotation);
+                        Instantiate(hitEffect, hit.point, hitEffect.transform.rotation);
+                    }
+                    break;
+                default:
+                    //int numberOfHits = 0;
+                    //Collider enemyHit = null;
+                    for (int i = 0; i < pellets; i++)
+                    {
+                        if (Physics.Raycast(Camera.main.ViewportPointToRay(new Vector2(0.5f * Random.Range(spreadAccuracy, spreadAccuracy * 2), 0.5f * Random.Range(spreadAccuracy, spreadAccuracy * 2))), out hit, shootDist))
+                        {
+                            if (hit.collider.GetComponent<IDamage>() != null)
+                            {
+                                //enemyHit = hit.collider;
+                                //numberOfHits++;
+                                hit.collider.GetComponent<IDamage>().takeDamage(gunDMG);
+                            }
+
+                            Instantiate(hitEffect, hit.point, hitEffect.transform.rotation);
+                        }
+                    }
+                    //enemyHit.GetComponent<IDamage>().takeDamage(gunDMG * numberOfHits);
+                    break;
             }
 
             aud.PlayOneShot(gunshotSound, gunshotSoundVol);
@@ -308,6 +332,10 @@ public class playerController : MonoBehaviour
 
         gameManager.instance.ammoUpdate(gunList[selectedGun].magCount, gunList[selectedGun].magSize);
 
+        pellets = gunList[selectedGun].pellets;
+
+        spreadAccuracy = gunList[selectedGun].spreadAccuracy;
+
         // transfer the gun's model
         gunModel.GetComponent<MeshFilter>().sharedMesh = gunList[selectedGun].gunModel.GetComponent<MeshFilter>().sharedMesh;
 
@@ -323,6 +351,9 @@ public class playerController : MonoBehaviour
         shootDist = gunStat.shootDist;
         gunshotSound = gunStat.gunshotSound;
         fireSelect = gunStat.fireSelect;
+
+        pellets = gunStat.pellets;
+        spreadAccuracy = gunStat.spreadAccuracy;
 
         // transfer the gun's model
         gunModel.GetComponent<MeshFilter>().sharedMesh = gunStat.gunModel.GetComponent<MeshFilter>().sharedMesh;

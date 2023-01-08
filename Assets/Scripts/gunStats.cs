@@ -18,6 +18,10 @@ public class gunStats : ScriptableObject
 
     public int fireSelect;  // 0 = full-auto | 1 = single-fire
 
+    public int pellets;
+
+    public float spreadAccuracy;  // 1 = 100% accuracy, 0.5 = 50% accuracy
+
     public GameObject gunModel;
     public AudioClip gunshotSound;
 }
