@@ -167,7 +167,7 @@ public class playerController : MonoBehaviour
                     //Collider enemyHit = null;
                     for (int i = 0; i < pellets; i++)
                     {
-                        if (Physics.Raycast(Camera.main.ViewportPointToRay(new Vector2(0.5f * Random.Range(spreadAccuracy, spreadAccuracy * 2), 0.5f * Random.Range(spreadAccuracy, spreadAccuracy * 2))), out hit, shootDist))
+                        if (Physics.Raycast(Camera.main.ViewportPointToRay(new Vector2(0.5f * Random.Range(spreadAccuracy, 1.0f), 0.5f * Random.Range(spreadAccuracy, 1.0f))), out hit, shootDist))
                         {
                             if (hit.collider.GetComponent<IDamage>() != null)
                             {

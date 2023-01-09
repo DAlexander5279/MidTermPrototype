@@ -3022,6 +3022,7 @@ MonoBehaviour:
   loseMenu: {fileID: 4711952270747788180}
   playerFlashDamage: {fileID: 760748851}
   playerHealthBar: {fileID: 1481143061}
+  playerHealthAnim: {fileID: 6277774105808521435}
   ammoHUD: {fileID: 654809885}
   Zoins: {fileID: 2067622736}
   roomsCleared: {fileID: 1303852546}

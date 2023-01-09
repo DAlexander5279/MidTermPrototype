@@ -55,7 +55,7 @@ public class enemyAI : MonoBehaviour, IDamage
     float angleToPlayer;
     Color enemyMaterialOriginal;
     Vector3 pushBack;
-    float HPTimer = 0; 
+    float HPTimer = 0;
 
 
 
@@ -169,21 +169,23 @@ public class enemyAI : MonoBehaviour, IDamage
 
     public void takeDamage(int dmgIn)
     {
-        HP -= dmgIn;
-        updateEnemyHPBar();
-        enemyUI.gameObject.SetActive(true);
-        enemyHPBackground.gameObject.SetActive(true);
-        enemyHPBarAnim.gameObject.SetActive(true);
-        enemyHPBar.gameObject.SetActive(true);
-        agent.SetDestination(gameManager.instance.player.transform.position);
-        if (!playerThreat)
-            playerThreat = true;
-        StartCoroutine(flashDamage());
-
-        if (HP <= 0)
+        if (!beenKilled)
         {
-            if (!beenKilled)
+
+            HP -= dmgIn;
+            updateEnemyHPBar();
+            enemyUI.gameObject.SetActive(true);
+            enemyHPBackground.gameObject.SetActive(true);
+            enemyHPBarAnim.gameObject.SetActive(true);
+            enemyHPBar.gameObject.SetActive(true);
+            agent.SetDestination(gameManager.instance.player.transform.position);
+            if (!playerThreat)
+                playerThreat = true;
+            StartCoroutine(flashDamage());
+
+            if (HP <= 0)
             {
+
                 // Update enemy count
                 gameManager.instance.updateEnemyCount(-1);
 
@@ -198,9 +200,11 @@ public class enemyAI : MonoBehaviour, IDamage
 
                 Destroy(gameObject);
                 beenKilled = true;
-            }
 
+
+            }
         }
+
     }
 
     IEnumerator flashDamage()
