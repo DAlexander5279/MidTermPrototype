@@ -1,6 +1,7 @@
 //using System;
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class playerController : MonoBehaviour
@@ -9,25 +10,36 @@ public class playerController : MonoBehaviour
     [Header("------Components------")]
     [SerializeField] CharacterController playerControl;
 
+    // Player Stats
+    #region
     [Header("------Player Stats------")]
+    [Range(1, 10)][SerializeField] float playerSpeed;
 
-
-    public int HP;
-    [Range(1, 10)] [SerializeField] int playerSpeed;
     [SerializeField] int jumpMax;
-    [Range(5, 15)] [SerializeField] int jumpHeight;
-    [Range(10, 20)] [SerializeField] int gravity;
+    [Range(5, 15)][SerializeField] int jumpHeight;
+    [Range(10, 20)][SerializeField] int gravity;
     [SerializeField] int pushTime;
+    public int HP;
     public bool isDisabled;
+    #endregion
 
+
+    //keyBinds 
+    #region  
 
     [Header("------KeyBinds------")]
     [SerializeField] KeyCode Reload;
+    [SerializeField] KeyCode crouchCBind;
+
+    [SerializeField] KeyCode crouch;
+    #endregion
+
     // look to move to gameManager in the future + Reload.ToString()
     // do the same for the GrenadeThrow UI
-
     public GameObject reloadUI;
 
+    //player Sounds
+    #region
     [Header("------Player Sounds------")]
     [SerializeField] AudioSource aud;
 
@@ -35,36 +47,40 @@ public class playerController : MonoBehaviour
     [SerializeField] AudioClip gunshotSound;
     [SerializeField] List<AudioClip> dryfireSound;
     [SerializeField] AudioClip gunReloadSound;
-    [Range(0, 3)] [SerializeField] float gunshotSoundVol;
+    [Range(0, 3)][SerializeField] float gunshotSoundVol;
 
     [SerializeField] AudioClip[] playerJumpAudio;
-    [Range(0, 3)] [SerializeField] float playerJumpAudioVol;
+    [Range(0, 3)][SerializeField] float playerJumpAudioVol;
 
     [SerializeField] AudioClip[] playerHurtAudio;
-    [Range(0, 3)] [SerializeField] float playerHurtAudioVol;
+    [Range(0, 3)][SerializeField] float playerHurtAudioVol;
 
     [SerializeField] AudioClip[] playerStepAudio;
-    [Range(0, 3)] [SerializeField] float playerStepAudioVol;
+    [Range(0, 3)][SerializeField] float playerStepAudioVol;
+    #endregion
 
-
+    // gun stats
+    #region
     [Header("------Gun Stats------")]
     [SerializeField] List<gunStats> gunList = new List<gunStats>();
 
-    [Range(0, 5)] [SerializeField] int gunDMG;
+    [Range(0, 5)][SerializeField] int gunDMG;
     [SerializeField] float shootRate;   // player's gun fire rate
-    [Range(0, 200)] [SerializeField] int shootDist; // effective range of the shot
+    [Range(0, 200)][SerializeField] int shootDist; // effective range of the shot
     [SerializeField] GameObject gunModel;   //also gun position/viewmodel position
     [SerializeField] GameObject hitEffect;
     [SerializeField] int fireSelect;
     [SerializeField] int pellets;
     [SerializeField] float spreadAccuracy;
+    #endregion
 
-
-
-
+    // extra variables
+    #region
     bool isShooting;
     private Vector3 playerVelocity;
     Vector3 move;
+    private Vector3 playerCrouch;
+    Vector3 moveCrouch;
     int timesJumped;
     public int HPOriginal;
     int walkSpeedOrg;
@@ -75,13 +91,39 @@ public class playerController : MonoBehaviour
     bool audioIsPlaying;
     bool isRunning;
     Vector3 pushBack;
+    #endregion
+
+    //  crouch/prone stuff
+    #region
+    [Header("------Stances------")]
+    public float orgPlayerSpeed;
+    [Range(0, 1)][SerializeField] float crouchHeight;
+    [SerializeField] float crouchSpeed;
+    [Range(0, 1)][SerializeField] float proneHeight;
+    [SerializeField] float proneSpeed;
+    private float timePressed = 0;
+    public float waitTimeReq = 1f;
+    private float timeReset = 0;
+    private bool isPressed = false;
+    private bool isProned = false;
+    private bool isCrouched = false;
+    private bool isStanding = true;
+    private float startStance;
+    #endregion
 
     // Start is called before the first frame update
+
     private void Start()
     {
         HPOriginal = HP;
+        startStance = transform.localScale.y;
+        orgPlayerSpeed = playerSpeed;
         updatePlayerHP();
         gameManager.instance.updatePlayerDamage(gunDMG);
+
+        isStanding = true;
+        isCrouched = false;
+        isProned = false;
 
     }
     // Update is called once per frame
@@ -108,11 +150,31 @@ public class playerController : MonoBehaviour
             }
 
         }
-
+        if (Input.GetKey(crouch) && isPressed == false)
+        {
+            timeReset += Time.deltaTime;
+        }
+        if (Input.GetKey(crouch) || isPressed == true)
+        {
+            timeReset = 0;
+        }
+        if (Input.GetKey(crouch))
+        {
+            timePressed += Time.deltaTime;
+        }
+        if (timeReset >= waitTimeReq && isPressed == false)
+        {
+            isPressed = true;
+        }
+        if (Input.GetKeyUp(crouch))
+        {
+            isPressed = false;
+        }
 
     }
     void Movement()
     {
+
         if (playerControl.isGrounded && playerVelocity.y < 0)
         {
             timesJumped = 0;
@@ -133,12 +195,62 @@ public class playerController : MonoBehaviour
             aud.PlayOneShot(playerJumpAudio[UnityEngine.Random.Range(0, playerJumpAudio.Length)], playerJumpAudioVol);
         }
 
+        if (timePressed > waitTimeReq)
+        {
+            if (Input.GetKeyUp(crouch))
+            {
+                isProned = !isProned;
+                isCrouched = false;
+                transform.localScale = new Vector3(transform.localScale.x, proneHeight, transform.localScale.z);
+                playerSpeed = proneSpeed;
+
+            }
+
+        }
+        if (Input.GetKeyUp(crouch) && timePressed < waitTimeReq)
+        {
+            isCrouched = !isCrouched;
+            isProned = false;
+            transform.localScale = new Vector3(transform.localScale.x, crouchHeight, transform.localScale.z);
+            playerSpeed = proneSpeed;
+
+        }
+        if (Input.GetKeyUp(crouchCBind) && timePressed < waitTimeReq)
+        {
+            isCrouched = !isCrouched;
+            isProned = false;
+            transform.localScale = new Vector3(transform.localScale.x, crouchHeight, transform.localScale.z);
+            playerSpeed = proneSpeed;
+
+        }
+        if (isCrouched == false && isProned == false)
+        {
+            isStanding = true;
+            isCrouched = false;
+            isProned = false;
+            transform.localScale = new Vector3(transform.localScale.x, startStance, transform.localScale.z);
+            playerSpeed = orgPlayerSpeed;
+
+        }
+        else
+        {
+            isStanding = false;
+        }
+        if (Input.GetKeyUp(crouch))
+        {
+            timePressed = 0;
+        }
+
+
+
+
         playerVelocity.y -= gravity * Time.deltaTime;
-        //playerControl.Move(playerVelocity * Time.deltaTime);
+        playerControl.Move(playerVelocity * Time.deltaTime);
         playerControl.Move((playerVelocity + pushBack) * Time.deltaTime);
 
 
     }
+
     IEnumerator Shoot()
     {
         if (!isShooting && gunList[selectedGun].magCount > 0 &&
@@ -371,5 +483,5 @@ public class playerController : MonoBehaviour
     }
 
 
-
 }
+

@@ -6,7 +6,7 @@ using UnityEngine;
 public class gunStats : ScriptableObject
 {
     public int gunDMG;
-
+    private bool invertGunPos;
     public int modifedGunDMG;
 
     public float shootRate;
@@ -23,5 +23,6 @@ public class gunStats : ScriptableObject
     public float spreadAccuracy;  // 1 = 100% accuracy, 0.5 = 50% accuracy
 
     public GameObject gunModel;
+
     public AudioClip gunshotSound;
 }
