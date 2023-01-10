@@ -10,16 +10,16 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: fbdc5c617eda47a419c013e02d98d9ac, type: 3}
-  m_Name: Player Shotgun
+  m_Name: Player Sniper
   m_EditorClassIdentifier: 
-  gunDMG: 5
-  modifedGunDMG: 5
-  shootRate: 0.685
-  shootDist: 25
-  magSize: 5
-  magCount: 4
+  gunDMG: 40
+  modifedGunDMG: 40
+  shootRate: 0.85
+  shootDist: 1000
+  magSize: 6
+  magCount: 6
   fireSelect: 1
-  pellets: 6
-  spreadAccuracy: 0.75
-  gunModel: {fileID: 919132149155446097, guid: 8b36fb41929fc22429f0083d817b8040, type: 3}
-  gunshotSound: {fileID: 8300000, guid: 083f12a0226cf1a4d93705d4a4ea201c, type: 3}
+  pellets: 1
+  spreadAccuracy: 1
+  gunModel: {fileID: 919132149155446097, guid: 60d91f925d8c1e442bb6596dfb94ffff, type: 3}
+  gunshotSound: {fileID: 8300000, guid: f450f31f8a5f9fd4b959e704248ed529, type: 3}

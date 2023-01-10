@@ -88,6 +88,7 @@ public class playerController : MonoBehaviour
     int selectedGun;
 
     int magSizeOrg;
+    bool isReloading;
     bool audioIsPlaying;
     bool isRunning;
     Vector3 pushBack;
@@ -124,6 +125,7 @@ public class playerController : MonoBehaviour
         isStanding = true;
         isCrouched = false;
         isProned = false;
+        isReloading = false;
 
     }
     // Update is called once per frame
@@ -308,13 +310,15 @@ public class playerController : MonoBehaviour
                 //gameManager.instance.activeMenu = reloadUI;
                 reloadUI.SetActive(true);
             }
-            if (Input.GetKeyDown(Reload))
+            if (Input.GetKeyDown(Reload) && !isReloading)
             {
+                isReloading = true;
                 aud.PlayOneShot(gunReloadSound, gunshotSoundVol);
                 yield return new WaitForSeconds(0.5f);
                 gunList[selectedGun].magCount = gunList[selectedGun].magSize;
                 gameManager.instance.ammoUpdate(gunList[selectedGun].magCount, gunList[selectedGun].magSize);
                 reloadUI.SetActive(false);
+                isReloading = false;
             }
             if (Input.GetButtonDown("Shoot") && gunList[selectedGun].magCount <= 0)
             {
