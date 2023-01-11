@@ -14,10 +14,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   gunDMG: 5
   modifedGunDMG: 5
-  shootRate: 0.75
+  shootRate: 0.685
   shootDist: 25
   magSize: 5
-  magCount: 5
+  magCount: 4
   fireSelect: 1
   pellets: 6
   spreadAccuracy: 0.75

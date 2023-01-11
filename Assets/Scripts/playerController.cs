@@ -72,6 +72,7 @@ public class playerController : MonoBehaviour
     [SerializeField] int fireSelect;
     [SerializeField] int pellets;
     [SerializeField] float spreadAccuracy;
+    [SerializeField] bool hasScope;
     #endregion
 
     // extra variables
@@ -87,6 +88,7 @@ public class playerController : MonoBehaviour
     int selectedGun;
 
     int magSizeOrg;
+    bool isReloading;
     bool audioIsPlaying;
     bool isRunning;
     Vector3 pushBack;
@@ -133,6 +135,7 @@ public class playerController : MonoBehaviour
         //scaleX = gunModel.transform.localScale.x ;
         //scaleY = gunModel.transform.localScale.y;
         //scaleZ = gunModel.transform.localScale.z;
+        isReloading = false;
 
 
 
@@ -231,7 +234,8 @@ public class playerController : MonoBehaviour
             switch (pellets)
             {
                 case 1:
-                    if (Physics.Raycast(Camera.main.ViewportPointToRay(new Vector2(0.5f, 0.5f)), out hit, shootDist))
+                    //if (Physics.Raycast(Camera.main.ViewportPointToRay(new Vector2(0.5f, 0.5f)), out hit, shootDist))
+                    if (Physics.Raycast(Camera.main.ViewportPointToRay(new Vector2(0.5f * Random.Range(spreadAccuracy, 1.0f), 0.5f * Random.Range(spreadAccuracy, 1.0f))), out hit, shootDist))
                     {
                         if (hit.collider.GetComponent<IDamage>() != null)
                         {
@@ -275,13 +279,15 @@ public class playerController : MonoBehaviour
                 //gameManager.instance.activeMenu = reloadUI;
                 reloadUI.SetActive(true);
             }
-            if (Input.GetKeyDown(Reload))
+            if (Input.GetKeyDown(Reload) && !isReloading)
             {
+                isReloading = true;
                 aud.PlayOneShot(gunReloadSound, gunshotSoundVol);
                 yield return new WaitForSeconds(0.5f);
                 gunList[selectedGun].magCount = gunList[selectedGun].magSize;
                 gameManager.instance.ammoUpdate(gunList[selectedGun].magCount, gunList[selectedGun].magSize);
                 reloadUI.SetActive(false);
+                isReloading = false;
             }
             if (Input.GetButtonDown("Shoot") && gunList[selectedGun].magCount <= 0)
             {
@@ -436,8 +442,10 @@ public class playerController : MonoBehaviour
             meleeModel.GetComponent<MeshRenderer>().enabled = false;
             gunModel.GetComponent<MeshRenderer>().enabled = true;
 
-            // transfer the gun's model
-            gunModel.GetComponent<MeshFilter>().sharedMesh = gunList[selectedGun].gunModel.GetComponent<MeshFilter>().sharedMesh;
+        hasScope = gunList[selectedGun].hasScope;
+
+        // transfer the gun's model
+        gunModel.GetComponent<MeshFilter>().sharedMesh = gunList[selectedGun].gunModel.GetComponent<MeshFilter>().sharedMesh;
 
             //transfer the gun's textures/materials
             gunModel.GetComponent<MeshRenderer>().sharedMaterial = gunList[selectedGun].gunModel.GetComponent<MeshRenderer>().sharedMaterial;
@@ -473,6 +481,7 @@ public class playerController : MonoBehaviour
 
         pellets = gunStat.pellets;
         spreadAccuracy = gunStat.spreadAccuracy;
+        hasScope = gunStat.hasScope;
 
         // transfer the gun's model
         gunModel.GetComponent<MeshFilter>().sharedMesh = gunStat.gunModel.GetComponent<MeshFilter>().sharedMesh;
@@ -489,6 +498,10 @@ public class playerController : MonoBehaviour
         pushBack = dir;
     }
 
+    public bool getScopeStatus()
+    {
+        return hasScope;
+    }
 
 }
 
