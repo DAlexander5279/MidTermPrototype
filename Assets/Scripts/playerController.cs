@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
+using static UnityEngine.ParticleSystem;
 
 public class playerController : MonoBehaviour
 {
@@ -14,7 +15,6 @@ public class playerController : MonoBehaviour
     #region
     [Header("------Player Stats------")]
     [Range(1, 10)][SerializeField] float playerSpeed;
-
     [SerializeField] int jumpMax;
     [Range(5, 15)][SerializeField] int jumpHeight;
     [Range(10, 20)][SerializeField] int gravity;
@@ -29,9 +29,9 @@ public class playerController : MonoBehaviour
 
     [Header("------KeyBinds------")]
     [SerializeField] KeyCode Reload;
-    [SerializeField] KeyCode crouchCBind;
-
+    //stance keybinds
     [SerializeField] KeyCode crouch;
+    [SerializeField] KeyCode crouchCBind;
     #endregion
 
     // look to move to gameManager in the future + Reload.ToString()
@@ -77,10 +77,9 @@ public class playerController : MonoBehaviour
     // extra variables
     #region
     bool isShooting;
+    bool isMeleeing;
     private Vector3 playerVelocity;
     Vector3 move;
-    private Vector3 playerCrouch;
-    Vector3 moveCrouch;
     int timesJumped;
     public int HPOriginal;
     int walkSpeedOrg;
@@ -96,34 +95,46 @@ public class playerController : MonoBehaviour
     //  crouch/prone stuff
     #region
     [Header("------Stances------")]
-    public float orgPlayerSpeed;
-    [Range(0, 1)][SerializeField] float crouchHeight;
-    [SerializeField] float crouchSpeed;
-    [Range(0, 1)][SerializeField] float proneHeight;
-    [SerializeField] float proneSpeed;
-    private float timePressed = 0;
-    public float waitTimeReq = 1f;
-    private float timeReset = 0;
-    private bool isPressed = false;
-    private bool isProned = false;
-    private bool isCrouched = false;
-    private bool isStanding = true;
+    //public float orgPlayerSpeed;
+    //[SerializeField] float crouchHeight;
+    //[SerializeField] float crouchSpeed;
+    //[SerializeField] bool isCrouched;
+    //[SerializeField] bool isStanding;
+    //[SerializeField] float scaleX;
+    //[SerializeField] float scaleY;
+    //[SerializeField] float scaleZ;
+
+    Vector3 playerCrouch;
     private float startStance;
     #endregion
+    // melee stuff
+    [Header("----- Melee stats-----")]
+    #region
+    [Range(0, 200)][SerializeField] float meleeDis;
+    [Range(0, 5)][SerializeField] int meleeDMG;
+    [SerializeField] GameObject meleeModel;
+    [SerializeField] float meleeRate; 
+
+    public bool isMeleeWeapon;
+
+    #endregion
+
 
     // Start is called before the first frame update
-
     private void Start()
     {
         HPOriginal = HP;
-        startStance = transform.localScale.y;
-        orgPlayerSpeed = playerSpeed;
         updatePlayerHP();
         gameManager.instance.updatePlayerDamage(gunDMG);
 
-        isStanding = true;
-        isCrouched = false;
-        isProned = false;
+        // stance things needed to be saved on start
+        //startStance = transform.position.y;
+        //orgPlayerSpeed = playerSpeed;
+        //scaleX = gunModel.transform.localScale.x ;
+        //scaleY = gunModel.transform.localScale.y;
+        //scaleZ = gunModel.transform.localScale.z;
+
+
 
     }
     // Update is called once per frame
@@ -135,6 +146,7 @@ public class playerController : MonoBehaviour
             if (!gameManager.instance.paused)
             {
                 pushBack = Vector3.Lerp(pushBack, Vector3.zero, Time.deltaTime * pushTime);
+
 
                 Movement();
 
@@ -150,27 +162,6 @@ public class playerController : MonoBehaviour
             }
 
         }
-        if (Input.GetKey(crouch) && isPressed == false)
-        {
-            timeReset += Time.deltaTime;
-        }
-        if (Input.GetKey(crouch) || isPressed == true)
-        {
-            timeReset = 0;
-        }
-        if (Input.GetKey(crouch))
-        {
-            timePressed += Time.deltaTime;
-        }
-        if (timeReset >= waitTimeReq && isPressed == false)
-        {
-            isPressed = true;
-        }
-        if (Input.GetKeyUp(crouch))
-        {
-            isPressed = false;
-        }
-
     }
     void Movement()
     {
@@ -195,58 +186,34 @@ public class playerController : MonoBehaviour
             aud.PlayOneShot(playerJumpAudio[UnityEngine.Random.Range(0, playerJumpAudio.Length)], playerJumpAudioVol);
         }
 
-        if (timePressed > waitTimeReq)
-        {
-            if (Input.GetKeyUp(crouch))
-            {
-                isProned = !isProned;
-                isCrouched = false;
-                transform.localScale = new Vector3(transform.localScale.x, proneHeight, transform.localScale.z);
-                playerSpeed = proneSpeed;
 
-            }
+        //if (Input.GetKeyUp(crouch))
+        //{
+        //    isCrouched = !isCrouched;
+        //    isStanding = false;
 
-        }
-        if (Input.GetKeyUp(crouch) && timePressed < waitTimeReq)
-        {
-            isCrouched = !isCrouched;
-            isProned = false;
-            transform.localScale = new Vector3(transform.localScale.x, crouchHeight, transform.localScale.z);
-            playerSpeed = proneSpeed;
-
-        }
-        if (Input.GetKeyUp(crouchCBind) && timePressed < waitTimeReq)
-        {
-            isCrouched = !isCrouched;
-            isProned = false;
-            transform.localScale = new Vector3(transform.localScale.x, crouchHeight, transform.localScale.z);
-            playerSpeed = proneSpeed;
-
-        }
-        if (isCrouched == false && isProned == false)
-        {
-            isStanding = true;
-            isCrouched = false;
-            isProned = false;
-            transform.localScale = new Vector3(transform.localScale.x, startStance, transform.localScale.z);
-            playerSpeed = orgPlayerSpeed;
-
-        }
-        else
-        {
-            isStanding = false;
-        }
-        if (Input.GetKeyUp(crouch))
-        {
-            timePressed = 0;
-        }
-
-
-
+        //    playerSpeed = crouchSpeed;
+        //}
+        //if (Input.GetKeyUp(crouchCBind))
+        //{
+        //    isCrouched = !isCrouched;
+        //    isStanding = false;
+        //    playerCrouch.y = crouchHeight;
+        //    playerSpeed = crouchSpeed;
+        //}
+        //if (isCrouched == false && isStanding == false)
+        //{
+        //    isStanding = true;
+        //    isCrouched = false;
+        //    transform.localScale = new Vector3(transform.localScale.x, startStance, transform.localScale.z);
+        //    playerSpeed = orgPlayerSpeed;
+        //}
 
         playerVelocity.y -= gravity * Time.deltaTime;
         playerControl.Move(playerVelocity * Time.deltaTime);
         playerControl.Move((playerVelocity + pushBack) * Time.deltaTime);
+
+
 
 
     }
@@ -323,7 +290,24 @@ public class playerController : MonoBehaviour
                 //yield return new WaitForSeconds(shootRate * 2.0f);
             }
         }
+        if (gunList[selectedGun].isMelee == true && Input.GetButton("Shoot"))
+        {
+            RaycastHit melee;
+            isMeleeing = true;
+            if (Physics.Raycast(Camera.main.ViewportPointToRay(new Vector2(0.5f, 0.5f)), out melee, meleeDis))
+            {
+                if (melee.collider.GetComponent<IDamage>() != null)
+                {
+                    melee.collider.GetComponent<IDamage>().takeDamage(meleeDMG);
+                }
+
+                Instantiate(hitEffect, melee.point, hitEffect.transform.rotation);
+            }
+            yield return new WaitForSeconds(meleeRate);
+
+        }
     }
+
     public void takeDamage(int dmgIn)
     {
         HP -= gameManager.instance.scalingFunction(dmgIn);
@@ -447,12 +431,35 @@ public class playerController : MonoBehaviour
         pellets = gunList[selectedGun].pellets;
 
         spreadAccuracy = gunList[selectedGun].spreadAccuracy;
+        if (gunList[selectedGun].isGun == true && gunList[selectedGun].isMelee == false)
+        {
+            meleeModel.GetComponent<MeshRenderer>().enabled = false;
+            gunModel.GetComponent<MeshRenderer>().enabled = true;
 
-        // transfer the gun's model
-        gunModel.GetComponent<MeshFilter>().sharedMesh = gunList[selectedGun].gunModel.GetComponent<MeshFilter>().sharedMesh;
+            // transfer the gun's model
+            gunModel.GetComponent<MeshFilter>().sharedMesh = gunList[selectedGun].gunModel.GetComponent<MeshFilter>().sharedMesh;
 
-        //transfer the gun's textures/materials
-        gunModel.GetComponent<MeshRenderer>().sharedMaterial = gunList[selectedGun].gunModel.GetComponent<MeshRenderer>().sharedMaterial;
+            //transfer the gun's textures/materials
+            gunModel.GetComponent<MeshRenderer>().sharedMaterial = gunList[selectedGun].gunModel.GetComponent<MeshRenderer>().sharedMaterial;
+
+        }
+        //melee 
+        meleeDis = gunList[selectedGun].meleeRange;
+        meleeDMG = gunList[selectedGun].meleeDmg;
+        isMeleeWeapon = gunList[selectedGun].isMelee;
+
+        meleeRate = gunList[selectedGun].swingRate;
+
+        if (gunList[selectedGun].isMelee == true && gunList[selectedGun].isGun == false)
+        {
+            gunModel.GetComponent<MeshRenderer>().enabled= false;
+            meleeModel.GetComponent<MeshRenderer>().enabled = true;
+
+            meleeModel.GetComponent<MeshFilter>().sharedMesh = gunList[selectedGun].meleeModel.GetComponent<MeshFilter>().sharedMesh;
+            //transfer the gun's textures/materials
+            meleeModel.GetComponent<MeshRenderer>().sharedMaterial = gunList[selectedGun].meleeModel.GetComponent<MeshRenderer>().sharedMaterial;
+        }
+
     }
 
     public void changeCurrentGun(gunStats gunStat) // in case you want to manually give the player a gun

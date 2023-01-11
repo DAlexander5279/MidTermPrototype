@@ -23,3 +23,8 @@ MonoBehaviour:
   spreadAccuracy: 1
   gunModel: {fileID: 919132149155446097, guid: 8f9696fb6017be144a307b6586855ac0, type: 3}
   gunshotSound: {fileID: 8300000, guid: b661e3bdfe790634db84a7de6a8a3088, type: 3}
+  isGun: 1
+  meleeDmg: 0
+  meleeRange: 0
+  meleeModel: {fileID: 0}
+  isMelee: 0
