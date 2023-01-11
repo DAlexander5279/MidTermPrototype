@@ -22,6 +22,8 @@ public class gunStats : ScriptableObject
 
     public float spreadAccuracy;  // 1 = 100% accuracy, 0.5 = 50% accuracy
 
+    public bool hasScope;
+
     public GameObject gunModel;
 
     public AudioClip gunshotSound;

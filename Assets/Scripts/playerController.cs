@@ -72,6 +72,7 @@ public class playerController : MonoBehaviour
     [SerializeField] int fireSelect;
     [SerializeField] int pellets;
     [SerializeField] float spreadAccuracy;
+    [SerializeField] bool hasScope;
     #endregion
 
     // extra variables
@@ -266,7 +267,8 @@ public class playerController : MonoBehaviour
             switch (pellets)
             {
                 case 1:
-                    if (Physics.Raycast(Camera.main.ViewportPointToRay(new Vector2(0.5f, 0.5f)), out hit, shootDist))
+                    //if (Physics.Raycast(Camera.main.ViewportPointToRay(new Vector2(0.5f, 0.5f)), out hit, shootDist))
+                    if (Physics.Raycast(Camera.main.ViewportPointToRay(new Vector2(0.5f * Random.Range(spreadAccuracy, 1.0f), 0.5f * Random.Range(spreadAccuracy, 1.0f))), out hit, shootDist))
                     {
                         if (hit.collider.GetComponent<IDamage>() != null)
                         {
@@ -452,6 +454,8 @@ public class playerController : MonoBehaviour
 
         spreadAccuracy = gunList[selectedGun].spreadAccuracy;
 
+        hasScope = gunList[selectedGun].hasScope;
+
         // transfer the gun's model
         gunModel.GetComponent<MeshFilter>().sharedMesh = gunList[selectedGun].gunModel.GetComponent<MeshFilter>().sharedMesh;
 
@@ -470,6 +474,7 @@ public class playerController : MonoBehaviour
 
         pellets = gunStat.pellets;
         spreadAccuracy = gunStat.spreadAccuracy;
+        hasScope = gunStat.hasScope;
 
         // transfer the gun's model
         gunModel.GetComponent<MeshFilter>().sharedMesh = gunStat.gunModel.GetComponent<MeshFilter>().sharedMesh;
@@ -486,6 +491,10 @@ public class playerController : MonoBehaviour
         pushBack = dir;
     }
 
+    public bool getScopeStatus()
+    {
+        return hasScope;
+    }
 
 }
 
