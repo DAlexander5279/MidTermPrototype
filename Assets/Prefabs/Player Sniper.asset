@@ -10,22 +10,17 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: fbdc5c617eda47a419c013e02d98d9ac, type: 3}
-  m_Name: Katana
+  m_Name: Player Sniper
   m_EditorClassIdentifier: 
-  gunDMG: 0
-  modifedGunDMG: 0
-  shootRate: 0
-  shootDist: 0
-  magSize: 0
-  magCount: 0
-  fireSelect: 0
-  pellets: 0
-  spreadAccuracy: 0
-  gunModel: {fileID: 0}
-  gunshotSound: {fileID: 0}
-  isGun: 0
-  meleeDmg: 5
-  meleeRange: 3
-  swingRate: 0.3
-  meleeModel: {fileID: 6035302921550122439, guid: c3a78094e724c764e954b2bb0b43c98c, type: 3}
-  isMelee: 1
+  gunDMG: 40
+  modifedGunDMG: 40
+  shootRate: 0.85
+  shootDist: 1000
+  magSize: 6
+  magCount: 6
+  fireSelect: 1
+  pellets: 1
+  spreadAccuracy: 1
+  hasScope: 1
+  gunModel: {fileID: 919132149155446097, guid: 60d91f925d8c1e442bb6596dfb94ffff, type: 3}
+  gunshotSound: {fileID: 8300000, guid: f450f31f8a5f9fd4b959e704248ed529, type: 3}

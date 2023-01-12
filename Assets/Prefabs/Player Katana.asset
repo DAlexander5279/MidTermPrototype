@@ -10,18 +10,18 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: fbdc5c617eda47a419c013e02d98d9ac, type: 3}
-  m_Name: Player Pistol
+  m_Name: Player Katana
   m_EditorClassIdentifier: 
-  gunDMG: 10
-  modifedGunDMG: 10
-  shootRate: 0.35
-  shootDist: 50
-  magSize: 7
-  magCount: 7
-  fireSelect: 1
+  gunDMG: 30
+  modifedGunDMG: 30
+  shootRate: 0.25
+  shootDist: 10
+  magSize: 1
+  magCount: 1
+  fireSelect: 0
   pellets: 1
   spreadAccuracy: 1
   hasScope: 0
-  gunModel: {fileID: 919132149155446097, guid: 8f9696fb6017be144a307b6586855ac0, type: 3}
-  gunshotSound: {fileID: 8300000, guid: b661e3bdfe790634db84a7de6a8a3088, type: 3}
-  isMelee: 0
+  gunModel: {fileID: 6035302921550122439, guid: c3a78094e724c764e954b2bb0b43c98c, type: 3}
+  gunshotSound: {fileID: 8300000, guid: a24a316c1bd4e9f41b61070b7c15e5e7, type: 3}
+  isMelee: 1

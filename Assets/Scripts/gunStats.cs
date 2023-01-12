@@ -20,12 +20,12 @@ public class gunStats : ScriptableObject
 
     public GameObject gunModel;
     public AudioClip gunshotSound;
-    public bool isGun;
+    //public bool isGun;
 
-    [Header("-----Melee Stats-----")]
-    public int meleeDmg;
-    public float meleeRange;
-    public float swingRate;
-    public GameObject meleeModel;
+    //[Header("-----Melee Stats-----")]
+    //public int meleeDmg;
+    //public float meleeRange;
+    //public float swingRate;
+    //public GameObject meleeModel;
     public bool isMelee;
 }

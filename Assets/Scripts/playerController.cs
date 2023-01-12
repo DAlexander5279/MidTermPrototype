@@ -14,10 +14,10 @@ public class playerController : MonoBehaviour
     // Player Stats
     #region
     [Header("------Player Stats------")]
-    [Range(1, 10)][SerializeField] float playerSpeed;
+    [Range(1, 10)] [SerializeField] float playerSpeed;
     [SerializeField] int jumpMax;
-    [Range(5, 15)][SerializeField] int jumpHeight;
-    [Range(10, 20)][SerializeField] int gravity;
+    [Range(5, 15)] [SerializeField] int jumpHeight;
+    [Range(10, 20)] [SerializeField] int gravity;
     [SerializeField] int pushTime;
     public int HP;
     public bool isDisabled;
@@ -47,16 +47,16 @@ public class playerController : MonoBehaviour
     [SerializeField] AudioClip gunshotSound;
     [SerializeField] List<AudioClip> dryfireSound;
     [SerializeField] AudioClip gunReloadSound;
-    [Range(0, 3)][SerializeField] float gunshotSoundVol;
+    [Range(0, 3)] [SerializeField] float gunshotSoundVol;
 
     [SerializeField] AudioClip[] playerJumpAudio;
-    [Range(0, 3)][SerializeField] float playerJumpAudioVol;
+    [Range(0, 3)] [SerializeField] float playerJumpAudioVol;
 
     [SerializeField] AudioClip[] playerHurtAudio;
-    [Range(0, 3)][SerializeField] float playerHurtAudioVol;
+    [Range(0, 3)] [SerializeField] float playerHurtAudioVol;
 
     [SerializeField] AudioClip[] playerStepAudio;
-    [Range(0, 3)][SerializeField] float playerStepAudioVol;
+    [Range(0, 3)] [SerializeField] float playerStepAudioVol;
     #endregion
 
     // gun stats
@@ -64,15 +64,16 @@ public class playerController : MonoBehaviour
     [Header("------Gun Stats------")]
     [SerializeField] List<gunStats> gunList = new List<gunStats>();
 
-    [Range(0, 5)][SerializeField] int gunDMG;
+    [Range(0, 5)] [SerializeField] int gunDMG;
     [SerializeField] float shootRate;   // player's gun fire rate
-    [Range(0, 200)][SerializeField] int shootDist; // effective range of the shot
+    [Range(0, 200)] [SerializeField] int shootDist; // effective range of the shot
     [SerializeField] GameObject gunModel;   //also gun position/viewmodel position
     [SerializeField] GameObject hitEffect;
     [SerializeField] int fireSelect;
     [SerializeField] int pellets;
     [SerializeField] float spreadAccuracy;
     [SerializeField] bool hasScope;
+    [SerializeField] bool isMeleeWeapon;
     #endregion
 
     // extra variables
@@ -109,17 +110,8 @@ public class playerController : MonoBehaviour
     Vector3 playerCrouch;
     private float startStance;
     #endregion
-    // melee stuff
-    [Header("----- Melee stats-----")]
-    #region
-    [Range(0, 200)][SerializeField] float meleeDis;
-    [Range(0, 5)][SerializeField] int meleeDMG;
-    [SerializeField] GameObject meleeModel;
-    [SerializeField] float meleeRate;
 
-    public bool isMeleeWeapon;
 
-    #endregion
 
 
     // Start is called before the first frame update
@@ -228,8 +220,11 @@ public class playerController : MonoBehaviour
         {
             RaycastHit hit;
             isShooting = true;
-            gunList[selectedGun].magCount--;
-            gameManager.instance.ammoUpdate(gunList[selectedGun].magCount, gunList[selectedGun].magSize);
+            if (!isMeleeWeapon)
+            {
+                gunList[selectedGun].magCount--;
+                gameManager.instance.ammoUpdate(gunList[selectedGun].magCount, gunList[selectedGun].magSize);
+            }
 
             switch (pellets)
             {
@@ -295,22 +290,6 @@ public class playerController : MonoBehaviour
 
                 //yield return new WaitForSeconds(shootRate * 2.0f);
             }
-        }
-        if (gunList[selectedGun].isMelee == true && Input.GetButton("Shoot"))
-        {
-            RaycastHit melee;
-            isMeleeing = true;
-            if (Physics.Raycast(Camera.main.ViewportPointToRay(new Vector2(0.5f, 0.5f)), out melee, meleeDis))
-            {
-                if (melee.collider.GetComponent<IDamage>() != null)
-                {
-                    melee.collider.GetComponent<IDamage>().takeDamage(meleeDMG);
-                }
-
-                Instantiate(hitEffect, melee.point, hitEffect.transform.rotation);
-            }
-            yield return new WaitForSeconds(meleeRate);
-
         }
     }
 
@@ -439,35 +418,13 @@ public class playerController : MonoBehaviour
         spreadAccuracy = gunList[selectedGun].spreadAccuracy;
         hasScope = gunList[selectedGun].hasScope;
 
-        if (gunList[selectedGun].isGun == true && gunList[selectedGun].isMelee == false)
-        {
-            meleeModel.GetComponent<MeshRenderer>().enabled = false;
-            gunModel.GetComponent<MeshRenderer>().enabled = true;
-
-
-            // transfer the gun's model
-            gunModel.GetComponent<MeshFilter>().sharedMesh = gunList[selectedGun].gunModel.GetComponent<MeshFilter>().sharedMesh;
-
-            //transfer the gun's textures/materials
-            gunModel.GetComponent<MeshRenderer>().sharedMaterial = gunList[selectedGun].gunModel.GetComponent<MeshRenderer>().sharedMaterial;
-
-        }
-        //melee 
-        meleeDis = gunList[selectedGun].meleeRange;
-        meleeDMG = gunList[selectedGun].meleeDmg;
         isMeleeWeapon = gunList[selectedGun].isMelee;
 
-        meleeRate = gunList[selectedGun].swingRate;
+        // transfer the gun's model
+        gunModel.GetComponent<MeshFilter>().sharedMesh = gunList[selectedGun].gunModel.GetComponent<MeshFilter>().sharedMesh;
 
-        if (gunList[selectedGun].isMelee == true && gunList[selectedGun].isGun == false)
-        {
-            gunModel.GetComponent<MeshRenderer>().enabled = false;
-            meleeModel.GetComponent<MeshRenderer>().enabled = true;
-
-            meleeModel.GetComponent<MeshFilter>().sharedMesh = gunList[selectedGun].meleeModel.GetComponent<MeshFilter>().sharedMesh;
-            //transfer the gun's textures/materials
-            meleeModel.GetComponent<MeshRenderer>().sharedMaterial = gunList[selectedGun].meleeModel.GetComponent<MeshRenderer>().sharedMaterial;
-        }
+        //transfer the gun's textures/materials
+        gunModel.GetComponent<MeshRenderer>().sharedMaterial = gunList[selectedGun].gunModel.GetComponent<MeshRenderer>().sharedMaterial;
 
     }
 
@@ -483,6 +440,7 @@ public class playerController : MonoBehaviour
         pellets = gunStat.pellets;
         spreadAccuracy = gunStat.spreadAccuracy;
         hasScope = gunStat.hasScope;
+        isMeleeWeapon = gunStat.isMelee;
 
         // transfer the gun's model
         gunModel.GetComponent<MeshFilter>().sharedMesh = gunStat.gunModel.GetComponent<MeshFilter>().sharedMesh;
