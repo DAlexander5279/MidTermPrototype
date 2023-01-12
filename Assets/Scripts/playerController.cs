@@ -224,7 +224,7 @@ public class playerController : MonoBehaviour
             if (!isMeleeWeapon)
             {
                 gunList[selectedGun].magCount--;
-                gameManager.instance.ammoUpdate(gunList[selectedGun].magCount, gunList[selectedGun].magSize);
+                gameManager.instance.ammoUpdate(gunList[selectedGun].magCount, gunList[selectedGun].magSize, gunList[selectedGun].isMelee);
             }
 
             switch (pellets)
@@ -291,7 +291,7 @@ public class playerController : MonoBehaviour
                 aud.PlayOneShot(gunReloadSound, gunshotSoundVol);
                 yield return new WaitForSeconds(0.5f);
                 gunList[selectedGun].magCount = gunList[selectedGun].magSize;
-                gameManager.instance.ammoUpdate(gunList[selectedGun].magCount, gunList[selectedGun].magSize);
+                gameManager.instance.ammoUpdate(gunList[selectedGun].magCount, gunList[selectedGun].magSize, gunList[selectedGun].isMelee);
                 reloadUI.SetActive(false);
                 isReloading = false;
             }
@@ -360,7 +360,7 @@ public class playerController : MonoBehaviour
                 {
                     gunDMG = gunList[i].modifedGunDMG;
                     aud.PlayOneShot(gunReloadSound, gunshotSoundVol);
-                    gameManager.instance.ammoUpdate(gunList[selectedGun].magCount, gunList[selectedGun].magSize);
+                    gameManager.instance.ammoUpdate(gunList[selectedGun].magCount, gunList[selectedGun].magSize, gunList[selectedGun].isMelee);
                     reloadUI.SetActive(false);
                     gameManager.instance.updatePlayerDamage(gunDMG);
                 }
@@ -374,7 +374,7 @@ public class playerController : MonoBehaviour
             selectedGun = gunList.Count - 1;
             changeCurrentGun();
 
-            gameManager.instance.ammoUpdate(gunStat.magCount, gunList[selectedGun].magSize);
+            gameManager.instance.ammoUpdate(gunStat.magCount, gunStat.magSize, gunStat.isMelee);
         }
         if (gameManager.instance.itemCount != 0)
             gameManager.instance.updateItemCount(-1);
@@ -422,7 +422,7 @@ public class playerController : MonoBehaviour
 
         gunshotSound = gunList[selectedGun].gunshotSound;
 
-        gameManager.instance.ammoUpdate(gunList[selectedGun].magCount, gunList[selectedGun].magSize);
+        gameManager.instance.ammoUpdate(gunList[selectedGun].magCount, gunList[selectedGun].magSize, gunList[selectedGun].isMelee);
 
         pellets = gunList[selectedGun].pellets;
 
@@ -448,6 +448,8 @@ public class playerController : MonoBehaviour
         shootDist = gunStat.shootDist;
         gunshotSound = gunStat.gunshotSound;
         fireSelect = gunStat.fireSelect;
+
+        gameManager.instance.ammoUpdate(gunStat.magCount, gunStat.magSize, gunStat.isMelee);
 
         pellets = gunStat.pellets;
         spreadAccuracy = gunStat.spreadAccuracy;
