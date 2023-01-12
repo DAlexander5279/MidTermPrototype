@@ -826,14 +826,14 @@ MonoBehaviour:
   enemyHPBackground: {fileID: 1756709843680222018}
   enemyHPBarAnim: {fileID: 3772969903728434086}
   anim: {fileID: 6626594136104698062}
-  floatingTextPrefab: {fileID: 0}
+  floatingTextPrefab: {fileID: 1013527027229807100, guid: 3f09b7d860a139a43be44d79d0bf894c, type: 3}
   HP: 15
   playerFaceSpeed: 45
   sightAngle: 55
   headPosition: {fileID: 6626594136111968042}
   dangerSightModifier: 2
   beenKilled: 0
-  floatTextPosition: {fileID: 0}
+  floatTextPosition: {fileID: 6282377787939126662}
   headshotMultiplier: 0
   droppedZoinsAmt: 3
   itemDropList:
@@ -1213,13 +1213,25 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 6626594136111968026}
     m_Modifications:
+    - target: {fileID: 3678282521120640850, guid: 7f038d37c8f48d049a9ab8d5543d4794, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 2.305
+      objectReference: {fileID: 0}
+    - target: {fileID: 3678282521120640850, guid: 7f038d37c8f48d049a9ab8d5543d4794, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -2.351
+      objectReference: {fileID: 0}
+    - target: {fileID: 3678282521120640850, guid: 7f038d37c8f48d049a9ab8d5543d4794, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 4926071305942184331, guid: 7f038d37c8f48d049a9ab8d5543d4794, type: 3}
       propertyPath: m_Name
       value: Enemy UI
       objectReference: {fileID: 0}
     - target: {fileID: 4926071305942184331, guid: 7f038d37c8f48d049a9ab8d5543d4794, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5027198844361150276, guid: 7f038d37c8f48d049a9ab8d5543d4794, type: 3}
       propertyPath: m_Pivot.x
@@ -1354,3 +1366,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!4 &6282377787939126662 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 3678282521120640850, guid: 7f038d37c8f48d049a9ab8d5543d4794, type: 3}
+  m_PrefabInstance: {fileID: 7216067492337611476}
+  m_PrefabAsset: {fileID: 0}
