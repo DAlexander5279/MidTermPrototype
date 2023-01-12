@@ -14,6 +14,7 @@ public class enemyAI : MonoBehaviour, IDamage
     [SerializeField] Image enemyHPBackground;
     [SerializeField] Image enemyHPBarAnim;
     [SerializeField] Animator anim;
+    [SerializeField] private GameObject floatingTextPrefab; 
 
     [Header("--- Enemy Stats ---")]
     [SerializeField] int HP;
@@ -22,6 +23,7 @@ public class enemyAI : MonoBehaviour, IDamage
     [SerializeField] Transform headPosition;
     [Range(1.0f, 2.0f)] [SerializeField] float dangerSightModifier;
     [SerializeField] bool beenKilled;
+    [SerializeField] Transform floatTextPosition;
 
     [SerializeField] int droppedZoinsAmt;   // game currency
 
@@ -100,6 +102,15 @@ public class enemyAI : MonoBehaviour, IDamage
         else { HPTimer = 0f; }
     }
 
+    void ShowDamage(string text)
+    {
+        if(floatingTextPrefab)
+        {
+            GameObject prefab = Instantiate(floatingTextPrefab, floatTextPosition.position, transform.rotation);
+            prefab.GetComponentInChildren<TextMesh>().text = text; 
+        }
+    }
+
     // function that makes the enemy track and attack the player
     void targetPlayer()
     {
@@ -173,6 +184,7 @@ public class enemyAI : MonoBehaviour, IDamage
         {
 
             HP -= dmgIn;
+            ShowDamage(dmgIn.ToString());   
             updateEnemyHPBar();
             enemyUI.gameObject.SetActive(true);
             enemyHPBackground.gameObject.SetActive(true);
