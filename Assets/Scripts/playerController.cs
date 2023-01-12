@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
+using static UnityEngine.ParticleSystem;
 
 public class playerController : MonoBehaviour
 {
@@ -13,11 +14,10 @@ public class playerController : MonoBehaviour
     // Player Stats
     #region
     [Header("------Player Stats------")]
-    [Range(1, 10)][SerializeField] float playerSpeed;
-
+    [Range(1, 10)] [SerializeField] float playerSpeed;
     [SerializeField] int jumpMax;
-    [Range(5, 15)][SerializeField] int jumpHeight;
-    [Range(10, 20)][SerializeField] int gravity;
+    [Range(5, 15)] [SerializeField] int jumpHeight;
+    [Range(10, 20)] [SerializeField] int gravity;
     [SerializeField] int pushTime;
     public int HP;
     public bool isDisabled;
@@ -29,9 +29,9 @@ public class playerController : MonoBehaviour
 
     [Header("------KeyBinds------")]
     [SerializeField] KeyCode Reload;
-    [SerializeField] KeyCode crouchCBind;
-
+    //stance keybinds
     [SerializeField] KeyCode crouch;
+    [SerializeField] KeyCode crouchCBind;
     #endregion
 
     // look to move to gameManager in the future + Reload.ToString()
@@ -47,16 +47,16 @@ public class playerController : MonoBehaviour
     [SerializeField] AudioClip gunshotSound;
     [SerializeField] List<AudioClip> dryfireSound;
     [SerializeField] AudioClip gunReloadSound;
-    [Range(0, 3)][SerializeField] float gunshotSoundVol;
+    [Range(0, 3)] [SerializeField] float gunshotSoundVol;
 
     [SerializeField] AudioClip[] playerJumpAudio;
-    [Range(0, 3)][SerializeField] float playerJumpAudioVol;
+    [Range(0, 3)] [SerializeField] float playerJumpAudioVol;
 
     [SerializeField] AudioClip[] playerHurtAudio;
-    [Range(0, 3)][SerializeField] float playerHurtAudioVol;
+    [Range(0, 3)] [SerializeField] float playerHurtAudioVol;
 
     [SerializeField] AudioClip[] playerStepAudio;
-    [Range(0, 3)][SerializeField] float playerStepAudioVol;
+    [Range(0, 3)] [SerializeField] float playerStepAudioVol;
     #endregion
 
     // gun stats
@@ -64,24 +64,25 @@ public class playerController : MonoBehaviour
     [Header("------Gun Stats------")]
     [SerializeField] List<gunStats> gunList = new List<gunStats>();
 
-    [Range(0, 5)][SerializeField] int gunDMG;
+    [Range(0, 5)] [SerializeField] int gunDMG;
     [SerializeField] float shootRate;   // player's gun fire rate
-    [Range(0, 200)][SerializeField] int shootDist; // effective range of the shot
+    [Range(0, 200)] [SerializeField] int shootDist; // effective range of the shot
     [SerializeField] GameObject gunModel;   //also gun position/viewmodel position
     [SerializeField] GameObject hitEffect;
     [SerializeField] int fireSelect;
     [SerializeField] int pellets;
     [SerializeField] float spreadAccuracy;
     [SerializeField] bool hasScope;
+    [SerializeField] float gunCriticalMult;
+    [SerializeField] bool isMeleeWeapon;
     #endregion
 
     // extra variables
     #region
     bool isShooting;
+    bool isMeleeing;
     private Vector3 playerVelocity;
     Vector3 move;
-    private Vector3 playerCrouch;
-    Vector3 moveCrouch;
     int timesJumped;
     public int HPOriginal;
     int walkSpeedOrg;
@@ -98,35 +99,38 @@ public class playerController : MonoBehaviour
     //  crouch/prone stuff
     #region
     [Header("------Stances------")]
-    public float orgPlayerSpeed;
-    [Range(0, 1)][SerializeField] float crouchHeight;
-    [SerializeField] float crouchSpeed;
-    [Range(0, 1)][SerializeField] float proneHeight;
-    [SerializeField] float proneSpeed;
-    private float timePressed = 0;
-    public float waitTimeReq = 1f;
-    private float timeReset = 0;
-    private bool isPressed = false;
-    private bool isProned = false;
-    private bool isCrouched = false;
-    private bool isStanding = true;
+    //public float orgPlayerSpeed;
+    //[SerializeField] float crouchHeight;
+    //[SerializeField] float crouchSpeed;
+    //[SerializeField] bool isCrouched;
+    //[SerializeField] bool isStanding;
+    //[SerializeField] float scaleX;
+    //[SerializeField] float scaleY;
+    //[SerializeField] float scaleZ;
+
+    Vector3 playerCrouch;
     private float startStance;
     #endregion
 
-    // Start is called before the first frame update
 
+
+
+    // Start is called before the first frame update
     private void Start()
     {
         HPOriginal = HP;
-        startStance = transform.localScale.y;
-        orgPlayerSpeed = playerSpeed;
         updatePlayerHP();
         gameManager.instance.updatePlayerDamage(gunDMG);
 
-        isStanding = true;
-        isCrouched = false;
-        isProned = false;
+        // stance things needed to be saved on start
+        //startStance = transform.position.y;
+        //orgPlayerSpeed = playerSpeed;
+        //scaleX = gunModel.transform.localScale.x ;
+        //scaleY = gunModel.transform.localScale.y;
+        //scaleZ = gunModel.transform.localScale.z;
         isReloading = false;
+
+
 
     }
     // Update is called once per frame
@@ -138,6 +142,7 @@ public class playerController : MonoBehaviour
             if (!gameManager.instance.paused)
             {
                 pushBack = Vector3.Lerp(pushBack, Vector3.zero, Time.deltaTime * pushTime);
+
 
                 Movement();
 
@@ -153,27 +158,6 @@ public class playerController : MonoBehaviour
             }
 
         }
-        if (Input.GetKey(crouch) && isPressed == false)
-        {
-            timeReset += Time.deltaTime;
-        }
-        if (Input.GetKey(crouch) || isPressed == true)
-        {
-            timeReset = 0;
-        }
-        if (Input.GetKey(crouch))
-        {
-            timePressed += Time.deltaTime;
-        }
-        if (timeReset >= waitTimeReq && isPressed == false)
-        {
-            isPressed = true;
-        }
-        if (Input.GetKeyUp(crouch))
-        {
-            isPressed = false;
-        }
-
     }
     void Movement()
     {
@@ -198,58 +182,34 @@ public class playerController : MonoBehaviour
             aud.PlayOneShot(playerJumpAudio[UnityEngine.Random.Range(0, playerJumpAudio.Length)], playerJumpAudioVol);
         }
 
-        if (timePressed > waitTimeReq)
-        {
-            if (Input.GetKeyUp(crouch))
-            {
-                isProned = !isProned;
-                isCrouched = false;
-                transform.localScale = new Vector3(transform.localScale.x, proneHeight, transform.localScale.z);
-                playerSpeed = proneSpeed;
 
-            }
+        //if (Input.GetKeyUp(crouch))
+        //{
+        //    isCrouched = !isCrouched;
+        //    isStanding = false;
 
-        }
-        if (Input.GetKeyUp(crouch) && timePressed < waitTimeReq)
-        {
-            isCrouched = !isCrouched;
-            isProned = false;
-            transform.localScale = new Vector3(transform.localScale.x, crouchHeight, transform.localScale.z);
-            playerSpeed = proneSpeed;
-
-        }
-        if (Input.GetKeyUp(crouchCBind) && timePressed < waitTimeReq)
-        {
-            isCrouched = !isCrouched;
-            isProned = false;
-            transform.localScale = new Vector3(transform.localScale.x, crouchHeight, transform.localScale.z);
-            playerSpeed = proneSpeed;
-
-        }
-        if (isCrouched == false && isProned == false)
-        {
-            isStanding = true;
-            isCrouched = false;
-            isProned = false;
-            transform.localScale = new Vector3(transform.localScale.x, startStance, transform.localScale.z);
-            playerSpeed = orgPlayerSpeed;
-
-        }
-        else
-        {
-            isStanding = false;
-        }
-        if (Input.GetKeyUp(crouch))
-        {
-            timePressed = 0;
-        }
-
-
-
+        //    playerSpeed = crouchSpeed;
+        //}
+        //if (Input.GetKeyUp(crouchCBind))
+        //{
+        //    isCrouched = !isCrouched;
+        //    isStanding = false;
+        //    playerCrouch.y = crouchHeight;
+        //    playerSpeed = crouchSpeed;
+        //}
+        //if (isCrouched == false && isStanding == false)
+        //{
+        //    isStanding = true;
+        //    isCrouched = false;
+        //    transform.localScale = new Vector3(transform.localScale.x, startStance, transform.localScale.z);
+        //    playerSpeed = orgPlayerSpeed;
+        //}
 
         playerVelocity.y -= gravity * Time.deltaTime;
         playerControl.Move(playerVelocity * Time.deltaTime);
         playerControl.Move((playerVelocity + pushBack) * Time.deltaTime);
+
+
 
 
     }
@@ -261,8 +221,11 @@ public class playerController : MonoBehaviour
         {
             RaycastHit hit;
             isShooting = true;
-            gunList[selectedGun].magCount--;
-            gameManager.instance.ammoUpdate(gunList[selectedGun].magCount, gunList[selectedGun].magSize);
+            if (!isMeleeWeapon)
+            {
+                gunList[selectedGun].magCount--;
+                gameManager.instance.ammoUpdate(gunList[selectedGun].magCount, gunList[selectedGun].magSize, gunList[selectedGun].isMelee);
+            }
 
             switch (pellets)
             {
@@ -272,30 +235,40 @@ public class playerController : MonoBehaviour
                     {
                         if (hit.collider.GetComponent<IDamage>() != null)
                         {
-                            hit.collider.GetComponent<IDamage>().takeDamage(gunDMG);
+                            if (hit.collider is BoxCollider && !isMeleeWeapon)
+                            {
+                                hit.collider.GetComponent<IDamage>().takeDamage(gunDMG, true, gunCriticalMult);
+                            }
+                            else
+                            {
+                                hit.collider.GetComponent<IDamage>().takeDamage(gunDMG, false, 1.0f);
+                            }
                         }
 
                         Instantiate(hitEffect, hit.point, hitEffect.transform.rotation);
                     }
                     break;
                 default:
-                    //int numberOfHits = 0;
-                    //Collider enemyHit = null;
                     for (int i = 0; i < pellets; i++)
                     {
                         if (Physics.Raycast(Camera.main.ViewportPointToRay(new Vector2(0.5f * Random.Range(spreadAccuracy, 1.0f), 0.5f * Random.Range(spreadAccuracy, 1.0f))), out hit, shootDist))
                         {
                             if (hit.collider.GetComponent<IDamage>() != null)
                             {
-                                //enemyHit = hit.collider;
-                                //numberOfHits++;
-                                hit.collider.GetComponent<IDamage>().takeDamage(gunDMG);
+                                if (hit.collider is BoxCollider && !isMeleeWeapon)    // melee should always have 1 pellet but extra check just in case
+                                {
+                                    hit.collider.GetComponent<IDamage>().takeDamage(gunDMG, true, gunCriticalMult);
+                                }
+                                else
+                                {
+                                    hit.collider.GetComponent<IDamage>().takeDamage(gunDMG, false, 1.0f);
+                                }
+
                             }
 
                             Instantiate(hitEffect, hit.point, hitEffect.transform.rotation);
                         }
                     }
-                    //enemyHit.GetComponent<IDamage>().takeDamage(gunDMG * numberOfHits);
                     break;
             }
 
@@ -318,7 +291,7 @@ public class playerController : MonoBehaviour
                 aud.PlayOneShot(gunReloadSound, gunshotSoundVol);
                 yield return new WaitForSeconds(0.5f);
                 gunList[selectedGun].magCount = gunList[selectedGun].magSize;
-                gameManager.instance.ammoUpdate(gunList[selectedGun].magCount, gunList[selectedGun].magSize);
+                gameManager.instance.ammoUpdate(gunList[selectedGun].magCount, gunList[selectedGun].magSize, gunList[selectedGun].isMelee);
                 reloadUI.SetActive(false);
                 isReloading = false;
             }
@@ -330,6 +303,7 @@ public class playerController : MonoBehaviour
             }
         }
     }
+
     public void takeDamage(int dmgIn)
     {
         HP -= gameManager.instance.scalingFunction(dmgIn);
@@ -386,7 +360,7 @@ public class playerController : MonoBehaviour
                 {
                     gunDMG = gunList[i].modifedGunDMG;
                     aud.PlayOneShot(gunReloadSound, gunshotSoundVol);
-                    gameManager.instance.ammoUpdate(gunList[selectedGun].magCount, gunList[selectedGun].magSize);
+                    gameManager.instance.ammoUpdate(gunList[selectedGun].magCount, gunList[selectedGun].magSize, gunList[selectedGun].isMelee);
                     reloadUI.SetActive(false);
                     gameManager.instance.updatePlayerDamage(gunDMG);
                 }
@@ -400,7 +374,7 @@ public class playerController : MonoBehaviour
             selectedGun = gunList.Count - 1;
             changeCurrentGun();
 
-            gameManager.instance.ammoUpdate(gunStat.magCount, gunList[selectedGun].magSize);
+            gameManager.instance.ammoUpdate(gunStat.magCount, gunStat.magSize, gunStat.isMelee);
         }
         if (gameManager.instance.itemCount != 0)
             gameManager.instance.updateItemCount(-1);
@@ -448,19 +422,22 @@ public class playerController : MonoBehaviour
 
         gunshotSound = gunList[selectedGun].gunshotSound;
 
-        gameManager.instance.ammoUpdate(gunList[selectedGun].magCount, gunList[selectedGun].magSize);
+        gameManager.instance.ammoUpdate(gunList[selectedGun].magCount, gunList[selectedGun].magSize, gunList[selectedGun].isMelee);
 
         pellets = gunList[selectedGun].pellets;
 
         spreadAccuracy = gunList[selectedGun].spreadAccuracy;
-
         hasScope = gunList[selectedGun].hasScope;
+        gunCriticalMult = gunList[selectedGun].criticalMult;
+
+        isMeleeWeapon = gunList[selectedGun].isMelee;
 
         // transfer the gun's model
         gunModel.GetComponent<MeshFilter>().sharedMesh = gunList[selectedGun].gunModel.GetComponent<MeshFilter>().sharedMesh;
 
         //transfer the gun's textures/materials
         gunModel.GetComponent<MeshRenderer>().sharedMaterial = gunList[selectedGun].gunModel.GetComponent<MeshRenderer>().sharedMaterial;
+
     }
 
     public void changeCurrentGun(gunStats gunStat) // in case you want to manually give the player a gun
@@ -472,9 +449,14 @@ public class playerController : MonoBehaviour
         gunshotSound = gunStat.gunshotSound;
         fireSelect = gunStat.fireSelect;
 
+        gameManager.instance.ammoUpdate(gunStat.magCount, gunStat.magSize, gunStat.isMelee);
+
         pellets = gunStat.pellets;
         spreadAccuracy = gunStat.spreadAccuracy;
         hasScope = gunStat.hasScope;
+        gunCriticalMult = gunStat.criticalMult;
+
+        isMeleeWeapon = gunStat.isMelee;
 
         // transfer the gun's model
         gunModel.GetComponent<MeshFilter>().sharedMesh = gunStat.gunModel.GetComponent<MeshFilter>().sharedMesh;

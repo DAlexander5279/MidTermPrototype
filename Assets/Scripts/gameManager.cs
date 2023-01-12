@@ -29,6 +29,7 @@ public class gameManager : MonoBehaviour
     public Image playerHealthBar;
     public Image playerHealthAnim;
     public GameObject ammoHUD;
+    public GameObject ammoHUDText;
     //public GameObject Reload;
     [SerializeField] TextMeshProUGUI Zoins; // its coins!
     [SerializeField] TextMeshProUGUI roomsCleared; // its rooms!
@@ -142,11 +143,20 @@ public class gameManager : MonoBehaviour
         else
             roomsCleared.text = roomCount.ToString("F0");
     }
-    public void ammoUpdate(int currentMag, int magSize)
+    public void ammoUpdate(int currentMag, int magSize, bool isMelee)
     {
-        //AmmoCount = amount;
-        ammoHUD.SetActive(true);
-        ammoCount.text = currentMag.ToString("F0") + " / " + magSize.ToString("F0");
+        if (!isMelee)
+        {
+            //AmmoCount = amount;
+            ammoHUD.SetActive(true);
+            ammoHUDText.SetActive(true);
+            ammoCount.text = currentMag.ToString("F0") + " / " + magSize.ToString("F0");
+        }
+        else if (isMelee)
+        {
+            ammoHUD.SetActive(false);
+            ammoHUDText.SetActive(false);
+        }
     }
 
     public float getDamageModifier()
