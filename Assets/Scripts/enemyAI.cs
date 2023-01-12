@@ -179,47 +179,6 @@ public class enemyAI : MonoBehaviour, IDamage
         }
     }
 
-    public void takeDamage(int dmgIn)
-    {
-        if (!beenKilled)
-        {
-
-            HP -= dmgIn;
-            ShowDamage(dmgIn.ToString());
-            updateEnemyHPBar();
-            enemyUI.gameObject.SetActive(true);
-            enemyHPBackground.gameObject.SetActive(true);
-            enemyHPBarAnim.gameObject.SetActive(true);
-            enemyHPBar.gameObject.SetActive(true);
-            agent.SetDestination(gameManager.instance.player.transform.position);
-            if (!playerThreat)
-                playerThreat = true;
-            StartCoroutine(flashDamage());
-
-            if (HP <= 0)
-            {
-
-                // Update enemy count
-                gameManager.instance.updateEnemyCount(-1);
-
-                gameManager.instance.enemiesKilled++;
-
-                droppedZoinsAmt = gameManager.instance.scalingFunction(droppedZoinsAmt);
-
-                gameManager.instance.addZoins(droppedZoinsAmt);
-
-                rollDropItem(gameManager.instance.scalingFunction(baseDropChance));
-
-
-                Destroy(gameObject);
-                beenKilled = true;
-
-
-            }
-        }
-
-    }
-
     public void takeDamage(int dmgIn, bool wasCritical, float criticalMult)
     {
         if (!beenKilled)
