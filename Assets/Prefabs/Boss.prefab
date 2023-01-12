@@ -797,8 +797,8 @@ Transform:
   m_GameObject: {fileID: 6626594136112001914}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 1.2472, y: 0, z: -11.817475}
-  m_LocalScale: {x: 0.6152154, y: 1.8189371, z: 0.4}
-  m_ConstrainProportionsScale: 0
+  m_LocalScale: {x: 2, y: 2, z: 2}
+  m_ConstrainProportionsScale: 1
   m_Children:
   - {fileID: 6626594136111968046}
   - {fileID: 6626594136111968028}
@@ -825,12 +825,14 @@ MonoBehaviour:
   enemyHPBackground: {fileID: 8954714535549212698}
   enemyHPBarAnim: {fileID: 5798620939842541822}
   anim: {fileID: 6626594136104698062}
+  floatingTextPrefab: {fileID: 0}
   HP: 200
   playerFaceSpeed: 45
   sightAngle: 180
   headPosition: {fileID: 6626594136111968042}
   dangerSightModifier: 2
   beenKilled: 0
+  floatTextPosition: {fileID: 0}
   droppedZoinsAmt: 20
   itemDropList:
   - {fileID: 5644053857807868638, guid: 3e158b2550c6cb4478ddad5c2b5e5ef1, type: 3}
