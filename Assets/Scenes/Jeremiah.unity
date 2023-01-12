@@ -264,34 +264,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 390137842, guid: 046a377d7437c9644bf277f305fa4dca, type: 3}
-      propertyPath: m_Layer
-      value: 9
-      objectReference: {fileID: 0}
-    - target: {fileID: 424139918901482180, guid: 046a377d7437c9644bf277f305fa4dca, type: 3}
-      propertyPath: m_Layer
-      value: 9
-      objectReference: {fileID: 0}
-    - target: {fileID: 1402255450749072781, guid: 046a377d7437c9644bf277f305fa4dca, type: 3}
-      propertyPath: mainCamera
-      value: 
-      objectReference: {fileID: 2045394627}
     - target: {fileID: 1402255450749072781, guid: 046a377d7437c9644bf277f305fa4dca, type: 3}
       propertyPath: scopeOverlay
       value: 
       objectReference: {fileID: 1020597236}
-    - target: {fileID: 1402255450749072781, guid: 046a377d7437c9644bf277f305fa4dca, type: 3}
-      propertyPath: weaponCamera
-      value: 
-      objectReference: {fileID: 2071874936}
-    - target: {fileID: 2470128279692826928, guid: 046a377d7437c9644bf277f305fa4dca, type: 3}
-      propertyPath: near clip plane
-      value: 0.1
-      objectReference: {fileID: 0}
-    - target: {fileID: 2470128279692826928, guid: 046a377d7437c9644bf277f305fa4dca, type: 3}
-      propertyPath: m_CullingMask.m_Bits
-      value: 511
-      objectReference: {fileID: 0}
     - target: {fileID: 2470128280080099144, guid: 046a377d7437c9644bf277f305fa4dca, type: 3}
       propertyPath: m_RootOrder
       value: 4
@@ -340,10 +316,6 @@ PrefabInstance:
       propertyPath: reloadUI
       value: 
       objectReference: {fileID: 1426068656}
-    - target: {fileID: 2470128280080099147, guid: 046a377d7437c9644bf277f305fa4dca, type: 3}
-      propertyPath: meleeModel
-      value: 
-      objectReference: {fileID: 1900826736}
     - target: {fileID: 2470128280080099158, guid: 046a377d7437c9644bf277f305fa4dca, type: 3}
       propertyPath: m_Name
       value: player
@@ -440,11 +412,6 @@ Transform:
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 8723847276176227690, guid: 8119b01fc1f287140a1aacffdc79cacc, type: 3}
   m_PrefabInstance: {fileID: 5197967159775213253}
-  m_PrefabAsset: {fileID: 0}
---- !u!1 &1900826736 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 424139918901482180, guid: 046a377d7437c9644bf277f305fa4dca, type: 3}
-  m_PrefabInstance: {fileID: 849020095}
   m_PrefabAsset: {fileID: 0}
 --- !u!1 &2032307807
 GameObject:
@@ -545,16 +512,6 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 2470128279692826929, guid: 046a377d7437c9644bf277f305fa4dca, type: 3}
   m_PrefabInstance: {fileID: 849020095}
   m_PrefabAsset: {fileID: 0}
---- !u!20 &2045394627 stripped
-Camera:
-  m_CorrespondingSourceObject: {fileID: 2470128279692826928, guid: 046a377d7437c9644bf277f305fa4dca, type: 3}
-  m_PrefabInstance: {fileID: 849020095}
-  m_PrefabAsset: {fileID: 0}
---- !u!1 &2071874936 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 1307054775, guid: 046a377d7437c9644bf277f305fa4dca, type: 3}
-  m_PrefabInstance: {fileID: 849020095}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &2033287055529576135
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -619,6 +576,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1830579955, guid: 8119b01fc1f287140a1aacffdc79cacc, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 2052016859, guid: 8119b01fc1f287140a1aacffdc79cacc, type: 3}
       propertyPath: cam
       value: 

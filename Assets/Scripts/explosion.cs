@@ -55,7 +55,7 @@ public class explosion : MonoBehaviour
                 else if (nearExplosion.CompareTag("Enemy"))
                 {
                     pushForce = (nearExplosion.transform.position - transform.position) * pushBackAmount;
-                    nearExplosion.GetComponent<IDamage>().takeDamage(damage);
+                    nearExplosion.GetComponent<IDamage>().takeDamage(damage, false, 1.0f);
                     nearExplosion.GetComponent<IDamage>().pushObject(pushForce);
                 }
             }

@@ -781,6 +781,7 @@ GameObject:
   - component: {fileID: 6626594136104698061}
   - component: {fileID: 3675600410203723565}
   - component: {fileID: 8232079504651858166}
+  - component: {fileID: 206969937384640787}
   m_Layer: 6
   m_Name: Boss
   m_TagString: Enemy
@@ -833,6 +834,7 @@ MonoBehaviour:
   dangerSightModifier: 2
   beenKilled: 0
   floatTextPosition: {fileID: 0}
+  headshotMultiplier: 0
   droppedZoinsAmt: 20
   itemDropList:
   - {fileID: 5644053857807868638, guid: 3e158b2550c6cb4478ddad5c2b5e5ef1, type: 3}
@@ -906,9 +908,9 @@ CapsuleCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   m_Radius: 0.5
-  m_Height: 3.1013572
+  m_Height: 2.48
   m_Direction: 1
-  m_Center: {x: 0, y: 1.0506786, z: 0}
+  m_Center: {x: 0, y: 0.92, z: 0}
 --- !u!135 &3675600410203723565
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -1018,6 +1020,19 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!65 &206969937384640787
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6626594136112001914}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.45, y: 0.5, z: 0.515}
+  m_Center: {x: 0, y: 2.3522332, z: 0.05}
 --- !u!1 &6626594136112001916
 GameObject:
   m_ObjectHideFlags: 0

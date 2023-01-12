@@ -73,6 +73,7 @@ public class playerController : MonoBehaviour
     [SerializeField] int pellets;
     [SerializeField] float spreadAccuracy;
     [SerializeField] bool hasScope;
+    [SerializeField] float gunCriticalMult;
     [SerializeField] bool isMeleeWeapon;
     #endregion
 
@@ -234,30 +235,40 @@ public class playerController : MonoBehaviour
                     {
                         if (hit.collider.GetComponent<IDamage>() != null)
                         {
-                            hit.collider.GetComponent<IDamage>().takeDamage(gunDMG);
+                            if (hit.collider is BoxCollider && !isMeleeWeapon)
+                            {
+                                hit.collider.GetComponent<IDamage>().takeDamage(gunDMG, true, gunCriticalMult);
+                            }
+                            else
+                            {
+                                hit.collider.GetComponent<IDamage>().takeDamage(gunDMG, false, 1.0f);
+                            }
                         }
 
                         Instantiate(hitEffect, hit.point, hitEffect.transform.rotation);
                     }
                     break;
                 default:
-                    //int numberOfHits = 0;
-                    //Collider enemyHit = null;
                     for (int i = 0; i < pellets; i++)
                     {
                         if (Physics.Raycast(Camera.main.ViewportPointToRay(new Vector2(0.5f * Random.Range(spreadAccuracy, 1.0f), 0.5f * Random.Range(spreadAccuracy, 1.0f))), out hit, shootDist))
                         {
                             if (hit.collider.GetComponent<IDamage>() != null)
                             {
-                                //enemyHit = hit.collider;
-                                //numberOfHits++;
-                                hit.collider.GetComponent<IDamage>().takeDamage(gunDMG);
+                                if (hit.collider is BoxCollider && !isMeleeWeapon)    // melee should always have 1 pellet but extra check just in case
+                                {
+                                    hit.collider.GetComponent<IDamage>().takeDamage(gunDMG, true, gunCriticalMult);
+                                }
+                                else
+                                {
+                                    hit.collider.GetComponent<IDamage>().takeDamage(gunDMG, false, 1.0f);
+                                }
+
                             }
 
                             Instantiate(hitEffect, hit.point, hitEffect.transform.rotation);
                         }
                     }
-                    //enemyHit.GetComponent<IDamage>().takeDamage(gunDMG * numberOfHits);
                     break;
             }
 
@@ -417,6 +428,7 @@ public class playerController : MonoBehaviour
 
         spreadAccuracy = gunList[selectedGun].spreadAccuracy;
         hasScope = gunList[selectedGun].hasScope;
+        gunCriticalMult = gunList[selectedGun].criticalMult;
 
         isMeleeWeapon = gunList[selectedGun].isMelee;
 
@@ -440,6 +452,8 @@ public class playerController : MonoBehaviour
         pellets = gunStat.pellets;
         spreadAccuracy = gunStat.spreadAccuracy;
         hasScope = gunStat.hasScope;
+        gunCriticalMult = gunStat.criticalMult;
+
         isMeleeWeapon = gunStat.isMelee;
 
         // transfer the gun's model

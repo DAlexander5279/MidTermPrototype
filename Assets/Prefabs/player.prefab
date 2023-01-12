@@ -33,7 +33,7 @@ Transform:
   m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 2470128279692826929}
-  m_RootOrder: 0
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: -1.7, y: 0, z: 0}
 --- !u!114 &1402255450749072781
 MonoBehaviour:
@@ -208,7 +208,7 @@ GameObject:
   - component: {fileID: 6590555607793623562}
   - component: {fileID: 2397752966658562240}
   - component: {fileID: 7320107692560805539}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: melee postition
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -228,7 +228,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 2470128279692826929}
-  m_RootOrder: 2
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: -3.066, y: -4.923, z: 6.811}
 --- !u!33 &2397752966658562240
 MeshFilter:
@@ -313,8 +313,8 @@ Transform:
   m_Children:
   - {fileID: 7494317789885382928}
   - {fileID: 390137843}
-  - {fileID: 7494317789885382928}
   - {fileID: 1307054778}
+  - {fileID: 6590555607793623562}
   m_Father: {fileID: 2470128280080099144}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -489,19 +489,9 @@ MonoBehaviour:
   pellets: 0
   spreadAccuracy: 0
   hasScope: 0
-  pellets: 0
-  spreadAccuracy: 0
-  HPOriginal: 0
-  orgPlayerSpeed: 8
-  crouchHeight: 0.75
-  crouchSpeed: 6
-  proneHeight: 0.4
-  proneSpeed: 2
-  waitTimeReq: 1
-  meleeDis: 0
-  meleeDMG: 0
-  meleeRate: 0
+  gunCriticalMult: 0
   isMeleeWeapon: 0
+  HPOriginal: 0
 --- !u!82 &6420801457207091318
 AudioSource:
   m_ObjectHideFlags: 0

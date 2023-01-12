@@ -14,7 +14,7 @@ public class enemyAI : MonoBehaviour, IDamage
     [SerializeField] Image enemyHPBackground;
     [SerializeField] Image enemyHPBarAnim;
     [SerializeField] Animator anim;
-    [SerializeField] private GameObject floatingTextPrefab; 
+    [SerializeField] private GameObject floatingTextPrefab;
 
     [Header("--- Enemy Stats ---")]
     [SerializeField] int HP;
@@ -24,6 +24,7 @@ public class enemyAI : MonoBehaviour, IDamage
     [Range(1.0f, 2.0f)] [SerializeField] float dangerSightModifier;
     [SerializeField] bool beenKilled;
     [SerializeField] Transform floatTextPosition;
+    [SerializeField] float headshotMultiplier;
 
     [SerializeField] int droppedZoinsAmt;   // game currency
 
@@ -104,10 +105,10 @@ public class enemyAI : MonoBehaviour, IDamage
 
     void ShowDamage(string text)
     {
-        if(floatingTextPrefab)
+        if (floatingTextPrefab)
         {
             GameObject prefab = Instantiate(floatingTextPrefab, floatTextPosition.position, transform.rotation);
-            prefab.GetComponentInChildren<TextMesh>().text = text; 
+            prefab.GetComponentInChildren<TextMesh>().text = text;
         }
     }
 
@@ -184,7 +185,54 @@ public class enemyAI : MonoBehaviour, IDamage
         {
 
             HP -= dmgIn;
-            ShowDamage(dmgIn.ToString());   
+            ShowDamage(dmgIn.ToString());
+            updateEnemyHPBar();
+            enemyUI.gameObject.SetActive(true);
+            enemyHPBackground.gameObject.SetActive(true);
+            enemyHPBarAnim.gameObject.SetActive(true);
+            enemyHPBar.gameObject.SetActive(true);
+            agent.SetDestination(gameManager.instance.player.transform.position);
+            if (!playerThreat)
+                playerThreat = true;
+            StartCoroutine(flashDamage());
+
+            if (HP <= 0)
+            {
+
+                // Update enemy count
+                gameManager.instance.updateEnemyCount(-1);
+
+                gameManager.instance.enemiesKilled++;
+
+                droppedZoinsAmt = gameManager.instance.scalingFunction(droppedZoinsAmt);
+
+                gameManager.instance.addZoins(droppedZoinsAmt);
+
+                rollDropItem(gameManager.instance.scalingFunction(baseDropChance));
+
+
+                Destroy(gameObject);
+                beenKilled = true;
+
+
+            }
+        }
+
+    }
+
+    public void takeDamage(int dmgIn, bool wasCritical, float criticalMult)
+    {
+        if (!beenKilled)
+        {
+            if (wasCritical && (criticalMult > 1.0f))
+            {
+                HP -= Mathf.RoundToInt(dmgIn * criticalMult);
+            }
+            else
+            {
+                HP -= dmgIn;
+            }
+            ShowDamage(dmgIn.ToString());
             updateEnemyHPBar();
             enemyUI.gameObject.SetActive(true);
             enemyHPBackground.gameObject.SetActive(true);

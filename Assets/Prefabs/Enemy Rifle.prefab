@@ -556,6 +556,7 @@ GameObject:
   - component: {fileID: 7562739324753738845}
   - component: {fileID: 7562739324753738846}
   - component: {fileID: 1738468286}
+  - component: {fileID: 7433532860335216606}
   - component: {fileID: 1061444911186347715}
   m_Layer: 6
   m_Name: Enemy Rifle
@@ -609,6 +610,7 @@ MonoBehaviour:
   dangerSightModifier: 1.65
   beenKilled: 0
   floatTextPosition: {fileID: 0}
+  headshotMultiplier: 0
   droppedZoinsAmt: 1
   itemDropList:
   - {fileID: 5644053857807868638, guid: 3e158b2550c6cb4478ddad5c2b5e5ef1, type: 3}
@@ -680,9 +682,9 @@ CapsuleCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   m_Radius: 0.5
-  m_Height: 3.1013572
+  m_Height: 2.48
   m_Direction: 1
-  m_Center: {x: 0, y: 1.0506786, z: 0}
+  m_Center: {x: 0, y: 0.92, z: 0}
 --- !u!135 &1738468286
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -696,6 +698,19 @@ SphereCollider:
   serializedVersion: 2
   m_Radius: 20
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!65 &7433532860335216606
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7562739324744339433}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.45, y: 0.5, z: 0.515}
+  m_Center: {x: 0, y: 2.3522332, z: 0.05}
 --- !u!82 &1061444911186347715
 AudioSource:
   m_ObjectHideFlags: 0
