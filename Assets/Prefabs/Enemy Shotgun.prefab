@@ -826,7 +826,7 @@ MonoBehaviour:
   enemyHPBackground: {fileID: 1756709843680222018}
   enemyHPBarAnim: {fileID: 3772969903728434086}
   anim: {fileID: 6626594136104698062}
-  floatingTextPrefab: {fileID: 1013527027229807100, guid: 3f09b7d860a139a43be44d79d0bf894c, type: 3}
+  floatingTextPrefab: {fileID: 716116289428203266, guid: a871673e88fa74a40a01ceedd07c9d87, type: 3}
   HP: 15
   playerFaceSpeed: 45
   sightAngle: 55
@@ -1215,11 +1215,11 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 3678282521120640850, guid: 7f038d37c8f48d049a9ab8d5543d4794, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 3.46
+      value: -0.12
       objectReference: {fileID: 0}
     - target: {fileID: 3678282521120640850, guid: 7f038d37c8f48d049a9ab8d5543d4794, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -1.95
+      value: 0.32
       objectReference: {fileID: 0}
     - target: {fileID: 3678282521120640850, guid: 7f038d37c8f48d049a9ab8d5543d4794, type: 3}
       propertyPath: m_LocalPosition.z
@@ -1231,7 +1231,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4926071305942184331, guid: 7f038d37c8f48d049a9ab8d5543d4794, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5027198844361150276, guid: 7f038d37c8f48d049a9ab8d5543d4794, type: 3}
       propertyPath: m_Pivot.x

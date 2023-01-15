@@ -107,7 +107,7 @@ public class enemyAI : MonoBehaviour, IDamage
     {
         if (floatingTextPrefab)
         {
-            GameObject prefab = Instantiate(floatingTextPrefab, floatTextPosition.position, transform.rotation);
+            GameObject prefab = Instantiate(floatingTextPrefab, floatTextPosition.position, floatTextPosition.transform.rotation);
             prefab.GetComponentInChildren<TextMesh>().text = text;
         }
     }
