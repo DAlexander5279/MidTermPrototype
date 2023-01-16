@@ -514,14 +514,14 @@ public class playerController : MonoBehaviour
             }
         }
     }
-        public void updatePlayerHP()
-        {
-            gameManager.instance.playerHealthBar.fillAmount = (float)HP / (float)HPOriginal;
-        }
-        public void inputPushBack(Vector3 dir)
-        {
-            pushBack = dir;
-        }
+    public void updatePlayerHP()
+    {
+        gameManager.instance.playerHealthBar.fillAmount = (float)HP / (float)HPOriginal;
+    }
+    public void inputPushBack(Vector3 dir)
+    {
+        pushBack = dir;
+    }
 
     public bool getScopeStatus()
     {
