@@ -193,7 +193,7 @@ public class enemyAI : MonoBehaviour, IDamage
                 trueDamage = dmgIn;
             }
             HP -= trueDamage;
-            ShowDamage(dmgIn.ToString());
+            ShowDamage(trueDamage.ToString());
             updateEnemyHPBar();
             enemyUI.gameObject.SetActive(true);
             enemyHPBackground.gameObject.SetActive(true);

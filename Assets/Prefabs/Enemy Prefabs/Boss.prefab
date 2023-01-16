@@ -826,7 +826,7 @@ MonoBehaviour:
   enemyHPBackground: {fileID: 8954714535549212698}
   enemyHPBarAnim: {fileID: 5798620939842541822}
   anim: {fileID: 6626594136104698062}
-  floatingTextPrefab: {fileID: 1013527027229807100, guid: 3f09b7d860a139a43be44d79d0bf894c, type: 3}
+  floatingTextPrefab: {fileID: 716116289428203266, guid: a871673e88fa74a40a01ceedd07c9d87, type: 3}
   HP: 200
   playerFaceSpeed: 45
   sightAngle: 180
@@ -834,7 +834,6 @@ MonoBehaviour:
   dangerSightModifier: 2
   beenKilled: 0
   floatTextPosition: {fileID: 3678282519719427806}
-  headshotMultiplier: 0
   droppedZoinsAmt: 20
   itemDropList:
   - {fileID: 5644053857807868638, guid: 3e158b2550c6cb4478ddad5c2b5e5ef1, type: 3}
