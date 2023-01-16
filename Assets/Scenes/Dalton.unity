@@ -1606,9 +1606,17 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 252540912, guid: 8119b01fc1f287140a1aacffdc79cacc, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 266753384207131369, guid: 8119b01fc1f287140a1aacffdc79cacc, type: 3}
       propertyPath: m_Name
       value: UI
+      objectReference: {fileID: 0}
+    - target: {fileID: 960409081268073544, guid: 8119b01fc1f287140a1aacffdc79cacc, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8723847276176227690, guid: 8119b01fc1f287140a1aacffdc79cacc, type: 3}
       propertyPath: m_Pivot.x
@@ -3720,6 +3728,26 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1987116815, guid: e50088426768be344bba0e156db71794, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1987116818, guid: e50088426768be344bba0e156db71794, type: 3}
+      propertyPath: WaveEnemyCount
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 1987116818, guid: e50088426768be344bba0e156db71794, type: 3}
+      propertyPath: waveBreakTimer
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 1987116818, guid: e50088426768be344bba0e156db71794, type: 3}
+      propertyPath: AliveEnemyCount
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 1987116818, guid: e50088426768be344bba0e156db71794, type: 3}
+      propertyPath: timeBetweenSpawns
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 6856168848725688994, guid: e50088426768be344bba0e156db71794, type: 3}
       propertyPath: m_Mesh
       value: 

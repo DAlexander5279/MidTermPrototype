@@ -48,8 +48,11 @@ public class waveManager : MonoBehaviour
 
     IEnumerator spawnEnemies()
     {
+
+        int indexEnemy = Random.Range(0, enemies.Length);
+        int indexPos = Random.Range(0, positions.Length);
         //spawns random enemy in a random location
-        Instantiate(enemies[Random.Range(0, enemies.Length)], positions[Random.Range(0, positions.Length)].transform);
+        Instantiate(enemies[indexEnemy], positions[indexPos].transform);
         
         //increments the number of enemies that have been spawned
         EnemiesSpawned++;
@@ -66,7 +69,7 @@ public class waveManager : MonoBehaviour
         //waits x amount of time, then resets variables for new wave
         yield return new WaitForSeconds(waveBreakTimer);
         EnemiesSpawned = 0;
-        //increments enemy count for the next wave
+        //increments enemy o
         WaveEnemyCount += 3;
         isWaveOver = false;
       
