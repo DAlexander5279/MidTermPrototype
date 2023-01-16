@@ -3728,8 +3728,36 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 580304886, guid: e50088426768be344bba0e156db71794, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -51.76
+      objectReference: {fileID: 0}
+    - target: {fileID: 1608193964, guid: e50088426768be344bba0e156db71794, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -2.17
+      objectReference: {fileID: 0}
+    - target: {fileID: 1608193964, guid: e50088426768be344bba0e156db71794, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -57.46
+      objectReference: {fileID: 0}
+    - target: {fileID: 1667895081, guid: e50088426768be344bba0e156db71794, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -56.57
+      objectReference: {fileID: 0}
     - target: {fileID: 1987116815, guid: e50088426768be344bba0e156db71794, type: 3}
       propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1987116817, guid: e50088426768be344bba0e156db71794, type: 3}
+      propertyPath: isWaveOver
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1987116817, guid: e50088426768be344bba0e156db71794, type: 3}
+      propertyPath: WaveEnemyCount
+      value: 20
+      objectReference: {fileID: 0}
+    - target: {fileID: 1987116817, guid: e50088426768be344bba0e156db71794, type: 3}
+      propertyPath: AliveEnemyCount
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1987116818, guid: e50088426768be344bba0e156db71794, type: 3}
@@ -4116,5 +4144,6 @@ PrefabInstance:
       propertyPath: m_Mesh
       value: 
       objectReference: {fileID: 1826298924}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 1987116818, guid: e50088426768be344bba0e156db71794, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: e50088426768be344bba0e156db71794, type: 3}

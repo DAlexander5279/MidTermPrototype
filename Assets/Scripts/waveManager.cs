@@ -49,9 +49,10 @@ public class waveManager : MonoBehaviour
     IEnumerator spawnEnemies()
     {
 
-        int indexEnemy = Random.Range(0, enemies.Length);
-        int indexPos = Random.Range(0, positions.Length);
+        int indexEnemy = Random.Range(0, enemies.Length );
+        int indexPos = Random.Range(0, positions.Length );
         //spawns random enemy in a random location
+       
         Instantiate(enemies[indexEnemy], positions[indexPos].transform);
         
         //increments the number of enemies that have been spawned
