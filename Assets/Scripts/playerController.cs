@@ -75,13 +75,14 @@ public class playerController : MonoBehaviour
     [SerializeField] float spreadAccuracy;
     [SerializeField] bool hasScope;
     [SerializeField] float gunCriticalMult;
-    [SerializeField] bool isMeleeWeapon;
+    public bool isMeleeWeapon;
+    public bool isGun;
+
     #endregion
 
     // extra variables
     #region
     bool isShooting;
-    bool isMeleeing;
     private Vector3 playerVelocity;
     Vector3 move;
     int timesJumped;
@@ -482,6 +483,12 @@ public class playerController : MonoBehaviour
         gunCriticalMult = gunStat.criticalMult;
 
         isMeleeWeapon = gunStat.isMelee;
+        if (gunStat.isGun == true)
+        {
+            gunModel.GetComponent<MeshRenderer>().enabled = true;
+            meleeModel.GetComponent<MeshRenderer>().enabled = false;
+            // transfer the gun's model
+            gunStat.GetComponent<MeshFilter>().sharedMesh = gunStat.gunModel.GetComponent<MeshFilter>().sharedMesh;
 
         if (gunList[selectedGun].isGun == true && gunList[selectedGun].isMelee == false)
         {

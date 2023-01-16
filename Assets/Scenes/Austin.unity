@@ -130,6 +130,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1061444911186347715, guid: ef038de04a7503348bd2b0656d8eb731, type: 3}
+      propertyPath: OutputAudioMixerGroup
+      value: 
+      objectReference: {fileID: 1363584690422886456, guid: d26a02b7fc4f96947a7d363fce29fba6, type: 2}
     - target: {fileID: 7562739324744339433, guid: ef038de04a7503348bd2b0656d8eb731, type: 3}
       propertyPath: m_Name
       value: Enemy Rifle
@@ -137,6 +141,18 @@ PrefabInstance:
     - target: {fileID: 7562739324744373129, guid: ef038de04a7503348bd2b0656d8eb731, type: 3}
       propertyPath: m_RootOrder
       value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 7562739324744373129, guid: ef038de04a7503348bd2b0656d8eb731, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7562739324744373129, guid: ef038de04a7503348bd2b0656d8eb731, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7562739324744373129, guid: ef038de04a7503348bd2b0656d8eb731, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7562739324744373129, guid: ef038de04a7503348bd2b0656d8eb731, type: 3}
       propertyPath: m_LocalPosition.x
@@ -178,6 +194,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7562739324744373129, guid: ef038de04a7503348bd2b0656d8eb731, type: 3}
+      propertyPath: m_ConstrainProportionsScale
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ef038de04a7503348bd2b0656d8eb731, type: 3}
 --- !u!1 &427540839 stripped
@@ -190,6 +210,17 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 424139918901482180, guid: 046a377d7437c9644bf277f305fa4dca, type: 3}
   m_PrefabInstance: {fileID: 5599149312261253396}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &827462363 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 6033116975925475254, guid: 8119b01fc1f287140a1aacffdc79cacc, type: 3}
+  m_PrefabInstance: {fileID: 1579244353}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 67db9e8f0e2ae9c40bc1e2b64352a6b4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &849912749
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -254,6 +285,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 4277746286141392043, guid: 594189336f9fdcf44942261bb2a57e05, type: 3}
+      propertyPath: OutputAudioMixerGroup
+      value: 
+      objectReference: {fileID: 1363584690422886456, guid: d26a02b7fc4f96947a7d363fce29fba6, type: 2}
     - target: {fileID: 6626594136111968026, guid: 594189336f9fdcf44942261bb2a57e05, type: 3}
       propertyPath: m_RootOrder
       value: 3
@@ -427,6 +462,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 9124894338664007495, guid: 8119b01fc1f287140a1aacffdc79cacc, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 8119b01fc1f287140a1aacffdc79cacc, type: 3}
 --- !u!1001 &1870203815
@@ -478,6 +517,10 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 277215605899156137, guid: 62f3d2412737b5f4693c6b609faa92c5, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 277215605899156137, guid: 62f3d2412737b5f4693c6b609faa92c5, type: 3}
+      propertyPath: m_ConstrainProportionsScale
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5998873461299402857, guid: 62f3d2412737b5f4693c6b609faa92c5, type: 3}

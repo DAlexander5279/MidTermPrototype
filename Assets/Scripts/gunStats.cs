@@ -1,6 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Audio;
+
 [CreateAssetMenu]
 
 public class gunStats : ScriptableObject
@@ -16,18 +18,12 @@ public class gunStats : ScriptableObject
     public int pellets;
     public float spreadAccuracy;  // 1 = 100% accuracy, 0.5 = 50% accuracy
     public float criticalMult;
-
+    public int costOfWeapon;
     public bool hasScope;
 
     public GameObject gunModel;
     public AudioClip gunshotSound;
-    //public bool isGun;
-
-    //[Header("-----Melee Stats-----")]
-    //public int meleeDmg;
-    //public float meleeRange;
-    //public float swingRate;
-    //public GameObject meleeModel;
+    public bool isGun;
     public bool isMelee;
     public bool isGun;
 }

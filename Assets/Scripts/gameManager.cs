@@ -2,6 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.Audio;
+
 using TMPro;
 using UnityEngine.Audio;
 
@@ -20,7 +22,6 @@ public class gameManager : MonoBehaviour
     public int enemiesKilled;
 
     [Header("------UI------")]
-
     public GameObject pauseMenu;
     public GameObject activeMenu;
     public GameObject winMenu;
@@ -30,6 +31,13 @@ public class gameManager : MonoBehaviour
     public Image playerHealthAnim;
     public GameObject ammoHUD;
     public GameObject ammoHUDText;
+
+    //Options Menu things
+    [SerializeField] Slider musicVolSlider;
+    [SerializeField] Slider sfxVolSlider;
+    [SerializeField] AudioMixer Mixer;
+
+
     //public GameObject Reload;
     [SerializeField] TextMeshProUGUI Zoins; // its coins!
     [SerializeField] TextMeshProUGUI roomsCleared; // its rooms!

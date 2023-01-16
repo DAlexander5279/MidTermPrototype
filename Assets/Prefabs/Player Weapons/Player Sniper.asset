@@ -25,5 +25,6 @@ MonoBehaviour:
   hasScope: 1
   gunModel: {fileID: 919132149155446097, guid: 60d91f925d8c1e442bb6596dfb94ffff, type: 3}
   gunshotSound: {fileID: 8300000, guid: f450f31f8a5f9fd4b959e704248ed529, type: 3}
+  isGun: 1
   isMelee: 0
   isGun: 1
