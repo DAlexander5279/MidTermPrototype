@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Player Pistol
   m_EditorClassIdentifier: 
   gunDMG: 10
-  modifedGunDMG: 10
+  modifedGunDMG: 6
   shootRate: 0.35
   shootDist: 50
   magSize: 7
@@ -25,4 +25,6 @@ MonoBehaviour:
   hasScope: 0
   gunModel: {fileID: 919132149155446097, guid: 8f9696fb6017be144a307b6586855ac0, type: 3}
   gunshotSound: {fileID: 8300000, guid: b661e3bdfe790634db84a7de6a8a3088, type: 3}
+  isGun: 1
   isMelee: 0
+  isGun: 1

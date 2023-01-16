@@ -4,8 +4,8 @@ using UnityEngine;
 
 public class cameraMovement : MonoBehaviour
 {
-    [SerializeField] int sensHor;
-    [SerializeField] int sensVert;
+   [SerializeField] public float sensHor;
+    [SerializeField] public float sensVert;
 
     [SerializeField] int lockVerMin;
     [SerializeField] int lockVerMax;
@@ -13,6 +13,7 @@ public class cameraMovement : MonoBehaviour
     [SerializeField] bool invertXPos;
 
     float rotationX;
+ 
     // Start is called before the first frame update
     void Start()
     {
@@ -26,7 +27,7 @@ public class cameraMovement : MonoBehaviour
         float mouseY = Input.GetAxis("Mouse Y") * Time.deltaTime * sensVert;
 
         float mouseX = Input.GetAxis("Mouse X") * Time.deltaTime * sensHor;
-
+    
         if (invertXPos)
         {
             rotationX += mouseY;
@@ -39,5 +40,13 @@ public class cameraMovement : MonoBehaviour
         transform.localRotation = Quaternion.Euler(rotationX, 0, 0);
 
         transform.parent.Rotate(Vector3.up * mouseX);
+    }
+    public void SetSensX(float value)
+    {
+        sensHor = value;
+    }
+    public void SetSensY(float value)
+    {
+        sensVert = value;
     }
 }

@@ -14,10 +14,10 @@ public class playerController : MonoBehaviour
     // Player Stats
     #region
     [Header("------Player Stats------")]
-    [Range(1, 10)] [SerializeField] float playerSpeed;
+    [Range(1, 10)][SerializeField] float playerSpeed;
     [SerializeField] int jumpMax;
-    [Range(5, 15)] [SerializeField] int jumpHeight;
-    [Range(10, 20)] [SerializeField] int gravity;
+    [Range(5, 15)][SerializeField] int jumpHeight;
+    [Range(10, 20)][SerializeField] int gravity;
     [SerializeField] int pushTime;
     public int HP;
     public bool isDisabled;
@@ -47,16 +47,16 @@ public class playerController : MonoBehaviour
     [SerializeField] AudioClip gunshotSound;
     [SerializeField] List<AudioClip> dryfireSound;
     [SerializeField] AudioClip gunReloadSound;
-    [Range(0, 3)] [SerializeField] float gunshotSoundVol;
+    [Range(0, 3)][SerializeField] float gunshotSoundVol;
 
     [SerializeField] AudioClip[] playerJumpAudio;
-    [Range(0, 3)] [SerializeField] float playerJumpAudioVol;
+    [Range(0, 3)][SerializeField] float playerJumpAudioVol;
 
     [SerializeField] AudioClip[] playerHurtAudio;
-    [Range(0, 3)] [SerializeField] float playerHurtAudioVol;
+    [Range(0, 3)][SerializeField] float playerHurtAudioVol;
 
     [SerializeField] AudioClip[] playerStepAudio;
-    [Range(0, 3)] [SerializeField] float playerStepAudioVol;
+    [Range(0, 3)][SerializeField] float playerStepAudioVol;
     #endregion
 
     // gun stats
@@ -64,23 +64,25 @@ public class playerController : MonoBehaviour
     [Header("------Gun Stats------")]
     [SerializeField] List<gunStats> gunList = new List<gunStats>();
 
-    [Range(0, 5)] [SerializeField] int gunDMG;
+    [Range(0, 5)][SerializeField] int gunDMG;
     [SerializeField] float shootRate;   // player's gun fire rate
-    [Range(0, 200)] [SerializeField] int shootDist; // effective range of the shot
+    [Range(0, 200)][SerializeField] int shootDist; // effective range of the shot
     [SerializeField] GameObject gunModel;   //also gun position/viewmodel position
+    [SerializeField] GameObject meleeModel;
     [SerializeField] GameObject hitEffect;
     [SerializeField] int fireSelect;
     [SerializeField] int pellets;
     [SerializeField] float spreadAccuracy;
     [SerializeField] bool hasScope;
     [SerializeField] float gunCriticalMult;
-    [SerializeField] bool isMeleeWeapon;
+    public bool isMeleeWeapon;
+    public bool isGun;
+
     #endregion
 
     // extra variables
     #region
     bool isShooting;
-    bool isMeleeing;
     private Vector3 playerVelocity;
     Vector3 move;
     int timesJumped;
@@ -439,12 +441,28 @@ public class playerController : MonoBehaviour
         gunCriticalMult = gunList[selectedGun].criticalMult;
 
         isMeleeWeapon = gunList[selectedGun].isMelee;
+        if (gunList[selectedGun].isGun == true && gunList[selectedGun].isMelee == false)
+        {
+            gunModel.GetComponent<MeshRenderer>().enabled = true;
+            meleeModel.GetComponent<MeshRenderer>().enabled = false;
+            // transfer the gun's model
+            gunModel.GetComponent<MeshFilter>().sharedMesh = gunList[selectedGun].gunModel.GetComponent<MeshFilter>().sharedMesh;
 
-        // transfer the gun's model
-        gunModel.GetComponent<MeshFilter>().sharedMesh = gunList[selectedGun].gunModel.GetComponent<MeshFilter>().sharedMesh;
+            //transfer the gun's textures/materials
+            gunModel.GetComponent<MeshRenderer>().sharedMaterial = gunList[selectedGun].gunModel.GetComponent<MeshRenderer>().sharedMaterial;
 
-        //transfer the gun's textures/materials
-        gunModel.GetComponent<MeshRenderer>().sharedMaterial = gunList[selectedGun].gunModel.GetComponent<MeshRenderer>().sharedMaterial;
+        }
+        if (gunList[selectedGun].isGun == false && gunList[selectedGun].isMelee == true)
+        {
+            gunModel.GetComponent<MeshRenderer>().enabled = false;
+            meleeModel.GetComponent<MeshRenderer>().enabled = true;
+            // transfer the gun's model
+            meleeModel.GetComponent<MeshFilter>().sharedMesh = gunList[selectedGun].gunModel.GetComponent<MeshFilter>().sharedMesh;
+
+            //transfer the gun's textures/materials
+            meleeModel.GetComponent<MeshRenderer>().sharedMaterial = gunList[selectedGun].gunModel.GetComponent<MeshRenderer>().sharedMaterial;
+
+        }
 
     }
 
@@ -465,12 +483,36 @@ public class playerController : MonoBehaviour
         gunCriticalMult = gunStat.criticalMult;
 
         isMeleeWeapon = gunStat.isMelee;
+        if (gunStat.isGun == true)
+        {
+            gunModel.GetComponent<MeshRenderer>().enabled = true;
+            meleeModel.GetComponent<MeshRenderer>().enabled = false;
+            // transfer the gun's model
+            gunStat.GetComponent<MeshFilter>().sharedMesh = gunStat.gunModel.GetComponent<MeshFilter>().sharedMesh;
 
-        // transfer the gun's model
-        gunModel.GetComponent<MeshFilter>().sharedMesh = gunStat.gunModel.GetComponent<MeshFilter>().sharedMesh;
+            if (gunList[selectedGun].isGun == true && gunList[selectedGun].isMelee == false)
+            {
+                gunModel.GetComponent<MeshRenderer>().enabled = true;
+                meleeModel.GetComponent<MeshRenderer>().enabled = false;
+                // transfer the gun's model
+                gunModel.GetComponent<MeshFilter>().sharedMesh = gunList[selectedGun].gunModel.GetComponent<MeshFilter>().sharedMesh;
 
-        //transfer the gun's textures/materials
-        gunModel.GetComponent<MeshRenderer>().sharedMaterial = gunStat.gunModel.GetComponent<MeshRenderer>().sharedMaterial;
+                //transfer the gun's textures/materials
+                gunModel.GetComponent<MeshRenderer>().sharedMaterial = gunList[selectedGun].gunModel.GetComponent<MeshRenderer>().sharedMaterial;
+
+            }
+            if (gunList[selectedGun].isGun == false && gunList[selectedGun].isMelee == true)
+            {
+                gunModel.GetComponent<MeshRenderer>().enabled = false;
+                meleeModel.GetComponent<MeshRenderer>().enabled = true;
+                // transfer the gun's model
+                meleeModel.GetComponent<MeshFilter>().sharedMesh = gunList[selectedGun].gunModel.GetComponent<MeshFilter>().sharedMesh;
+
+                //transfer the gun's textures/materials
+                meleeModel.GetComponent<MeshRenderer>().sharedMaterial = gunList[selectedGun].gunModel.GetComponent<MeshRenderer>().sharedMaterial;
+
+            }
+        }
     }
     public void updatePlayerHP()
     {
@@ -485,6 +527,5 @@ public class playerController : MonoBehaviour
     {
         return hasScope;
     }
-
 }
 

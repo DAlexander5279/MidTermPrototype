@@ -130,6 +130,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1061444911186347715, guid: ef038de04a7503348bd2b0656d8eb731, type: 3}
+      propertyPath: OutputAudioMixerGroup
+      value: 
+      objectReference: {fileID: 1363584690422886456, guid: d26a02b7fc4f96947a7d363fce29fba6, type: 2}
     - target: {fileID: 7562739324744339433, guid: ef038de04a7503348bd2b0656d8eb731, type: 3}
       propertyPath: m_Name
       value: Enemy Rifle
@@ -137,6 +141,18 @@ PrefabInstance:
     - target: {fileID: 7562739324744373129, guid: ef038de04a7503348bd2b0656d8eb731, type: 3}
       propertyPath: m_RootOrder
       value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 7562739324744373129, guid: ef038de04a7503348bd2b0656d8eb731, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7562739324744373129, guid: ef038de04a7503348bd2b0656d8eb731, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7562739324744373129, guid: ef038de04a7503348bd2b0656d8eb731, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7562739324744373129, guid: ef038de04a7503348bd2b0656d8eb731, type: 3}
       propertyPath: m_LocalPosition.x
@@ -176,6 +192,10 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7562739324744373129, guid: ef038de04a7503348bd2b0656d8eb731, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7562739324744373129, guid: ef038de04a7503348bd2b0656d8eb731, type: 3}
+      propertyPath: m_ConstrainProportionsScale
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
@@ -254,6 +274,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 4277746286141392043, guid: 594189336f9fdcf44942261bb2a57e05, type: 3}
+      propertyPath: OutputAudioMixerGroup
+      value: 
+      objectReference: {fileID: 1363584690422886456, guid: d26a02b7fc4f96947a7d363fce29fba6, type: 2}
     - target: {fileID: 6626594136111968026, guid: 594189336f9fdcf44942261bb2a57e05, type: 3}
       propertyPath: m_RootOrder
       value: 3
@@ -304,6 +328,17 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 594189336f9fdcf44942261bb2a57e05, type: 3}
+--- !u!114 &1092847016 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 2470128279692826934, guid: 046a377d7437c9644bf277f305fa4dca, type: 3}
+  m_PrefabInstance: {fileID: 5599149312261253396}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 429a2d4989e64ae48b489ad4ca6af266, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1238381078 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 390137842, guid: 046a377d7437c9644bf277f305fa4dca, type: 3}
@@ -316,9 +351,41 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 252540912, guid: 8119b01fc1f287140a1aacffdc79cacc, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 253091865, guid: 8119b01fc1f287140a1aacffdc79cacc, type: 3}
+      propertyPath: Sensitivity
+      value: 
+      objectReference: {fileID: 1092847016}
+    - target: {fileID: 551829079, guid: 8119b01fc1f287140a1aacffdc79cacc, type: 3}
+      propertyPath: m_MinValue
+      value: 0.000001
+      objectReference: {fileID: 0}
+    - target: {fileID: 1271414116, guid: 8119b01fc1f287140a1aacffdc79cacc, type: 3}
+      propertyPath: m_MinValue
+      value: 0.000001
+      objectReference: {fileID: 0}
+    - target: {fileID: 1271414116, guid: 8119b01fc1f287140a1aacffdc79cacc, type: 3}
+      propertyPath: m_OnValueChanged.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: sfxVolChange
+      objectReference: {fileID: 0}
+    - target: {fileID: 1342623869, guid: 8119b01fc1f287140a1aacffdc79cacc, type: 3}
+      propertyPath: m_MaxValue
+      value: 100
+      objectReference: {fileID: 0}
+    - target: {fileID: 1827442129, guid: 8119b01fc1f287140a1aacffdc79cacc, type: 3}
+      propertyPath: m_MaxValue
+      value: 100
+      objectReference: {fileID: 0}
     - target: {fileID: 266753384207131369, guid: 8119b01fc1f287140a1aacffdc79cacc, type: 3}
       propertyPath: m_Name
       value: UI
+      objectReference: {fileID: 0}
+    - target: {fileID: 960409081268073544, guid: 8119b01fc1f287140a1aacffdc79cacc, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8723847276176227690, guid: 8119b01fc1f287140a1aacffdc79cacc, type: 3}
       propertyPath: m_Pivot.x
@@ -455,6 +522,10 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 277215605899156137, guid: 62f3d2412737b5f4693c6b609faa92c5, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 277215605899156137, guid: 62f3d2412737b5f4693c6b609faa92c5, type: 3}
+      propertyPath: m_ConstrainProportionsScale
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5998873461299402857, guid: 62f3d2412737b5f4693c6b609faa92c5, type: 3}
@@ -625,6 +696,10 @@ PrefabInstance:
       propertyPath: m_RootOrder
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1307054778, guid: 046a377d7437c9644bf277f305fa4dca, type: 3}
+      propertyPath: m_RootOrder
+      value: 3
+      objectReference: {fileID: 0}
     - target: {fileID: 2470128280080099144, guid: 046a377d7437c9644bf277f305fa4dca, type: 3}
       propertyPath: m_RootOrder
       value: 5
@@ -757,6 +832,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: player
       objectReference: {fileID: 0}
+    - target: {fileID: 6420801457207091318, guid: 046a377d7437c9644bf277f305fa4dca, type: 3}
+      propertyPath: OutputAudioMixerGroup
+      value: 
+      objectReference: {fileID: 1363584690422886456, guid: d26a02b7fc4f96947a7d363fce29fba6, type: 2}
     - target: {fileID: 6590555607793623562, guid: 046a377d7437c9644bf277f305fa4dca, type: 3}
       propertyPath: m_RootOrder
       value: 2
