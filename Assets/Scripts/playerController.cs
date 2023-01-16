@@ -490,42 +490,42 @@ public class playerController : MonoBehaviour
             // transfer the gun's model
             gunStat.GetComponent<MeshFilter>().sharedMesh = gunStat.gunModel.GetComponent<MeshFilter>().sharedMesh;
 
-        if (gunList[selectedGun].isGun == true && gunList[selectedGun].isMelee == false)
-        {
-            gunModel.GetComponent<MeshRenderer>().enabled = true;
-            meleeModel.GetComponent<MeshRenderer>().enabled = false;
-            // transfer the gun's model
-            gunModel.GetComponent<MeshFilter>().sharedMesh = gunList[selectedGun].gunModel.GetComponent<MeshFilter>().sharedMesh;
+            if (gunList[selectedGun].isGun == true && gunList[selectedGun].isMelee == false)
+            {
+                gunModel.GetComponent<MeshRenderer>().enabled = true;
+                meleeModel.GetComponent<MeshRenderer>().enabled = false;
+                // transfer the gun's model
+                gunModel.GetComponent<MeshFilter>().sharedMesh = gunList[selectedGun].gunModel.GetComponent<MeshFilter>().sharedMesh;
 
-            //transfer the gun's textures/materials
-            gunModel.GetComponent<MeshRenderer>().sharedMaterial = gunList[selectedGun].gunModel.GetComponent<MeshRenderer>().sharedMaterial;
+                //transfer the gun's textures/materials
+                gunModel.GetComponent<MeshRenderer>().sharedMaterial = gunList[selectedGun].gunModel.GetComponent<MeshRenderer>().sharedMaterial;
 
+            }
+            if (gunList[selectedGun].isGun == false && gunList[selectedGun].isMelee == true)
+            {
+                gunModel.GetComponent<MeshRenderer>().enabled = false;
+                meleeModel.GetComponent<MeshRenderer>().enabled = true;
+                // transfer the gun's model
+                meleeModel.GetComponent<MeshFilter>().sharedMesh = gunList[selectedGun].gunModel.GetComponent<MeshFilter>().sharedMesh;
+
+                //transfer the gun's textures/materials
+                meleeModel.GetComponent<MeshRenderer>().sharedMaterial = gunList[selectedGun].gunModel.GetComponent<MeshRenderer>().sharedMaterial;
+
+            }
         }
-        if (gunList[selectedGun].isGun == false && gunList[selectedGun].isMelee == true)
+    }
+        public void updatePlayerHP()
         {
-            gunModel.GetComponent<MeshRenderer>().enabled = false;
-            meleeModel.GetComponent<MeshRenderer>().enabled = true;
-            // transfer the gun's model
-            meleeModel.GetComponent<MeshFilter>().sharedMesh = gunList[selectedGun].gunModel.GetComponent<MeshFilter>().sharedMesh;
-
-            //transfer the gun's textures/materials
-            meleeModel.GetComponent<MeshRenderer>().sharedMaterial = gunList[selectedGun].gunModel.GetComponent<MeshRenderer>().sharedMaterial;
-
+            gameManager.instance.playerHealthBar.fillAmount = (float)HP / (float)HPOriginal;
         }
-    }
-    public void updatePlayerHP()
-    {
-        gameManager.instance.playerHealthBar.fillAmount = (float)HP / (float)HPOriginal;
-    }
-    public void inputPushBack(Vector3 dir)
-    {
-        pushBack = dir;
-    }
+        public void inputPushBack(Vector3 dir)
+        {
+            pushBack = dir;
+        }
 
     public bool getScopeStatus()
     {
         return hasScope;
     }
-
 }
 

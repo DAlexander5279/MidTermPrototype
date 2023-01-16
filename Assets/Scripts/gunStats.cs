@@ -25,5 +25,4 @@ public class gunStats : ScriptableObject
     public AudioClip gunshotSound;
     public bool isGun;
     public bool isMelee;
-    public bool isGun;
 }
