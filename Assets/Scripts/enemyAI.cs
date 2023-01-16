@@ -24,7 +24,7 @@ public class enemyAI : MonoBehaviour, IDamage
     [Range(1.0f, 2.0f)] [SerializeField] float dangerSightModifier;
     [SerializeField] bool beenKilled;
     [SerializeField] Transform floatTextPosition;
-    [SerializeField] float headshotMultiplier;
+    //[SerializeField] float headshotMultiplier;
 
     [SerializeField] int droppedZoinsAmt;   // game currency
 
@@ -183,14 +183,16 @@ public class enemyAI : MonoBehaviour, IDamage
     {
         if (!beenKilled)
         {
+            int trueDamage = 0;
             if (wasCritical && (criticalMult > 1.0f))
             {
-                HP -= Mathf.RoundToInt(dmgIn * criticalMult);
+                trueDamage = Mathf.RoundToInt(dmgIn * criticalMult);
             }
             else
             {
-                HP -= dmgIn;
+                trueDamage = dmgIn;
             }
+            HP -= trueDamage;
             ShowDamage(dmgIn.ToString());
             updateEnemyHPBar();
             enemyUI.gameObject.SetActive(true);
