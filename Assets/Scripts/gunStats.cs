@@ -29,4 +29,5 @@ public class gunStats : ScriptableObject
     //public float swingRate;
     //public GameObject meleeModel;
     public bool isMelee;
+    public bool isGun;
 }

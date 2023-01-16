@@ -3,8 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
-
-
+using UnityEngine.Audio;
 
 public class gameManager : MonoBehaviour
 {
@@ -13,8 +12,9 @@ public class gameManager : MonoBehaviour
     [Header("------Player Things------")]
     public GameObject player;
     public playerController playerScript;
-    [Range(1.0f, 3.0f)] [SerializeField] float damageModifier;
-    [Range(0.0f, 3.0f)] [SerializeField] float scalingModifer;
+    public cameraMovement Sensitivity;
+    [Range(1.0f, 3.0f)][SerializeField] float damageModifier;
+    [Range(0.0f, 3.0f)][SerializeField] float scalingModifer;
 
     public int maxRoomsCleared;
     public int enemiesKilled;
@@ -38,6 +38,13 @@ public class gameManager : MonoBehaviour
 
     [SerializeField] TextMeshProUGUI playerDamage;
 
+    [SerializeField] AudioMixer mixer;
+    [SerializeField] Slider musicSliderVol;
+    [SerializeField] Slider sfxSliderVol;
+    [SerializeField] Slider SensX;
+    [SerializeField] Slider SensY;
+    public GameObject settingsMenu;
+
 
     [Header("------Extras------")]
     public int roomCount;
@@ -47,10 +54,11 @@ public class gameManager : MonoBehaviour
     public bool roomsNeedPushed;
     public int enemyCount;
     public bool paused;
+    public bool settings;
     public int zoins;
 
     public int AmmoCount;
-    float HPTimer = 0; 
+    float HPTimer = 0;
 
 
     float origTime;
@@ -63,6 +71,26 @@ public class gameManager : MonoBehaviour
         PlayerPrefs.SetInt("enemyStat", 0);
         addZoins(0);
         addRoomCount(-1);
+        if (PlayerPrefs.HasKey("MusicVol"))
+        {
+            musicSliderVol.value = PlayerPrefs.GetFloat("MusicVol");
+            SetVolumeMixer("MusicVol", musicSliderVol.value);
+        }
+        if (PlayerPrefs.HasKey("SFXVol"))
+        {
+            sfxSliderVol.value = PlayerPrefs.GetFloat("SFXVol");
+            SetVolumeMixer("SFXVol", sfxSliderVol.value);
+        }
+        if (PlayerPrefs.HasKey("SenXAxis"))
+        {
+            SensX.value = PlayerPrefs.GetFloat("SenXAxis");
+            Sensitivity.SetSensX(SensX.value);
+        }
+        if (PlayerPrefs.HasKey("SenYAxis"))
+        {
+            SensY.value = PlayerPrefs.GetFloat("SenYAxis");
+            Sensitivity.SetSensY(SensY.value);
+        }
     }
     // Update is called once per frame
     void Update()
@@ -70,6 +98,20 @@ public class gameManager : MonoBehaviour
         if (Input.GetButtonDown("Cancel") && (activeMenu == null || activeMenu == pauseMenu))
         {
             paused = !paused;
+            activeMenu = pauseMenu;
+            activeMenu.SetActive(paused);
+            if (paused)
+            {
+                gamePause();
+            }
+            else
+                gameUnpause();
+        }
+        if (Input.GetButtonDown("Cancel") && (activeMenu == null || activeMenu == settingsMenu))
+        {
+
+            settings = !settings;
+            settingsMenu.SetActive(false);
             activeMenu = pauseMenu;
             activeMenu.SetActive(paused);
             if (paused)
@@ -106,6 +148,7 @@ public class gameManager : MonoBehaviour
         Cursor.lockState = CursorLockMode.Locked;
         activeMenu.SetActive(false);
         activeMenu = null;
+
 
     }
     public void updateEnemyCount(int amount)
@@ -178,4 +221,30 @@ public class gameManager : MonoBehaviour
     {
         return var + Mathf.FloorToInt(var * (scalingModifer * Mathf.Floor(roomCount * 0.2f)));
     }
+    public void musicVolChange()
+    {
+        SetVolumeMixer("MusicVol", musicSliderVol.value);
+        PlayerPrefs.SetFloat("MusicVol", musicSliderVol.value);
+    }
+    public void sfxVolChange()
+    {
+        SetVolumeMixer("SFXVol", sfxSliderVol.value);
+        PlayerPrefs.SetFloat("SFXVol", sfxSliderVol.value);
+    }
+    void SetVolumeMixer(string key, float value)
+    {
+        mixer.SetFloat(key, Mathf.Log10(value) * 20);
+    }
+    public void setSensXChange()
+    {
+        Sensitivity.SetSensX(SensX.value);
+        PlayerPrefs.SetFloat("SenXAxis", SensX.value);
+    }
+    public void setSensYChange()
+    {
+        Sensitivity.SetSensY(SensY.value);
+        PlayerPrefs.SetFloat("SenYAxis", SensY.value);
+
+    }
+    
 }

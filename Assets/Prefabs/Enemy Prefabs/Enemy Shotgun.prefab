@@ -834,7 +834,6 @@ MonoBehaviour:
   dangerSightModifier: 2
   beenKilled: 0
   floatTextPosition: {fileID: 6282377787939126662}
-  headshotMultiplier: 0
   droppedZoinsAmt: 3
   itemDropList:
   - {fileID: 5644053857807868638, guid: 3e158b2550c6cb4478ddad5c2b5e5ef1, type: 3}
@@ -949,7 +948,7 @@ AudioSource:
   m_GameObject: {fileID: 6626594136112001914}
   m_Enabled: 1
   serializedVersion: 4
-  OutputAudioMixerGroup: {fileID: 0}
+  OutputAudioMixerGroup: {fileID: -8905481973616066026, guid: 1601a6a7a7222d148b865e6659018245, type: 2}
   m_audioClip: {fileID: 0}
   m_PlayOnAwake: 0
   m_Volume: 1

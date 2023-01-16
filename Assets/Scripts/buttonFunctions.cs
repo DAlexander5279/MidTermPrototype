@@ -20,6 +20,13 @@ public class buttonFunctions : MonoBehaviour
     {
         Application.Quit();
     }
+    public void settings()
+    {
+        gameManager.instance.gamePause();
+        gameManager.instance.activeMenu = gameManager.instance.settingsMenu;
+        gameManager.instance.activeMenu.SetActive(gameManager.instance.settingsMenu);
+        
+    }
     
 
 }

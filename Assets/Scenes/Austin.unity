@@ -304,6 +304,17 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 594189336f9fdcf44942261bb2a57e05, type: 3}
+--- !u!114 &1092847016 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 2470128279692826934, guid: 046a377d7437c9644bf277f305fa4dca, type: 3}
+  m_PrefabInstance: {fileID: 5599149312261253396}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 429a2d4989e64ae48b489ad4ca6af266, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1238381078 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 390137842, guid: 046a377d7437c9644bf277f305fa4dca, type: 3}
@@ -316,9 +327,21 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 253091865, guid: 8119b01fc1f287140a1aacffdc79cacc, type: 3}
+      propertyPath: Sensitivity
+      value: 
+      objectReference: {fileID: 1092847016}
+    - target: {fileID: 2053102616, guid: 8119b01fc1f287140a1aacffdc79cacc, type: 3}
+      propertyPath: m_TagString
+      value: SensX
+      objectReference: {fileID: 0}
     - target: {fileID: 266753384207131369, guid: 8119b01fc1f287140a1aacffdc79cacc, type: 3}
       propertyPath: m_Name
       value: UI
+      objectReference: {fileID: 0}
+    - target: {fileID: 5258741606017258683, guid: 8119b01fc1f287140a1aacffdc79cacc, type: 3}
+      propertyPath: m_TagString
+      value: Untagged
       objectReference: {fileID: 0}
     - target: {fileID: 8723847276176227690, guid: 8119b01fc1f287140a1aacffdc79cacc, type: 3}
       propertyPath: m_Pivot.x
@@ -625,6 +648,10 @@ PrefabInstance:
       propertyPath: m_RootOrder
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1307054778, guid: 046a377d7437c9644bf277f305fa4dca, type: 3}
+      propertyPath: m_RootOrder
+      value: 3
+      objectReference: {fileID: 0}
     - target: {fileID: 2470128280080099144, guid: 046a377d7437c9644bf277f305fa4dca, type: 3}
       propertyPath: m_RootOrder
       value: 5
@@ -757,6 +784,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: player
       objectReference: {fileID: 0}
+    - target: {fileID: 6420801457207091318, guid: 046a377d7437c9644bf277f305fa4dca, type: 3}
+      propertyPath: OutputAudioMixerGroup
+      value: 
+      objectReference: {fileID: -8905481973616066026, guid: 1601a6a7a7222d148b865e6659018245, type: 2}
     - target: {fileID: 6590555607793623562, guid: 046a377d7437c9644bf277f305fa4dca, type: 3}
       propertyPath: m_RootOrder
       value: 2
