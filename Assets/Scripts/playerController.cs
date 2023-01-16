@@ -369,7 +369,15 @@ public class playerController : MonoBehaviour
         if (!foundGun)
         {
             gunStat.magCount = gunStat.magSize;
-            gunStat.modifedGunDMG = gameManager.instance.scalingFunction(gunStat.gunDMG);
+            if (gameManager.instance.roomCount >= 5)
+            {
+                gunStat.modifedGunDMG = gameManager.instance.scalingFunction(gunStat.gunDMG);
+
+            }
+            else
+            {
+                gunStat.modifedGunDMG = gunStat.gunDMG;
+            }
             gunList.Add(gunStat);
             selectedGun = gunList.Count - 1;
             changeCurrentGun();
