@@ -59,7 +59,7 @@ MeshFilter:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 390137842}
-  m_Mesh: {fileID: -50397647144078270, guid: 33269b2b610f4c245a712795c1927939, type: 3}
+  m_Mesh: {fileID: 0}
 --- !u!23 &390137845
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -80,7 +80,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: c588de1bd0ae27543958b38850e54921, type: 2}
+  - {fileID: 0}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -479,8 +479,7 @@ MonoBehaviour:
   - {fileID: 8300000, guid: fd820177bfbd88242954e1fed8fdbf11, type: 3}
   - {fileID: 8300000, guid: bd2301caac6c2f94b8774a6f4b85bb05, type: 3}
   playerStepAudioVol: 0.1
-  gunList:
-  - {fileID: 11400000, guid: 84ce2125930e7054683a216567541666, type: 2}
+  gunList: []
   gunDMG: 6
   shootRate: 0.25
   shootDist: 300
