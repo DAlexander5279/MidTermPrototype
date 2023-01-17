@@ -23,6 +23,7 @@ public class gameManager : MonoBehaviour
     [Header("------UI------")]
     public GameObject pauseMenu;
     public GameObject activeMenu;
+    public GameObject shopMenu;
     public GameObject winMenu;
     public GameObject loseMenu;
     public GameObject playerFlashDamage;
@@ -59,6 +60,7 @@ public class gameManager : MonoBehaviour
 
     public int AmmoCount;
     float HPTimer = 0;
+    public bool shop;
 
 
     float origTime;
@@ -107,6 +109,7 @@ public class gameManager : MonoBehaviour
             else
                 gameUnpause();
         }
+
         if (Input.GetButtonDown("Cancel") && (activeMenu == null || activeMenu == settingsMenu))
         {
 
@@ -120,6 +123,21 @@ public class gameManager : MonoBehaviour
             }
             else
                 gameUnpause();
+        }
+
+        if (Input.GetButtonDown("Cancel") && (activeMenu == null || activeMenu == shopMenu))
+        {
+            shop = !shop;
+            shopMenu.SetActive(false);
+            pauseMenu.SetActive(false);
+
+            if (Time.timeScale == 0)
+            {
+                gameUnpause();
+                Cursor.visible = false;
+                Cursor.lockState = CursorLockMode.Locked;
+            }
+
         }
 
         if (playerHealthAnim.fillAmount != playerHealthBar.fillAmount)
@@ -178,6 +196,7 @@ public class gameManager : MonoBehaviour
 
         Zoins.text = zoins.ToString("F0");
     }
+
     public void addRoomCount(int amount)
     {
         roomCount += amount;

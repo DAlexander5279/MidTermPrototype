@@ -91,6 +91,7 @@ public class playerController : MonoBehaviour
     int timesJumped;
     public int HPOriginal;
     int walkSpeedOrg;
+    public int CostOfWeapons;
 
     int selectedGun;
 
@@ -586,6 +587,20 @@ public class playerController : MonoBehaviour
     public AudioSource getPlayerAud()
     {
         return aud;
+    }
+
+    public void BuyWeapon(gunStats gunBuy)
+    {
+        gunBuy.isShop = true;
+        if (gameManager.instance.zoins >= gunBuy.CostofWeapon && gunBuy.isShop == true)
+        {
+            gunPickupBuy(gunBuy);
+            gameManager.instance.addZoins(-gunBuy.CostofWeapon);
+        }
+        else
+        {
+            print("Not enough zoins");
+        }
     }
 }
 

@@ -59,7 +59,7 @@ MeshFilter:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 390137842}
-  m_Mesh: {fileID: 0}
+  m_Mesh: {fileID: -50397647144078270, guid: 33269b2b610f4c245a712795c1927939, type: 3}
 --- !u!23 &390137845
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -80,7 +80,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 0}
+  - {fileID: 2100000, guid: c588de1bd0ae27543958b38850e54921, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -245,7 +245,7 @@ MeshRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 424139918901482180}
-  m_Enabled: 1
+  m_Enabled: 0
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
@@ -448,7 +448,7 @@ MonoBehaviour:
   crouchCBind: 0
   reloadUI: {fileID: 0}
   aud: {fileID: 6420801457207091318}
-  gunshotSound: {fileID: 0}
+  gunshotSound: {fileID: 8300000, guid: 024c32c2982b01c4daf29c224c213186, type: 3}
   dryfireSound:
   - {fileID: 8300000, guid: 1a799e4b14733634496815b9630c1d25, type: 3}
   - {fileID: 8300000, guid: baed4d18670b76148a2a8061bdd893a6, type: 3}
@@ -479,21 +479,23 @@ MonoBehaviour:
   - {fileID: 8300000, guid: fd820177bfbd88242954e1fed8fdbf11, type: 3}
   - {fileID: 8300000, guid: bd2301caac6c2f94b8774a6f4b85bb05, type: 3}
   playerStepAudioVol: 0.1
-  gunList: []
-  gunDMG: 0
-  shootRate: 0
-  shootDist: 0
+  gunList:
+  - {fileID: 11400000, guid: 84ce2125930e7054683a216567541666, type: 2}
+  gunDMG: 6
+  shootRate: 0.25
+  shootDist: 300
   gunModel: {fileID: 390137842}
   meleeModel: {fileID: 424139918901482180}
   hitEffect: {fileID: 7276695728850258670, guid: e363626372d9fe948b40fd7958f8f85d, type: 3}
   fireSelect: 0
-  pellets: 0
-  spreadAccuracy: 0
+  pellets: 1
+  spreadAccuracy: 1
   hasScope: 0
-  gunCriticalMult: 0
+  gunCriticalMult: 2
   isMeleeWeapon: 0
   isGun: 0
   HPOriginal: 0
+  CostOfWeapons: 0
 --- !u!82 &6420801457207091318
 AudioSource:
   m_ObjectHideFlags: 0

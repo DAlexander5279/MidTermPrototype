@@ -18,11 +18,12 @@ public class gunStats : ScriptableObject
     public int pellets;
     public float spreadAccuracy;  // 1 = 100% accuracy, 0.5 = 50% accuracy
     public float criticalMult;
-    public int costOfWeapon;
+    public int CostofWeapon;
     public bool hasScope;
 
     public GameObject gunModel;
     public AudioClip gunshotSound;
     public bool isGun;
     public bool isMelee;
+    public bool isShop;
 }
