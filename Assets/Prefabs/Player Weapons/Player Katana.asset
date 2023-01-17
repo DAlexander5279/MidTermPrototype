@@ -22,8 +22,9 @@ MonoBehaviour:
   pellets: 1
   spreadAccuracy: 1
   criticalMult: 1
+  costOfWeapon: 0
   hasScope: 0
-  gunModel: {fileID: 6035302921550122439, guid: c3a78094e724c764e954b2bb0b43c98c, type: 3}
+  gunModel: {fileID: 100000, guid: 3d88c319821b89f4086eb24c6b2faee2, type: 3}
   gunshotSound: {fileID: 8300000, guid: a24a316c1bd4e9f41b61070b7c15e5e7, type: 3}
   isGun: 0
   isMelee: 1

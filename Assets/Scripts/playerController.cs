@@ -57,6 +57,9 @@ public class playerController : MonoBehaviour
 
     [SerializeField] AudioClip[] playerStepAudio;
     [Range(0, 3)][SerializeField] float playerStepAudioVol;
+
+    
+
     #endregion
 
     // gun stats
@@ -526,6 +529,10 @@ public class playerController : MonoBehaviour
     public bool getScopeStatus()
     {
         return hasScope;
+    }
+    public AudioSource getPlayerAud()
+    {
+        return aud;
     }
 }
 
