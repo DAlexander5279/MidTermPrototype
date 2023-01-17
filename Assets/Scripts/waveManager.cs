@@ -24,6 +24,7 @@ public class waveManager : MonoBehaviour
     {
         wave = 0;
         isWaveOver = false;
+
     }
 
     // Update is called once per frame
@@ -38,7 +39,8 @@ public class waveManager : MonoBehaviour
         }
 
         //checks if any enemies are alive
-        if(AliveEnemyCount == 0)
+        //if(AliveEnemyCount == 0)
+        if (gameManager.instance.enemyCount == 0)
         {
             isWaveOver = true;
             StartCoroutine(waveBreak());

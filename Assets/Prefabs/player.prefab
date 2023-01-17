@@ -224,7 +224,7 @@ Transform:
   m_GameObject: {fileID: 424139918901482180}
   m_LocalRotation: {x: -0.029231122, y: -0.041269086, z: 0.058179174, w: 0.99702436}
   m_LocalPosition: {x: 0.508, y: -0.57, z: 1.2940001}
-  m_LocalScale: {x: 0.7750002, y: 0.7749996, z: 0.775}
+  m_LocalScale: {x: 0.05, y: 0.05, z: 0.05}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 2470128279692826929}
@@ -484,6 +484,7 @@ MonoBehaviour:
   shootRate: 0
   shootDist: 0
   gunModel: {fileID: 390137842}
+  meleeModel: {fileID: 424139918901482180}
   hitEffect: {fileID: 7276695728850258670, guid: e363626372d9fe948b40fd7958f8f85d, type: 3}
   fireSelect: 0
   pellets: 0
@@ -491,6 +492,7 @@ MonoBehaviour:
   hasScope: 0
   gunCriticalMult: 0
   isMeleeWeapon: 0
+  isGun: 0
   HPOriginal: 0
 --- !u!82 &6420801457207091318
 AudioSource:

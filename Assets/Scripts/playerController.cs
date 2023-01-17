@@ -354,20 +354,26 @@ public class playerController : MonoBehaviour
     {
 
         bool foundGun = false;
-        for (int i = 0; i < gunList.Count; i++)
+        if (gunList.Count > 0)
         {
-            if (gunStat == gunList[i])
+            for (int i = 0; i < gunList.Count; i++)
             {
-                foundGun = true;
-                gunList[i].modifedGunDMG = Mathf.FloorToInt(gunList[i].modifedGunDMG * gameManager.instance.getDamageModifier());
-                gunList[i].magCount = gunList[i].magSize;           // reloads the upgraded weapon automatically for faster gameplay
-                if (gunList[i] == gunList[selectedGun])
+                if (gunStat == gunList[i])
                 {
-                    gunDMG = gunList[i].modifedGunDMG;
-                    aud.PlayOneShot(gunReloadSound, gunshotSoundVol);
-                    gameManager.instance.ammoUpdate(gunList[selectedGun].magCount, gunList[selectedGun].magSize, gunList[selectedGun].isMelee);
-                    reloadUI.SetActive(false);
-                    gameManager.instance.updatePlayerDamage(gunDMG);
+                    foundGun = true;
+                    gunList[i].modifedGunDMG = Mathf.FloorToInt(gunList[i].modifedGunDMG * gameManager.instance.getDamageModifier());
+                    gunList[i].magCount = gunList[i].magSize;           // reloads the upgraded weapon automatically for faster gameplay
+                    if (gunList[i] == gunList[selectedGun])
+                    {
+                        gunDMG = gunList[i].modifedGunDMG;
+                        aud.PlayOneShot(gunReloadSound, gunshotSoundVol);
+                        gameManager.instance.ammoUpdate(gunList[selectedGun].magCount, gunList[selectedGun].magSize, gunList[selectedGun].isMelee);
+                        if ((gunList[i] == gunList[selectedGun]) && (gunList[selectedGun].magCount == 0 || gunList[selectedGun].magCount <= 3))
+                        {
+                            reloadUI.SetActive(false);
+                        }
+                        gameManager.instance.updatePlayerDamage(gunDMG);
+                    }
                 }
             }
         }
@@ -391,6 +397,53 @@ public class playerController : MonoBehaviour
         }
         if (gameManager.instance.itemCount != 0)
             gameManager.instance.updateItemCount(-1);
+    }
+
+    public void gunPickupBuy(gunStats gunStat)
+    {
+
+        bool foundGun = false;
+        if (gunList.Count > 0)
+        {
+            for (int i = 0; i < gunList.Count; i++)
+            {
+                if (gunStat == gunList[i])
+                {
+                    foundGun = true;
+                    gunList[i].modifedGunDMG = Mathf.FloorToInt(gunList[i].modifedGunDMG * gameManager.instance.getDamageModifier());
+                    gunList[i].magCount = gunList[i].magSize;           // reloads the upgraded weapon automatically for faster gameplay
+                    if (gunList[i] == gunList[selectedGun])
+                    {
+                        gunDMG = gunList[i].modifedGunDMG;
+                        aud.PlayOneShot(gunReloadSound, gunshotSoundVol);
+                        gameManager.instance.ammoUpdate(gunList[selectedGun].magCount, gunList[selectedGun].magSize, gunList[selectedGun].isMelee);
+                        if ((gunList[i] == gunList[selectedGun]) && (gunList[selectedGun].magCount == 0 || gunList[selectedGun].magCount <= 3))
+                        {
+                            reloadUI.SetActive(false);
+                        }
+                        gameManager.instance.updatePlayerDamage(gunDMG);
+                    }
+                }
+            }
+        }
+        if (!foundGun)
+        {
+            gunStat.magCount = gunStat.magSize;
+            if (gameManager.instance.roomCount >= 5)
+            {
+                gunStat.modifedGunDMG = gameManager.instance.scalingFunction(gunStat.gunDMG);
+
+            }
+            else
+            {
+                gunStat.modifedGunDMG = gunStat.gunDMG;
+            }
+            gunList.Add(gunStat);
+            selectedGun = gunList.Count - 1;
+            changeCurrentGun();
+
+            gameManager.instance.ammoUpdate(gunStat.magCount, gunStat.magSize, gunStat.isMelee);
+        }
     }
 
     void gunSelect()
