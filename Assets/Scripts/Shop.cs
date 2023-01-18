@@ -5,4 +5,7 @@ using UnityEngine;
 public class Shop : MonoBehaviour
 {
     [SerializeField] List<GameObject> shopList = new List<GameObject>();
+     
+
+   
 }

@@ -10,6 +10,7 @@ public class playerController : MonoBehaviour
 
     [Header("------Components------")]
     [SerializeField] CharacterController playerControl;
+    
 
     // Player Stats
     #region
@@ -58,6 +59,7 @@ public class playerController : MonoBehaviour
     [SerializeField] AudioClip[] playerStepAudio;
     [Range(0, 3)][SerializeField] float playerStepAudioVol;
 
+
     
 
     #endregion
@@ -92,6 +94,7 @@ public class playerController : MonoBehaviour
     public int HPOriginal;
     int walkSpeedOrg;
     public int CostOfWeapons;
+    public int CostOfUpgrade; 
 
     int selectedGun;
 
@@ -589,18 +592,32 @@ public class playerController : MonoBehaviour
         return aud;
     }
 
-    public void BuyWeapon(gunStats gunBuy)
+    public void BuyWeaponUpgrade(GameObject weapon)
     {
-        gunBuy.isShop = true;
-        if (gameManager.instance.zoins >= gunBuy.CostofWeapon && gunBuy.isShop == true)
+        if (gameManager.instance.zoins >= CostOfUpgrade)
         {
-            gunPickupBuy(gunBuy);
-            gameManager.instance.addZoins(-gunBuy.CostofWeapon);
+            Instantiate(weapon);
+            gameManager.instance.addZoins(-CostOfUpgrade);
         }
         else
         {
             print("Not enough zoins");
         }
     }
+
+     public void BuyWeapon( GameObject weapon)
+    {
+        
+        if (gameManager.instance.zoins >= CostOfWeapons)
+        {
+            Instantiate(weapon);
+            gameManager.instance.addZoins(-CostOfWeapons);
+        }
+        else
+        {
+            print("Not enough zoins");
+        }
+    }
+
 }
 

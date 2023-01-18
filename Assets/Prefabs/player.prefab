@@ -33,7 +33,7 @@ Transform:
   m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 2470128279692826929}
-  m_RootOrder: 1
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: -1.7, y: 0, z: 0}
 --- !u!114 &1402255450749072781
 MonoBehaviour:
@@ -59,7 +59,7 @@ MeshFilter:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 390137842}
-  m_Mesh: {fileID: 0}
+  m_Mesh: {fileID: -50397647144078270, guid: 33269b2b610f4c245a712795c1927939, type: 3}
 --- !u!23 &390137845
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -79,7 +79,8 @@ MeshRenderer:
   m_RayTraceProcedural: 0
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
-  m_Materials: []
+  m_Materials:
+  - {fileID: 2100000, guid: c588de1bd0ae27543958b38850e54921, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -151,7 +152,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 2470128279692826929}
-  m_RootOrder: 2
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!20 &1307054777
 Camera:
@@ -223,11 +224,11 @@ Transform:
   m_GameObject: {fileID: 424139918901482180}
   m_LocalRotation: {x: -0.029231122, y: -0.041269086, z: 0.058179174, w: 0.99702436}
   m_LocalPosition: {x: 0.508, y: -0.57, z: 1.2940001}
-  m_LocalScale: {x: 0.05, y: 0.05, z: 0.05}
+  m_LocalScale: {x: 0.054245, y: 0.054245, z: 0.054245}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 2470128279692826929}
-  m_RootOrder: 3
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: -3.066, y: -4.923, z: 6.811}
 --- !u!33 &2397752966658562240
 MeshFilter:
@@ -310,10 +311,10 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 7494317789885382928}
   - {fileID: 390137843}
-  - {fileID: 1307054778}
+  - {fileID: 7494317789885382928}
   - {fileID: 6590555607793623562}
+  - {fileID: 1307054778}
   m_Father: {fileID: 2470128280080099144}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -440,7 +441,7 @@ MonoBehaviour:
   jumpHeight: 5
   gravity: 15
   pushTime: 1
-  HP: 150
+  HP: 1000
   isDisabled: 0
   Reload: 114
   crouch: 0
@@ -478,10 +479,11 @@ MonoBehaviour:
   - {fileID: 8300000, guid: fd820177bfbd88242954e1fed8fdbf11, type: 3}
   - {fileID: 8300000, guid: bd2301caac6c2f94b8774a6f4b85bb05, type: 3}
   playerStepAudioVol: 0.1
-  gunList: []
-  gunDMG: 0
-  shootRate: 0
-  shootDist: 0
+  gunList:
+  - {fileID: 11400000, guid: 84ce2125930e7054683a216567541666, type: 2}
+  gunDMG: 28
+  shootRate: 0.25
+  shootDist: 300
   gunModel: {fileID: 390137842}
   meleeModel: {fileID: 424139918901482180}
   hitEffect: {fileID: 7276695728850258670, guid: e363626372d9fe948b40fd7958f8f85d, type: 3}
@@ -503,7 +505,7 @@ AudioSource:
   m_GameObject: {fileID: 2470128280080099158}
   m_Enabled: 1
   serializedVersion: 4
-  OutputAudioMixerGroup: {fileID: 0}
+  OutputAudioMixerGroup: {fileID: 1363584690422886456, guid: d26a02b7fc4f96947a7d363fce29fba6, type: 2}
   m_audioClip: {fileID: 0}
   m_PlayOnAwake: 0
   m_Volume: 1
@@ -687,5 +689,5 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 2470128279692826929}
-  m_RootOrder: 0
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
