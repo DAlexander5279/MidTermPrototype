@@ -79,8 +79,7 @@ MeshRenderer:
   m_RayTraceProcedural: 0
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
-  m_Materials:
-  - {fileID: 0}
+  m_Materials: []
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -480,9 +479,9 @@ MonoBehaviour:
   - {fileID: 8300000, guid: bd2301caac6c2f94b8774a6f4b85bb05, type: 3}
   playerStepAudioVol: 0.1
   gunList: []
-  gunDMG: 6
-  shootRate: 0.25
-  shootDist: 300
+  gunDMG: 0
+  shootRate: 0
+  shootDist: 0
   gunModel: {fileID: 390137842}
   meleeModel: {fileID: 424139918901482180}
   hitEffect: {fileID: 7276695728850258670, guid: e363626372d9fe948b40fd7958f8f85d, type: 3}

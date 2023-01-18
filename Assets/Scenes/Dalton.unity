@@ -615,6 +615,11 @@ Mesh:
     offset: 0
     size: 0
     path: 
+--- !u!4 &164123189 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 2470128279692826929, guid: 046a377d7437c9644bf277f305fa4dca, type: 3}
+  m_PrefabInstance: {fileID: 732496298}
+  m_PrefabAsset: {fileID: 0}
 --- !u!43 &200535124
 Mesh:
   m_ObjectHideFlags: 0
@@ -1606,17 +1611,17 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 252540912, guid: 8119b01fc1f287140a1aacffdc79cacc, type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
+    - target: {fileID: 2052016859, guid: 8119b01fc1f287140a1aacffdc79cacc, type: 3}
+      propertyPath: cam
+      value: 
+      objectReference: {fileID: 164123189}
+    - target: {fileID: 2052016859, guid: 8119b01fc1f287140a1aacffdc79cacc, type: 3}
+      propertyPath: throwPoint
+      value: 
+      objectReference: {fileID: 796404235}
     - target: {fileID: 266753384207131369, guid: 8119b01fc1f287140a1aacffdc79cacc, type: 3}
       propertyPath: m_Name
       value: UI
-      objectReference: {fileID: 0}
-    - target: {fileID: 960409081268073544, guid: 8119b01fc1f287140a1aacffdc79cacc, type: 3}
-      propertyPath: m_IsActive
-      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8723847276176227690, guid: 8119b01fc1f287140a1aacffdc79cacc, type: 3}
       propertyPath: m_Pivot.x
@@ -1755,6 +1760,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2470128280080099147, guid: 046a377d7437c9644bf277f305fa4dca, type: 3}
+      propertyPath: reloadUI
+      value: 
+      objectReference: {fileID: 1957480043}
     - target: {fileID: 2470128280080099158, guid: 046a377d7437c9644bf277f305fa4dca, type: 3}
       propertyPath: m_Name
       value: player
@@ -1987,6 +1996,11 @@ LightingSettings:
   m_PVRFilteringAtrousPositionSigmaIndirect: 2
   m_PVRFilteringAtrousPositionSigmaAO: 1
   m_PVRTiledBaking: 0
+--- !u!4 &796404235 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 7494317789885382928, guid: 046a377d7437c9644bf277f305fa4dca, type: 3}
+  m_PrefabInstance: {fileID: 732496298}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &940028653
 GameObject:
   m_ObjectHideFlags: 0
@@ -3557,6 +3571,11 @@ Mesh:
     offset: 0
     size: 0
     path: 
+--- !u!1 &1957480043 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2726891418099723174, guid: 8119b01fc1f287140a1aacffdc79cacc, type: 3}
+  m_PrefabInstance: {fileID: 684388935}
+  m_PrefabAsset: {fileID: 0}
 --- !u!43 &2105219823
 Mesh:
   m_ObjectHideFlags: 0

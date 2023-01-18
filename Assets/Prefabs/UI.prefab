@@ -6457,6 +6457,7 @@ MonoBehaviour:
   enemiesKilled: 0
   pauseMenu: {fileID: 252540912}
   activeMenu: {fileID: 0}
+  shopMenu: {fileID: 4776575551172709122}
   winMenu: {fileID: 4365397994282439723}
   loseMenu: {fileID: 4711952270747788180}
   playerFlashDamage: {fileID: 760748851}
@@ -6482,8 +6483,9 @@ MonoBehaviour:
   enemyCount: 0
   paused: 0
   settings: 0
-  zoins: 0
+  zoins: 10
   AmmoCount: 0
+  shop: 0
 --- !u!1 &1103788628891823913
 GameObject:
   m_ObjectHideFlags: 0
@@ -7616,7 +7618,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &8915479877320758046
 RectTransform:
   m_ObjectHideFlags: 0
@@ -8799,7 +8801,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 575327999394042597}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 0}
+        m_TargetAssemblyTypeName: 
+        m_MethodName: 
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: 
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &6889399015658431281
 GameObject:
   m_ObjectHideFlags: 0

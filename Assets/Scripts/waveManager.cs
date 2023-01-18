@@ -17,7 +17,7 @@ public class waveManager : MonoBehaviour
     [SerializeField] int wave;
     public bool isWaveOver;
     [SerializeField] float timeBetweenSpawns;
-    [SerializeField] int waveBreakTimer;
+    [SerializeField] float waveBreakTimer;
 
     // Start is called before the first frame update
     private void Start()
@@ -31,18 +31,20 @@ public class waveManager : MonoBehaviour
     void Update()
     {
 
-
+        AliveEnemyCount = gameManager.instance.enemyCount;
         //checks if wave is over, and if enemies need to be spawned
-        if(!isWaveOver && EnemiesSpawned < WaveEnemyCount)
+        if (!isWaveOver)
         {
-           StartCoroutine(spawnEnemies());
+            if (EnemiesSpawned < WaveEnemyCount)
+                StartCoroutine(spawnEnemies());
         }
 
         //checks if any enemies are alive
         //if(AliveEnemyCount == 0)
-        if (gameManager.instance.enemyCount == 0)
+        if (gameManager.instance.enemyCount == 0 && !isWaveOver)
         {
             isWaveOver = true;
+
             StartCoroutine(waveBreak());
         }
     }
@@ -51,12 +53,12 @@ public class waveManager : MonoBehaviour
     IEnumerator spawnEnemies()
     {
 
-        int indexEnemy = Random.Range(0, enemies.Length );
-        int indexPos = Random.Range(0, positions.Length );
+        int indexEnemy = Random.Range(0, enemies.Length);
+        int indexPos = Random.Range(0, positions.Length);
         //spawns random enemy in a random location
-       
-        Instantiate(enemies[indexEnemy], positions[indexPos].transform);
-        
+
+        Instantiate(enemies[indexEnemy], positions[indexPos].transform.position, Quaternion.identity);
+
         //increments the number of enemies that have been spawned
         EnemiesSpawned++;
 
@@ -67,15 +69,15 @@ public class waveManager : MonoBehaviour
     IEnumerator waveBreak()
     {
         //THIS IS WHEN THE SHOP CAN BE ACCESSED
-
+        EnemiesSpawned = 0;
+        //increments enemy o
+        WaveEnemyCount += Mathf.FloorToInt(gameManager.instance.scalingFunction(3 + Mathf.FloorToInt(wave * 0.2f)));
 
         //waits x amount of time, then resets variables for new wave
         yield return new WaitForSeconds(waveBreakTimer);
-        EnemiesSpawned = 0;
-        //increments enemy o
-        WaveEnemyCount += 3;
+
         isWaveOver = false;
-      
+
     }
 
 
