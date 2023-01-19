@@ -51,7 +51,7 @@ public class gameManager : MonoBehaviour
 
 
     [Header("------Extras------")]
-    public int roomCount;
+    public int waveCount;
     public int itemCount;
     public int curRoomIndex;
     [SerializeField] int killWinCondition;
@@ -82,7 +82,7 @@ public class gameManager : MonoBehaviour
         origTime = Time.timeScale;
         PlayerPrefs.SetInt("enemyStat", 0);
         addZoins(0);
-        addRoomCount(-1);
+        waveCount = 0;
         if (PlayerPrefs.HasKey("MusicVol"))
         {
             musicSliderVol.value = PlayerPrefs.GetFloat("MusicVol");
@@ -231,13 +231,13 @@ public class gameManager : MonoBehaviour
         Zoins.text = zoins.ToString("F0");
     }
 
-    public void addRoomCount(int amount)
+    public void addWaveCount(int amount)
     {
-        roomCount += amount;
-        if (roomCount < 0)
-            roomsCleared.text = 0.ToString("F0");
+        waveCount += amount;
+        if (waveCount < 0)
+            roomsCleared.text = 0.ToString("F0");   //will rename to wavesCleared
         else
-            roomsCleared.text = roomCount.ToString("F0");
+            roomsCleared.text = waveCount.ToString("F0");   //will rename to wavesCleared
     }
     public void ammoUpdate(int currentMag, int magSize, bool isMelee)
     {
@@ -272,7 +272,7 @@ public class gameManager : MonoBehaviour
 
     public int scalingFunction(int var)
     {
-        return var + Mathf.FloorToInt(var * (scalingModifer * Mathf.Floor(roomCount * 0.2f)));
+        return var + Mathf.FloorToInt(var * (scalingModifer * Mathf.Floor(waveCount * 0.2f)));
     }
     public void musicVolChange()
     {

@@ -384,7 +384,7 @@ public class playerController : MonoBehaviour
         if (!foundGun)
         {
             gunStat.magCount = gunStat.magSize;
-            if (gameManager.instance.roomCount >= 5)
+            if (gameManager.instance.waveCount >= 5)
             {
                 gunStat.modifedGunDMG = gameManager.instance.scalingFunction(gunStat.gunDMG);
 
@@ -433,7 +433,7 @@ public class playerController : MonoBehaviour
         if (!foundGun)
         {
             gunStat.magCount = gunStat.magSize;
-            if (gameManager.instance.roomCount >= 5)
+            if (gameManager.instance.waveCount >= 5)
             {
                 gunStat.modifedGunDMG = gameManager.instance.scalingFunction(gunStat.gunDMG);
 
@@ -596,7 +596,7 @@ public class playerController : MonoBehaviour
     {
         if (gameManager.instance.zoins >= CostOfUpgrade)
         {
-            Instantiate(weapon);
+            Instantiate(weapon, transform.position, transform.rotation);
             gameManager.instance.addZoins(-CostOfUpgrade);
         }
         else
@@ -605,12 +605,12 @@ public class playerController : MonoBehaviour
         }
     }
 
-     public void BuyWeapon( GameObject weapon)
+     public void BuyWeapon(GameObject weapon)
     {
         
         if (gameManager.instance.zoins >= CostOfWeapons)
         {
-            Instantiate(weapon);
+            Instantiate(weapon, transform.position,transform.rotation);
             gameManager.instance.addZoins(-CostOfWeapons);
         }
         else

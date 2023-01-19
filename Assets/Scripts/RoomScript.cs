@@ -44,11 +44,11 @@ public class RoomScript : MonoBehaviour
     void SpawnRoom()
     {
         int index = 0;
-        gameManager.instance.addRoomCount(1);
+        gameManager.instance.addWaveCount(1);
 
 
         roomSpawned = true;
-        if(gameManager.instance.roomCount <= 5)
+        if(gameManager.instance.waveCount <= 5)
         {
             index = Random.Range(0, easyRooms.Length - 1);
             while (index == gameManager.instance.curRoomIndex)//Checks to make sure rooms are not spawning itself

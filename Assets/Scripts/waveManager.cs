@@ -28,6 +28,7 @@ public class waveManager : MonoBehaviour
     private void Start()
     {
         wave = 0;
+        gameManager.instance.addWaveCount(0);
         isWaveOver = false;          // set to true to allow some time before the first wave starts
         isSpawningEnemies = true;  // using this will allow the game to make use of the spawner delay
         isBossRound = false;
@@ -79,7 +80,7 @@ public class waveManager : MonoBehaviour
         {
             if (isHigherDiff && !isBossRound)
             {
-                if (EnemiesSpawned == (WaveEnemyCount + WaveBossEnemyCount))
+                if (EnemiesSpawned >= (WaveEnemyCount + WaveBossEnemyCount))
                 {
                     isWaveOver = true;
 
@@ -89,7 +90,7 @@ public class waveManager : MonoBehaviour
             }
             else if (isBossRound)
             {
-                if (EnemiesSpawned ==  WaveBossEnemyCount)
+                if (EnemiesSpawned >=  WaveBossEnemyCount)
                 {
                     isWaveOver = true;
 
@@ -99,7 +100,7 @@ public class waveManager : MonoBehaviour
             }
             else
             {
-                if (EnemiesSpawned == WaveEnemyCount)
+                if (EnemiesSpawned >= WaveEnemyCount)
                 {
                     isWaveOver = true;
 
@@ -142,7 +143,9 @@ public class waveManager : MonoBehaviour
 
         //waits x amount of time, then resets variables for new wave
         yield return new WaitForSeconds(waveBreakTimer);
+
         wave++;
+        gameManager.instance.addWaveCount(wave - gameManager.instance.waveCount);
         isSpawningEnemies = false;
         isWaveOver = false;
 

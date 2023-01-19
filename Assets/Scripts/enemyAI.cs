@@ -103,12 +103,21 @@ public class enemyAI : MonoBehaviour, IDamage
         else { HPTimer = 0f; }
     }
 
-    void ShowDamage(string text)
+    void ShowDamage(string text, bool critical)
     {
         if (floatingTextPrefab)
         {
             GameObject prefab = Instantiate(floatingTextPrefab, floatTextPosition.position, floatTextPosition.transform.rotation);
             prefab.GetComponentInChildren<TextMesh>().text = text;
+            if (!critical)
+            {
+                prefab.GetComponentInChildren<TextMesh>().color = Color.yellow;
+
+            }
+            else
+            {
+                prefab.GetComponentInChildren<TextMesh>().color = Color.red;
+            }
         }
     }
 
@@ -193,7 +202,7 @@ public class enemyAI : MonoBehaviour, IDamage
                 trueDamage = dmgIn;
             }
             HP -= trueDamage;
-            ShowDamage(trueDamage.ToString());
+            ShowDamage(trueDamage.ToString(), wasCritical);
             updateEnemyHPBar();
             enemyUI.gameObject.SetActive(true);
             enemyHPBackground.gameObject.SetActive(true);
