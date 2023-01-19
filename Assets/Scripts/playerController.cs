@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
+using UnityEditor.Build.Content;
 using UnityEngine;
 using static UnityEngine.ParticleSystem;
 
@@ -10,7 +11,7 @@ public class playerController : MonoBehaviour
 
     [Header("------Components------")]
     [SerializeField] CharacterController playerControl;
-    
+
 
     // Player Stats
     #region
@@ -43,6 +44,7 @@ public class playerController : MonoBehaviour
     #region
     [Header("------Player Sounds------")]
     [SerializeField] AudioSource aud;
+    [SerializeField] AudioSource ambSound;
 
     //gun sounds
     [SerializeField] AudioClip gunshotSound;
@@ -59,8 +61,11 @@ public class playerController : MonoBehaviour
     [SerializeField] AudioClip[] playerStepAudio;
     [Range(0, 3)][SerializeField] float playerStepAudioVol;
 
+    [SerializeField] AudioClip ambientSound;
+    [Range(0, 3)][SerializeField] float ambientSoundVol;
 
-    
+
+
 
     #endregion
 
@@ -94,7 +99,7 @@ public class playerController : MonoBehaviour
     public int HPOriginal;
     int walkSpeedOrg;
     public int CostOfWeapons;
-    public int CostOfUpgrade; 
+    public int CostOfUpgrade;
 
     int selectedGun;
 
@@ -127,6 +132,7 @@ public class playerController : MonoBehaviour
     // Start is called before the first frame update
     private void Start()
     {
+
         HPOriginal = HP;
         updatePlayerHP();
         gameManager.instance.updatePlayerDamage(gunDMG);
@@ -138,9 +144,7 @@ public class playerController : MonoBehaviour
         //scaleY = gunModel.transform.localScale.y;
         //scaleZ = gunModel.transform.localScale.z;
         isReloading = false;
-
-
-
+        ambSound.Play();
     }
     // Update is called once per frame
     void Update()
@@ -167,6 +171,7 @@ public class playerController : MonoBehaviour
             }
 
         }
+        
     }
     void Movement()
     {
@@ -605,12 +610,12 @@ public class playerController : MonoBehaviour
         }
     }
 
-     public void BuyWeapon(GameObject weapon)
+    public void BuyWeapon(GameObject weapon)
     {
-        
+
         if (gameManager.instance.zoins >= CostOfWeapons)
         {
-            Instantiate(weapon, transform.position,transform.rotation);
+            Instantiate(weapon, transform.position, transform.rotation);
             gameManager.instance.addZoins(-CostOfWeapons);
         }
         else

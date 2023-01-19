@@ -448,6 +448,7 @@ MonoBehaviour:
   crouchCBind: 0
   reloadUI: {fileID: 0}
   aud: {fileID: 6420801457207091318}
+  ambSound: {fileID: 0}
   gunshotSound: {fileID: 8300000, guid: 024c32c2982b01c4daf29c224c213186, type: 3}
   dryfireSound:
   - {fileID: 8300000, guid: 1a799e4b14733634496815b9630c1d25, type: 3}
@@ -479,9 +480,11 @@ MonoBehaviour:
   - {fileID: 8300000, guid: fd820177bfbd88242954e1fed8fdbf11, type: 3}
   - {fileID: 8300000, guid: bd2301caac6c2f94b8774a6f4b85bb05, type: 3}
   playerStepAudioVol: 0.1
+  ambientSound: {fileID: 8300000, guid: 1555836638cd34283a3780a19b58d4c6, type: 3}
+  ambientSoundVol: 1.5
   gunList: []
-  gunDMG: 28
-  shootRate: 0.25
+  gunDMG: 0
+  shootRate: 0
   shootDist: 300
   gunModel: {fileID: 390137842}
   meleeModel: {fileID: 424139918901482180}
