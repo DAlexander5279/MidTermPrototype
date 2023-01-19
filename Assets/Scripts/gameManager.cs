@@ -4,7 +4,8 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.Audio;
 using TMPro;
-
+using UnityEngine.SceneManagement;
+using Unity.VisualScripting;
 
 public class gameManager : MonoBehaviour
 {
@@ -26,6 +27,8 @@ public class gameManager : MonoBehaviour
     public GameObject shopMenu;
     public GameObject winMenu;
     public GameObject loseMenu;
+    public GameObject titleScreen;
+    public GameObject closeConfirmMenu;
     public GameObject playerFlashDamage;
     public Image playerHealthBar;
     public Image playerHealthAnim;
@@ -56,17 +59,24 @@ public class gameManager : MonoBehaviour
     public int enemyCount;
     public bool paused;
     public bool settings;
+    public bool startGame;
+    public bool closeConMenu;
+    public bool Confirm;
+    public bool Cancel;
     public int zoins;
-
     public int AmmoCount;
     float HPTimer = 0;
     public bool shop;
 
 
     float origTime;
+
     void Awake()
     {
+
+
         instance = this;
+        
         player = GameObject.FindGameObjectWithTag("Player");
         playerScript = player.GetComponent<playerController>();
         origTime = Time.timeScale;
@@ -94,14 +104,21 @@ public class gameManager : MonoBehaviour
             Sensitivity.SetSensY(SensY.value);
         }
     }
+    private void Start()
+    {
+       
+        MainMenu();
+        Cursor.visible = true;
+        Cursor.lockState = CursorLockMode.Confined;
+    }
     // Update is called once per frame
     void Update()
     {
         if (Input.GetButtonDown("Cancel") && (activeMenu == null || activeMenu == pauseMenu))
         {
-            paused = !paused;
+            paused = true;
             activeMenu = pauseMenu;
-            activeMenu.SetActive(paused);
+            activeMenu.SetActive(true);
             if (paused)
             {
                 gamePause();
@@ -110,21 +127,39 @@ public class gameManager : MonoBehaviour
                 gameUnpause();
         }
 
-        if (Input.GetButtonDown("Cancel") && (activeMenu == null || activeMenu == settingsMenu))
+        if (Input.GetButtonDown("Cancel") && activeMenu == settingsMenu && startGame == true)
         {
-
-            settings = !settings;
-            settingsMenu.SetActive(false);
+            settings = false;
+            activeMenu.SetActive(false);
             activeMenu = pauseMenu;
-            activeMenu.SetActive(paused);
-            if (paused)
-            {
-                gamePause();
-            }
-            else
-                gameUnpause();
+            paused = true;
+            activeMenu.SetActive(true);
+            
+
         }
 
+        if (Input.GetButtonDown("Cancel") && activeMenu == titleScreen)
+        {
+            closeConMenu = true;
+            activeMenu = closeConfirmMenu;
+            activeMenu.SetActive(true);
+            if (Confirm == false)
+            {
+                cancel();
+
+            }
+        }
+       
+        if (activeMenu == settingsMenu && startGame == false)
+        {
+            settings = true;
+            if (Input.GetButtonDown("Cancel"))
+            {
+                activeMenu.SetActive(false);
+                activeMenu = titleScreen;
+                activeMenu.SetActive(true);
+            }
+        }
         if (Input.GetButtonDown("Cancel") && (activeMenu == null || activeMenu == shopMenu))
         {
             shop = !shop;
@@ -164,9 +199,8 @@ public class gameManager : MonoBehaviour
         Time.timeScale = origTime;
         Cursor.visible = false;
         Cursor.lockState = CursorLockMode.Locked;
-        activeMenu.SetActive(false);
+        pauseMenu.SetActive(false);
         activeMenu = null;
-
 
     }
     public void updateEnemyCount(int amount)
@@ -265,5 +299,30 @@ public class gameManager : MonoBehaviour
         PlayerPrefs.SetFloat("SenYAxis", SensY.value);
 
     }
-    
+    public void confirm()
+    {
+        activeMenu = null;
+        activeMenu.SetActive(false);
+        Application.Quit();
+    }
+    public void cancel()
+    {
+        activeMenu.SetActive(false);
+        activeMenu = titleScreen;
+        activeMenu.SetActive(true);
+    }
+    public void MainMenu()
+    {
+        activeMenu = titleScreen;
+        Time.timeScale = 0;
+        activeMenu.SetActive(true);
+    }
+    public void closeMainMenu()
+    {
+        Time.timeScale = origTime;
+        Cursor.visible = false;
+        Cursor.lockState = CursorLockMode.Locked;
+        titleScreen.SetActive(false);
+        activeMenu = null;
+    }
 }

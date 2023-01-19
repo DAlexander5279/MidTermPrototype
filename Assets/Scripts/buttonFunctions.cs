@@ -13,30 +13,37 @@ public class buttonFunctions : MonoBehaviour
         gameManager.instance.playerScript.getPlayerAud().PlayOneShot(clickSound);
 
         gameManager.instance.gameUnpause();
-        gameManager.instance.paused = !gameManager.instance.paused;
+        gameManager.instance.paused = false;
         gameManager.instance.pauseMenu.SetActive(false);
     }
     public void restart()
     {
+        gameManager.instance.playerScript.getPlayerAud().PlayOneShot(clickSound);
         gameManager.instance.gameUnpause();
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
-        gameManager.instance.playerScript.getPlayerAud().PlayOneShot(clickSound);
     }
     public void quit()
     {
         audioClick.PlayOneShot(clickSound, clickVol);
-
         Application.Quit();
     }
     public void settings()
     {
         audioClick.PlayOneShot(clickSound, clickVol);
-
-        gameManager.instance.gamePause();
         gameManager.instance.activeMenu = gameManager.instance.settingsMenu;
-        gameManager.instance.activeMenu.SetActive(gameManager.instance.settingsMenu);
-        
-    }
-    
+        gameManager.instance.activeMenu.SetActive(true);
 
+    }
+    public void startGame()
+    {
+        gameManager.instance.playerScript.getPlayerAud().PlayOneShot(clickSound);
+        gameManager.instance.startGame = true;
+        gameManager.instance.closeMainMenu();
+    }
+    public void cancel()
+    {
+        gameManager.instance.playerScript.getPlayerAud().PlayOneShot(clickSound);
+        gameManager.instance.Confirm = false;
+        gameManager.instance.cancel();
+    }
 }
