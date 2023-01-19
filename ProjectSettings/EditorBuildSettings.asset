@@ -6,6 +6,6 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/Scenes/Jeremiah (old).unity
-    guid: 8758f9b106d05c145a2b4d3966993476
+    path: Assets/Scenes/Jeremiah (new).unity
+    guid: ce35c3a5da7afdc45a437f9badc133cb
   m_configObjects: {}

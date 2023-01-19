@@ -208,13 +208,13 @@ public class gameManager : MonoBehaviour
         enemyCount += amount;
 
 
-        if ((enemyCount <= 0) && (enemiesKilled >= killWinCondition - 1))
-        // we subtract 1 from killWinCondition to get around enemyCount updating when killing the exact amount needed AND it is the last enemy alive
-        {
-            winMenu.SetActive(true);
-            gamePause();
-            activeMenu = winMenu;
-        }
+        //if ((enemyCount <= 0) && (enemiesKilled >= killWinCondition - 1))
+        //// we subtract 1 from killWinCondition to get around enemyCount updating when killing the exact amount needed AND it is the last enemy alive
+        //{
+        //    winMenu.SetActive(true);
+        //    gamePause();
+        //    activeMenu = winMenu;
+        //}
     }
 
     public void pushRoomsBack(GameObject obj)

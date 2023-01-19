@@ -829,7 +829,7 @@ MonoBehaviour:
   floatingTextPrefab: {fileID: 716116289428203266, guid: a871673e88fa74a40a01ceedd07c9d87, type: 3}
   HP: 15
   playerFaceSpeed: 45
-  sightAngle: 55
+  sightAngle: 100
   headPosition: {fileID: 6626594136111968042}
   dangerSightModifier: 2
   beenKilled: 0

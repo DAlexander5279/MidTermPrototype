@@ -20,8 +20,10 @@ public class OpenShop : MonoBehaviour
         if (other.gameObject.tag == "Player")
         {
             gameManager.instance.activeMenu = gameManager.instance.shopMenu;
-            gameManager.instance.gamePause();
+            //gameManager.instance.gamePause();
             shop.SetActive(true);
+            Cursor.visible = true;
+            Cursor.lockState = CursorLockMode.Confined;
         }
     }
 
@@ -29,7 +31,11 @@ public class OpenShop : MonoBehaviour
     {
         if (other.gameObject.tag == "Player")
         {
+            gameManager.instance.activeMenu = null;
             shop.SetActive(false);
+            Cursor.visible = false;
+            Cursor.lockState = CursorLockMode.Locked;
+
         }
     }
 

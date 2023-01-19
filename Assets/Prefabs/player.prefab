@@ -46,7 +46,7 @@ AudioSource:
   m_PlayOnAwake: 0
   m_Volume: 0.398
   m_Pitch: 1
-  Loop: 0
+  Loop: 1
   Mute: 0
   Spatialize: 0
   SpatializePostEffects: 0
@@ -179,7 +179,7 @@ MonoBehaviour:
   scopeOverlay: {fileID: 0}
   weaponCamera: {fileID: 1307054775}
   mainCamera: {fileID: 2470128279692826928}
-  fovScoped: 40
+  fovScoped: 25
 --- !u!33 &390137846
 MeshFilter:
   m_ObjectHideFlags: 0

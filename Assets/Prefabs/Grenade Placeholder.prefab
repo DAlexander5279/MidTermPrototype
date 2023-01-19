@@ -49,10 +49,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5a323639a9b57e942b8b491a3dce98b3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  explosiveWeapon: {fileID: 2505653274007219841}
   pushBackAmount: 4
-  damage: 30
-  delayTime: 0.4
+  damage: 35
+  delayTime: 1.5
   radius: 8
   explosionEffect: {fileID: 19842296, guid: a0040bf7072bc2f4e82d887d50a9c5e2, type: 3}
   expAud: {fileID: 907730514126260077}
@@ -137,7 +136,7 @@ Rigidbody:
   m_IsKinematic: 0
   m_Interpolate: 0
   m_Constraints: 0
-  m_CollisionDetection: 1
+  m_CollisionDetection: 2
 --- !u!82 &907730514126260077
 AudioSource:
   m_ObjectHideFlags: 0

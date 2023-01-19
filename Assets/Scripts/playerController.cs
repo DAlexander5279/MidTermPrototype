@@ -2,7 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
-using UnityEditor.Build.Content;
+//using UnityEditor.Build.Content;
 using UnityEngine;
 using static UnityEngine.ParticleSystem;
 
@@ -63,6 +63,9 @@ public class playerController : MonoBehaviour
 
     [SerializeField] AudioClip ambientSound;
     [Range(0, 3)][SerializeField] float ambientSoundVol;
+
+    [SerializeField] AudioClip laserUpgradeSFX;
+    [Range(0, 3)] [SerializeField] float laserUpgradeSFXVol;
 
 
 
@@ -163,7 +166,7 @@ public class playerController : MonoBehaviour
                 {
                     StartCoroutine(stepsPlaying());
                 }
-                if (gunList.Count > 0)
+                if (gunList.Count > 0 && gameManager.instance.activeMenu != gameManager.instance.shopMenu)
                 {
                     StartCoroutine(Shoot());
                     gunSelect();
@@ -383,6 +386,7 @@ public class playerController : MonoBehaviour
                         }
                         gameManager.instance.updatePlayerDamage(gunDMG);
                     }
+                    aud.PlayOneShot(laserUpgradeSFX, laserUpgradeSFXVol);
                 }
             }
         }
@@ -601,7 +605,8 @@ public class playerController : MonoBehaviour
     {
         if (gameManager.instance.zoins >= CostOfUpgrade)
         {
-            Instantiate(weapon, transform.position, transform.rotation);
+            Instantiate(weapon, gameManager.instance.player.transform.position, gameManager.instance.player.transform.rotation);
+            // had to use gameManager call for this one specifically cuz Unity is great :)
             gameManager.instance.addZoins(-CostOfUpgrade);
         }
         else
