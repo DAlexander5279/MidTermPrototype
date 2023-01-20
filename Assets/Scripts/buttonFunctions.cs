@@ -24,12 +24,12 @@ public class buttonFunctions : MonoBehaviour
     }
     public void quit()
     {
-        audioClick.PlayOneShot(clickSound, clickVol);
+        gameManager.instance.playerScript.getPlayerAud().PlayOneShot(clickSound);
         Application.Quit();
     }
     public void settings()
     {
-        audioClick.PlayOneShot(clickSound, clickVol);
+        gameManager.instance.playerScript.getPlayerAud().PlayOneShot(clickSound);
         gameManager.instance.activeMenu = gameManager.instance.settingsMenu;
         gameManager.instance.activeMenu.SetActive(true);
 
@@ -46,4 +46,20 @@ public class buttonFunctions : MonoBehaviour
         gameManager.instance.Confirm = false;
         gameManager.instance.cancel();
     }
+    public void exitSettings()
+    {
+        gameManager.instance.playerScript.getPlayerAud().PlayOneShot(clickSound);
+        gameManager.instance.settingsMenu.SetActive(false);
+        if (gameManager.instance.activeMenu == gameManager.instance.settingsMenu && gameManager.instance.savedMenu == gameManager.instance.titleScreen)
+        {
+            gameManager.instance.backToTitle();
+            
+        }
+        else if(gameManager.instance.activeMenu == gameManager.instance.settingsMenu && gameManager.instance.savedMenu == gameManager.instance.pauseMenu)
+        {
+            gameManager.instance.backToPause();
+
+        }
+    }
+    
 }

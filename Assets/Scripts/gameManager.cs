@@ -22,8 +22,9 @@ public class gameManager : MonoBehaviour
     public int enemiesKilled;
 
     [Header("------UI------")]
-    public GameObject pauseMenu;
     public GameObject activeMenu;
+    public GameObject savedMenu;
+    public GameObject pauseMenu;
     public GameObject shopMenu;
     public GameObject winMenu;
     public GameObject loseMenu;
@@ -76,7 +77,7 @@ public class gameManager : MonoBehaviour
 
 
         instance = this;
-        
+        savedMenu = null;
         player = GameObject.FindGameObjectWithTag("Player");
         playerScript = player.GetComponent<playerController>();
         origTime = Time.timeScale;
@@ -106,7 +107,7 @@ public class gameManager : MonoBehaviour
     }
     private void Start()
     {
-       
+
         MainMenu();
         Cursor.visible = true;
         Cursor.lockState = CursorLockMode.Confined;
@@ -114,7 +115,7 @@ public class gameManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetButtonDown("Cancel") && (activeMenu == null || activeMenu == pauseMenu))
+        if (Input.GetButtonDown("Cancel") && (activeMenu == null || activeMenu == pauseMenu) && savedMenu == null)
         {
             paused = true;
             activeMenu = pauseMenu;
@@ -134,7 +135,7 @@ public class gameManager : MonoBehaviour
             activeMenu = pauseMenu;
             paused = true;
             activeMenu.SetActive(true);
-            
+
 
         }
 
@@ -149,7 +150,7 @@ public class gameManager : MonoBehaviour
 
             }
         }
-       
+
         if (activeMenu == settingsMenu && startGame == false)
         {
             settings = true;
@@ -189,6 +190,7 @@ public class gameManager : MonoBehaviour
     }
     public void gamePause()
     {
+        savedMenu = pauseMenu;
         Time.timeScale = 0;
         Cursor.visible = true;
         Cursor.lockState = CursorLockMode.Confined;
@@ -201,6 +203,7 @@ public class gameManager : MonoBehaviour
         Cursor.lockState = CursorLockMode.Locked;
         pauseMenu.SetActive(false);
         activeMenu = null;
+        savedMenu= null;
 
     }
     public void updateEnemyCount(int amount)
@@ -314,15 +317,36 @@ public class gameManager : MonoBehaviour
     public void MainMenu()
     {
         activeMenu = titleScreen;
+        savedMenu = titleScreen;
         Time.timeScale = 0;
         activeMenu.SetActive(true);
     }
     public void closeMainMenu()
     {
+        activeMenu = null;
+        savedMenu = null;
         Time.timeScale = origTime;
         Cursor.visible = false;
         Cursor.lockState = CursorLockMode.Locked;
         titleScreen.SetActive(false);
-        activeMenu = null;
+    }
+    public void backToTitle()
+    {
+        gameManager.instance.activeMenu.SetActive(false);
+        gameManager.instance.savedMenu = null;
+        gameManager.instance.activeMenu = gameManager.instance.titleScreen;
+        gameManager.instance.savedMenu = gameManager.instance.titleScreen;
+        gameManager.instance.activeMenu.SetActive(true);
+
+    }
+    public void backToPause()
+    {
+        gameManager.instance.activeMenu.SetActive(false);
+        gameManager.instance.savedMenu = null;
+        gameManager.instance.activeMenu = gameManager.instance.pauseMenu;
+        gameManager.instance.savedMenu = gameManager.instance.pauseMenu;
+        gameManager.instance.activeMenu.SetActive(true);
+
+
     }
 }
