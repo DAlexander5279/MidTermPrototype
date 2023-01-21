@@ -15,10 +15,10 @@ public class playerController : MonoBehaviour
     // Player Stats
     #region
     [Header("------Player Stats------")]
-    [Range(1, 10)] [SerializeField] float playerSpeed;
+    [Range(1, 10)][SerializeField] float playerSpeed;
     [SerializeField] int jumpMax;
-    [Range(5, 15)] [SerializeField] int jumpHeight;
-    [Range(10, 20)] [SerializeField] int gravity;
+    [Range(5, 15)][SerializeField] int jumpHeight;
+    [Range(10, 20)][SerializeField] int gravity;
     [SerializeField] int pushTime;
     public int HP;
     public bool isDisabled;
@@ -49,22 +49,22 @@ public class playerController : MonoBehaviour
     [SerializeField] AudioClip gunshotSound;
     [SerializeField] List<AudioClip> dryfireSound;
     [SerializeField] AudioClip gunReloadSound;
-    [Range(0, 3)] [SerializeField] float gunshotSoundVol;
+    [Range(0, 3)][SerializeField] float gunshotSoundVol;
 
     [SerializeField] AudioClip[] playerJumpAudio;
-    [Range(0, 3)] [SerializeField] float playerJumpAudioVol;
+    [Range(0, 3)][SerializeField] float playerJumpAudioVol;
 
     [SerializeField] AudioClip[] playerHurtAudio;
-    [Range(0, 3)] [SerializeField] float playerHurtAudioVol;
+    [Range(0, 3)][SerializeField] float playerHurtAudioVol;
 
     [SerializeField] AudioClip[] playerStepAudio;
-    [Range(0, 3)] [SerializeField] float playerStepAudioVol;
+    [Range(0, 3)][SerializeField] float playerStepAudioVol;
 
     [SerializeField] AudioClip ambientSound;
-    [Range(0, 3)] [SerializeField] float ambientSoundVol;
+    [Range(0, 3)][SerializeField] float ambientSoundVol;
 
     [SerializeField] AudioClip laserUpgradeSFX;
-    [Range(0, 3)] [SerializeField] float laserUpgradeSFXVol;
+    [Range(0, 3)][SerializeField] float laserUpgradeSFXVol;
 
 
 
@@ -76,9 +76,9 @@ public class playerController : MonoBehaviour
     [Header("------Gun Stats------")]
     [SerializeField] List<gunStats> gunList = new List<gunStats>();
 
-    [Range(0, 5)] [SerializeField] int gunDMG;
+    [Range(0, 5)][SerializeField] int gunDMG;
     [SerializeField] float shootRate;   // player's gun fire rate
-    [Range(0, 200)] [SerializeField] int shootDist; // effective range of the shot
+    [Range(0, 200)][SerializeField] int shootDist; // effective range of the shot
     [SerializeField] GameObject gunModel;   //also gun position/viewmodel position
     [SerializeField] GameObject meleeModel;
     [SerializeField] GameObject hitEffect;
@@ -179,7 +179,7 @@ public class playerController : MonoBehaviour
     }
     void Movement()
     {
-
+        
         if (playerControl.isGrounded && playerVelocity.y < 0)
         {
             timesJumped = 0;
@@ -407,7 +407,6 @@ public class playerController : MonoBehaviour
     IEnumerator stepsPlaying()
     {
         audioIsPlaying = true;
-
         aud.PlayOneShot(playerStepAudio[UnityEngine.Random.Range(0, playerStepAudio.Length)], playerStepAudioVol);
         if (isRunning)
         {

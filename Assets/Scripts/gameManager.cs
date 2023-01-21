@@ -60,7 +60,7 @@ public class gameManager : MonoBehaviour
     public int enemyCount;
     public bool paused;
     public bool settings;
-    public bool startGame;
+    [SerializeField] public bool startGame;
     public bool closeConMenu;
     public bool Confirm;
     public bool Cancel;
@@ -144,10 +144,13 @@ public class gameManager : MonoBehaviour
             closeConMenu = true;
             activeMenu = closeConfirmMenu;
             activeMenu.SetActive(true);
-            if (Confirm == false)
+            if (closeConMenu == false)
             {
                 cancel();
-
+            }
+            else
+            {
+                Application.Quit();
             }
         }
 
@@ -161,6 +164,17 @@ public class gameManager : MonoBehaviour
                 activeMenu.SetActive(true);
             }
         }
+        if (activeMenu == settingsMenu) 
+        {
+            playerScript.getPlayerAud().Pause();
+            startGame = false;
+        }
+        else
+        {
+            playerScript.getPlayerAud().Play();
+            startGame = true;
+        }
+
         if (Input.GetButtonDown("Cancel") && (activeMenu == null || activeMenu == shopMenu))
         {
             shop = !shop;
@@ -319,6 +333,7 @@ public class gameManager : MonoBehaviour
         activeMenu = titleScreen;
         savedMenu = titleScreen;
         Time.timeScale = 0;
+        startGame = false;
         activeMenu.SetActive(true);
     }
     public void closeMainMenu()
@@ -326,8 +341,6 @@ public class gameManager : MonoBehaviour
         activeMenu = null;
         savedMenu = null;
         Time.timeScale = origTime;
-        Cursor.visible = false;
-        Cursor.lockState = CursorLockMode.Locked;
         titleScreen.SetActive(false);
     }
     public void backToTitle()
