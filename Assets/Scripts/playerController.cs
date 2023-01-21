@@ -15,10 +15,10 @@ public class playerController : MonoBehaviour
     // Player Stats
     #region
     [Header("------Player Stats------")]
-    [Range(1, 10)][SerializeField] float playerSpeed;
+    [Range(1, 10)] [SerializeField] float playerSpeed;
     [SerializeField] int jumpMax;
-    [Range(5, 15)][SerializeField] int jumpHeight;
-    [Range(10, 20)][SerializeField] int gravity;
+    [Range(5, 15)] [SerializeField] int jumpHeight;
+    [Range(10, 20)] [SerializeField] int gravity;
     [SerializeField] int pushTime;
     public int HP;
     public bool isDisabled;
@@ -49,19 +49,19 @@ public class playerController : MonoBehaviour
     [SerializeField] AudioClip gunshotSound;
     [SerializeField] List<AudioClip> dryfireSound;
     [SerializeField] AudioClip gunReloadSound;
-    [Range(0, 3)][SerializeField] float gunshotSoundVol;
+    [Range(0, 3)] [SerializeField] float gunshotSoundVol;
 
     [SerializeField] AudioClip[] playerJumpAudio;
-    [Range(0, 3)][SerializeField] float playerJumpAudioVol;
+    [Range(0, 3)] [SerializeField] float playerJumpAudioVol;
 
     [SerializeField] AudioClip[] playerHurtAudio;
-    [Range(0, 3)][SerializeField] float playerHurtAudioVol;
+    [Range(0, 3)] [SerializeField] float playerHurtAudioVol;
 
     [SerializeField] AudioClip[] playerStepAudio;
-    [Range(0, 3)][SerializeField] float playerStepAudioVol;
+    [Range(0, 3)] [SerializeField] float playerStepAudioVol;
 
     [SerializeField] AudioClip ambientSound;
-    [Range(0, 3)][SerializeField] float ambientSoundVol;
+    [Range(0, 3)] [SerializeField] float ambientSoundVol;
 
     [SerializeField] AudioClip laserUpgradeSFX;
     [Range(0, 3)] [SerializeField] float laserUpgradeSFXVol;
@@ -76,12 +76,13 @@ public class playerController : MonoBehaviour
     [Header("------Gun Stats------")]
     [SerializeField] List<gunStats> gunList = new List<gunStats>();
 
-    [Range(0, 5)][SerializeField] int gunDMG;
+    [Range(0, 5)] [SerializeField] int gunDMG;
     [SerializeField] float shootRate;   // player's gun fire rate
-    [Range(0, 200)][SerializeField] int shootDist; // effective range of the shot
+    [Range(0, 200)] [SerializeField] int shootDist; // effective range of the shot
     [SerializeField] GameObject gunModel;   //also gun position/viewmodel position
     [SerializeField] GameObject meleeModel;
     [SerializeField] GameObject hitEffect;
+    [SerializeField] TrailRenderer playerBulletTracer;
     [SerializeField] int fireSelect;
     [SerializeField] int pellets;
     [SerializeField] float spreadAccuracy;
@@ -173,7 +174,7 @@ public class playerController : MonoBehaviour
             }
 
         }
-        
+
     }
     void Movement()
     {
@@ -237,6 +238,8 @@ public class playerController : MonoBehaviour
         {
             RaycastHit hit;
             isShooting = true;
+            float accuracyFactor = (0.5f - (0.5f * spreadAccuracy)) * 0.5f; // divided in half so that total inaccuracy equals the spread
+                                                                            // if not, then accuracy is actual twice as bad
             if (!isMeleeWeapon)
             {
                 gunList[selectedGun].magCount--;
@@ -247,7 +250,7 @@ public class playerController : MonoBehaviour
             {
                 case 1:
                     //if (Physics.Raycast(Camera.main.ViewportPointToRay(new Vector2(0.5f, 0.5f)), out hit, shootDist))
-                    if (Physics.Raycast(Camera.main.ViewportPointToRay(new Vector2(0.5f * Random.Range(spreadAccuracy, 1.0f), 0.5f * Random.Range(spreadAccuracy, 1.0f))), out hit, shootDist))
+                    if (Physics.Raycast(Camera.main.ViewportPointToRay(new Vector2(Random.Range(0.5f - accuracyFactor, 0.5f + accuracyFactor), Random.Range(0.5f - accuracyFactor, 0.5f + accuracyFactor))), out hit, shootDist))
                     {
                         if (hit.collider.GetComponent<IDamage>() != null)
                         {
@@ -265,19 +268,33 @@ public class playerController : MonoBehaviour
                     }
                     break;
                 default:
+                    //int fullDamage = 0;
+                    int criticalCounts = 0;
+                    List<Collider> hitObjects = new List<Collider>();
+                    List<int> hitObjectsDamage = new List<int>();
                     for (int i = 0; i < pellets; i++)
                     {
-                        if (Physics.Raycast(Camera.main.ViewportPointToRay(new Vector2(0.5f * Random.Range(spreadAccuracy, 1.0f), 0.5f * Random.Range(spreadAccuracy, 1.0f))), out hit, shootDist))
+                        if (Physics.Raycast(Camera.main.ViewportPointToRay(new Vector2(Random.Range(0.5f - accuracyFactor, 0.5f + accuracyFactor), Random.Range(0.5f - accuracyFactor, 0.5f + accuracyFactor))), out hit, shootDist))
                         {
                             if (hit.collider.GetComponent<IDamage>() != null)
                             {
+                                if (!hitObjects.Contains(hit.collider))
+                                {
+                                    hitObjects.Add(hit.collider);
+                                    hitObjectsDamage.Add(0);
+                                }
                                 if (hit.collider is BoxCollider && !isMeleeWeapon)    // melee should always have 1 pellet but extra check just in case
                                 {
-                                    hit.collider.GetComponent<IDamage>().takeDamage(gunDMG, true, gunCriticalMult);
+                                    //hit.collider.GetComponent<IDamage>().takeDamage(gunDMG, true, gunCriticalMult);
+                                    hitObjectsDamage[hitObjects.IndexOf(hit.collider)] += Mathf.RoundToInt(gunDMG * gunCriticalMult);
+                                    //fullDamage += Mathf.RoundToInt(gunDMG * gunCriticalMult);
+                                    criticalCounts++;
                                 }
                                 else
                                 {
-                                    hit.collider.GetComponent<IDamage>().takeDamage(gunDMG, false, 1.0f);
+                                    //hit.collider.GetComponent<IDamage>().takeDamage(gunDMG, false, 1.0f);
+                                    hitObjectsDamage[hitObjects.IndexOf(hit.collider)] += gunDMG;
+                                    //fullDamage += gunDMG;
                                 }
 
                             }
@@ -285,6 +302,27 @@ public class playerController : MonoBehaviour
                             Instantiate(hitEffect, hit.point, hitEffect.transform.rotation);
                         }
                     }
+                    if (criticalCounts == pellets)    // If all pellets hit a crit...
+                    {
+                        foreach(Collider enemy in hitObjects)
+                        {
+                            enemy.GetComponent<IDamage>().takeDamage(hitObjectsDamage[hitObjects.IndexOf(enemy)], true, 1.0f);    // CritMult is 1 since we did crit calculations in the loop
+                                                                                                                                  // Will show a red number in damage text
+                        }
+
+                    }
+                    else if (criticalCounts != pellets)// If some/no pellets hit a crit...
+                    {
+                        foreach (Collider enemy in hitObjects)
+                        {
+                            enemy.GetComponent<IDamage>().takeDamage(hitObjectsDamage[hitObjects.IndexOf(enemy)], false, 1.0f);    // CritMult is 1 since we did crit calculations in the loop
+                                                                                                                                   // Will show a red number in damage text
+                        }
+                    }
+
+                    hitObjectsDamage.Clear();
+                    hitObjects.Clear();
+
                     break;
             }
 
