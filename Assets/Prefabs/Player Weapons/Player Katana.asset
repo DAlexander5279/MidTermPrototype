@@ -22,9 +22,11 @@ MonoBehaviour:
   pellets: 1
   spreadAccuracy: 1
   criticalMult: 1
-  costOfWeapon: 0
+  CostofWeapon: 0
   hasScope: 0
+  weaponName: Katana
   gunModel: {fileID: 100000, guid: 3d88c319821b89f4086eb24c6b2faee2, type: 3}
   gunshotSound: {fileID: 8300000, guid: a24a316c1bd4e9f41b61070b7c15e5e7, type: 3}
   isGun: 0
   isMelee: 1
+  isShop: 0

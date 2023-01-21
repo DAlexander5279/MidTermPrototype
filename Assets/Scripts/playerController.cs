@@ -83,6 +83,7 @@ public class playerController : MonoBehaviour
     [SerializeField] GameObject meleeModel;
     [SerializeField] GameObject hitEffect;
     [SerializeField] TrailRenderer playerBulletTracer;
+    [SerializeField] GameObject muzzlePosition;
     [SerializeField] int fireSelect;
     [SerializeField] int pellets;
     [SerializeField] float spreadAccuracy;
@@ -237,21 +238,32 @@ public class playerController : MonoBehaviour
             ((fireSelect == 0 && Input.GetButton("Shoot")) || (fireSelect == 1 && Input.GetButtonDown("Shoot"))))//GetButton = full-auto | ...Down = semi-auto | ..Up = think single-action revolver) - J
         {
             RaycastHit hit;
+            RaycastHit tracerHitInfo;
             isShooting = true;
             float accuracyFactor = (0.5f - (0.5f * spreadAccuracy)) * 0.5f; // divided in half so that total inaccuracy equals the spread
                                                                             // if not, then accuracy is actual twice as bad
+            TrailRenderer tracer = null;
+
             if (!isMeleeWeapon)
             {
                 gunList[selectedGun].magCount--;
                 gameManager.instance.ammoUpdate(gunList[selectedGun].magCount, gunList[selectedGun].magSize, gunList[selectedGun].isMelee);
             }
 
+            bool successfulHit;
             switch (pellets)
             {
                 case 1:
+                    if (muzzlePosition != null)
+                    {
+                        tracer = Instantiate(playerBulletTracer, muzzlePosition.transform.position, Quaternion.identity);
+                        tracer.AddPosition(muzzlePosition.transform.position);
+                    }
                     //if (Physics.Raycast(Camera.main.ViewportPointToRay(new Vector2(0.5f, 0.5f)), out hit, shootDist))
+                    successfulHit = Physics.Raycast(Camera.main.ViewportPointToRay(new Vector2(Random.Range(0.5f - accuracyFactor, 0.5f + accuracyFactor), Random.Range(0.5f - accuracyFactor, 0.5f + accuracyFactor))), out tracerHitInfo, 2000);
                     if (Physics.Raycast(Camera.main.ViewportPointToRay(new Vector2(Random.Range(0.5f - accuracyFactor, 0.5f + accuracyFactor), Random.Range(0.5f - accuracyFactor, 0.5f + accuracyFactor))), out hit, shootDist))
                     {
+
                         if (hit.collider.GetComponent<IDamage>() != null)
                         {
                             if (hit.collider is BoxCollider && !isMeleeWeapon)
@@ -264,8 +276,11 @@ public class playerController : MonoBehaviour
                             }
                         }
 
-                        Instantiate(hitEffect, hit.point, hitEffect.transform.rotation);
+                        if (!hit.collider.CompareTag("Ceiling")) Instantiate(hitEffect, hit.point, hitEffect.transform.rotation);
+
+
                     }
+                    if (tracer != null) tracer.transform.position = tracerHitInfo.point;
                     break;
                 default:
                     //int fullDamage = 0;
@@ -274,8 +289,15 @@ public class playerController : MonoBehaviour
                     List<int> hitObjectsDamage = new List<int>();
                     for (int i = 0; i < pellets; i++)
                     {
+                        if (muzzlePosition != null)
+                        {
+                            tracer = Instantiate(playerBulletTracer, muzzlePosition.transform.position, Quaternion.identity);
+                            tracer.AddPosition(muzzlePosition.transform.position);
+                        }
+                        successfulHit = Physics.Raycast(Camera.main.ViewportPointToRay(new Vector2(Random.Range(0.5f - accuracyFactor, 0.5f + accuracyFactor), Random.Range(0.5f - accuracyFactor, 0.5f + accuracyFactor))), out tracerHitInfo, 2000);
                         if (Physics.Raycast(Camera.main.ViewportPointToRay(new Vector2(Random.Range(0.5f - accuracyFactor, 0.5f + accuracyFactor), Random.Range(0.5f - accuracyFactor, 0.5f + accuracyFactor))), out hit, shootDist))
                         {
+
                             if (hit.collider.GetComponent<IDamage>() != null)
                             {
                                 if (!hitObjects.Contains(hit.collider))
@@ -299,12 +321,13 @@ public class playerController : MonoBehaviour
 
                             }
 
-                            Instantiate(hitEffect, hit.point, hitEffect.transform.rotation);
+                            if (!hit.collider.CompareTag("Ceiling")) Instantiate(hitEffect, hit.point, hitEffect.transform.rotation);
                         }
+                        if (tracer != null) tracer.transform.position = tracerHitInfo.point;
                     }
                     if (criticalCounts == pellets)    // If all pellets hit a crit...
                     {
-                        foreach(Collider enemy in hitObjects)
+                        foreach (Collider enemy in hitObjects)
                         {
                             enemy.GetComponent<IDamage>().takeDamage(hitObjectsDamage[hitObjects.IndexOf(enemy)], true, 1.0f);    // CritMult is 1 since we did crit calculations in the loop
                                                                                                                                   // Will show a red number in damage text
@@ -549,6 +572,9 @@ public class playerController : MonoBehaviour
         isMeleeWeapon = gunList[selectedGun].isMelee;
         if (gunList[selectedGun].isGun == true && gunList[selectedGun].isMelee == false)
         {
+            string muzzle = gunList[selectedGun].weaponName + " Muzzle";
+            muzzlePosition = GameObject.Find(muzzle);           // most likely resource heavy method
+
             gunModel.GetComponent<MeshRenderer>().enabled = true;
             meleeModel.GetComponent<MeshRenderer>().enabled = false;
             // transfer the gun's model
@@ -560,6 +586,7 @@ public class playerController : MonoBehaviour
         }
         if (gunList[selectedGun].isGun == false && gunList[selectedGun].isMelee == true)
         {
+            muzzlePosition = null;
             gunModel.GetComponent<MeshRenderer>().enabled = false;
             meleeModel.GetComponent<MeshRenderer>().enabled = true;
             // transfer the gun's model

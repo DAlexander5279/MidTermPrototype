@@ -20,6 +20,7 @@ public class gunStats : ScriptableObject
     public float criticalMult;
     public int CostofWeapon;
     public bool hasScope;
+    public string weaponName;
 
     public GameObject gunModel;
     public AudioClip gunshotSound;
