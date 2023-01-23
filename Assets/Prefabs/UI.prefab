@@ -4056,6 +4056,7 @@ GameObject:
   - component: {fileID: 698978049}
   - component: {fileID: 5785981209962424909}
   - component: {fileID: 698978048}
+  - component: {fileID: 8018322218078419917}
   m_Layer: 5
   m_Name: Upgrade Sniper Button
   m_TagString: Untagged
@@ -4139,6 +4140,11 @@ MonoBehaviour:
   gunToUpgrade: {fileID: 11400000, guid: 61654b401b9055f4e9a370a55d3bc897, type: 2}
   gunDrop: {fileID: 5998873461299402857, guid: dbebe4d8d2f7863499f34d911c7bdf36, type: 3}
   gunUpgradeCostText: {fileID: 1983222934}
+  aud: {fileID: 8018322218078419917}
+  upgradeWeapon: {fileID: 8300000, guid: 3a0041b565fac4a4e83a76a384bbdf7f, type: 3}
+  weaponUpgradeVol: 1.5
+  denyWeaponUpgrade: {fileID: 8300000, guid: 9629782e127969f439d15c696113b49d, type: 3}
+  denyWeaponUpgradeVol: 1.5
 --- !u!114 &698978048
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4195,6 +4201,102 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+--- !u!82 &8018322218078419917
+AudioSource:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 698978046}
+  m_Enabled: 1
+  serializedVersion: 4
+  OutputAudioMixerGroup: {fileID: 1363584690422886456, guid: d26a02b7fc4f96947a7d363fce29fba6, type: 2}
+  m_audioClip: {fileID: 0}
+  m_PlayOnAwake: 0
+  m_Volume: 1
+  m_Pitch: 1
+  Loop: 0
+  Mute: 0
+  Spatialize: 0
+  SpatializePostEffects: 0
+  Priority: 128
+  DopplerLevel: 1
+  MinDistance: 1
+  MaxDistance: 500
+  Pan2D: 0
+  rolloffMode: 0
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  reverbZoneMixCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
 --- !u!1 &760748851
 GameObject:
   m_ObjectHideFlags: 0
@@ -8785,6 +8887,7 @@ GameObject:
   - component: {fileID: 1653682843}
   - component: {fileID: 8404898154536570481}
   - component: {fileID: 1653682842}
+  - component: {fileID: 291526720255696549}
   m_Layer: 5
   m_Name: Upgrade Shotgun Button
   m_TagString: Untagged
@@ -8868,6 +8971,11 @@ MonoBehaviour:
   gunToUpgrade: {fileID: 11400000, guid: 1bfe80363bafbec4292ea6b066bf081d, type: 2}
   gunDrop: {fileID: 5998873461299402857, guid: eff122e1b2ac4ee4ba5c6e247bf07b31, type: 3}
   gunUpgradeCostText: {fileID: 576564899}
+  aud: {fileID: 291526720255696549}
+  upgradeWeapon: {fileID: 8300000, guid: 50861ff83c3a47142bb397f7cf079c06, type: 3}
+  weaponUpgradeVol: 1.5
+  denyWeaponUpgrade: {fileID: 8300000, guid: 9629782e127969f439d15c696113b49d, type: 3}
+  denyWeaponUpgradeVol: 1.5
 --- !u!114 &1653682842
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -8924,6 +9032,102 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+--- !u!82 &291526720255696549
+AudioSource:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1653682840}
+  m_Enabled: 1
+  serializedVersion: 4
+  OutputAudioMixerGroup: {fileID: 1363584690422886456, guid: d26a02b7fc4f96947a7d363fce29fba6, type: 2}
+  m_audioClip: {fileID: 0}
+  m_PlayOnAwake: 0
+  m_Volume: 1
+  m_Pitch: 1
+  Loop: 0
+  Mute: 0
+  Spatialize: 0
+  SpatializePostEffects: 0
+  Priority: 128
+  DopplerLevel: 1
+  MinDistance: 1
+  MaxDistance: 500
+  Pan2D: 0
+  rolloffMode: 0
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  reverbZoneMixCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
 --- !u!1 &1707952817
 GameObject:
   m_ObjectHideFlags: 0
@@ -11442,6 +11646,7 @@ GameObject:
   - component: {fileID: 710945069901258552}
   - component: {fileID: 832550803834339193}
   - component: {fileID: 4500937267463721287}
+  - component: {fileID: 495015437705819073}
   m_Layer: 5
   m_Name: Buy Sniper Button
   m_TagString: Untagged
@@ -11524,6 +11729,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   gunToBuy: {fileID: 11400000, guid: 61654b401b9055f4e9a370a55d3bc897, type: 2}
   gunDrop: {fileID: 5998873461299402857, guid: dbebe4d8d2f7863499f34d911c7bdf36, type: 3}
+  aud: {fileID: 495015437705819073}
+  buyWeapon: {fileID: 8300000, guid: 50861ff83c3a47142bb397f7cf079c06, type: 3}
+  buyWeaponVol: 1.5
+  denyWeapon: {fileID: 8300000, guid: 9629782e127969f439d15c696113b49d, type: 3}
+  denyWeaponVol: 1.5
 --- !u!114 &4500937267463721287
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -11569,7 +11779,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 832550803834339193}
-        m_TargetAssemblyTypeName: Buy_UpgradeWeapon, Assembly-CSharp
+        m_TargetAssemblyTypeName: shopBuyWeapon, Assembly-CSharp
         m_MethodName: OnButtonClick
         m_Mode: 1
         m_Arguments:
@@ -11580,6 +11790,102 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+--- !u!82 &495015437705819073
+AudioSource:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 439454216123007913}
+  m_Enabled: 1
+  serializedVersion: 4
+  OutputAudioMixerGroup: {fileID: 1363584690422886456, guid: d26a02b7fc4f96947a7d363fce29fba6, type: 2}
+  m_audioClip: {fileID: 0}
+  m_PlayOnAwake: 0
+  m_Volume: 1
+  m_Pitch: 1
+  Loop: 0
+  Mute: 0
+  Spatialize: 0
+  SpatializePostEffects: 0
+  Priority: 128
+  DopplerLevel: 1
+  MinDistance: 1
+  MaxDistance: 500
+  Pan2D: 0
+  rolloffMode: 0
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  reverbZoneMixCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
 --- !u!1 &442455322692057334
 GameObject:
   m_ObjectHideFlags: 0
@@ -11878,6 +12184,7 @@ GameObject:
   - component: {fileID: 4576183792358882152}
   - component: {fileID: 8051056992608670663}
   - component: {fileID: 6279583809347297357}
+  - component: {fileID: 582020690860660233}
   m_Layer: 5
   m_Name: Buy Shotgun Button
   m_TagString: Untagged
@@ -11960,6 +12267,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   gunToBuy: {fileID: 11400000, guid: 1bfe80363bafbec4292ea6b066bf081d, type: 2}
   gunDrop: {fileID: 5998873461299402857, guid: eff122e1b2ac4ee4ba5c6e247bf07b31, type: 3}
+  aud: {fileID: 582020690860660233}
+  buyWeapon: {fileID: 8300000, guid: 50861ff83c3a47142bb397f7cf079c06, type: 3}
+  buyWeaponVol: 1.5
+  denyWeapon: {fileID: 8300000, guid: 9629782e127969f439d15c696113b49d, type: 3}
+  denyWeaponVol: 1.5
 --- !u!114 &6279583809347297357
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -12005,7 +12317,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 8051056992608670663}
-        m_TargetAssemblyTypeName: Buy_UpgradeWeapon, Assembly-CSharp
+        m_TargetAssemblyTypeName: shopBuyWeapon, Assembly-CSharp
         m_MethodName: OnButtonClick
         m_Mode: 1
         m_Arguments:
@@ -12016,6 +12328,102 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+--- !u!82 &582020690860660233
+AudioSource:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 781290292828194993}
+  m_Enabled: 1
+  serializedVersion: 4
+  OutputAudioMixerGroup: {fileID: 1363584690422886456, guid: d26a02b7fc4f96947a7d363fce29fba6, type: 2}
+  m_audioClip: {fileID: 0}
+  m_PlayOnAwake: 0
+  m_Volume: 1
+  m_Pitch: 1
+  Loop: 0
+  Mute: 0
+  Spatialize: 0
+  SpatializePostEffects: 0
+  Priority: 128
+  DopplerLevel: 1
+  MinDistance: 1
+  MaxDistance: 500
+  Pan2D: 0
+  rolloffMode: 0
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  reverbZoneMixCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
 --- !u!1 &960409081268073544
 GameObject:
   m_ObjectHideFlags: 0
@@ -12068,6 +12476,7 @@ MonoBehaviour:
   player: {fileID: 0}
   playerScript: {fileID: 0}
   Sensitivity: {fileID: 0}
+  sounds: {fileID: 0}
   damageModifier: 1.5
   scalingModifer: 0.33
   maxRoomsCleared: 0
@@ -13392,6 +13801,7 @@ GameObject:
   - component: {fileID: 5143338820263769907}
   - component: {fileID: 4023194784493666650}
   - component: {fileID: 8487496924433990523}
+  - component: {fileID: 7470647151514775823}
   m_Layer: 5
   m_Name: Buy Pistol Button
   m_TagString: Untagged
@@ -13474,6 +13884,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   gunToBuy: {fileID: 11400000, guid: a65955d89d5d31e47803a4cd98848bda, type: 2}
   gunDrop: {fileID: 4633569493883174249, guid: 717be71a7d8581d418b5c651d23d0a85, type: 3}
+  aud: {fileID: 7470647151514775823}
+  buyWeapon: {fileID: 8300000, guid: 50861ff83c3a47142bb397f7cf079c06, type: 3}
+  buyWeaponVol: 1.5
+  denyWeapon: {fileID: 8300000, guid: 9629782e127969f439d15c696113b49d, type: 3}
+  denyWeaponVol: 1.5
 --- !u!114 &8487496924433990523
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -13519,7 +13934,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 4023194784493666650}
-        m_TargetAssemblyTypeName: Buy_UpgradeWeapon, Assembly-CSharp
+        m_TargetAssemblyTypeName: shopBuyWeapon, Assembly-CSharp
         m_MethodName: OnButtonClick
         m_Mode: 1
         m_Arguments:
@@ -13530,6 +13945,102 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+--- !u!82 &7470647151514775823
+AudioSource:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2871093692986906669}
+  m_Enabled: 1
+  serializedVersion: 4
+  OutputAudioMixerGroup: {fileID: 1363584690422886456, guid: d26a02b7fc4f96947a7d363fce29fba6, type: 2}
+  m_audioClip: {fileID: 0}
+  m_PlayOnAwake: 0
+  m_Volume: 1
+  m_Pitch: 1
+  Loop: 0
+  Mute: 0
+  Spatialize: 0
+  SpatializePostEffects: 0
+  Priority: 128
+  DopplerLevel: 1
+  MinDistance: 1
+  MaxDistance: 500
+  Pan2D: 0
+  rolloffMode: 0
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  reverbZoneMixCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
 --- !u!1 &2974077159788194896
 GameObject:
   m_ObjectHideFlags: 0
@@ -15533,6 +16044,7 @@ GameObject:
   - component: {fileID: 4969826934709898617}
   - component: {fileID: 5759855172254842685}
   - component: {fileID: 8045881473700213744}
+  - component: {fileID: 311336203856649758}
   m_Layer: 5
   m_Name: Buy Rifle Button
   m_TagString: Untagged
@@ -15628,6 +16140,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   gunToBuy: {fileID: 11400000, guid: 84ce2125930e7054683a216567541666, type: 2}
   gunDrop: {fileID: 5998873461299402857, guid: 62f3d2412737b5f4693c6b609faa92c5, type: 3}
+  aud: {fileID: 311336203856649758}
+  buyWeapon: {fileID: 8300000, guid: 3a0041b565fac4a4e83a76a384bbdf7f, type: 3}
+  buyWeaponVol: 1.5
+  denyWeapon: {fileID: 8300000, guid: 9629782e127969f439d15c696113b49d, type: 3}
+  denyWeaponVol: 1.5
 --- !u!114 &8045881473700213744
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -15673,7 +16190,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 5759855172254842685}
-        m_TargetAssemblyTypeName: Buy_UpgradeWeapon, Assembly-CSharp
+        m_TargetAssemblyTypeName: shopBuyWeapon, Assembly-CSharp
         m_MethodName: OnButtonClick
         m_Mode: 1
         m_Arguments:
@@ -15684,6 +16201,102 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+--- !u!82 &311336203856649758
+AudioSource:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6106016349324649445}
+  m_Enabled: 1
+  serializedVersion: 4
+  OutputAudioMixerGroup: {fileID: 1363584690422886456, guid: d26a02b7fc4f96947a7d363fce29fba6, type: 2}
+  m_audioClip: {fileID: 0}
+  m_PlayOnAwake: 0
+  m_Volume: 1
+  m_Pitch: 1
+  Loop: 0
+  Mute: 0
+  Spatialize: 0
+  SpatializePostEffects: 0
+  Priority: 128
+  DopplerLevel: 1
+  MinDistance: 1
+  MaxDistance: 500
+  Pan2D: 0
+  rolloffMode: 0
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  reverbZoneMixCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
 --- !u!1 &6138282135155916090
 GameObject:
   m_ObjectHideFlags: 0
@@ -16740,6 +17353,7 @@ GameObject:
   - component: {fileID: 575327999394042597}
   - component: {fileID: 8439317715887810180}
   - component: {fileID: 8548946725001479415}
+  - component: {fileID: 1378564843365491721}
   m_Layer: 5
   m_Name: Upgrade Rifle Button
   m_TagString: Untagged
@@ -16823,6 +17437,11 @@ MonoBehaviour:
   gunToUpgrade: {fileID: 11400000, guid: 84ce2125930e7054683a216567541666, type: 2}
   gunDrop: {fileID: 5998873461299402857, guid: 62f3d2412737b5f4693c6b609faa92c5, type: 3}
   gunUpgradeCostText: {fileID: 428955292}
+  aud: {fileID: 1378564843365491721}
+  upgradeWeapon: {fileID: 8300000, guid: 50861ff83c3a47142bb397f7cf079c06, type: 3}
+  weaponUpgradeVol: 1.5
+  denyWeaponUpgrade: {fileID: 8300000, guid: 9629782e127969f439d15c696113b49d, type: 3}
+  denyWeaponUpgradeVol: 1.5
 --- !u!114 &8548946725001479415
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -16879,6 +17498,102 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+--- !u!82 &1378564843365491721
+AudioSource:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6845469915490664770}
+  m_Enabled: 1
+  serializedVersion: 4
+  OutputAudioMixerGroup: {fileID: 1363584690422886456, guid: d26a02b7fc4f96947a7d363fce29fba6, type: 2}
+  m_audioClip: {fileID: 0}
+  m_PlayOnAwake: 0
+  m_Volume: 1
+  m_Pitch: 1
+  Loop: 0
+  Mute: 0
+  Spatialize: 0
+  SpatializePostEffects: 0
+  Priority: 128
+  DopplerLevel: 1
+  MinDistance: 1
+  MaxDistance: 500
+  Pan2D: 0
+  rolloffMode: 0
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  reverbZoneMixCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
 --- !u!1 &6870045170806859258
 GameObject:
   m_ObjectHideFlags: 0
@@ -17824,6 +18539,7 @@ GameObject:
   - component: {fileID: 5903490333654358689}
   - component: {fileID: 6413243622900728900}
   - component: {fileID: 3502150774687801975}
+  - component: {fileID: 8139351134668298747}
   m_Layer: 5
   m_Name: Upgrade Katana Button
   m_TagString: Untagged
@@ -17907,6 +18623,11 @@ MonoBehaviour:
   gunToUpgrade: {fileID: 11400000, guid: ac99df1345f3dc24a9ba32c8a5a9c568, type: 2}
   gunDrop: {fileID: 6035302921550122439, guid: c3a78094e724c764e954b2bb0b43c98c, type: 3}
   gunUpgradeCostText: {fileID: 6987331917697487480}
+  aud: {fileID: 8139351134668298747}
+  upgradeWeapon: {fileID: 8300000, guid: 50861ff83c3a47142bb397f7cf079c06, type: 3}
+  weaponUpgradeVol: 1.5
+  denyWeaponUpgrade: {fileID: 8300000, guid: 9629782e127969f439d15c696113b49d, type: 3}
+  denyWeaponUpgradeVol: 1.5
 --- !u!114 &3502150774687801975
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -17963,6 +18684,102 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+--- !u!82 &8139351134668298747
+AudioSource:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7693654688640646943}
+  m_Enabled: 1
+  serializedVersion: 4
+  OutputAudioMixerGroup: {fileID: 1363584690422886456, guid: d26a02b7fc4f96947a7d363fce29fba6, type: 2}
+  m_audioClip: {fileID: 0}
+  m_PlayOnAwake: 0
+  m_Volume: 1
+  m_Pitch: 1
+  Loop: 0
+  Mute: 0
+  Spatialize: 0
+  SpatializePostEffects: 0
+  Priority: 128
+  DopplerLevel: 1
+  MinDistance: 1
+  MaxDistance: 500
+  Pan2D: 0
+  rolloffMode: 0
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  reverbZoneMixCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
 --- !u!1 &8013433824284687642
 GameObject:
   m_ObjectHideFlags: 0
@@ -19054,6 +19871,7 @@ GameObject:
   - component: {fileID: 6100552307526550793}
   - component: {fileID: 6607958594571219000}
   - component: {fileID: 4409483362176647072}
+  - component: {fileID: 7803077909193626778}
   m_Layer: 5
   m_Name: Buy Katana Button
   m_TagString: Untagged
@@ -19136,6 +19954,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   gunToBuy: {fileID: 11400000, guid: ac99df1345f3dc24a9ba32c8a5a9c568, type: 2}
   gunDrop: {fileID: 6035302921550122439, guid: c3a78094e724c764e954b2bb0b43c98c, type: 3}
+  aud: {fileID: 7803077909193626778}
+  buyWeapon: {fileID: 8300000, guid: 50861ff83c3a47142bb397f7cf079c06, type: 3}
+  buyWeaponVol: 1.5
+  denyWeapon: {fileID: 8300000, guid: 9629782e127969f439d15c696113b49d, type: 3}
+  denyWeaponVol: 1.5
 --- !u!114 &4409483362176647072
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -19181,7 +20004,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 6607958594571219000}
-        m_TargetAssemblyTypeName: Buy_UpgradeWeapon, Assembly-CSharp
+        m_TargetAssemblyTypeName: shopBuyWeapon, Assembly-CSharp
         m_MethodName: OnButtonClick
         m_Mode: 1
         m_Arguments:
@@ -19192,6 +20015,102 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+--- !u!82 &7803077909193626778
+AudioSource:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8999479965457768514}
+  m_Enabled: 1
+  serializedVersion: 4
+  OutputAudioMixerGroup: {fileID: 1363584690422886456, guid: d26a02b7fc4f96947a7d363fce29fba6, type: 2}
+  m_audioClip: {fileID: 0}
+  m_PlayOnAwake: 0
+  m_Volume: 1
+  m_Pitch: 1
+  Loop: 0
+  Mute: 0
+  Spatialize: 0
+  SpatializePostEffects: 0
+  Priority: 128
+  DopplerLevel: 1
+  MinDistance: 1
+  MaxDistance: 500
+  Pan2D: 0
+  rolloffMode: 0
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  reverbZoneMixCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
 --- !u!1 &9004337345095664822
 GameObject:
   m_ObjectHideFlags: 0
@@ -19281,6 +20200,7 @@ GameObject:
   - component: {fileID: 3765864123036652243}
   - component: {fileID: 8288236525626119876}
   - component: {fileID: 7377248105708479360}
+  - component: {fileID: 1892598395506217668}
   m_Layer: 5
   m_Name: Upgrade Pistol Button
   m_TagString: Untagged
@@ -19364,6 +20284,11 @@ MonoBehaviour:
   gunToUpgrade: {fileID: 11400000, guid: a65955d89d5d31e47803a4cd98848bda, type: 2}
   gunDrop: {fileID: 4633569493883174249, guid: 717be71a7d8581d418b5c651d23d0a85, type: 3}
   gunUpgradeCostText: {fileID: 3480407832512018123}
+  aud: {fileID: 1892598395506217668}
+  upgradeWeapon: {fileID: 8300000, guid: 50861ff83c3a47142bb397f7cf079c06, type: 3}
+  weaponUpgradeVol: 1.5
+  denyWeaponUpgrade: {fileID: 8300000, guid: 9629782e127969f439d15c696113b49d, type: 3}
+  denyWeaponUpgradeVol: 1.5
 --- !u!114 &7377248105708479360
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -19420,6 +20345,102 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+--- !u!82 &1892598395506217668
+AudioSource:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9049437005969524138}
+  m_Enabled: 1
+  serializedVersion: 4
+  OutputAudioMixerGroup: {fileID: 1363584690422886456, guid: d26a02b7fc4f96947a7d363fce29fba6, type: 2}
+  m_audioClip: {fileID: 0}
+  m_PlayOnAwake: 0
+  m_Volume: 1
+  m_Pitch: 1
+  Loop: 0
+  Mute: 0
+  Spatialize: 0
+  SpatializePostEffects: 0
+  Priority: 128
+  DopplerLevel: 1
+  MinDistance: 1
+  MaxDistance: 500
+  Pan2D: 0
+  rolloffMode: 0
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  reverbZoneMixCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
 --- !u!1 &9050474477101730594
 GameObject:
   m_ObjectHideFlags: 0

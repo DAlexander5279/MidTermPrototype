@@ -59,7 +59,7 @@ public class gameManager : MonoBehaviour
     [SerializeField] TMP_Text upgradePistolCost;
 
     [SerializeField] AudioMixer mixer;
-    [SerializeField] Slider musicSliderVol;
+    [SerializeField] public Slider musicSliderVol;
     [SerializeField] Slider sfxSliderVol;
     [SerializeField] Slider SensX;
     [SerializeField] Slider SensY;
@@ -100,6 +100,14 @@ public class gameManager : MonoBehaviour
         PlayerPrefs.SetInt("enemyStat", 0);
         addZoins(0);
         waveCount = 0;
+        
+    }
+    private void Start()
+    {
+
+        MainMenu();
+        Cursor.visible = true;
+        Cursor.lockState = CursorLockMode.Confined;
         if (PlayerPrefs.HasKey("MusicVol"))
         {
             musicSliderVol.value = PlayerPrefs.GetFloat("MusicVol");
@@ -120,13 +128,6 @@ public class gameManager : MonoBehaviour
             SensY.value = PlayerPrefs.GetFloat("SenYAxis");
             Sensitivity.SetSensY(SensY.value);
         }
-    }
-    private void Start()
-    {
-
-        MainMenu();
-        Cursor.visible = true;
-        Cursor.lockState = CursorLockMode.Confined;
     }
     // Update is called once per frame
     void Update()
@@ -313,12 +314,13 @@ public class gameManager : MonoBehaviour
         SetVolumeMixer("MusicVol", musicSliderVol.value);
         PlayerPrefs.SetFloat("MusicVol", musicSliderVol.value);
     }
+    
     public void sfxVolChange()
     {
         SetVolumeMixer("SFXVol", sfxSliderVol.value);
         PlayerPrefs.SetFloat("SFXVol", sfxSliderVol.value);
     }
-    void SetVolumeMixer(string key, float value)
+    public void SetVolumeMixer(string key, float value)
     {
         mixer.SetFloat(key, Mathf.Log10(value) * 20);
     }
@@ -392,25 +394,4 @@ public class gameManager : MonoBehaviour
     {
         weaponUpgradeText.text = cost.ToString("F0");
     }
-
-    /*
-     inside Start()
-        updateUpgradeCost(pistolCost, pistolUpgradeText);
-        updateUpgradeCost(shotgunCost, shotgunUpgradeText);
-        ... [do the same for other weapons]
-     
-      pretend this is inside weapon upgrade script:
-        ... (if gunList.Count == 0)
-               ... StartCoroutine(gameManager.instance.ShowErrorNotif(doesntOwnWeapon,2.0f))
-        ... (else)
-        ... (if player has enough cash...)
-        ... (if player owns weapon they're trying to upgrade)
-        [upgrade cost function: costOfWeapon + (costOfWeapon * weaponLevel)]
-            
-            gameManager.instance.playerScript.addZoins( -(gunToBuy.CostofWeapon + (gunToBuy.CostofWeapon * gunToBuy.weaponLevel)) );
-            gameManager.instance.playerScript.BuyWeapon(gunToBuy);
-            gameManager.instance.updateUpgradeCost(gunToBuy.CostofWeapon + (gunToBuy.CostofWeapon * gunToBuy.weaponLevel), gunToBuyUpgradeText);
-
-     
-    */
 }

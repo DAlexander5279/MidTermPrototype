@@ -43,12 +43,12 @@ public class playerController : MonoBehaviour
     #region
     [Header("------Player Sounds------")]
     [SerializeField] AudioSource aud;
-    [SerializeField] AudioSource ambSound;
-
     //gun sounds
     [SerializeField] AudioClip gunshotSound;
+
     [SerializeField] List<AudioClip> dryfireSound;
     [Range(0, 3)] [SerializeField] float dryfireSoundVol;
+
     [SerializeField] AudioClip gunReloadSound;
     [Range(0, 3)][SerializeField] float gunshotSoundVol;
 
@@ -60,9 +60,6 @@ public class playerController : MonoBehaviour
 
     [SerializeField] AudioClip[] playerStepAudio;
     [Range(0, 3)][SerializeField] float playerStepAudioVol;
-
-    [SerializeField] AudioClip ambientSound;
-    [Range(0, 3)][SerializeField] float ambientSoundVol;
 
     [SerializeField] AudioClip laserUpgradeSFX;
     [Range(0, 3)][SerializeField] float laserUpgradeSFXVol;
@@ -143,15 +140,7 @@ public class playerController : MonoBehaviour
         HPOriginal = HP;
         updatePlayerHP();
         gameManager.instance.updatePlayerDamage(gunDMG);
-
-        // stance things needed to be saved on start
-        //startStance = transform.position.y;
-        //orgPlayerSpeed = playerSpeed;
-        //scaleX = gunModel.transform.localScale.x ;
-        //scaleY = gunModel.transform.localScale.y;
-        //scaleZ = gunModel.transform.localScale.z;
         isReloading = false;
-        ambSound.Play();
     }
     // Update is called once per frame
     void Update()
@@ -202,29 +191,6 @@ public class playerController : MonoBehaviour
 
             aud.PlayOneShot(playerJumpAudio[UnityEngine.Random.Range(0, playerJumpAudio.Length)], playerJumpAudioVol);
         }
-
-
-        //if (Input.GetKeyUp(crouch))
-        //{
-        //    isCrouched = !isCrouched;
-        //    isStanding = false;
-
-        //    playerSpeed = crouchSpeed;
-        //}
-        //if (Input.GetKeyUp(crouchCBind))
-        //{
-        //    isCrouched = !isCrouched;
-        //    isStanding = false;
-        //    playerCrouch.y = crouchHeight;
-        //    playerSpeed = crouchSpeed;
-        //}
-        //if (isCrouched == false && isStanding == false)
-        //{
-        //    isStanding = true;
-        //    isCrouched = false;
-        //    transform.localScale = new Vector3(transform.localScale.x, startStance, transform.localScale.z);
-        //    playerSpeed = orgPlayerSpeed;
-        //}
 
         playerVelocity.y -= gravity * Time.deltaTime;
         playerControl.Move(playerVelocity * Time.deltaTime);

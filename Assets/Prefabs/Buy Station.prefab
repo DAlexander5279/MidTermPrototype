@@ -304,6 +304,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   shop: {fileID: 0}
+  aud: {fileID: 0}
+  openShop: {fileID: 8300000, guid: f68a466241f015843be269b8b0e649da, type: 3}
+  openShopVolume: 1.5
 --- !u!1 &7244823320485972675
 GameObject:
   m_ObjectHideFlags: 0

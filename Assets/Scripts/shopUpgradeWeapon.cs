@@ -14,6 +14,11 @@ public class shopUpgradeWeapon : MonoBehaviour
     string doesntOwnWeaponText = "You don't own that weapon yet!!!";
     string notEnoughCashText = "Not enough cash!!!";
 
+    [SerializeField] AudioSource aud;
+    [SerializeField] AudioClip upgradeWeapon;
+    [Range(0, 3)][SerializeField] float weaponUpgradeVol;
+    [SerializeField] AudioClip denyWeaponUpgrade;
+    [Range(0, 3)][SerializeField] float denyWeaponUpgradeVol;
     private void Start()
     {
         gunToUpgrade.weaponLevel = 1;
@@ -36,6 +41,7 @@ public class shopUpgradeWeapon : MonoBehaviour
         {
             if (gameManager.instance.playerScript.gunList.Count == 0)   //if player has no weapons, give "doesn't own weapon" error text
             {
+                aud.PlayOneShot(upgradeWeapon, weaponUpgradeVol);
                 StartCoroutine(gameManager.instance.ShopErrorNotif(doesntOwnWeaponText, 2.0f));
             }
             else
@@ -50,10 +56,12 @@ public class shopUpgradeWeapon : MonoBehaviour
                 }
                 if (!boughtUpgrade) //if no upgrade can be bought/weapon to upgrade is not owned by the player...
                 {
+                    aud.PlayOneShot(denyWeaponUpgrade, denyWeaponUpgradeVol);
                     StartCoroutine(gameManager.instance.ShopErrorNotif(doesntOwnWeaponText, 2.0f));
                 }
                 else
                 {
+                    aud.PlayOneShot(upgradeWeapon, weaponUpgradeVol);
                     gameManager.instance.addZoins(-costOfUpgrade);  // take away necessary coins
                     gameManager.instance.playerScript.BuyWeapon(gunDrop);   // spawn "upgrade" onto the player
 
@@ -66,6 +74,7 @@ public class shopUpgradeWeapon : MonoBehaviour
         // if player didn't have enough cash to buy the upgrade, give correct error
         else
         {
+            aud.PlayOneShot(denyWeaponUpgrade, denyWeaponUpgradeVol);
             StartCoroutine(gameManager.instance.ShopErrorNotif(notEnoughCashText, 2.0f));
         }
     }

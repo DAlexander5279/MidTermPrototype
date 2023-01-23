@@ -12,12 +12,19 @@ public class shopBuyWeapon : MonoBehaviour
     string doesntOwnWeaponText = "You don't own that weapon yet!!!";
     string notEnoughCashText = "Not enough cash!!!";
 
+    [SerializeField] AudioSource aud;
+    [SerializeField] AudioClip buyWeapon;
+    [Range(0, 3)][SerializeField] float buyWeaponVol;
+    [SerializeField] AudioClip denyWeapon;
+    [Range(0, 3)][SerializeField] float denyWeaponVol;
+
     public void OnButtonClick()
     {
         if (gameManager.instance.zoins >= gunToBuy.CostofWeapon)
         {
             if (gameManager.instance.playerScript.gunList.Count == 0)
             {
+                aud.PlayOneShot(buyWeapon, buyWeaponVol);
                 gameManager.instance.playerScript.BuyWeapon(gunDrop);
             }
             else
@@ -32,10 +39,13 @@ public class shopBuyWeapon : MonoBehaviour
                 }
                 if (!boughtWeapon)
                 {
+                    aud.PlayOneShot(denyWeapon, denyWeaponVol);
+
                     StartCoroutine(gameManager.instance.ShopErrorNotif(alreadyOwnWeaponText, 2.0f));
                 }
                 else
                 {
+                    aud.PlayOneShot(buyWeapon, buyWeaponVol);
                     gameManager.instance.playerScript.BuyWeapon(gunDrop);
                     gameManager.instance.addZoins(-gunToBuy.CostofWeapon);
                 }
