@@ -13,18 +13,20 @@ MonoBehaviour:
   m_Name: Player Shotgun
   m_EditorClassIdentifier: 
   gunDMG: 5
-  modifedGunDMG: 6
+  modifedGunDMG: 5
   shootRate: 0.685
   shootDist: 25
   magSize: 5
-  magCount: 2
+  magCount: 5
   fireSelect: 1
   pellets: 6
   spreadAccuracy: 0.75
   criticalMult: 1.5
+  CostofWeapon: 0
   hasScope: 0
+  weaponName: Shotgun
   gunModel: {fileID: 919132149155446097, guid: 8b36fb41929fc22429f0083d817b8040, type: 3}
   gunshotSound: {fileID: 8300000, guid: 083f12a0226cf1a4d93705d4a4ea201c, type: 3}
   isGun: 1
   isMelee: 0
-  isGun: 1
+  isShop: 0
