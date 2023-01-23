@@ -1722,17 +1722,6 @@ Mesh:
     offset: 0
     size: 0
     path: 
---- !u!114 &633678955 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 633678955, guid: 8119b01fc1f287140a1aacffdc79cacc, type: 3}
-  m_PrefabInstance: {fileID: 684388935}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1001 &684388935
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1771,10 +1760,10 @@ PrefabInstance:
     - target: {fileID: 8548946725001479415, guid: 8119b01fc1f287140a1aacffdc79cacc, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
-      objectReference: {fileID: 1740653444}
+      objectReference: {fileID: 848573991}
     - target: {fileID: 8548946725001479415, guid: 8119b01fc1f287140a1aacffdc79cacc, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: BuyWeaponUpgrade
+      value: OnButtonClick
       objectReference: {fileID: 0}
     - target: {fileID: 8723847276176227690, guid: 8119b01fc1f287140a1aacffdc79cacc, type: 3}
       propertyPath: m_Pivot.x
@@ -1924,11 +1913,11 @@ PrefabInstance:
     - target: {fileID: 2470128280080099147, guid: 046a377d7437c9644bf277f305fa4dca, type: 3}
       propertyPath: AlreadyownWeapon
       value: 
-      objectReference: {fileID: 633678955}
+      objectReference: {fileID: 0}
     - target: {fileID: 2470128280080099147, guid: 046a377d7437c9644bf277f305fa4dca, type: 3}
       propertyPath: DisplaynotEnoughCoins
       value: 
-      objectReference: {fileID: 1307573633}
+      objectReference: {fileID: 0}
     - target: {fileID: 2470128280080099158, guid: 046a377d7437c9644bf277f305fa4dca, type: 3}
       propertyPath: m_Name
       value: player
@@ -2166,6 +2155,17 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 7494317789885382928, guid: 046a377d7437c9644bf277f305fa4dca, type: 3}
   m_PrefabInstance: {fileID: 732496298}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &848573991 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 8439317715887810180, guid: 8119b01fc1f287140a1aacffdc79cacc, type: 3}
+  m_PrefabInstance: {fileID: 684388935}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 34bc7e1ec88ba824ca2db077fcfd2ff3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &940028653
 GameObject:
   m_ObjectHideFlags: 0
@@ -2752,17 +2752,6 @@ Mesh:
     offset: 0
     size: 0
     path: 
---- !u!114 &1307573633 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 1307573633, guid: 8119b01fc1f287140a1aacffdc79cacc, type: 3}
-  m_PrefabInstance: {fileID: 684388935}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!43 &1344226683
 Mesh:
   m_ObjectHideFlags: 0
@@ -2927,17 +2916,6 @@ Mesh:
     offset: 0
     size: 0
     path: 
---- !u!114 &1740653444 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 2470128280080099147, guid: 046a377d7437c9644bf277f305fa4dca, type: 3}
-  m_PrefabInstance: {fileID: 732496298}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ff7ab40fd22c28e4bad3fe711b20b4f9, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!43 &1765981613
 Mesh:
   m_ObjectHideFlags: 0
