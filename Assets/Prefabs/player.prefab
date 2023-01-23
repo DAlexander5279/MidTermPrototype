@@ -720,6 +720,7 @@ MonoBehaviour:
   - {fileID: 8300000, guid: 1a799e4b14733634496815b9630c1d25, type: 3}
   - {fileID: 8300000, guid: baed4d18670b76148a2a8061bdd893a6, type: 3}
   - {fileID: 8300000, guid: 5d8502467412d12418e6cd1da644a6fd, type: 3}
+  dryfireSoundVol: 1
   gunReloadSound: {fileID: 8300000, guid: 1129455f1d3f25e41804af808b44f620, type: 3}
   gunshotSoundVol: 0.5
   playerJumpAudio:
@@ -764,6 +765,7 @@ MonoBehaviour:
   spreadAccuracy: 1
   hasScope: 0
   gunCriticalMult: 2
+  weaponLvl: 0
   isMeleeWeapon: 0
   isGun: 0
   HPOriginal: 0

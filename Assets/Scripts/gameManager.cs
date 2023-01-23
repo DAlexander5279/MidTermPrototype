@@ -25,7 +25,6 @@ public class gameManager : MonoBehaviour
     public GameObject activeMenu;
     public GameObject savedMenu;
     public GameObject pauseMenu;
-    public GameObject shopMenu;
     public GameObject winMenu;
     public GameObject loseMenu;
     public GameObject titleScreen;
@@ -43,12 +42,29 @@ public class gameManager : MonoBehaviour
 
     [SerializeField] TextMeshProUGUI playerDamage;
 
+    [Header("------Shop UI------")]
+    public GameObject shopMenu;
+    public GameObject shopErrorHUD;
+    [SerializeField] TMP_Text shopErrorText;
+
+    public GameObject upgradeRifle;
+    [SerializeField] TMP_Text upgradeRifleCost;
+    public GameObject upgradeShotgun;
+    [SerializeField] TMP_Text upgradeShotgunCost;
+    public GameObject upgradeSniper;
+    [SerializeField] TMP_Text upgradeSniperCost;
+    public GameObject upgradeKatana;
+    [SerializeField] TMP_Text upgradeKatanaCost;
+    public GameObject upgradePistol;
+    [SerializeField] TMP_Text upgradePistolCost;
+
     [SerializeField] AudioMixer mixer;
     [SerializeField] Slider musicSliderVol;
     [SerializeField] Slider sfxSliderVol;
     [SerializeField] Slider SensX;
     [SerializeField] Slider SensY;
     public GameObject settingsMenu;
+
 
 
     [Header("------Extras------")]
@@ -201,6 +217,7 @@ public class gameManager : MonoBehaviour
         //{
         //    StartCoroutine(PushPlayer());
         //}
+
     }
     public void gamePause()
     {
@@ -362,4 +379,38 @@ public class gameManager : MonoBehaviour
 
 
     }
+
+    public IEnumerator ShopErrorNotif(string text, float time)
+    {
+        shopErrorText.text = text;
+        shopErrorHUD.SetActive(true);
+        yield return new WaitForSeconds(time);
+        shopErrorHUD.SetActive(false);
+    }
+
+    public void updateUpgradeCost(int cost, TMP_Text weaponUpgradeText)
+    {
+        weaponUpgradeText.text = cost.ToString("F0");
+    }
+
+    /*
+     inside Start()
+        updateUpgradeCost(pistolCost, pistolUpgradeText);
+        updateUpgradeCost(shotgunCost, shotgunUpgradeText);
+        ... [do the same for other weapons]
+     
+      pretend this is inside weapon upgrade script:
+        ... (if gunList.Count == 0)
+               ... StartCoroutine(gameManager.instance.ShowErrorNotif(doesntOwnWeapon,2.0f))
+        ... (else)
+        ... (if player has enough cash...)
+        ... (if player owns weapon they're trying to upgrade)
+        [upgrade cost function: costOfWeapon + (costOfWeapon * weaponLevel)]
+            
+            gameManager.instance.playerScript.addZoins( -(gunToBuy.CostofWeapon + (gunToBuy.CostofWeapon * gunToBuy.weaponLevel)) );
+            gameManager.instance.playerScript.BuyWeapon(gunToBuy);
+            gameManager.instance.updateUpgradeCost(gunToBuy.CostofWeapon + (gunToBuy.CostofWeapon * gunToBuy.weaponLevel), gunToBuyUpgradeText);
+
+     
+    */
 }

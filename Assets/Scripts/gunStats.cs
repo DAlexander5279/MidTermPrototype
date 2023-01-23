@@ -21,6 +21,8 @@ public class gunStats : ScriptableObject
     public int CostofWeapon;
     public bool hasScope;
     public string weaponName;
+    public int weaponLevel;
+    public int maxWeaponLevel;
 
     public GameObject gunModel;
     public AudioClip gunshotSound;

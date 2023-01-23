@@ -22,9 +22,11 @@ MonoBehaviour:
   pellets: 6
   spreadAccuracy: 0.75
   criticalMult: 1.5
-  CostofWeapon: 0
+  CostofWeapon: 20
   hasScope: 0
   weaponName: Shotgun
+  weaponLevel: 0
+  maxWeaponLevel: 8
   gunModel: {fileID: 919132149155446097, guid: 8b36fb41929fc22429f0083d817b8040, type: 3}
   gunshotSound: {fileID: 8300000, guid: 083f12a0226cf1a4d93705d4a4ea201c, type: 3}
   isGun: 1

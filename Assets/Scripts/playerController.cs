@@ -48,6 +48,7 @@ public class playerController : MonoBehaviour
     //gun sounds
     [SerializeField] AudioClip gunshotSound;
     [SerializeField] List<AudioClip> dryfireSound;
+    [Range(0, 3)] [SerializeField] float dryfireSoundVol;
     [SerializeField] AudioClip gunReloadSound;
     [Range(0, 3)][SerializeField] float gunshotSoundVol;
 
@@ -74,7 +75,8 @@ public class playerController : MonoBehaviour
     // gun stats
     #region
     [Header("------Gun Stats------")]
-    [SerializeField] List<gunStats> gunList = new List<gunStats>();
+    //[SerializeField] List<gunStats> gunList = new List<gunStats>();
+    public List<gunStats> gunList = new List<gunStats>();
 
     [Range(0, 5)][SerializeField] int gunDMG;
     [SerializeField] float shootRate;   // player's gun fire rate
@@ -89,6 +91,7 @@ public class playerController : MonoBehaviour
     [SerializeField] float spreadAccuracy;
     [SerializeField] bool hasScope;
     [SerializeField] float gunCriticalMult;
+    [SerializeField] int weaponLvl;
     public bool isMeleeWeapon;
     public bool isGun;
 
@@ -234,7 +237,7 @@ public class playerController : MonoBehaviour
 
     IEnumerator Shoot()
     {
-        if (!isShooting && gunList[selectedGun].magCount > 0 &&
+        if (!isShooting && gunList[selectedGun].magCount > 0 && !isReloading &&
             ((fireSelect == 0 && Input.GetButton("Shoot")) || (fireSelect == 1 && Input.GetButtonDown("Shoot"))))//GetButton = full-auto | ...Down = semi-auto | ..Up = think single-action revolver) - J
         {
             RaycastHit hit;
@@ -366,15 +369,15 @@ public class playerController : MonoBehaviour
             {
                 isReloading = true;
                 aud.PlayOneShot(gunReloadSound, gunshotSoundVol);
-                yield return new WaitForSeconds(0.5f);
+                yield return new WaitForSeconds(0.8f);
                 gunList[selectedGun].magCount = gunList[selectedGun].magSize;
                 gameManager.instance.ammoUpdate(gunList[selectedGun].magCount, gunList[selectedGun].magSize, gunList[selectedGun].isMelee);
                 reloadUI.SetActive(false);
                 isReloading = false;
             }
-            if (Input.GetButtonDown("Shoot") && gunList[selectedGun].magCount <= 0)
+            if (Input.GetButtonDown("Shoot") && gunList[selectedGun].magCount <= 0 && !isReloading)
             {
-                aud.PlayOneShot(dryfireSound[UnityEngine.Random.Range(0, dryfireSound.Count - 1)], gunshotSoundVol);
+                aud.PlayOneShot(dryfireSound[UnityEngine.Random.Range(0, dryfireSound.Count - 1)], dryfireSoundVol);
 
                 //yield return new WaitForSeconds(shootRate * 2.0f);
             }
@@ -432,17 +435,15 @@ public class playerController : MonoBehaviour
                 if (gunStat == gunList[i])
                 {
                     foundGun = true;
-                    gunList[i].modifedGunDMG = Mathf.FloorToInt(gunList[i].modifedGunDMG * gameManager.instance.getDamageModifier());
+                    gunList[i].weaponLevel++;
+                    gunList[i].modifedGunDMG = Mathf.FloorToInt(gunList[i].gunDMG * gunList[i].weaponLevel);
                     gunList[i].magCount = gunList[i].magSize;           // reloads the upgraded weapon automatically for faster gameplay
                     if (gunList[i] == gunList[selectedGun])
                     {
                         gunDMG = gunList[i].modifedGunDMG;
                         aud.PlayOneShot(gunReloadSound, gunshotSoundVol);
                         gameManager.instance.ammoUpdate(gunList[selectedGun].magCount, gunList[selectedGun].magSize, gunList[selectedGun].isMelee);
-                        if ((gunList[i] == gunList[selectedGun]) && (gunList[selectedGun].magCount == 0 || gunList[selectedGun].magCount <= 3))
-                        {
-                            reloadUI.SetActive(false);
-                        }
+                        reloadUI.SetActive(false);
                         gameManager.instance.updatePlayerDamage(gunDMG);
                     }
                     aud.PlayOneShot(laserUpgradeSFX, laserUpgradeSFXVol);
@@ -452,64 +453,17 @@ public class playerController : MonoBehaviour
         if (!foundGun)
         {
             gunStat.magCount = gunStat.magSize;
-            if (gameManager.instance.waveCount >= 5)
-            {
-                gunStat.modifedGunDMG = gameManager.instance.scalingFunction(gunStat.gunDMG);
+            //if (gameManager.instance.waveCount >= 5)
+            //{
+            //    gunStat.modifedGunDMG = gameManager.instance.scalingFunction(gunStat.gunDMG);
 
-            }
-            else
-            {
-                gunStat.modifedGunDMG = gunStat.gunDMG;
-            }
-            gunList.Add(gunStat);
-            selectedGun = gunList.Count - 1;
-            changeCurrentGun();
-
-            gameManager.instance.ammoUpdate(gunStat.magCount, gunStat.magSize, gunStat.isMelee);
-        }
-        if (gameManager.instance.itemCount != 0)
-            gameManager.instance.updateItemCount(-1);
-    }
-
-    public void gunPickupBuy(gunStats gunStat)
-    {
-
-        bool foundGun = false;
-        if (gunList.Count > 0)
-        {
-            for (int i = 0; i < gunList.Count; i++)
-            {
-                if (gunStat == gunList[i])
-                {
-                    foundGun = true;
-                    gunList[i].modifedGunDMG = Mathf.FloorToInt(gunList[i].modifedGunDMG * gameManager.instance.getDamageModifier());
-                    gunList[i].magCount = gunList[i].magSize;           // reloads the upgraded weapon automatically for faster gameplay
-                    if (gunList[i] == gunList[selectedGun])
-                    {
-                        gunDMG = gunList[i].modifedGunDMG;
-                        aud.PlayOneShot(gunReloadSound, gunshotSoundVol);
-                        gameManager.instance.ammoUpdate(gunList[selectedGun].magCount, gunList[selectedGun].magSize, gunList[selectedGun].isMelee);
-                        if ((gunList[i] == gunList[selectedGun]) && (gunList[selectedGun].magCount == 0 || gunList[selectedGun].magCount <= 3))
-                        {
-                            reloadUI.SetActive(false);
-                        }
-                        gameManager.instance.updatePlayerDamage(gunDMG);
-                    }
-                }
-            }
-        }
-        if (!foundGun)
-        {
-            gunStat.magCount = gunStat.magSize;
-            if (gameManager.instance.waveCount >= 5)
-            {
-                gunStat.modifedGunDMG = gameManager.instance.scalingFunction(gunStat.gunDMG);
-
-            }
-            else
-            {
-                gunStat.modifedGunDMG = gunStat.gunDMG;
-            }
+            //}
+            //else
+            //{
+            //    gunStat.modifedGunDMG = gunStat.gunDMG;
+            //}
+            gunStat.modifedGunDMG = gunStat.gunDMG;
+            gunStat.weaponLevel = 1;
             gunList.Add(gunStat);
             selectedGun = gunList.Count - 1;
             changeCurrentGun();
@@ -518,6 +472,7 @@ public class playerController : MonoBehaviour
         }
     }
 
+    
     void gunSelect()
     {
         if (Input.GetAxis("Mouse ScrollWheel") > 0 && selectedGun < gunList.Count - 1)  // scrolling up + staying within List's range
@@ -567,6 +522,8 @@ public class playerController : MonoBehaviour
         spreadAccuracy = gunList[selectedGun].spreadAccuracy;
         hasScope = gunList[selectedGun].hasScope;
         gunCriticalMult = gunList[selectedGun].criticalMult;
+
+        weaponLvl = gunList[selectedGun].weaponLevel;
 
         isMeleeWeapon = gunList[selectedGun].isMelee;
         if (gunList[selectedGun].isGun == true && gunList[selectedGun].isMelee == false)
@@ -664,32 +621,9 @@ public class playerController : MonoBehaviour
         return aud;
     }
 
-    public void BuyWeaponUpgrade(GameObject weapon)
-    {
-        if (gameManager.instance.zoins >= CostOfUpgrade)
-        {
-            Instantiate(weapon, gameManager.instance.player.transform.position, gameManager.instance.player.transform.rotation);
-            // had to use gameManager call for this one specifically cuz Unity is great :)
-            gameManager.instance.addZoins(-CostOfUpgrade);
-        }
-        else
-        {
-            print("Not enough zoins");
-        }
-    }
-
     public void BuyWeapon(GameObject weapon)
     {
-
-        if (gameManager.instance.zoins >= CostOfWeapons)
-        {
             Instantiate(weapon, transform.position, transform.rotation);
-            gameManager.instance.addZoins(-CostOfWeapons);
-        }
-        else
-        {
-            print("Not enough zoins");
-        }
     }
 
 }

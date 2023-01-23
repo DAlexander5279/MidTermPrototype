@@ -4054,9 +4054,10 @@ GameObject:
   - component: {fileID: 698978047}
   - component: {fileID: 698978050}
   - component: {fileID: 698978049}
+  - component: {fileID: 5785981209962424909}
   - component: {fileID: 698978048}
   m_Layer: 5
-  m_Name: Upgrade Sniper
+  m_Name: Upgrade Sniper Button
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -4123,6 +4124,21 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
+--- !u!114 &5785981209962424909
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 698978046}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 34bc7e1ec88ba824ca2db077fcfd2ff3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  gunToUpgrade: {fileID: 11400000, guid: 61654b401b9055f4e9a370a55d3bc897, type: 2}
+  gunDrop: {fileID: 5998873461299402857, guid: dbebe4d8d2f7863499f34d911c7bdf36, type: 3}
+  gunUpgradeCostText: {fileID: 1983222934}
 --- !u!114 &698978048
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4167,13 +4183,13 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 2470128280080099147, guid: 046a377d7437c9644bf277f305fa4dca, type: 3}
-        m_TargetAssemblyTypeName: playerController, Assembly-CSharp
-        m_MethodName: BuyWeaponUpgrade
-        m_Mode: 2
+      - m_Target: {fileID: 5785981209962424909}
+        m_TargetAssemblyTypeName: shopUpgradeWeapon, Assembly-CSharp
+        m_MethodName: OnButtonClick
+        m_Mode: 1
         m_Arguments:
-          m_ObjectArgument: {fileID: 5998873461299402857, guid: dbebe4d8d2f7863499f34d911c7bdf36, type: 3}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
@@ -8767,9 +8783,10 @@ GameObject:
   - component: {fileID: 1653682841}
   - component: {fileID: 1653682844}
   - component: {fileID: 1653682843}
+  - component: {fileID: 8404898154536570481}
   - component: {fileID: 1653682842}
   m_Layer: 5
-  m_Name: Upgrade Shotgun
+  m_Name: Upgrade Shotgun Button
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -8836,6 +8853,21 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
+--- !u!114 &8404898154536570481
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1653682840}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 34bc7e1ec88ba824ca2db077fcfd2ff3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  gunToUpgrade: {fileID: 11400000, guid: 1bfe80363bafbec4292ea6b066bf081d, type: 2}
+  gunDrop: {fileID: 5998873461299402857, guid: eff122e1b2ac4ee4ba5c6e247bf07b31, type: 3}
+  gunUpgradeCostText: {fileID: 576564899}
 --- !u!114 &1653682842
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -8880,13 +8912,13 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 2470128280080099147, guid: 046a377d7437c9644bf277f305fa4dca, type: 3}
-        m_TargetAssemblyTypeName: playerController, Assembly-CSharp
-        m_MethodName: BuyWeaponUpgrade
-        m_Mode: 2
+      - m_Target: {fileID: 8404898154536570481}
+        m_TargetAssemblyTypeName: shopUpgradeWeapon, Assembly-CSharp
+        m_MethodName: OnButtonClick
+        m_Mode: 1
         m_Arguments:
-          m_ObjectArgument: {fileID: 5998873461299402857, guid: eff122e1b2ac4ee4ba5c6e247bf07b31, type: 3}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
@@ -11408,9 +11440,10 @@ GameObject:
   - component: {fileID: 1007659650773172138}
   - component: {fileID: 6812635407278949821}
   - component: {fileID: 710945069901258552}
+  - component: {fileID: 832550803834339193}
   - component: {fileID: 4500937267463721287}
   m_Layer: 5
-  m_Name: Buy Sniper
+  m_Name: Buy Sniper Button
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -11477,6 +11510,20 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
+--- !u!114 &832550803834339193
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 439454216123007913}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: de80958879b658f47989f881392431f4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  gunToBuy: {fileID: 11400000, guid: 61654b401b9055f4e9a370a55d3bc897, type: 2}
+  gunDrop: {fileID: 5998873461299402857, guid: dbebe4d8d2f7863499f34d911c7bdf36, type: 3}
 --- !u!114 &4500937267463721287
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -11521,13 +11568,13 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: playerController, Assembly-CSharp
-        m_MethodName: BuyWeapon
-        m_Mode: 2
+      - m_Target: {fileID: 832550803834339193}
+        m_TargetAssemblyTypeName: Buy_UpgradeWeapon, Assembly-CSharp
+        m_MethodName: OnButtonClick
+        m_Mode: 1
         m_Arguments:
-          m_ObjectArgument: {fileID: 5998873461299402857, guid: dbebe4d8d2f7863499f34d911c7bdf36, type: 3}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
@@ -11829,9 +11876,10 @@ GameObject:
   - component: {fileID: 2290035457406109012}
   - component: {fileID: 4487383725450960128}
   - component: {fileID: 4576183792358882152}
+  - component: {fileID: 8051056992608670663}
   - component: {fileID: 6279583809347297357}
   m_Layer: 5
-  m_Name: Buy Shotgun
+  m_Name: Buy Shotgun Button
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -11898,6 +11946,20 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
+--- !u!114 &8051056992608670663
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 781290292828194993}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: de80958879b658f47989f881392431f4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  gunToBuy: {fileID: 11400000, guid: 1bfe80363bafbec4292ea6b066bf081d, type: 2}
+  gunDrop: {fileID: 5998873461299402857, guid: eff122e1b2ac4ee4ba5c6e247bf07b31, type: 3}
 --- !u!114 &6279583809347297357
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -11942,13 +12004,13 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: playerController, Assembly-CSharp
-        m_MethodName: BuyWeapon
-        m_Mode: 2
+      - m_Target: {fileID: 8051056992608670663}
+        m_TargetAssemblyTypeName: Buy_UpgradeWeapon, Assembly-CSharp
+        m_MethodName: OnButtonClick
+        m_Mode: 1
         m_Arguments:
-          m_ObjectArgument: {fileID: 5998873461299402857, guid: eff122e1b2ac4ee4ba5c6e247bf07b31, type: 3}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
@@ -12013,7 +12075,6 @@ MonoBehaviour:
   activeMenu: {fileID: 6138282135155916090}
   savedMenu: {fileID: 0}
   pauseMenu: {fileID: 252540912}
-  shopMenu: {fileID: 4776575551172709122}
   winMenu: {fileID: 4365397994282439723}
   loseMenu: {fileID: 4711952270747788180}
   titleScreen: {fileID: 3976761508580282667}
@@ -12027,6 +12088,19 @@ MonoBehaviour:
   roomsCleared: {fileID: 1303852546}
   ammoCount: {fileID: 1830579957}
   playerDamage: {fileID: 17278484}
+  shopMenu: {fileID: 4776575551172709122}
+  shopErrorHUD: {fileID: 6284342730173457335}
+  shopErrorText: {fileID: 5113341940245975776}
+  upgradeRifle: {fileID: 428955290}
+  upgradeRifleCost: {fileID: 428955292}
+  upgradeShotgun: {fileID: 576564897}
+  upgradeShotgunCost: {fileID: 576564899}
+  upgradeSniper: {fileID: 1983222932}
+  upgradeSniperCost: {fileID: 1983222934}
+  upgradeKatana: {fileID: 8623002481154966157}
+  upgradeKatanaCost: {fileID: 6987331917697487480}
+  upgradePistol: {fileID: 1856322799900374065}
+  upgradePistolCost: {fileID: 3480407832512018123}
   mixer: {fileID: 24100000, guid: d26a02b7fc4f96947a7d363fce29fba6, type: 2}
   musicSliderVol: {fileID: 551829079}
   sfxSliderVol: {fileID: 1271414116}
@@ -12045,7 +12119,7 @@ MonoBehaviour:
   closeConMenu: 0
   Confirm: 0
   Cancel: 0
-  zoins: 0
+  zoins: 100
   AmmoCount: 0
   shop: 0
 --- !u!1 &1103788628891823913
@@ -13316,9 +13390,10 @@ GameObject:
   - component: {fileID: 46476830102900465}
   - component: {fileID: 2471164269473757851}
   - component: {fileID: 5143338820263769907}
+  - component: {fileID: 4023194784493666650}
   - component: {fileID: 8487496924433990523}
   m_Layer: 5
-  m_Name: Buy Pistol
+  m_Name: Buy Pistol Button
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -13385,6 +13460,20 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
+--- !u!114 &4023194784493666650
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2871093692986906669}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: de80958879b658f47989f881392431f4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  gunToBuy: {fileID: 11400000, guid: a65955d89d5d31e47803a4cd98848bda, type: 2}
+  gunDrop: {fileID: 4633569493883174249, guid: 717be71a7d8581d418b5c651d23d0a85, type: 3}
 --- !u!114 &8487496924433990523
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -13429,13 +13518,13 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: playerController, Assembly-CSharp
-        m_MethodName: BuyWeapon
-        m_Mode: 2
+      - m_Target: {fileID: 4023194784493666650}
+        m_TargetAssemblyTypeName: Buy_UpgradeWeapon, Assembly-CSharp
+        m_MethodName: OnButtonClick
+        m_Mode: 1
         m_Arguments:
-          m_ObjectArgument: {fileID: 4633569493883174249, guid: 717be71a7d8581d418b5c651d23d0a85, type: 3}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
@@ -14564,6 +14653,7 @@ RectTransform:
   - {fileID: 8853778884034851040}
   - {fileID: 987932395}
   - {fileID: 1197868750}
+  - {fileID: 1656291562062252994}
   m_Father: {fileID: 8723847276176227690}
   m_RootOrder: 23
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -15441,9 +15531,10 @@ GameObject:
   - component: {fileID: 4181599293016698233}
   - component: {fileID: 4698413315093511116}
   - component: {fileID: 4969826934709898617}
+  - component: {fileID: 5759855172254842685}
   - component: {fileID: 8045881473700213744}
   m_Layer: 5
-  m_Name: Buy Rifle
+  m_Name: Buy Rifle Button
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -15523,6 +15614,20 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
+--- !u!114 &5759855172254842685
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6106016349324649445}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: de80958879b658f47989f881392431f4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  gunToBuy: {fileID: 11400000, guid: 84ce2125930e7054683a216567541666, type: 2}
+  gunDrop: {fileID: 5998873461299402857, guid: 62f3d2412737b5f4693c6b609faa92c5, type: 3}
 --- !u!114 &8045881473700213744
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -15567,13 +15672,13 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: playerController, Assembly-CSharp
-        m_MethodName: BuyWeapon
-        m_Mode: 2
+      - m_Target: {fileID: 5759855172254842685}
+        m_TargetAssemblyTypeName: Buy_UpgradeWeapon, Assembly-CSharp
+        m_MethodName: OnButtonClick
+        m_Mode: 1
         m_Arguments:
-          m_ObjectArgument: {fileID: 5998873461299402857, guid: 62f3d2412737b5f4693c6b609faa92c5, type: 3}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
@@ -15923,6 +16028,141 @@ MonoBehaviour:
   m_paragraphSpacing: 0
   m_charWidthMaxAdj: 0
   m_enableWordWrapping: 1
+  m_wordWrappingRatios: 0.4
+  m_overflowMode: 0
+  m_linkedTextComponent: {fileID: 0}
+  parentLinkedComponent: {fileID: 0}
+  m_enableKerning: 1
+  m_enableExtraPadding: 0
+  checkPaddingRequired: 0
+  m_isRichText: 1
+  m_parseCtrlCharacters: 1
+  m_isOrthographic: 1
+  m_isCullingEnabled: 0
+  m_horizontalMapping: 0
+  m_verticalMapping: 0
+  m_uvLineOffset: 0
+  m_geometrySortingOrder: 0
+  m_IsTextObjectScaleStatic: 0
+  m_VertexBufferAutoSizeReduction: 0
+  m_useMaxVisibleDescender: 1
+  m_pageToDisplay: 1
+  m_margin: {x: 0, y: 0, z: 0, w: 0}
+  m_isUsingLegacyAnimationComponent: 0
+  m_isVolumetricText: 0
+  m_hasFontAssetChanged: 0
+  m_baseMaterial: {fileID: 0}
+  m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
+--- !u!1 &6284342730173457335
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1656291562062252994}
+  - component: {fileID: 2099620421629181998}
+  - component: {fileID: 5113341940245975776}
+  m_Layer: 5
+  m_Name: Shop Error Msg
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 0
+--- !u!224 &1656291562062252994
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6284342730173457335}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 8915479877320758046}
+  m_RootOrder: 12
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 0, y: -350}
+  m_SizeDelta: {x: 100, y: 100}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!222 &2099620421629181998
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6284342730173457335}
+  m_CullTransparentMesh: 1
+--- !u!114 &5113341940245975776
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6284342730173457335}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_RaycastTarget: 1
+  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
+  m_Maskable: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_text: test text!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+  m_isRightToLeft: 0
+  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_fontSharedMaterials: []
+  m_fontMaterial: {fileID: 0}
+  m_fontMaterials: []
+  m_fontColor32:
+    serializedVersion: 2
+    rgba: 4278193663
+  m_fontColor: {r: 1, g: 0.051799536, b: 0, a: 1}
+  m_enableVertexGradient: 0
+  m_colorMode: 3
+  m_fontColorGradient:
+    topLeft: {r: 1, g: 1, b: 1, a: 1}
+    topRight: {r: 1, g: 1, b: 1, a: 1}
+    bottomLeft: {r: 1, g: 1, b: 1, a: 1}
+    bottomRight: {r: 1, g: 1, b: 1, a: 1}
+  m_fontColorGradientPreset: {fileID: 0}
+  m_spriteAsset: {fileID: 0}
+  m_tintAllSprites: 0
+  m_StyleSheet: {fileID: 0}
+  m_TextStyleHashCode: -1183493901
+  m_overrideHtmlColors: 0
+  m_faceColor:
+    serializedVersion: 2
+    rgba: 4294967295
+  m_fontSize: 36
+  m_fontSizeBase: 36
+  m_fontWeight: 400
+  m_enableAutoSizing: 0
+  m_fontSizeMin: 18
+  m_fontSizeMax: 72
+  m_fontStyle: 3
+  m_HorizontalAlignment: 2
+  m_VerticalAlignment: 256
+  m_textAlignment: 65535
+  m_characterSpacing: 0
+  m_wordSpacing: 0
+  m_lineSpacing: 0
+  m_lineSpacingMax: 0
+  m_paragraphSpacing: 0
+  m_charWidthMaxAdj: 0
+  m_enableWordWrapping: 0
   m_wordWrappingRatios: 0.4
   m_overflowMode: 0
   m_linkedTextComponent: {fileID: 0}
@@ -16498,9 +16738,10 @@ GameObject:
   - component: {fileID: 936873462019404119}
   - component: {fileID: 1045452087917185633}
   - component: {fileID: 575327999394042597}
+  - component: {fileID: 8439317715887810180}
   - component: {fileID: 8548946725001479415}
   m_Layer: 5
-  m_Name: Upgrade Rifle
+  m_Name: Upgrade Rifle Button
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -16567,6 +16808,21 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
+--- !u!114 &8439317715887810180
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6845469915490664770}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 34bc7e1ec88ba824ca2db077fcfd2ff3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  gunToUpgrade: {fileID: 11400000, guid: 84ce2125930e7054683a216567541666, type: 2}
+  gunDrop: {fileID: 5998873461299402857, guid: 62f3d2412737b5f4693c6b609faa92c5, type: 3}
+  gunUpgradeCostText: {fileID: 428955292}
 --- !u!114 &8548946725001479415
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -16611,13 +16867,13 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 2470128280080099147, guid: 046a377d7437c9644bf277f305fa4dca, type: 3}
-        m_TargetAssemblyTypeName: playerController, Assembly-CSharp
-        m_MethodName: BuyWeaponUpgrade
-        m_Mode: 2
+      - m_Target: {fileID: 8439317715887810180}
+        m_TargetAssemblyTypeName: shopUpgradeWeapon, Assembly-CSharp
+        m_MethodName: OnButtonClick
+        m_Mode: 1
         m_Arguments:
-          m_ObjectArgument: {fileID: 5998873461299402857, guid: 62f3d2412737b5f4693c6b609faa92c5, type: 3}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
@@ -17566,9 +17822,10 @@ GameObject:
   - component: {fileID: 3638072350153539244}
   - component: {fileID: 3622660951367884513}
   - component: {fileID: 5903490333654358689}
+  - component: {fileID: 6413243622900728900}
   - component: {fileID: 3502150774687801975}
   m_Layer: 5
-  m_Name: Upgrade Katana
+  m_Name: Upgrade Katana Button
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -17635,6 +17892,21 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
+--- !u!114 &6413243622900728900
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7693654688640646943}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 34bc7e1ec88ba824ca2db077fcfd2ff3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  gunToUpgrade: {fileID: 11400000, guid: ac99df1345f3dc24a9ba32c8a5a9c568, type: 2}
+  gunDrop: {fileID: 6035302921550122439, guid: c3a78094e724c764e954b2bb0b43c98c, type: 3}
+  gunUpgradeCostText: {fileID: 6987331917697487480}
 --- !u!114 &3502150774687801975
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -17679,13 +17951,13 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 2470128280080099147, guid: 046a377d7437c9644bf277f305fa4dca, type: 3}
-        m_TargetAssemblyTypeName: playerController, Assembly-CSharp
-        m_MethodName: BuyWeaponUpgrade
-        m_Mode: 2
+      - m_Target: {fileID: 6413243622900728900}
+        m_TargetAssemblyTypeName: shopUpgradeWeapon, Assembly-CSharp
+        m_MethodName: OnButtonClick
+        m_Mode: 1
         m_Arguments:
-          m_ObjectArgument: {fileID: 6035302921550122439, guid: c3a78094e724c764e954b2bb0b43c98c, type: 3}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
@@ -18780,9 +19052,10 @@ GameObject:
   - component: {fileID: 4383693940493229714}
   - component: {fileID: 7460112166031458367}
   - component: {fileID: 6100552307526550793}
+  - component: {fileID: 6607958594571219000}
   - component: {fileID: 4409483362176647072}
   m_Layer: 5
-  m_Name: Buy Katana
+  m_Name: Buy Katana Button
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -18849,6 +19122,20 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
+--- !u!114 &6607958594571219000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8999479965457768514}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: de80958879b658f47989f881392431f4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  gunToBuy: {fileID: 11400000, guid: ac99df1345f3dc24a9ba32c8a5a9c568, type: 2}
+  gunDrop: {fileID: 6035302921550122439, guid: c3a78094e724c764e954b2bb0b43c98c, type: 3}
 --- !u!114 &4409483362176647072
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -18893,13 +19180,13 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: playerController, Assembly-CSharp
-        m_MethodName: BuyWeapon
-        m_Mode: 2
+      - m_Target: {fileID: 6607958594571219000}
+        m_TargetAssemblyTypeName: Buy_UpgradeWeapon, Assembly-CSharp
+        m_MethodName: OnButtonClick
+        m_Mode: 1
         m_Arguments:
-          m_ObjectArgument: {fileID: 6035302921550122439, guid: c3a78094e724c764e954b2bb0b43c98c, type: 3}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
@@ -18992,9 +19279,10 @@ GameObject:
   - component: {fileID: 5405014982594675671}
   - component: {fileID: 1629099844731294977}
   - component: {fileID: 3765864123036652243}
+  - component: {fileID: 8288236525626119876}
   - component: {fileID: 7377248105708479360}
   m_Layer: 5
-  m_Name: Upgrade Pistol
+  m_Name: Upgrade Pistol Button
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -19061,6 +19349,21 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
+--- !u!114 &8288236525626119876
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9049437005969524138}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 34bc7e1ec88ba824ca2db077fcfd2ff3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  gunToUpgrade: {fileID: 11400000, guid: a65955d89d5d31e47803a4cd98848bda, type: 2}
+  gunDrop: {fileID: 4633569493883174249, guid: 717be71a7d8581d418b5c651d23d0a85, type: 3}
+  gunUpgradeCostText: {fileID: 3480407832512018123}
 --- !u!114 &7377248105708479360
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -19105,13 +19408,13 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 2470128280080099147, guid: 046a377d7437c9644bf277f305fa4dca, type: 3}
-        m_TargetAssemblyTypeName: playerController, Assembly-CSharp
-        m_MethodName: BuyWeaponUpgrade
-        m_Mode: 2
+      - m_Target: {fileID: 8288236525626119876}
+        m_TargetAssemblyTypeName: shopUpgradeWeapon, Assembly-CSharp
+        m_MethodName: OnButtonClick
+        m_Mode: 1
         m_Arguments:
-          m_ObjectArgument: {fileID: 4633569493883174249, guid: 717be71a7d8581d418b5c651d23d0a85, type: 3}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
