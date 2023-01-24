@@ -94,8 +94,6 @@ public class gameManager : MonoBehaviour
 
     void Awake()
     {
-
-
         instance = this;
         savedMenu = null;
         player = GameObject.FindGameObjectWithTag("Player");
@@ -104,7 +102,6 @@ public class gameManager : MonoBehaviour
         PlayerPrefs.SetInt("enemyStat", 0);
         addZoins(0);
         waveCount = 0;
-        
     }
     private void Start()
     {
