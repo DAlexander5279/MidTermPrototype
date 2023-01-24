@@ -16,7 +16,7 @@ public class gameManager : MonoBehaviour
     public playerController playerScript;
     public cameraMovement Sensitivity;
     [Range(1.0f, 3.0f)][SerializeField] float damageModifier;
-    [Range(0.0f, 3.0f)][SerializeField] float scalingModifer;
+    [Range(1.0f, 1.75f)][SerializeField] float scalingModifer;
 
     public int maxRoomsCleared;
     public int enemiesKilled;
@@ -308,7 +308,7 @@ public class gameManager : MonoBehaviour
 
     public int scalingFunction(int var)
     {
-        return var + Mathf.FloorToInt(var * (scalingModifer * Mathf.Floor(waveCount * 0.2f)));
+        return var + Mathf.FloorToInt(var * (scalingModifer * waveCount));
     }
     public void musicVolChange()
     {

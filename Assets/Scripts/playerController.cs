@@ -491,6 +491,8 @@ public class playerController : MonoBehaviour
 
         weaponLvl = gunList[selectedGun].weaponLevel;
 
+        isReloading = false;
+
         isMeleeWeapon = gunList[selectedGun].isMelee;
         if (gunList[selectedGun].isGun == true && gunList[selectedGun].isMelee == false)
         {
