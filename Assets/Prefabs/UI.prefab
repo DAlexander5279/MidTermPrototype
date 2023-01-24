@@ -14761,7 +14761,7 @@ MonoBehaviour:
   playerScript: {fileID: 0}
   Sensitivity: {fileID: 0}
   damageModifier: 1.5
-  scalingModifer: 0.33
+  scalingModifer: 1.1
   maxRoomsCleared: 0
   enemiesKilled: 0
   activeMenu: {fileID: 6138282135155916090}
@@ -14786,9 +14786,9 @@ MonoBehaviour:
   shopMenu: {fileID: 4776575551172709122}
   shopErrorHUD: {fileID: 6284342730173457335}
   shopErrorText: {fileID: 5113341940245975776}
-  OpenShop: {fileID: 0}
-  OpenShopHUD: {fileID: 0}
-  PresskeyToopen: {fileID: 0}
+  OpenShop: {fileID: 503212769}
+  OpenShopHUD: {fileID: 1343967785160939787}
+  PresskeyToopen: {fileID: 5919730651004479906}
   upgradeRifle: {fileID: 428955290}
   upgradeRifleCost: {fileID: 428955292}
   upgradeShotgun: {fileID: 576564897}
@@ -14808,7 +14808,7 @@ MonoBehaviour:
   waveCount: 0
   itemCount: 0
   curRoomIndex: 0
-  killWinCondition: 100
+  killWinCondition: 0
   roomsNeedPushed: 0
   enemyCount: 0
   paused: 0
@@ -14818,9 +14818,13 @@ MonoBehaviour:
   Confirm: 0
   Cancel: 0
   credits: 0
-  zoins: 100
+  zoins: 0
   AmmoCount: 0
   shop: 0
+  CreditMenus:
+  - {fileID: 85938550}
+  - {fileID: 1956513789}
+  - {fileID: 497772959}
 --- !u!1 &1103788628891823913
 GameObject:
   m_ObjectHideFlags: 0
@@ -15669,7 +15673,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 4693914382284517690}
         m_TargetAssemblyTypeName: buttonFunctions, Assembly-CSharp
-        m_MethodName: nextPage
+        m_MethodName: nextPage3
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -17657,7 +17661,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 4048721201766056929}
         m_TargetAssemblyTypeName: buttonFunctions, Assembly-CSharp
-        m_MethodName: exitSettings
+        m_MethodName: exitCredits
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -19674,7 +19678,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 449204545306337348}
         m_TargetAssemblyTypeName: buttonFunctions, Assembly-CSharp
-        m_MethodName: exitSettings
+        m_MethodName: exitCredits
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -21541,7 +21545,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   audioClick: {fileID: 400795765826811714}
-  clickVol: 0
+  clickVol: 0.21
   clickSound: {fileID: 8300000, guid: 50861ff83c3a47142bb397f7cf079c06, type: 3}
 --- !u!114 &391962238558236127
 MonoBehaviour:
@@ -21602,7 +21606,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 8742911433015184835}
         m_TargetAssemblyTypeName: buttonFunctions, Assembly-CSharp
-        m_MethodName: nextPage
+        m_MethodName: nextPage2
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -23693,7 +23697,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &826176166909925430
 RectTransform:
   m_ObjectHideFlags: 0
@@ -23827,7 +23831,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 3485085910381375651}
         m_TargetAssemblyTypeName: buttonFunctions, Assembly-CSharp
-        m_MethodName: nextPage
+        m_MethodName: exitCredits
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -24570,7 +24574,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 7326176483496251888}
         m_TargetAssemblyTypeName: buttonFunctions, Assembly-CSharp
-        m_MethodName: exitSettings
+        m_MethodName: exitCredits
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}

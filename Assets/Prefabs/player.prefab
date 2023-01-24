@@ -611,11 +611,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   playerControl: {fileID: 2470128280080099145}
   playerSpeed: 10
-  jumpMax: 1
-  jumpHeight: 5
+  jumpMax: 2
+  jumpHeight: 6
   gravity: 15
   pushTime: 1
-  HP: 1000
+  HP: 250
   isDisabled: 0
   Reload: 114
   crouch: 0

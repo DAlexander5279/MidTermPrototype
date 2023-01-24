@@ -49,8 +49,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   rb: {fileID: 4164665115654197004}
   damage: 3
-  speed: 100
-  timer: 2
+  speed: 45
+  timer: 1
 --- !u!54 &4164665115654197004
 Rigidbody:
   m_ObjectHideFlags: 0

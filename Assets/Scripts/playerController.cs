@@ -352,7 +352,7 @@ public class playerController : MonoBehaviour
 
     public void takeDamage(int dmgIn)
     {
-        HP -= gameManager.instance.scalingFunction(dmgIn);
+        HP -= dmgIn;
         aud.PlayOneShot(playerHurtAudio[UnityEngine.Random.Range(0, playerHurtAudio.Length)], playerHurtAudioVol);
         updatePlayerHP();
         StartCoroutine(playerFlashDamage());

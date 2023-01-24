@@ -9,6 +9,7 @@ public class waveManager : MonoBehaviour
     [SerializeField] GameObject[] positions;
     [SerializeField] GameObject[] enemies;
     [SerializeField] GameObject[] bossList;
+    [SerializeField] GameObject healthPickUp;
 
 
 
@@ -47,7 +48,7 @@ public class waveManager : MonoBehaviour
         {
             if (!isSpawningEnemies)
             {
-                if ((wave > 15) && (wave % 5 != 0) && (EnemiesSpawned < (WaveEnemyCount + WaveBossEnemyCount)))
+                if ((wave > 15) && (wave % 5 != 0) && (EnemiesSpawned < (WaveEnemyCount + WaveBossEnemyCount))) //boss + regular enemies
                 {
                     isHigherDiff = true;
                     isBossRound = false;
@@ -55,14 +56,14 @@ public class waveManager : MonoBehaviour
                     StartCoroutine(spawnEnemies());
                     StartCoroutine(spawnBossEnemies());
                 }
-                else if ((wave % 5 == 0) && (EnemiesSpawned < WaveBossEnemyCount))
+                else if ((wave % 5 == 0) && (EnemiesSpawned < WaveBossEnemyCount))  // boss round
                 {
                     isHigherDiff = false;
                     isBossRound = true;
                     isSpawningEnemies = true;
                     StartCoroutine(spawnBossEnemies());
                 }
-                else if ((wave % 5 != 0) && EnemiesSpawned < WaveEnemyCount)
+                else if ((wave % 5 != 0) && EnemiesSpawned < WaveEnemyCount)    // regular sub-15 rounds
                 {
                     isHigherDiff = false;
                     isBossRound = false;
@@ -94,6 +95,11 @@ public class waveManager : MonoBehaviour
                 {
                     isWaveOver = true;
 
+                    //reward player with more health for beating a boss round
+                    float healthPercent = gameManager.instance.playerScript.HP / gameManager.instance.playerScript.HPOriginal;
+                    gameManager.instance.playerScript.HPOriginal = gameManager.instance.scalingFunction(gameManager.instance.playerScript.HPOriginal);
+                    gameManager.instance.playerScript.HP = Mathf.FloorToInt(gameManager.instance.playerScript.HPOriginal * healthPercent);
+                    Instantiate(healthPickUp, gameManager.instance.player.transform.position, gameManager.instance.player.transform.rotation);
                     StartCoroutine(waveBreak());
 
                 }
@@ -140,7 +146,6 @@ public class waveManager : MonoBehaviour
             WaveEnemyCount += Mathf.FloorToInt(gameManager.instance.scalingFunction(3 + Mathf.FloorToInt(wave * 0.2f)));
             WaveBossEnemyCount += Mathf.FloorToInt(gameManager.instance.scalingFunction(Mathf.FloorToInt(wave * 0.2f)));
         }
-
         //waits x amount of time, then resets variables for new wave
         yield return new WaitForSeconds(waveBreakTimer);
 

@@ -48,8 +48,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   rb: {fileID: 4164665115654197004}
-  damage: 30
-  speed: 200
+  damage: 20
+  speed: 100
   timer: 2
 --- !u!54 &4164665115654197004
 Rigidbody:

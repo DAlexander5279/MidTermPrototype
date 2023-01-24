@@ -235,7 +235,7 @@ public class enemyAI : MonoBehaviour, IDamage
 
                 gameManager.instance.enemiesKilled++;
 
-                droppedZoinsAmt = gameManager.instance.scalingFunction(droppedZoinsAmt);
+                //droppedZoinsAmt = gameManager.instance.scalingFunction(droppedZoinsAmt);
 
                 gameManager.instance.addZoins(droppedZoinsAmt);
 
@@ -330,7 +330,7 @@ public class enemyAI : MonoBehaviour, IDamage
     IEnumerator StunEnemy()
     {
         agent.SetDestination(transform.position);
-        yield return new WaitForSeconds(0.25f);
+        yield return new WaitForSeconds(1.0f);
         isStunned = false;
     }
 }

@@ -319,7 +319,7 @@ public class gameManager : MonoBehaviour
 
     public int scalingFunction(int var)
     {
-        return var + Mathf.FloorToInt(var * (scalingModifer * waveCount));
+        return Mathf.FloorToInt(var * (1.0f + (scalingModifer * (waveCount - 1))));
     }
     public void musicVolChange()
     {

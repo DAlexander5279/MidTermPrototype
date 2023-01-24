@@ -213,7 +213,7 @@ MonoBehaviour:
   Cross: {fileID: 5644053858048565425}
   animSpeed: 0.1
   rotateSpeed: 100
-  addedHP: 25
+  addedHP: 75
 --- !u!136 &5644053857807868639
 CapsuleCollider:
   m_ObjectHideFlags: 0
