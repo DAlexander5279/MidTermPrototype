@@ -15,6 +15,7 @@ public class gameManager : MonoBehaviour
     public GameObject player;
     public playerController playerScript;
     public cameraMovement Sensitivity;
+    
     [Range(1.0f, 3.0f)][SerializeField] float damageModifier;
     [Range(1.0f, 1.75f)][SerializeField] float scalingModifer;
 
@@ -29,6 +30,9 @@ public class gameManager : MonoBehaviour
     public GameObject loseMenu;
     public GameObject titleScreen;
     public GameObject closeConfirmMenu;
+    public GameObject CreditScreenPage1;
+    public GameObject CreditScreenPage2;
+    public GameObject CreditScreenPage3;
     public GameObject playerFlashDamage;
     public Image playerHealthBar;
     public Image playerHealthAnim;
@@ -84,12 +88,13 @@ public class gameManager : MonoBehaviour
     public bool closeConMenu;
     public bool Confirm;
     public bool Cancel;
+    public bool credits;
     public int zoins;
     public int AmmoCount;
     float HPTimer = 0;
     public bool shop;
 
-
+    [SerializeField] public List<GameObject> CreditMenus = new List<GameObject>();
     float origTime;
 
     void Awake()
@@ -156,7 +161,7 @@ public class gameManager : MonoBehaviour
 
 
         }
-
+        
         if (Input.GetButtonDown("Cancel") && activeMenu == titleScreen)
         {
             closeConMenu = true;
@@ -182,17 +187,23 @@ public class gameManager : MonoBehaviour
                 activeMenu.SetActive(true);
             }
         }
-        if (activeMenu == settingsMenu) 
+        //if (activeMenu == settingsMenu) 
+        //{
+        //    playerScript.getPlayerAud().Pause();
+        //    startGame = false;
+        //}
+        //else
+        //{
+        //    playerScript.getPlayerAud().Play();
+        //    startGame = true;
+        //}
+        if (activeMenu == CreditScreenPage1 && Input.GetButtonDown("Cancel"))
         {
-            playerScript.getPlayerAud().Pause();
-            startGame = false;
+            credits = false;
+            activeMenu.SetActive(false);
+            activeMenu = titleScreen;
+            activeMenu.SetActive(true);
         }
-        else
-        {
-            playerScript.getPlayerAud().Play();
-            startGame = true;
-        }
-
         if (Input.GetButtonDown("Cancel") && (activeMenu == null || activeMenu == shopMenu))
         {
             shop = !shop;
