@@ -93,8 +93,6 @@ public class gameManager : MonoBehaviour
     public int AmmoCount;
     float HPTimer = 0;
     public bool shop;
-
-    [SerializeField] public List<GameObject> CreditMenus = new List<GameObject>();
     float origTime;
 
     void Awake()
