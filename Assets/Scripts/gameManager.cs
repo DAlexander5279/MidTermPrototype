@@ -98,9 +98,11 @@ public class gameManager : MonoBehaviour
     void Awake()
     {
         instance = this;
+        player = null;
+        playerScript = null;
+        //player = GameObject.FindGameObjectWithTag("Player");
+        //playerScript = player.GetComponent<playerController>();
         savedMenu = null;
-        player = GameObject.FindGameObjectWithTag("Player");
-        playerScript = player.GetComponent<playerController>();
         origTime = Time.timeScale;
         PlayerPrefs.SetInt("enemyStat", 0);
         addZoins(0);
@@ -108,8 +110,9 @@ public class gameManager : MonoBehaviour
     }
     private void Start()
     {
-
         MainMenu();
+        player = GameObject.FindGameObjectWithTag("Player");
+        playerScript = player.GetComponent<playerController>();
         Cursor.visible = true;
         Cursor.lockState = CursorLockMode.Confined;
         if (PlayerPrefs.HasKey("MusicVol"))
@@ -160,20 +163,20 @@ public class gameManager : MonoBehaviour
 
         }
         
-        if (Input.GetButtonDown("Cancel") && activeMenu == titleScreen)
-        {
-            closeConMenu = true;
-            activeMenu = closeConfirmMenu;
-            activeMenu.SetActive(true);
-            if (closeConMenu == false)
-            {
-                cancel();
-            }
-            else
-            {
-                Application.Quit();
-            }
-        }
+        //if (Input.GetButtonDown("Cancel") && activeMenu == titleScreen)
+        //{
+        //    closeConMenu = true;
+        //    activeMenu = closeConfirmMenu;
+        //    activeMenu.SetActive(true);
+        //    if (closeConMenu == false)
+        //    {
+        //        cancel();
+        //    }
+        //    else
+        //    {
+        //        Application.Quit();
+        //    }
+        //}
 
         if (activeMenu == settingsMenu && startGame == false)
         {

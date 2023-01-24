@@ -15,7 +15,7 @@ public class playerController : MonoBehaviour
     // Player Stats
     #region
     [Header("------Player Stats------")]
-    [Range(1, 10)][SerializeField] float playerSpeed;
+    [Range(1, 20)][SerializeField] float playerSpeed;
     [SerializeField] int jumpMax;
     [Range(5, 15)][SerializeField] int jumpHeight;
     [Range(10, 20)][SerializeField] int gravity;
@@ -136,7 +136,8 @@ public class playerController : MonoBehaviour
     // Start is called before the first frame update
     private void Start()
     {
-
+        gameManager.instance.player = GameObject.FindGameObjectWithTag("Player");
+        gameManager.instance.playerScript = gameManager.instance.player.GetComponent<playerController>();
         HPOriginal = HP;
         updatePlayerHP();
         gameManager.instance.updatePlayerDamage(gunDMG);
