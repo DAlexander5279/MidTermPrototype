@@ -47,6 +47,10 @@ public class gameManager : MonoBehaviour
     public GameObject shopErrorHUD;
     [SerializeField] TMP_Text shopErrorText;
 
+    public GameObject OpenShop;
+    public GameObject OpenShopHUD;
+    [SerializeField] TMP_Text PresskeyToopen;
+
     public GameObject upgradeRifle;
     [SerializeField] TMP_Text upgradeRifleCost;
     public GameObject upgradeShotgun;
@@ -393,5 +397,13 @@ public class gameManager : MonoBehaviour
     public void updateUpgradeCost(int cost, TMP_Text weaponUpgradeText)
     {
         weaponUpgradeText.text = cost.ToString("F0");
+    }
+
+    public IEnumerator PressketoOpenShop(string text, float time)
+    {
+        PresskeyToopen.text = text;
+        OpenShop.SetActive(true);
+        yield return new WaitForSeconds(time);
+        OpenShop.SetActive(false);
     }
 }

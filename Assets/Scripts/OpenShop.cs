@@ -8,40 +8,52 @@ public class OpenShop : MonoBehaviour
     [SerializeField] AudioSource aud;
     [SerializeField] AudioClip  openShop;
     [Range(0, 3)][SerializeField] float openShopVolume;
+    public KeyCode _key;
+    string presskeytoOpenShop = "Press E to open shop";
 
+    bool enterbox = false;
+    bool pressKeycheck = false;
     // Start is called before the first frame update
     void Start()
     {
+        // shop.SetActive(false);
+    }
 
-        shop.SetActive(false);
+    private void Update()
+    {
+        if (enterbox)
+        {
+            if (Input.GetKeyUp(_key))
+            {
+                gameManager.instance.activeMenu = gameManager.instance.shopMenu;
+                shop.SetActive(true);
+                Cursor.visible = true;
+                Cursor.lockState = CursorLockMode.Confined;
+            }
+        }
+
     }
 
     private void OnTriggerEnter(Collider other)
     {
-
-        if (other.gameObject.tag == "Player")
+        enterbox = true;
+        if (other.gameObject.tag == "Player" && !pressKeycheck)
         {
-            aud.PlayOneShot(openShop, openShopVolume);
-            gameManager.instance.activeMenu = gameManager.instance.shopMenu;
-            //gameManager.instance.gamePause();
-            shop.SetActive(true);
-            Cursor.visible = true;
-            Cursor.lockState = CursorLockMode.Confined;
+            StartCoroutine(gameManager.instance.PressketoOpenShop(presskeytoOpenShop, 1.0f));
         }
+
     }
 
     private void OnTriggerExit(Collider other)
     {
-        if (other.gameObject.tag == "Player")
-        {
-            aud.PlayOneShot(openShop, openShopVolume);
-            gameManager.instance.activeMenu = null;
-            shop.SetActive(false);
-            Cursor.visible = false;
-            Cursor.lockState = CursorLockMode.Locked;
 
-        }
+        enterbox = false;
+        pressKeycheck = false;
+        gameManager.instance.activeMenu = null;
+        shop.SetActive(false);
+        Cursor.visible = false;
+        Cursor.lockState = CursorLockMode.Locked;
+
     }
-
 
 }
