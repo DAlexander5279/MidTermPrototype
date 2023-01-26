@@ -16,6 +16,7 @@ public class playerController : MonoBehaviour
     #region
     [Header("------Player Stats------")]
     [Range(1, 20)][SerializeField] float playerSpeed;
+    [Range(1.0f, 5)][SerializeField] float sprintMod;
     [SerializeField] int jumpMax;
     [Range(5, 15)][SerializeField] int jumpHeight;
     [Range(10, 20)][SerializeField] int gravity;
@@ -104,6 +105,8 @@ public class playerController : MonoBehaviour
     int walkSpeedOrg;
     public int CostOfWeapons;
     public int CostOfUpgrade;
+    float playerSpeedOrig;
+    bool isSprinting;
 
     int selectedGun;
 
@@ -139,6 +142,7 @@ public class playerController : MonoBehaviour
         gameManager.instance.player = GameObject.FindGameObjectWithTag("Player");
         gameManager.instance.playerScript = gameManager.instance.player.GetComponent<playerController>();
         HPOriginal = HP;
+        playerSpeedOrig = playerSpeed; 
         updatePlayerHP();
         gameManager.instance.updatePlayerDamage(gunDMG);
         isReloading = false;
@@ -155,6 +159,7 @@ public class playerController : MonoBehaviour
 
 
                 Movement();
+                sprint();
 
                 if (!audioIsPlaying && move.magnitude > 0.3f && playerControl.isGrounded)
                 {
@@ -200,6 +205,21 @@ public class playerController : MonoBehaviour
 
 
 
+    }
+
+    void sprint()
+    {
+
+        if (Input.GetButtonDown("Sprint"))
+        {
+            playerSpeed *= sprintMod;
+            isSprinting = true;
+        }
+        else if (Input.GetButtonUp("Sprint"))
+        {
+            playerSpeed /= sprintMod;
+            isSprinting = false;
+        }
     }
 
     IEnumerator Shoot()

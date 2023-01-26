@@ -610,7 +610,7 @@ MonoBehaviour:
   dangerSightModifier: 1.65
   beenKilled: 0
   floatTextPosition: {fileID: 3491576886320299750}
-  droppedZoinsAmt: 5
+  droppedZoinsAmt: 10
   itemDropList:
   - {fileID: 5644053857807868638, guid: 3e158b2550c6cb4478ddad5c2b5e5ef1, type: 3}
   - {fileID: 5644053857807868638, guid: 3e158b2550c6cb4478ddad5c2b5e5ef1, type: 3}
