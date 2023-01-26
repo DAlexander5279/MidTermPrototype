@@ -605,7 +605,7 @@ MonoBehaviour:
   floatingTextPrefab: {fileID: 716116289428203266, guid: a871673e88fa74a40a01ceedd07c9d87, type: 3}
   HP: 10
   playerFaceSpeed: 3
-  sightAngle: 75
+  sightAngle: 45
   headPosition: {fileID: 7562739324744373177}
   dangerSightModifier: 1.65
   beenKilled: 0
@@ -697,7 +697,7 @@ SphereCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 20
+  m_Radius: 50
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!65 &7433532860335216606
 BoxCollider:

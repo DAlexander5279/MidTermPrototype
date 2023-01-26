@@ -187,7 +187,7 @@ public class playerController : MonoBehaviour
 
         move = transform.right * Input.GetAxis("Horizontal") + transform.forward * Input.GetAxis("Vertical");
 
-        playerControl.Move(move * Time.deltaTime * playerSpeed);
+        playerControl.Move(playerSpeed * Time.deltaTime * move);
 
 
         // Changes the height position of the player..
@@ -210,11 +210,6 @@ public class playerController : MonoBehaviour
 
     void sprint()
     {
-        if (gameManager.instance.activeMenu != null)
-        {
-            playerSpeed = playerSpeedOrig;
-            isSprinting = false;
-        }
         if (Input.GetButtonDown("Sprint"))
         {
             playerSpeed = playerSpeedOrig * sprintMod;

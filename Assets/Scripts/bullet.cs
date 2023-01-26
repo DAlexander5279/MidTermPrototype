@@ -14,6 +14,7 @@ public class bullet : MonoBehaviour
     [SerializeField] int speed;
     [SerializeField] int timer;
     [SerializeField] float inaccuracyAmt;
+    bool hitAlready;
     // Start is called before the first frame update
     void Start()
     {
@@ -25,13 +26,17 @@ public class bullet : MonoBehaviour
         Destroy(gameObject, timer);
     }
 
-    // Update is called once per frame
     private void OnTriggerEnter(Collider other)
-    {
+    {  
+        if (other.CompareTag("Item"))
+        {
+            return;
+        }
         if (other.CompareTag("Player"))
         {
             gameManager.instance.playerScript.takeDamage(damage);
         }
         Destroy(gameObject);
     }
+
 }

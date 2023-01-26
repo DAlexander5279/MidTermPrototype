@@ -15,13 +15,19 @@ public class shotgunPellets : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        rb.velocity = transform.forward * pelletSpeed;
+        //rb.velocity = transform.forward * pelletSpeed;
+        Vector3 target = (gameManager.instance.player.transform.position - transform.position).normalized;
+        rb.velocity = target * pelletSpeed;
         Destroy(gameObject, timer);
     }
 
     // Update is called once per frame
     private void OnTriggerEnter(Collider other)
     {
+        if (other.CompareTag("Item"))
+        {
+            return;
+        }
         if (other.CompareTag("Player"))
         {
             gameManager.instance.playerScript.takeDamage(pelletDamage);

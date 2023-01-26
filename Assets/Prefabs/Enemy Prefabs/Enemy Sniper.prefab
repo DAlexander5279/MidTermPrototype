@@ -604,8 +604,8 @@ MonoBehaviour:
   anim: {fileID: 7562739324753738845}
   floatingTextPrefab: {fileID: 716116289428203266, guid: a871673e88fa74a40a01ceedd07c9d87, type: 3}
   HP: 10
-  playerFaceSpeed: 15
-  sightAngle: 75
+  playerFaceSpeed: 3
+  sightAngle: 25
   headPosition: {fileID: 7562739324744373177}
   dangerSightModifier: 1.65
   beenKilled: 0

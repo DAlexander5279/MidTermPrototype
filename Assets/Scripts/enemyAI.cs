@@ -76,6 +76,7 @@ public class enemyAI : MonoBehaviour, IDamage
         gameManager.instance.updateEnemyCount(1);
         beenKilled = false;
         isStunned = false;
+        playerThreat = false;
 
     }
 
@@ -132,7 +133,7 @@ public class enemyAI : MonoBehaviour, IDamage
         {
             agent.SetDestination(gameManager.instance.player.transform.position);
             if (!isShooting && playerInRange)
-                if (angleToPlayer <= sightAngle)
+                if (playerThreat)
                     StartCoroutine(shoot());
 
             if (agent.remainingDistance <= agent.stoppingDistance || playerThreat)
@@ -154,15 +155,15 @@ public class enemyAI : MonoBehaviour, IDamage
         RaycastHit hit;
         if (Physics.Raycast(headPosition.position, playerDirection, out hit))
         {
-            //if (hit.collider.CompareTag("Player") && angleToPlayer <= sightAngle)
-            //{
-            //    playerThreat = true;    // enemy views player as a viable threat
-            //}
+            if (hit.collider.CompareTag("Player") && angleToPlayer <= sightAngle)
+            {
+                playerThreat = true;    // enemy views player as a viable threat
+            }
 
-            //if (playerThreat && angleToPlayer >= (sightAngle * dangerSightModifier))        // enemy will lose aggro if player leaves the "battle vision angle"
-            //{
-            //    playerThreat = false;
-            //}
+            if (playerThreat && angleToPlayer >= sightAngle)        // enemy will lose aggro if player leaves the "battle vision angle"
+            {
+                playerThreat = false;
+            }
 
             //if (playerThreat)           // as long as the player is a threat, the enemy will attack, follow, and track the player
             //{
