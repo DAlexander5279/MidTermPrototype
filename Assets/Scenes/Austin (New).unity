@@ -1759,6 +1759,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 8300000, guid: 50861ff83c3a47142bb397f7cf079c06, type: 3}
     - target: {fileID: 253091865, guid: 8119b01fc1f287140a1aacffdc79cacc, type: 3}
+      propertyPath: activeMenu
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 253091865, guid: 8119b01fc1f287140a1aacffdc79cacc, type: 3}
       propertyPath: Sensitivity
       value: 
       objectReference: {fileID: 393242934}
@@ -1826,6 +1830,10 @@ PrefabInstance:
       propertyPath: clickSound
       value: 
       objectReference: {fileID: 8300000, guid: 50861ff83c3a47142bb397f7cf079c06, type: 3}
+    - target: {fileID: 1342623869, guid: 8119b01fc1f287140a1aacffdc79cacc, type: 3}
+      propertyPath: m_MinValue
+      value: 5
+      objectReference: {fileID: 0}
     - target: {fileID: 1470101975, guid: 8119b01fc1f287140a1aacffdc79cacc, type: 3}
       propertyPath: clickVol
       value: 1.5
@@ -1838,6 +1846,10 @@ PrefabInstance:
       propertyPath: clickSound
       value: 
       objectReference: {fileID: 8300000, guid: 50861ff83c3a47142bb397f7cf079c06, type: 3}
+    - target: {fileID: 1827442129, guid: 8119b01fc1f287140a1aacffdc79cacc, type: 3}
+      propertyPath: m_MinValue
+      value: 5
+      objectReference: {fileID: 0}
     - target: {fileID: 1996006828, guid: 8119b01fc1f287140a1aacffdc79cacc, type: 3}
       propertyPath: clickVol
       value: 1.5

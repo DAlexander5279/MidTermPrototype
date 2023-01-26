@@ -1,15 +1,17 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class buttonFunctions : MonoBehaviour
 {
+
     [SerializeField] AudioSource audioClick;
     [Range(0, 3)][SerializeField] float clickVol;
     [SerializeField] AudioClip clickSound;
-    
+ 
     public void resume()
     {
         gameManager.instance.playerScript.getPlayerAud().PlayOneShot(clickSound);
@@ -21,9 +23,12 @@ public class buttonFunctions : MonoBehaviour
     }
     public void restart()
     {
+
         gameManager.instance.playerScript.getPlayerAud().PlayOneShot(clickSound);
         gameManager.instance.gameUnpause();
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+      
+
     }
     public void quit()
     {
@@ -58,9 +63,9 @@ public class buttonFunctions : MonoBehaviour
         if (gameManager.instance.savedMenu == gameManager.instance.titleScreen)
         {
             gameManager.instance.backToTitle();
-            
+
         }
-        else if(gameManager.instance.savedMenu == gameManager.instance.pauseMenu)
+        else if (gameManager.instance.savedMenu == gameManager.instance.pauseMenu)
         {
             gameManager.instance.backToPause();
 
@@ -79,9 +84,9 @@ public class buttonFunctions : MonoBehaviour
         gameManager.instance.CreditScreenPage2.SetActive(false);
         gameManager.instance.CreditScreenPage3.SetActive(false);
         gameManager.instance.activeMenu = gameManager.instance.titleScreen;
-        gameManager.instance.activeMenu.SetActive(true) ;
+        gameManager.instance.activeMenu.SetActive(true);
 
-        
+
     }
     public void nextPage2()
     {

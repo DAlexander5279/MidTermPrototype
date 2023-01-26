@@ -15,7 +15,7 @@ public class gameManager : MonoBehaviour
     public GameObject player;
     public playerController playerScript;
     public cameraMovement Sensitivity;
-    
+
     [Range(1.0f, 3.0f)][SerializeField] float damageModifier;
     [Range(1.0f, 1.75f)][SerializeField] float scalingModifer;
 
@@ -374,6 +374,7 @@ public class gameManager : MonoBehaviour
         savedMenu = null;
         Time.timeScale = origTime;
         titleScreen.SetActive(false);
+        pauseMenu.SetActive(false);
     }
     public void backToTitle()
     {
