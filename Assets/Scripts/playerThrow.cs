@@ -55,7 +55,7 @@ public class playerThrow : MonoBehaviour
 
         Rigidbody thrownObjectRb = projectile.GetComponent<Rigidbody>();
 
-        Vector3 throwingForce = (cam.transform.forward * throwForce) + (transform.up * throwForceUpward);
+        Vector3 throwingForce = (cam.transform.forward * throwForce);
 
         // using Impulse as we only need to apply the throwing force once
         thrownObjectRb.AddForce(throwingForce, ForceMode.Impulse);

@@ -1,4 +1,4 @@
- using System.Collections;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -6,8 +6,8 @@ public class OpenShop : MonoBehaviour
 {
     public GameObject shop;
     [SerializeField] AudioSource aud;
-    [SerializeField] AudioClip  openShop;
-    [Range(0, 3)][SerializeField] float openShopVolume;
+    [SerializeField] AudioClip openShop;
+    [Range(0, 3)] [SerializeField] float openShopVolume;
     public KeyCode _key;
     string presskeytoOpenShop = "Press E to open shop";
 
@@ -32,9 +32,10 @@ public class OpenShop : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        enterbox = true;
+
         if (other.gameObject.tag == "Player" && !pressKeycheck)
         {
+            enterbox = true;
             StartCoroutine(gameManager.instance.PressketoOpenShop(presskeytoOpenShop, 1.0f));
         }
 
@@ -42,12 +43,16 @@ public class OpenShop : MonoBehaviour
 
     private void OnTriggerExit(Collider other)
     {
-        enterbox = false;
-        pressKeycheck = false;
-        gameManager.instance.activeMenu = null;
-        shop.SetActive(false);
-        Cursor.visible = false;
-        Cursor.lockState = CursorLockMode.Locked;
+        if (other.gameObject.tag == "Player")
+        {
+            enterbox = false;
+            pressKeycheck = false;
+            gameManager.instance.activeMenu = null;
+            shop.SetActive(false);
+            Cursor.visible = false;
+            Cursor.lockState = CursorLockMode.Locked;
+        }
+
     }
 
 }

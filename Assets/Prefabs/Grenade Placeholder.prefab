@@ -56,7 +56,7 @@ MonoBehaviour:
   explosionEffect: {fileID: 19842296, guid: a0040bf7072bc2f4e82d887d50a9c5e2, type: 3}
   expAud: {fileID: 907730514126260077}
   explosionSound: {fileID: 8300000, guid: 083f12a0226cf1a4d93705d4a4ea201c, type: 3}
-  explosionSoundVol: 1.01
+  explosionSoundVol: 0.85
   explosionLifespan: 1.65
 --- !u!33 &5022658095588095100
 MeshFilter:
@@ -129,9 +129,9 @@ Rigidbody:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2505653274007219841}
   serializedVersion: 2
-  m_Mass: 1
-  m_Drag: 2.5
-  m_AngularDrag: 180
+  m_Mass: 0.95
+  m_Drag: 0
+  m_AngularDrag: 0.05
   m_UseGravity: 1
   m_IsKinematic: 0
   m_Interpolate: 0
