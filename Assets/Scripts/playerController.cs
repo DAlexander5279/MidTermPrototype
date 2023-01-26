@@ -146,6 +146,7 @@ public class playerController : MonoBehaviour
         updatePlayerHP();
         gameManager.instance.updatePlayerDamage(gunDMG);
         isReloading = false;
+        isSprinting = false;
     }
     // Update is called once per frame
     void Update()
@@ -209,15 +210,19 @@ public class playerController : MonoBehaviour
 
     void sprint()
     {
-
+        if (gameManager.instance.activeMenu != null)
+        {
+            playerSpeed = playerSpeedOrig;
+            isSprinting = false;
+        }
         if (Input.GetButtonDown("Sprint"))
         {
-            playerSpeed *= sprintMod;
+            playerSpeed = playerSpeedOrig * sprintMod;
             isSprinting = true;
         }
         else if (Input.GetButtonUp("Sprint"))
         {
-            playerSpeed /= sprintMod;
+            playerSpeed = playerSpeedOrig;
             isSprinting = false;
         }
     }

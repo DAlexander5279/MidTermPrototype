@@ -343,6 +343,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6362750108102085396}
   - component: {fileID: 6362750108102085397}
+  - component: {fileID: 4701036108380255851}
   m_Layer: 0
   m_Name: Buy Station
   m_TagString: Untagged
@@ -379,9 +380,23 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c92862651eb5ea741be5fa564a414bfc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  shopList:
-  - {fileID: 5998873461299402857, guid: 62f3d2412737b5f4693c6b609faa92c5, type: 3}
-  - {fileID: 4633569493883174249, guid: 717be71a7d8581d418b5c651d23d0a85, type: 3}
+  shopList: []
+--- !u!208 &4701036108380255851
+NavMeshObstacle:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6362750108102085395}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Shape: 1
+  m_Extents: {x: 0.85, y: 0.5, z: 0.5}
+  m_MoveThreshold: 0.1
+  m_Carve: 1
+  m_CarveOnlyStationary: 1
+  m_Center: {x: -0.6, y: -1.97, z: 0}
+  m_TimeToStationary: 0.5
 --- !u!1 &6362750109460255898
 GameObject:
   m_ObjectHideFlags: 0

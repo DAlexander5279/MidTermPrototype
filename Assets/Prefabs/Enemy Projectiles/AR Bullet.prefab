@@ -51,6 +51,7 @@ MonoBehaviour:
   damage: 3
   speed: 45
   timer: 1
+  inaccuracyAmt: 0.05
 --- !u!54 &4164665115654197004
 Rigidbody:
   m_ObjectHideFlags: 0

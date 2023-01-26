@@ -13,11 +13,14 @@ public class bullet : MonoBehaviour
     [SerializeField] int damage;
     [SerializeField] int speed;
     [SerializeField] int timer;
+    [SerializeField] float inaccuracyAmt;
     // Start is called before the first frame update
     void Start()
     {
         //rb.velocity = transform.forward * speed;
-        rb.velocity = (gameManager.instance.player.transform.position - transform.position).normalized * speed;
+        Vector3 target = (gameManager.instance.player.transform.position - transform.position).normalized;
+        target += Random.insideUnitSphere * inaccuracyAmt;
+        rb.velocity = target * speed;
 
         Destroy(gameObject, timer);
     }
