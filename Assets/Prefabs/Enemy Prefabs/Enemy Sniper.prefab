@@ -604,21 +604,26 @@ MonoBehaviour:
   anim: {fileID: 7562739324753738845}
   floatingTextPrefab: {fileID: 716116289428203266, guid: a871673e88fa74a40a01ceedd07c9d87, type: 3}
   HP: 10
-  playerFaceSpeed: 15
-  sightAngle: 75
+  playerFaceSpeed: 3
+  sightAngle: 25
   headPosition: {fileID: 7562739324744373177}
   dangerSightModifier: 1.65
   beenKilled: 0
   floatTextPosition: {fileID: 3491576886320299750}
-  droppedZoinsAmt: 5
+  droppedZoinsAmt: 10
   itemDropList:
   - {fileID: 5644053857807868638, guid: 3e158b2550c6cb4478ddad5c2b5e5ef1, type: 3}
   - {fileID: 5644053857807868638, guid: 3e158b2550c6cb4478ddad5c2b5e5ef1, type: 3}
   - {fileID: 5644053857807868638, guid: 3e158b2550c6cb4478ddad5c2b5e5ef1, type: 3}
-  - {fileID: 5998873461299402857, guid: 62f3d2412737b5f4693c6b609faa92c5, type: 3}
-  - {fileID: 5998873461299402857, guid: 62f3d2412737b5f4693c6b609faa92c5, type: 3}
+  - {fileID: 5644053857807868638, guid: 3e158b2550c6cb4478ddad5c2b5e5ef1, type: 3}
+  - {fileID: 5644053857807868638, guid: 3e158b2550c6cb4478ddad5c2b5e5ef1, type: 3}
+  - {fileID: 5644053857807868638, guid: 3e158b2550c6cb4478ddad5c2b5e5ef1, type: 3}
+  - {fileID: 5644053857807868638, guid: 3e158b2550c6cb4478ddad5c2b5e5ef1, type: 3}
+  - {fileID: 5644053857807868638, guid: 3e158b2550c6cb4478ddad5c2b5e5ef1, type: 3}
+  - {fileID: 4633569493883174249, guid: 717be71a7d8581d418b5c651d23d0a85, type: 3}
+  - {fileID: 4633569493883174249, guid: 717be71a7d8581d418b5c651d23d0a85, type: 3}
   - {fileID: 5998873461299402857, guid: dbebe4d8d2f7863499f34d911c7bdf36, type: 3}
-  baseDropChance: 15
+  baseDropChance: 3
   enemyType: 0
   animTransSpeed: 1
   gunType: 1

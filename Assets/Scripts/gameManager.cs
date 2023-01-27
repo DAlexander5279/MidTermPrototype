@@ -15,8 +15,9 @@ public class gameManager : MonoBehaviour
     public GameObject player;
     public playerController playerScript;
     public cameraMovement Sensitivity;
+
     [Range(1.0f, 3.0f)][SerializeField] float damageModifier;
-    [Range(0.0f, 3.0f)][SerializeField] float scalingModifer;
+    [Range(1.0f, 1.75f)][SerializeField] float scalingModifer;
 
     public int maxRoomsCleared;
     public int enemiesKilled;
@@ -29,6 +30,9 @@ public class gameManager : MonoBehaviour
     public GameObject loseMenu;
     public GameObject titleScreen;
     public GameObject closeConfirmMenu;
+    public GameObject CreditScreenPage1;
+    public GameObject CreditScreenPage2;
+    public GameObject CreditScreenPage3;
     public GameObject playerFlashDamage;
     public Image playerHealthBar;
     public Image playerHealthAnim;
@@ -84,20 +88,21 @@ public class gameManager : MonoBehaviour
     public bool closeConMenu;
     public bool Confirm;
     public bool Cancel;
+    public bool credits;
     public int zoins;
     public int AmmoCount;
     float HPTimer = 0;
     public bool shop;
-
-
     float origTime;
 
     void Awake()
     {
         instance = this;
+        player = null;
+        playerScript = null;
+        //player = GameObject.FindGameObjectWithTag("Player");
+        //playerScript = player.GetComponent<playerController>();
         savedMenu = null;
-        player = GameObject.FindGameObjectWithTag("Player");
-        playerScript = player.GetComponent<playerController>();
         origTime = Time.timeScale;
         PlayerPrefs.SetInt("enemyStat", 0);
         addZoins(0);
@@ -105,8 +110,9 @@ public class gameManager : MonoBehaviour
     }
     private void Start()
     {
-
         MainMenu();
+        player = GameObject.FindGameObjectWithTag("Player");
+        playerScript = player.GetComponent<playerController>();
         Cursor.visible = true;
         Cursor.lockState = CursorLockMode.Confined;
         if (PlayerPrefs.HasKey("MusicVol"))
@@ -156,21 +162,21 @@ public class gameManager : MonoBehaviour
 
 
         }
-
-        if (Input.GetButtonDown("Cancel") && activeMenu == titleScreen)
-        {
-            closeConMenu = true;
-            activeMenu = closeConfirmMenu;
-            activeMenu.SetActive(true);
-            if (closeConMenu == false)
-            {
-                cancel();
-            }
-            else
-            {
-                Application.Quit();
-            }
-        }
+        
+        //if (Input.GetButtonDown("Cancel") && activeMenu == titleScreen)
+        //{
+        //    closeConMenu = true;
+        //    activeMenu = closeConfirmMenu;
+        //    activeMenu.SetActive(true);
+        //    if (closeConMenu == false)
+        //    {
+        //        cancel();
+        //    }
+        //    else
+        //    {
+        //        Application.Quit();
+        //    }
+        //}
 
         if (activeMenu == settingsMenu && startGame == false)
         {
@@ -182,17 +188,23 @@ public class gameManager : MonoBehaviour
                 activeMenu.SetActive(true);
             }
         }
-        if (activeMenu == settingsMenu) 
+        //if (activeMenu == settingsMenu) 
+        //{
+        //    playerScript.getPlayerAud().Pause();
+        //    startGame = false;
+        //}
+        //else
+        //{
+        //    playerScript.getPlayerAud().Play();
+        //    startGame = true;
+        //}
+        if (activeMenu == CreditScreenPage1 && Input.GetButtonDown("Cancel"))
         {
-            playerScript.getPlayerAud().Pause();
-            startGame = false;
+            credits = false;
+            activeMenu.SetActive(false);
+            activeMenu = titleScreen;
+            activeMenu.SetActive(true);
         }
-        else
-        {
-            playerScript.getPlayerAud().Play();
-            startGame = true;
-        }
-
         if (Input.GetButtonDown("Cancel") && (activeMenu == null || activeMenu == shopMenu))
         {
             shop = !shop;
@@ -308,7 +320,7 @@ public class gameManager : MonoBehaviour
 
     public int scalingFunction(int var)
     {
-        return var + Mathf.FloorToInt(var * (scalingModifer * Mathf.Floor(waveCount * 0.2f)));
+        return Mathf.FloorToInt(var * (1.0f + (scalingModifer * (waveCount - 1))));
     }
     public void musicVolChange()
     {
@@ -362,6 +374,7 @@ public class gameManager : MonoBehaviour
         savedMenu = null;
         Time.timeScale = origTime;
         titleScreen.SetActive(false);
+        pauseMenu.SetActive(false);
     }
     public void backToTitle()
     {

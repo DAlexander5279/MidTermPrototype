@@ -53,6 +53,7 @@ public class enemyAI : MonoBehaviour, IDamage
 
     int HPOriginal;
     bool isShooting;
+    bool isStunned;
     bool playerInRange;
     Vector3 playerDirection;
     float angleToPlayer;
@@ -74,6 +75,8 @@ public class enemyAI : MonoBehaviour, IDamage
         enemyMaterialOriginal = model.material.color;
         gameManager.instance.updateEnemyCount(1);
         beenKilled = false;
+        isStunned = false;
+        playerThreat = false;
 
     }
 
@@ -84,10 +87,12 @@ public class enemyAI : MonoBehaviour, IDamage
         pushBack = Vector3.Lerp(pushBack, Vector3.zero, Time.deltaTime);
         agent.Move((agent.velocity + pushBack) * Time.deltaTime);
 
-        if (playerInRange)
-        {
-            canSeePlayer();
-        }
+        //if (playerInRange)
+        //{
+        //    canSeePlayer();
+        //}
+
+        canSeePlayer();
 
         healthBarStrink();
 
@@ -124,15 +129,19 @@ public class enemyAI : MonoBehaviour, IDamage
     // function that makes the enemy track and attack the player
     void targetPlayer()
     {
-        agent.SetDestination(gameManager.instance.player.transform.position);
-        if (!isShooting && playerInRange)
-            if (angleToPlayer <= sightAngle)
-                StartCoroutine(shoot());
-
-        if (agent.remainingDistance <= agent.stoppingDistance || playerThreat)
+        if (!isStunned)
         {
-            facePlayer();
+            agent.SetDestination(gameManager.instance.player.transform.position);
+            if (!isShooting && playerInRange)
+                if (playerThreat)
+                    StartCoroutine(shoot());
+
+            if (agent.remainingDistance <= agent.stoppingDistance || playerThreat)
+            {
+                facePlayer();
+            }
         }
+        
     }
 
     void canSeePlayer()
@@ -146,15 +155,15 @@ public class enemyAI : MonoBehaviour, IDamage
         RaycastHit hit;
         if (Physics.Raycast(headPosition.position, playerDirection, out hit))
         {
-            //if (hit.collider.CompareTag("Player") && angleToPlayer <= sightAngle)
-            //{
-            //    playerThreat = true;    // enemy views player as a viable threat
-            //}
+            if (hit.collider.CompareTag("Player") && angleToPlayer <= sightAngle)
+            {
+                playerThreat = true;    // enemy views player as a viable threat
+            }
 
-            //if (playerThreat && angleToPlayer >= (sightAngle * dangerSightModifier))        // enemy will lose aggro if player leaves the "battle vision angle"
-            //{
-            //    playerThreat = false;
-            //}
+            if (playerThreat && angleToPlayer >= sightAngle)        // enemy will lose aggro if player leaves the "battle vision angle"
+            {
+                playerThreat = false;
+            }
 
             //if (playerThreat)           // as long as the player is a threat, the enemy will attack, follow, and track the player
             //{
@@ -167,7 +176,7 @@ public class enemyAI : MonoBehaviour, IDamage
 
     void facePlayer()
     {
-        playerDirection.y = 0; // set to 0 to avoid model doing Smooth Criminal lean
+        //playerDirection.y = 0; // set to 0 to avoid model doing Smooth Criminal lean
         Quaternion rot = Quaternion.LookRotation(playerDirection);
         transform.rotation = Quaternion.Lerp(transform.rotation, rot, Time.deltaTime * playerFaceSpeed);
     }
@@ -203,6 +212,10 @@ public class enemyAI : MonoBehaviour, IDamage
             {
                 trueDamage = dmgIn;
             }
+            if (trueDamage >= HP * 0.7f && enemyType != 2)
+            {
+                isStunned = true;
+            }
             HP -= trueDamage;
             ShowDamage(trueDamage.ToString(), wasCritical);
             updateEnemyHPBar();
@@ -223,7 +236,7 @@ public class enemyAI : MonoBehaviour, IDamage
 
                 gameManager.instance.enemiesKilled++;
 
-                droppedZoinsAmt = gameManager.instance.scalingFunction(droppedZoinsAmt);
+                //droppedZoinsAmt = gameManager.instance.scalingFunction(droppedZoinsAmt);
 
                 gameManager.instance.addZoins(droppedZoinsAmt);
 
@@ -234,6 +247,11 @@ public class enemyAI : MonoBehaviour, IDamage
                 beenKilled = true;
 
 
+            }
+
+            else if (isStunned)
+            {
+                StartCoroutine(StunEnemy());
             }
         }
 
@@ -297,7 +315,7 @@ public class enemyAI : MonoBehaviour, IDamage
             Instantiate(itemDropList[Random.Range(0, itemDropList.Count)], headPosition.position, transform.rotation);
             gameManager.instance.updateItemCount(1);
 
-            if (enemyType == 2)
+            if (enemyType == 2) //boss enemy
             {
                 Instantiate(itemDropList[Random.Range(0, itemDropList.Count)], headPosition.position, transform.rotation);
                 gameManager.instance.updateItemCount(1);
@@ -308,5 +326,12 @@ public class enemyAI : MonoBehaviour, IDamage
                 gameManager.instance.updateItemCount(1);
             }
         }
+    }
+
+    IEnumerator StunEnemy()
+    {
+        agent.SetDestination(transform.position);
+        yield return new WaitForSeconds(1.0f);
+        isStunned = false;
     }
 }

@@ -611,11 +611,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   playerControl: {fileID: 2470128280080099145}
   playerSpeed: 10
-  jumpMax: 1
-  jumpHeight: 5
+  jumpMax: 2
+  jumpHeight: 6
   gravity: 15
   pushTime: 1
-  HP: 1000
+  HP: 250
   isDisabled: 0
   Reload: 114
   crouch: 0
@@ -784,7 +784,7 @@ CharacterController:
   m_Enabled: 1
   serializedVersion: 2
   m_Height: 2
-  m_Radius: 0.5
+  m_Radius: 0.68
   m_SlopeLimit: 45
   m_StepOffset: 0.3
   m_SkinWidth: 0.08

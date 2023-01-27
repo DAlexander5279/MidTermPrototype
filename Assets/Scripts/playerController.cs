@@ -15,7 +15,8 @@ public class playerController : MonoBehaviour
     // Player Stats
     #region
     [Header("------Player Stats------")]
-    [Range(1, 10)][SerializeField] float playerSpeed;
+    [Range(1, 20)][SerializeField] float playerSpeed;
+    [Range(1.0f, 5)][SerializeField] float sprintMod;
     [SerializeField] int jumpMax;
     [Range(5, 15)][SerializeField] int jumpHeight;
     [Range(10, 20)][SerializeField] int gravity;
@@ -104,6 +105,8 @@ public class playerController : MonoBehaviour
     int walkSpeedOrg;
     public int CostOfWeapons;
     public int CostOfUpgrade;
+    float playerSpeedOrig;
+    bool isSprinting;
 
     int selectedGun;
 
@@ -136,11 +139,14 @@ public class playerController : MonoBehaviour
     // Start is called before the first frame update
     private void Start()
     {
-
+        gameManager.instance.player = GameObject.FindGameObjectWithTag("Player");
+        gameManager.instance.playerScript = gameManager.instance.player.GetComponent<playerController>();
         HPOriginal = HP;
+        playerSpeedOrig = playerSpeed; 
         updatePlayerHP();
         gameManager.instance.updatePlayerDamage(gunDMG);
         isReloading = false;
+        isSprinting = false;
     }
     // Update is called once per frame
     void Update()
@@ -154,6 +160,7 @@ public class playerController : MonoBehaviour
 
 
                 Movement();
+                sprint();
 
                 if (!audioIsPlaying && move.magnitude > 0.3f && playerControl.isGrounded)
                 {
@@ -180,7 +187,7 @@ public class playerController : MonoBehaviour
 
         move = transform.right * Input.GetAxis("Horizontal") + transform.forward * Input.GetAxis("Vertical");
 
-        playerControl.Move(move * Time.deltaTime * playerSpeed);
+        playerControl.Move(playerSpeed * Time.deltaTime * move);
 
 
         // Changes the height position of the player..
@@ -199,6 +206,20 @@ public class playerController : MonoBehaviour
 
 
 
+    }
+
+    void sprint()
+    {
+        if (Input.GetButtonDown("Sprint"))
+        {
+            playerSpeed = playerSpeedOrig * sprintMod;
+            isSprinting = true;
+        }
+        else if (Input.GetButtonUp("Sprint"))
+        {
+            playerSpeed = playerSpeedOrig;
+            isSprinting = false;
+        }
     }
 
     IEnumerator Shoot()
@@ -352,7 +373,7 @@ public class playerController : MonoBehaviour
 
     public void takeDamage(int dmgIn)
     {
-        HP -= gameManager.instance.scalingFunction(dmgIn);
+        HP -= dmgIn;
         aud.PlayOneShot(playerHurtAudio[UnityEngine.Random.Range(0, playerHurtAudio.Length)], playerHurtAudioVol);
         updatePlayerHP();
         StartCoroutine(playerFlashDamage());
@@ -490,6 +511,8 @@ public class playerController : MonoBehaviour
         gunCriticalMult = gunList[selectedGun].criticalMult;
 
         weaponLvl = gunList[selectedGun].weaponLevel;
+
+        isReloading = false;
 
         isMeleeWeapon = gunList[selectedGun].isMelee;
         if (gunList[selectedGun].isGun == true && gunList[selectedGun].isMelee == false)

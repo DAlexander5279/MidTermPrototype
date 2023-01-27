@@ -10,7 +10,7 @@ public class shopUpgradeWeapon : MonoBehaviour
     [SerializeField] TMP_Text gunUpgradeCostText;   // upgrade cost button text
     int costOfUpgrade = 0;                          // initialize costOfUpgrade in case of errors
 
-    string alreadyOwnWeaponText = "Already own weapon!!!";
+    //string alreadyOwnWeaponText = "Already own weapon!!!";
     string doesntOwnWeaponText = "You don't own that weapon yet!!!";
     string notEnoughCashText = "Not enough cash!!!";
 

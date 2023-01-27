@@ -177,7 +177,7 @@ GameObject:
   - component: {fileID: 6316678453717647305}
   m_Layer: 0
   m_Name: Player Katana Pickup
-  m_TagString: Untagged
+  m_TagString: Item
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -212,7 +212,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   anime: {fileID: 0}
   gameObjectSword: {fileID: 6035302921550122439}
-  canAttack: 1
   attackCoolDown: 1
 --- !u!114 &6593848912683450724
 MonoBehaviour:
