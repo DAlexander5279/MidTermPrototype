@@ -263,6 +263,15 @@ public class playerController : MonoBehaviour
                             else
                             {
                                 hit.collider.GetComponent<IDamage>().takeDamage(gunDMG, false, 1.0f);
+                                if (isMeleeWeapon)  // grant small healing for melee weapons (no overflow like health pickups)
+                                {
+                                    int healAmount = Mathf.FloorToInt(gunDMG * 0.25f);
+                                    if (HP + healAmount >= HPOriginal)
+                                    {
+                                        HP = HPOriginal;
+                                        updatePlayerHP();
+                                    }
+                                }
                             }
                         }
 
@@ -373,7 +382,12 @@ public class playerController : MonoBehaviour
 
     public void takeDamage(int dmgIn)
     {
-        HP -= dmgIn;
+        float damageReductionMult = 1.0f;
+        if (isMeleeWeapon)  // melee weapons grant some damage reduction to be viable
+        {
+            damageReductionMult = 0.66f;
+        }
+        HP -= Mathf.CeilToInt( dmgIn * damageReductionMult);
         aud.PlayOneShot(playerHurtAudio[UnityEngine.Random.Range(0, playerHurtAudio.Length)], playerHurtAudioVol);
         updatePlayerHP();
         StartCoroutine(playerFlashDamage());
@@ -615,5 +629,14 @@ public class playerController : MonoBehaviour
             Instantiate(weapon, transform.position, transform.rotation);
     }
 
+    public float getLaserSoundVol()
+    {
+        return laserUpgradeSFXVol;
+    }
+
+    public AudioClip getLaserSFX()
+    {
+        return laserUpgradeSFX;
+    }
 }
 

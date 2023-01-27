@@ -113,6 +113,7 @@ public class gameManager : MonoBehaviour
         MainMenu();
         player = GameObject.FindGameObjectWithTag("Player");
         playerScript = player.GetComponent<playerController>();
+        Sensitivity = Camera.main.GetComponent<cameraMovement>();
         Cursor.visible = true;
         Cursor.lockState = CursorLockMode.Confined;
         if (PlayerPrefs.HasKey("MusicVol"))
@@ -139,6 +140,7 @@ public class gameManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+
         if (Input.GetButtonDown("Cancel") && (activeMenu == null || activeMenu == pauseMenu) && savedMenu == null)
         {
             paused = true;

@@ -313,17 +313,17 @@ public class enemyAI : MonoBehaviour, IDamage
         if (chance > Random.Range(0, 100) && itemDropList.Count > 0)
         {
             Instantiate(itemDropList[Random.Range(0, itemDropList.Count)], headPosition.position, transform.rotation);
-            gameManager.instance.updateItemCount(1);
+            //gameManager.instance.updateItemCount(1);
 
             if (enemyType == 2) //boss enemy
             {
                 Instantiate(itemDropList[Random.Range(0, itemDropList.Count)], headPosition.position, transform.rotation);
-                gameManager.instance.updateItemCount(1);
+                //gameManager.instance.updateItemCount(1);
             }
             else if (enemyType == 1 & chance > Random.Range(0, 100))
             {
                 Instantiate(itemDropList[Random.Range(0, itemDropList.Count)], headPosition.position, transform.rotation);
-                gameManager.instance.updateItemCount(1);
+                //gameManager.instance.updateItemCount(1);
             }
         }
     }

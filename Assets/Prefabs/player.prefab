@@ -383,7 +383,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   anime: {fileID: 1637089530}
   gameObjectSword: {fileID: 424139918901482180}
-  attackCoolDown: 1
+  attackCoolDown: 0.85
 --- !u!33 &2397752966658562240
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -610,7 +610,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerControl: {fileID: 2470128280080099145}
-  playerSpeed: 10
+  playerSpeed: 7
+  sprintMod: 1.375
   jumpMax: 2
   jumpHeight: 6
   gravity: 15
@@ -784,7 +785,7 @@ CharacterController:
   m_Enabled: 1
   serializedVersion: 2
   m_Height: 2
-  m_Radius: 0.68
+  m_Radius: 0.52
   m_SlopeLimit: 45
   m_StepOffset: 0.3
   m_SkinWidth: 0.08

@@ -21,12 +21,13 @@ public class MeleeAnimation : MonoBehaviour
     public void swordAttack()
     {
         canAttack= true;
-        anime = gameObjectSword.GetComponent<Animator>();
+        //anime = gameObjectSword.GetComponent<Animator>();
         anime.SetTrigger("Attack");
         StartCoroutine(resetAttackCoolDown());
     }
     IEnumerator resetAttackCoolDown()
     {
+        canAttack = false;
         yield return new WaitForSeconds(attackCoolDown);
         canAttack = true;
     }

@@ -14821,10 +14821,6 @@ MonoBehaviour:
   zoins: 0
   AmmoCount: 0
   shop: 0
-  CreditMenus:
-  - {fileID: 85938550}
-  - {fileID: 1956513789}
-  - {fileID: 497772959}
 --- !u!1 &1103788628891823913
 GameObject:
   m_ObjectHideFlags: 0

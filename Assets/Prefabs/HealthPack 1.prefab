@@ -111,7 +111,7 @@ Light:
   m_Type: 2
   m_Shape: 0
   m_Color: {r: 1, g: 0, b: 0, a: 1}
-  m_Intensity: 8
+  m_Intensity: 10
   m_Range: 3.5
   m_SpotAngle: 30
   m_InnerSpotAngle: 21.80208
@@ -145,7 +145,7 @@ Light:
   m_Cookie: {fileID: 0}
   m_DrawHalo: 0
   m_Flare: {fileID: 0}
-  m_RenderMode: 0
+  m_RenderMode: 1
   m_CullingMask:
     serializedVersion: 2
     m_Bits: 4294967295
@@ -213,7 +213,7 @@ MonoBehaviour:
   Cross: {fileID: 5644053858048565425}
   animSpeed: 0.1
   rotateSpeed: 100
-  addedHP: 75
+  addedHP: 50
 --- !u!136 &5644053857807868639
 CapsuleCollider:
   m_ObjectHideFlags: 0

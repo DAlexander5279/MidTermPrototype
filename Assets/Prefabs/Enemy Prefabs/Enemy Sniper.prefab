@@ -616,15 +616,11 @@ MonoBehaviour:
   - {fileID: 5644053857807868638, guid: 3e158b2550c6cb4478ddad5c2b5e5ef1, type: 3}
   - {fileID: 5644053857807868638, guid: 3e158b2550c6cb4478ddad5c2b5e5ef1, type: 3}
   - {fileID: 5644053857807868638, guid: 3e158b2550c6cb4478ddad5c2b5e5ef1, type: 3}
-  - {fileID: 5644053857807868638, guid: 3e158b2550c6cb4478ddad5c2b5e5ef1, type: 3}
-  - {fileID: 5644053857807868638, guid: 3e158b2550c6cb4478ddad5c2b5e5ef1, type: 3}
-  - {fileID: 5644053857807868638, guid: 3e158b2550c6cb4478ddad5c2b5e5ef1, type: 3}
-  - {fileID: 5644053857807868638, guid: 3e158b2550c6cb4478ddad5c2b5e5ef1, type: 3}
   - {fileID: 4633569493883174249, guid: 717be71a7d8581d418b5c651d23d0a85, type: 3}
   - {fileID: 4633569493883174249, guid: 717be71a7d8581d418b5c651d23d0a85, type: 3}
   - {fileID: 5998873461299402857, guid: dbebe4d8d2f7863499f34d911c7bdf36, type: 3}
-  baseDropChance: 3
-  enemyType: 0
+  baseDropChance: 1
+  enemyType: 1
   animTransSpeed: 1
   gunType: 1
   fireRate: 1.5
