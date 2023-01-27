@@ -396,8 +396,13 @@ public class playerController : MonoBehaviour
         {
             aud.enabled = false;
             gameManager.instance.gamePause();
+            gameManager.instance.shopMenu.SetActive(false);
+            gameManager.instance.settingsMenu.SetActive(false);
+            gameManager.instance.titleScreen.SetActive(false);
+            gameManager.instance.CreditScreenPage1.SetActive(false);
+            gameManager.instance.CreditScreenPage2.SetActive(false);
+            gameManager.instance.CreditScreenPage3.SetActive(false);
             gameManager.instance.loseMenu.SetActive(true);
-            gameManager.instance.activeMenu = gameManager.instance.loseMenu;
             gameManager.instance.activeMenu = gameManager.instance.loseMenu;
         }
     }
