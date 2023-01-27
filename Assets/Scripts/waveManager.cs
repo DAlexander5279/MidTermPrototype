@@ -146,6 +146,10 @@ public class waveManager : MonoBehaviour
             WaveEnemyCount += Mathf.FloorToInt(gameManager.instance.scalingFunction(1 + Mathf.FloorToInt(wave * 0.2f)));
             WaveBossEnemyCount += Mathf.FloorToInt(gameManager.instance.scalingFunction(Mathf.FloorToInt(wave * 0.2f)));
         }
+        if (wave > 0)
+        gameManager.instance.playerScript.getPlayerAud().
+                    PlayOneShot(gameManager.instance.playerScript.getLaserSFX(), gameManager.instance.playerScript.getLaserSoundVol());
+
         //waits x amount of time, then resets variables for new wave
         yield return new WaitForSeconds(waveBreakTimer);
 

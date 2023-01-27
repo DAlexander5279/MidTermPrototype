@@ -13,11 +13,11 @@ MonoBehaviour:
   m_Name: player Rifle
   m_EditorClassIdentifier: 
   gunDMG: 5
-  modifedGunDMG: 5
-  shootRate: 0.045
+  modifedGunDMG: 15
+  shootRate: 0.1
   shootDist: 300
   magSize: 30
-  magCount: 30
+  magCount: 11
   fireSelect: 0
   pellets: 1
   spreadAccuracy: 1
@@ -25,7 +25,7 @@ MonoBehaviour:
   CostofWeapon: 20
   hasScope: 0
   weaponName: Rifle
-  weaponLevel: 0
+  weaponLevel: 3
   maxWeaponLevel: 8
   gunModel: {fileID: 919132149155446097, guid: 33269b2b610f4c245a712795c1927939, type: 3}
   gunshotSound: {fileID: 8300000, guid: 024c32c2982b01c4daf29c224c213186, type: 3}

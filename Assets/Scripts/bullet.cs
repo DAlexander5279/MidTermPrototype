@@ -22,7 +22,7 @@ public class bullet : MonoBehaviour
         Vector3 target = (gameManager.instance.player.transform.position - transform.position).normalized;
         target += Random.insideUnitSphere * inaccuracyAmt;
         rb.velocity = target * speed;
-        damage += Mathf.FloorToInt(damage * (gameManager.instance.waveCount * 1.05f));
+        damage += Mathf.FloorToInt(damage * (gameManager.instance.waveCount * 1.02f));
         Destroy(gameObject, timer);
     }
 

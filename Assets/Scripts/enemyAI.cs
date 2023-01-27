@@ -239,7 +239,7 @@ public class enemyAI : MonoBehaviour, IDamage
                 //droppedZoinsAmt = gameManager.instance.scalingFunction(droppedZoinsAmt);
 
                 gameManager.instance.addZoins(droppedZoinsAmt);
-                int newDropChance = Mathf.FloorToInt(((gameManager.instance.waveCount - 1) * 1.05f) * baseDropChance);
+                int newDropChance = Mathf.FloorToInt(((gameManager.instance.waveCount - 1) * 1.02f) * baseDropChance);
                 if (newDropChance > 35 && enemyType != 2)
                 {
                     newDropChance = 35;

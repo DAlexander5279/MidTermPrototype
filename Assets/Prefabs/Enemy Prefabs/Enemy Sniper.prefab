@@ -613,7 +613,7 @@ MonoBehaviour:
   droppedZoinsAmt: 10
   itemDropList:
   - {fileID: 5644053857807868638, guid: 3e158b2550c6cb4478ddad5c2b5e5ef1, type: 3}
-  baseDropChance: 1
+  baseDropChance: 12
   enemyType: 1
   animTransSpeed: 1
   gunType: 1
@@ -705,7 +705,7 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 0.45, y: 0.5, z: 0.515}
+  m_Size: {x: 0.64, y: 0.65, z: 0.515}
   m_Center: {x: 0, y: 2.3522332, z: 0.05}
 --- !u!82 &1061444911186347715
 AudioSource:

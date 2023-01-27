@@ -841,7 +841,7 @@ MonoBehaviour:
   - {fileID: 6035302921550122439, guid: c3a78094e724c764e954b2bb0b43c98c, type: 3}
   - {fileID: 5998873461299402857, guid: 62f3d2412737b5f4693c6b609faa92c5, type: 3}
   - {fileID: 5998873461299402857, guid: eff122e1b2ac4ee4ba5c6e247bf07b31, type: 3}
-  baseDropChance: 10
+  baseDropChance: 20
   enemyType: 2
   animTransSpeed: 1
   gunType: 2
@@ -1029,7 +1029,7 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 0.45, y: 0.5, z: 0.515}
+  m_Size: {x: 0.64, y: 0.65, z: 0.515}
   m_Center: {x: 0, y: 2.3522332, z: 0.05}
 --- !u!1 &6626594136112001916
 GameObject:
