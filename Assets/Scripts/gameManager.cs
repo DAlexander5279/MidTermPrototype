@@ -241,6 +241,7 @@ public class gameManager : MonoBehaviour
         Time.timeScale = 0;
         Cursor.visible = true;
         Cursor.lockState = CursorLockMode.Confined;
+        paused = true;
 
     }
     public void gameUnpause()
@@ -251,6 +252,7 @@ public class gameManager : MonoBehaviour
         pauseMenu.SetActive(false);
         activeMenu = null;
         savedMenu= null;
+        paused = false;
 
     }
     public void updateEnemyCount(int amount)

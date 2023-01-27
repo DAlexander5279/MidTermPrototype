@@ -26,12 +26,13 @@ public class playerThrow : MonoBehaviour
     void Start()
     {
         totalThrowsOriginal = totalThrows;
+        cam = Camera.main.GetComponent<cameraMovement>().transform;
         // look into where to make canThrow true when picking up the Grenade ability
     }
 
     void Update()
     {
-        if (Input.GetKeyDown(throwKey) && canThrow && totalThrows > 0)
+        if (Input.GetKeyDown(throwKey) && canThrow && totalThrows > 0 && !gameManager.instance.paused)
         {
             Throw();
         }
