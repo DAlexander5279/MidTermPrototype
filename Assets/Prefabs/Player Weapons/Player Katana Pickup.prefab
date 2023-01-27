@@ -175,7 +175,7 @@ GameObject:
   - component: {fileID: 8108441440420226238}
   - component: {fileID: 5904569233193097684}
   - component: {fileID: 6316678453717647305}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Player Katana Pickup
   m_TagString: Item
   m_Icon: {fileID: 0}

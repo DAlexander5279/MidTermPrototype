@@ -22,6 +22,7 @@ public class explosion : MonoBehaviour
     Renderer itemModel;
     Vector3 hitDirection;
     float angleToNearby;
+    int modifiedDamage = 0;
 
     void Start()
     {
@@ -54,8 +55,9 @@ public class explosion : MonoBehaviour
                 }
                 else if (nearExplosion.CompareTag("Enemy"))
                 {
+                    modifiedDamage = (int)(gameManager.instance.scalingFunction(damage) * 0.85f);
                     pushForce = (nearExplosion.transform.position - transform.position) * pushBackAmount;
-                    nearExplosion.GetComponent<IDamage>().takeDamage(damage, false, 1.0f);
+                    nearExplosion.GetComponent<IDamage>().takeDamage(modifiedDamage, false, 1.0f);
                     nearExplosion.GetComponent<IDamage>().pushObject(pushForce);
                 }
             }
