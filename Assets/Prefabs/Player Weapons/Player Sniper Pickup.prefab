@@ -174,7 +174,7 @@ GameObject:
   - component: {fileID: 2484991099671438731}
   - component: {fileID: 8070851920588530868}
   - component: {fileID: 4645787616760812160}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Player Sniper Pickup
   m_TagString: Item
   m_Icon: {fileID: 0}

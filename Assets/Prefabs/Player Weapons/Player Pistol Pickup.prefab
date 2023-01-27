@@ -174,7 +174,7 @@ GameObject:
   - component: {fileID: 6784051578114257199}
   - component: {fileID: 2528401371662100172}
   - component: {fileID: 3964784752389494207}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Player Pistol Pickup
   m_TagString: Item
   m_Icon: {fileID: 0}
