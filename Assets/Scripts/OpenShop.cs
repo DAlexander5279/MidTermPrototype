@@ -32,11 +32,12 @@ public class OpenShop : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-
+       
         if (other.gameObject.tag == "Player" && !pressKeycheck)
         {
-            enterbox = true;
+            enterbox = true;          
             StartCoroutine(gameManager.instance.PressketoOpenShop(presskeytoOpenShop, 1.0f));
+            //gameManager.instance.gamePause();
         }
 
     }

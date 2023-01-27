@@ -43,6 +43,7 @@ public class gameManager : MonoBehaviour
     [SerializeField] TextMeshProUGUI roomsCleared; // its rooms!
 
     [SerializeField] TextMeshProUGUI ammoCount;
+    [SerializeField] TextMeshProUGUI enemyCounttext; 
 
     [SerializeField] TextMeshProUGUI playerDamage;
 
@@ -107,6 +108,7 @@ public class gameManager : MonoBehaviour
         PlayerPrefs.SetInt("enemyStat", 0);
         addZoins(0);
         waveCount = 0;
+        //enemyCount = 0;
     }
     private void Start()
     {
@@ -254,6 +256,8 @@ public class gameManager : MonoBehaviour
     public void updateEnemyCount(int amount)
     {
         enemyCount += amount;
+
+        enemyCounttext.text = enemyCount.ToString("F0");
 
 
         //if ((enemyCount <= 0) && (enemiesKilled >= killWinCondition - 1))
