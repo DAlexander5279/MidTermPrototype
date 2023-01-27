@@ -20,7 +20,7 @@ MonoBehaviour:
   magCount: 5
   fireSelect: 1
   pellets: 6
-  spreadAccuracy: 0.75
+  spreadAccuracy: 0.85
   criticalMult: 1.5
   CostofWeapon: 20
   hasScope: 0

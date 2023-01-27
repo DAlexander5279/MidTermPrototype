@@ -97,9 +97,9 @@ public class waveManager : MonoBehaviour
 
                     //reward player with more health for beating a boss round
                     float healthPercent = gameManager.instance.playerScript.HP / gameManager.instance.playerScript.HPOriginal;
-                    gameManager.instance.playerScript.HPOriginal = gameManager.instance.scalingFunction(gameManager.instance.playerScript.HPOriginal);
+                    gameManager.instance.playerScript.HPOriginal += 10;
                     gameManager.instance.playerScript.HP = Mathf.FloorToInt(gameManager.instance.playerScript.HPOriginal * healthPercent);
-                    Instantiate(healthPickUp, gameManager.instance.player.transform.position, gameManager.instance.player.transform.rotation);
+                    //Instantiate(healthPickUp, gameManager.instance.player.transform.position, gameManager.instance.player.transform.rotation);
                     StartCoroutine(waveBreak());
 
                 }
@@ -143,7 +143,7 @@ public class waveManager : MonoBehaviour
         //increments enemy o
         if (wave > 0)
         {
-            WaveEnemyCount += Mathf.FloorToInt(gameManager.instance.scalingFunction(3 + Mathf.FloorToInt(wave * 0.2f)));
+            WaveEnemyCount += Mathf.FloorToInt(gameManager.instance.scalingFunction(1 + Mathf.FloorToInt(wave * 0.2f)));
             WaveBossEnemyCount += Mathf.FloorToInt(gameManager.instance.scalingFunction(Mathf.FloorToInt(wave * 0.2f)));
         }
         //waits x amount of time, then resets variables for new wave
@@ -168,7 +168,7 @@ public class waveManager : MonoBehaviour
         EnemiesSpawned++;
 
         //waits x amount of time in between each spawn
-        yield return new WaitForSeconds(timeBetweenSpawns * 3.0f);
+        yield return new WaitForSeconds(timeBetweenSpawns * 1.75f);
 
         isSpawningEnemies = false;
     }

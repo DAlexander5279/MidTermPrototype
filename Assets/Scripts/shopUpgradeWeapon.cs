@@ -30,7 +30,7 @@ public class shopUpgradeWeapon : MonoBehaviour
         if (isShopActive)    // if the shop menu is active...
         {
             //get up-to-date upgrade cost in case player got an upgrade from a drop on the field
-            costOfUpgrade = gunToUpgrade.CostofWeapon + (gunToUpgrade.CostofWeapon * gunToUpgrade.weaponLevel);
+            costOfUpgrade = gunToUpgrade.CostofWeapon + Mathf.FloorToInt(gunToUpgrade.CostofWeapon * gunToUpgrade.weaponLevel * 1.33f);
             gameManager.instance.updateUpgradeCost(costOfUpgrade, gunUpgradeCostText);
         }
     }

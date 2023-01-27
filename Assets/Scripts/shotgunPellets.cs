@@ -19,6 +19,7 @@ public class shotgunPellets : MonoBehaviour
         Vector3 target = (gameManager.instance.player.transform.position - transform.position).normalized;
         rb.velocity = target * pelletSpeed;
         Destroy(gameObject, timer);
+        pelletDamage += Mathf.FloorToInt(pelletDamage * (gameManager.instance.waveCount * 1.025f));
     }
 
     // Update is called once per frame

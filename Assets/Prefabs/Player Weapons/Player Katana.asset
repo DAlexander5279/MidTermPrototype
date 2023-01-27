@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   gunDMG: 35
   modifedGunDMG: 105
-  shootRate: 1
+  shootRate: 1.25
   shootDist: 10
   magSize: 1
   magCount: 1

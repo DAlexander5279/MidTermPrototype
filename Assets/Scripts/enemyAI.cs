@@ -239,8 +239,16 @@ public class enemyAI : MonoBehaviour, IDamage
                 //droppedZoinsAmt = gameManager.instance.scalingFunction(droppedZoinsAmt);
 
                 gameManager.instance.addZoins(droppedZoinsAmt);
-
-                rollDropItem(gameManager.instance.scalingFunction(baseDropChance));
+                int newDropChance = Mathf.FloorToInt(((gameManager.instance.waveCount - 1) * 1.05f) * baseDropChance);
+                if (newDropChance > 35 && enemyType != 2)
+                {
+                    newDropChance = 35;
+                }
+                else if(newDropChance > 50 && enemyType == 2)
+                {
+                    newDropChance = 50;
+                }
+                rollDropItem(newDropChance);
 
 
                 Destroy(gameObject);

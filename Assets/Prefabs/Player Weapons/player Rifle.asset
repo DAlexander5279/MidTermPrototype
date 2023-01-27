@@ -12,9 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fbdc5c617eda47a419c013e02d98d9ac, type: 3}
   m_Name: player Rifle
   m_EditorClassIdentifier: 
-  gunDMG: 6
-  modifedGunDMG: 6
-  shootRate: 0.25
+  gunDMG: 5
+  modifedGunDMG: 5
+  shootRate: 0.045
   shootDist: 300
   magSize: 30
   magCount: 30

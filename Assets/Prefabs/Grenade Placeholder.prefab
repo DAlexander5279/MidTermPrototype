@@ -52,7 +52,7 @@ MonoBehaviour:
   pushBackAmount: 4
   damage: 35
   delayTime: 1.5
-  radius: 8
+  radius: 12
   explosionEffect: {fileID: 19842296, guid: a0040bf7072bc2f4e82d887d50a9c5e2, type: 3}
   expAud: {fileID: 907730514126260077}
   explosionSound: {fileID: 8300000, guid: 083f12a0226cf1a4d93705d4a4ea201c, type: 3}

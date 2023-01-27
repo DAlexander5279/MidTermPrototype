@@ -28,14 +28,14 @@ public class HealthPackScript : MonoBehaviour
         if (other.CompareTag("Player"))
         {
             int HPHealedTotal = gameManager.instance.playerScript.HP + Mathf.FloorToInt(addedHP * (gameManager.instance.waveCount * 0.75f));
-            if ((HPHealedTotal >= gameManager.instance.playerScript.HPOriginal) && (gameManager.instance.waveCount >= 5))    // grant more HP when overhealing starting Round 5
+            if ((gameManager.instance.playerScript.HP == gameManager.instance.playerScript.HPOriginal) && (gameManager.instance.waveCount >= 5))    // grant more HP when overhealing starting Round 5
             {
                 gameManager.instance.playerScript.HPOriginal += 25;
                 gameManager.instance.playerScript.HP = gameManager.instance.playerScript.HPOriginal;
                 gameManager.instance.playerScript.getPlayerAud().
                     PlayOneShot(gameManager.instance.playerScript.getLaserSFX(), gameManager.instance.playerScript.getLaserSoundVol());
             }
-            else if ((HPHealedTotal >= gameManager.instance.playerScript.HPOriginal) && (gameManager.instance.waveCount < 5))  // if below Round 5, just grant regular HP amount for regular and overheal
+            else if ((HPHealedTotal >= gameManager.instance.playerScript.HPOriginal))  // if below Round 5, just grant regular HP amount for regular and overheal
             {
                 gameManager.instance.playerScript.HP = gameManager.instance.playerScript.HPOriginal;
             }
