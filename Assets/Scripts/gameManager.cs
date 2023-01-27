@@ -379,6 +379,7 @@ public class gameManager : MonoBehaviour
         Time.timeScale = origTime;
         titleScreen.SetActive(false);
         pauseMenu.SetActive(false);
+        paused = false;
     }
     public void backToTitle()
     {
