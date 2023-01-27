@@ -115,6 +115,7 @@ public class gameManager : MonoBehaviour
         MainMenu();
         player = GameObject.FindGameObjectWithTag("Player");
         playerScript = player.GetComponent<playerController>();
+        Sensitivity = Camera.main.GetComponent<cameraMovement>();
         Cursor.visible = true;
         Cursor.lockState = CursorLockMode.Confined;
         if (PlayerPrefs.HasKey("MusicVol"))
@@ -141,6 +142,7 @@ public class gameManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+
         if (Input.GetButtonDown("Cancel") && (activeMenu == null || activeMenu == pauseMenu) && savedMenu == null)
         {
             paused = true;
@@ -241,6 +243,7 @@ public class gameManager : MonoBehaviour
         Time.timeScale = 0;
         Cursor.visible = true;
         Cursor.lockState = CursorLockMode.Confined;
+        paused = true;
 
     }
     public void gameUnpause()
@@ -251,6 +254,7 @@ public class gameManager : MonoBehaviour
         pauseMenu.SetActive(false);
         activeMenu = null;
         savedMenu= null;
+        paused = false;
 
     }
     public void updateEnemyCount(int amount)
@@ -379,6 +383,7 @@ public class gameManager : MonoBehaviour
         Time.timeScale = origTime;
         titleScreen.SetActive(false);
         pauseMenu.SetActive(false);
+        paused = false;
     }
     public void backToTitle()
     {

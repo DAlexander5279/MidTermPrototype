@@ -15,11 +15,11 @@ public class playerController : MonoBehaviour
     // Player Stats
     #region
     [Header("------Player Stats------")]
-    [Range(1, 20)][SerializeField] float playerSpeed;
-    [Range(1.0f, 5)][SerializeField] float sprintMod;
+    [Range(1, 20)] [SerializeField] float playerSpeed;
+    [Range(1.0f, 5)] [SerializeField] float sprintMod;
     [SerializeField] int jumpMax;
-    [Range(5, 15)][SerializeField] int jumpHeight;
-    [Range(10, 20)][SerializeField] int gravity;
+    [Range(5, 15)] [SerializeField] int jumpHeight;
+    [Range(10, 20)] [SerializeField] int gravity;
     [SerializeField] int pushTime;
     public int HP;
     public bool isDisabled;
@@ -51,19 +51,19 @@ public class playerController : MonoBehaviour
     [Range(0, 3)] [SerializeField] float dryfireSoundVol;
 
     [SerializeField] AudioClip gunReloadSound;
-    [Range(0, 3)][SerializeField] float gunshotSoundVol;
+    [Range(0, 3)] [SerializeField] float gunshotSoundVol;
 
     [SerializeField] AudioClip[] playerJumpAudio;
-    [Range(0, 3)][SerializeField] float playerJumpAudioVol;
+    [Range(0, 3)] [SerializeField] float playerJumpAudioVol;
 
     [SerializeField] AudioClip[] playerHurtAudio;
-    [Range(0, 3)][SerializeField] float playerHurtAudioVol;
+    [Range(0, 3)] [SerializeField] float playerHurtAudioVol;
 
     [SerializeField] AudioClip[] playerStepAudio;
-    [Range(0, 3)][SerializeField] float playerStepAudioVol;
+    [Range(0, 3)] [SerializeField] float playerStepAudioVol;
 
     [SerializeField] AudioClip laserUpgradeSFX;
-    [Range(0, 3)][SerializeField] float laserUpgradeSFXVol;
+    [Range(0, 3)] [SerializeField] float laserUpgradeSFXVol;
 
 
 
@@ -76,9 +76,9 @@ public class playerController : MonoBehaviour
     //[SerializeField] List<gunStats> gunList = new List<gunStats>();
     public List<gunStats> gunList = new List<gunStats>();
 
-    [Range(0, 5)][SerializeField] int gunDMG;
+    [Range(0, 5)] [SerializeField] int gunDMG;
     [SerializeField] float shootRate;   // player's gun fire rate
-    [Range(0, 200)][SerializeField] int shootDist; // effective range of the shot
+    [Range(0, 200)] [SerializeField] int shootDist; // effective range of the shot
     [SerializeField] GameObject gunModel;   //also gun position/viewmodel position
     [SerializeField] GameObject meleeModel;
     [SerializeField] GameObject hitEffect;
@@ -142,7 +142,7 @@ public class playerController : MonoBehaviour
         gameManager.instance.player = GameObject.FindGameObjectWithTag("Player");
         gameManager.instance.playerScript = gameManager.instance.player.GetComponent<playerController>();
         HPOriginal = HP;
-        playerSpeedOrig = playerSpeed; 
+        playerSpeedOrig = playerSpeed;
         updatePlayerHP();
         gameManager.instance.updatePlayerDamage(gunDMG);
         isReloading = false;
@@ -178,7 +178,7 @@ public class playerController : MonoBehaviour
     }
     void Movement()
     {
-        
+
         if (playerControl.isGrounded && playerVelocity.y < 0)
         {
             timesJumped = 0;
@@ -263,6 +263,15 @@ public class playerController : MonoBehaviour
                             else
                             {
                                 hit.collider.GetComponent<IDamage>().takeDamage(gunDMG, false, 1.0f);
+                                if (isMeleeWeapon)  // grant small healing for melee weapons (no overflow like health pickups)
+                                {
+                                    int healAmount = Mathf.FloorToInt(gunDMG * 0.25f);
+                                    if (HP + healAmount >= HPOriginal)
+                                    {
+                                        HP = HPOriginal;
+                                        updatePlayerHP();
+                                    }
+                                }
                             }
                         }
 
@@ -373,7 +382,12 @@ public class playerController : MonoBehaviour
 
     public void takeDamage(int dmgIn)
     {
-        HP -= dmgIn;
+        float damageReductionMult = 1.0f;
+        if (isMeleeWeapon)  // melee weapons grant some damage reduction to be viable
+        {
+            damageReductionMult = 0.66f;
+        }
+        HP -= Mathf.CeilToInt(dmgIn * damageReductionMult);
         aud.PlayOneShot(playerHurtAudio[UnityEngine.Random.Range(0, playerHurtAudio.Length)], playerHurtAudioVol);
         updatePlayerHP();
         StartCoroutine(playerFlashDamage());
@@ -459,32 +473,35 @@ public class playerController : MonoBehaviour
         }
     }
 
-    
+
     void gunSelect()
     {
-        if (Input.GetAxis("Mouse ScrollWheel") > 0 && selectedGun < gunList.Count - 1)  // scrolling up + staying within List's range
+        if (!gameManager.instance.paused)
         {
-            selectedGun++;
-            changeCurrentGun();
+            if (Input.GetAxis("Mouse ScrollWheel") > 0 && selectedGun < gunList.Count - 1)  // scrolling up + staying within List's range
+            {
+                selectedGun++;
+                changeCurrentGun();
 
-        }
-        else if (Input.GetAxis("Mouse ScrollWheel") < 0 && selectedGun > 0)  // scrolling down + staying within List's range
-        {
-            selectedGun--;
-            changeCurrentGun();
+            }
+            else if (Input.GetAxis("Mouse ScrollWheel") < 0 && selectedGun > 0)  // scrolling down + staying within List's range
+            {
+                selectedGun--;
+                changeCurrentGun();
 
-        }
-        else if (Input.GetAxis("Mouse ScrollWheel") > 0 && selectedGun == gunList.Count - 1)  // scrolling up + final gun in list...
-        {
-            selectedGun = 0;    // loop back to first gun in list
-            changeCurrentGun();
+            }
+            else if (Input.GetAxis("Mouse ScrollWheel") > 0 && selectedGun == gunList.Count - 1)  // scrolling up + final gun in list...
+            {
+                selectedGun = 0;    // loop back to first gun in list
+                changeCurrentGun();
 
-        }
-        else if (Input.GetAxis("Mouse ScrollWheel") < 0 && selectedGun == 0)  // scrolling down + first gun in list...
-        {
-            selectedGun = gunList.Count - 1;    // loop forward to final gun in list
-            changeCurrentGun();
+            }
+            else if (Input.GetAxis("Mouse ScrollWheel") < 0 && selectedGun == 0)  // scrolling down + first gun in list...
+            {
+                selectedGun = gunList.Count - 1;    // loop forward to final gun in list
+                changeCurrentGun();
 
+            }
         }
     }
 
@@ -612,8 +629,17 @@ public class playerController : MonoBehaviour
 
     public void BuyWeapon(GameObject weapon)
     {
-            Instantiate(weapon, transform.position, transform.rotation);
+        Instantiate(weapon, transform.position, transform.rotation);
     }
 
+    public float getLaserSoundVol()
+    {
+        return laserUpgradeSFXVol;
+    }
+
+    public AudioClip getLaserSFX()
+    {
+        return laserUpgradeSFX;
+    }
 }
 
